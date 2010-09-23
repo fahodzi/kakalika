@@ -1,0 +1,27 @@
+<?php
+namespace kakalika\users;
+
+use \ntentan\models\Model;
+
+class UsersModel extends Model
+{
+    public function resetPassword()
+    {
+        $this->password = "";
+        if($this->update()==false) 
+        {
+            var_dump($this->invalidFields);
+            die();
+        }
+    }
+    
+    public function preSaveCallback()
+    {
+        $this["password"] = md5($this["password"]);
+    }
+    
+    public function __toString()
+    {
+        return $this->data["full_name"] . ($this->data["email"] == "" ? "" : " &lt;{$this->data["email"]}&gt;") ;
+    }
+}

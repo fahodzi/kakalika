@@ -6,7 +6,7 @@ use ntentan\controllers\Controller;
 
 class KakalikaController extends Controller
 {
-    public function __construct()
+    public function init()
     {
         $this->addComponent("auth");
         $this->addBlock("menu", "top_menu");

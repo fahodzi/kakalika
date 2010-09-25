@@ -1,8 +1,12 @@
 <?php
 namespace kakalika\projects;
 
+use kakalika\users\UsersModel;
 use kakalika\KakalikaController;
 use ntentan\Ntentan;
+use ntentan\controllers\components\auth\Auth;
+
+include "kakalika/users/UsersModel.php";
 
 class ProjectsController extends KakalikaController
 {
@@ -42,8 +46,36 @@ class ProjectsController extends KakalikaController
         $project = $this->model->getFirstWithId($projectId);
         if($project->initialized == 0)
         {
-            $this->append("section", " • {$project->name}");
             $this->view->template = "first_run.tpl.php";
+            $this->append("section", " :: {$project->name}");
+            $this->set("name", $project->name);
+            
+            if($_POST["form_submitted"] == "yes")
+            {
+                $role = new \kakalika\roles\RolesModel();
+                $role->name = "Project Members";
+                $role->project_id = $projectId;
+                $roleId = $role->save();
+                
+                foreach($_POST["user_ids"] as $userId)
+                {
+                    $roleUser = new \kakalika\role_users\RoleUsersModel();
+                    $roleUser->user_id = $userId;
+                    $roleUser->role_id = $roleId;
+                    $roleUser->save();
+                }
+            }
+            else
+            {
+                $users = UsersModel::getAll(
+                    array(
+                        "conditions" => array(
+                            "users.id<>" => Auth::userId()
+                        )
+                    )
+                );
+                $this->set("users", $users->getData());
+            }
         }
     }
 }

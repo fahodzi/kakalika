@@ -2,6 +2,7 @@ body
 {
 	margin:0px;
 	font-family:"Helvetica", sans-serif;
+	font-size:small;
 }
 
 #header
@@ -126,7 +127,7 @@ div#body > div#body-contents
 {
 	background-color:#ffffff;
 	padding:10px;
-	font-size:smaller;
+	/*font-size:small;*/
 }
 
 div#body > div#body-contents p
@@ -140,8 +141,9 @@ div#body > div#body-contents > h4
 {
 	margin:0px;
 	padding:0px;
-	font-size:large;
+	font-size:larger;
 	color:#a0a0a0;
+	margin-bottom:10px;
 }
 
 table.item-table
@@ -255,6 +257,17 @@ div.error
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#808080, endColorstr=#606060)";	
 }
 
+.grey
+{
+	color:#a0a0a0;
+}
+
+.dark-grey
+{
+	color:#606060;
+	font-weight:bold;
+}
+
 .small-shadow
 {
 	box-shadow: 0px 1px 2px rgba(0, 0, 0, .5);
@@ -277,3 +290,15 @@ div.error
 	font-size:normal;
 	font-weight:bold;
 }
+
+div.small-scroll-box
+{
+	height:200px;
+	overflow:auto;
+	margin:5px;
+	border:2px solid #f0f0f0;
+	/*border-radius:5px;
+	-moz-border-radius:5px;*/
+}
+
+

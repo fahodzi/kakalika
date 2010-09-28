@@ -14,17 +14,22 @@ class KakalikaController extends Controller
         $this->topMenuBlock->addItem(
             array(
                 "label"=>"Feed",
-                "path" => Ntentan::getUrl("feed"),
+                "path" => Ntentan::getUrl("admin/feed"),
             )
         );
         $this->topMenuBlock->addItem(
             array(
                 "label" => "Projects",
-                "path" => Ntentan::getUrl("projects")
+                "path" => Ntentan::getUrl("admin/projects")
             )
         );
         
-        $this->topMenuBlock->addItem("Users");
+        $this->topMenuBlock->addItem(
+            array(
+                "label" => "Users",
+                "path" => Ntentan::getUrl("admin/users")
+            )
+        );
         $this->topMenuBlock->addItem("Inbox");
         
         $this->addBlock("menu", "sub_menu");

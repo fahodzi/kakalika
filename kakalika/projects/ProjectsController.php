@@ -44,11 +44,12 @@ class ProjectsController extends KakalikaController
     public function setup($projectId)
     {
         $project = $this->model->getFirstWithId($projectId);
+        $this->set("name", $project->name);
+        $this->set("project_path", Ntentan::getUrl($project->machine_name));
         if($project->initialized == 0)
         {
             $this->view->template = "first_run.tpl.php";
             $this->append("section", " :: {$project->name}");
-            $this->set("name", $project->name);
             
             if($_POST["form_submitted"] == "yes")
             {
@@ -64,6 +65,9 @@ class ProjectsController extends KakalikaController
                     $roleUser->role_id = $roleId;
                     $roleUser->save();
                 }
+                $project->initialized = 1;
+                $project->update();
+                Ntentan::redirect(Ntentan::getUrl($project->machine_name));
             }
             else
             {

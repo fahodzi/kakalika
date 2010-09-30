@@ -14,7 +14,6 @@ class UsersController extends KakalikaController
         parent::init();
         $this->set("section", "Users");
         $this->addComponent("admin");
-        $this->adminComponent->prefix = "admin";
         
         switch($this->method)
         {

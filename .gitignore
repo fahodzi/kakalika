@@ -2,3 +2,4 @@
 .project
 .settings
 *.bak
+resources/css/all.css

@@ -1,4 +1,8 @@
 <?php
+/**
+ * 
+ */
+
 include "../ntentan/Ntentan.php";
 
 use ntentan\Ntentan;
@@ -12,14 +16,21 @@ Ntentan::$routes = array(
         "pattern" => "/(admin)(\/)?(?<path>[a-zA-Z1-3\/_]*)?/i",
         "route" => "::path",
         "globals" => array(
-            "admin" => true
+            "MODE" => "ADMIN"
         )
+    ),
+    array(
+        "pattern" => "/(users)(\/)?.*/i"
+    ),
+    array(
+        "pattern" => "/(inbox)(\/)?.*/i"
     ),
     array(
         "pattern" => "/(?<project>[a-zA-Z1-3_.\-]*)(\/)?(?<path>[a-zA-Z1-3\/_]*)?/i",
         "route" => "::path",
         "globals" => array(
-            "project" => "::project"
+            "MODE" => "PROJECT",
+            "PROJECT_NAME" => "::project"
         )
     )
 );

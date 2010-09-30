@@ -15,6 +15,7 @@ class ProjectsController extends KakalikaController
         parent::init();
         $this->addComponent("admin");
         $this->adminComponent->postAddCallback = "routeProjectSetup";
+        $this->adminComponent->prefix = "admin";
         $this->adminComponent->listFields = array(
             "name",
             "machine_name",

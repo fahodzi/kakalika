@@ -146,6 +146,14 @@ div#body > div#body-contents > h4
 	margin-bottom:10px;
 }
 
+div#profile-box
+{
+	margin:5px;
+	padding:5px;
+	background-color:black;
+	color:white;
+}
+
 table.item-table
 {
 	width:100%;

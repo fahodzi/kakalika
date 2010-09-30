@@ -7,14 +7,14 @@
 </head>
 <body>
 <div class="row" id="header" >
-    <div class="column grid_10_7">
+    <div class="column grid_20_15">
         <div id="title">
             <h1>Kakalika</h1>
-            <h2>Administration</h2>
+            <h2><?php echo $main_section == "" ? "Dashboard" : $main_section ?></h2>
         </div>
     </div>
-    <div class="column grid_10_3">
-        Login Info<?php echo $login_info_block?>
+    <div class="column grid_20_5">
+        <?php echo $login_info_block?>
     </div>
 </div>
 <div class="row">

@@ -39,7 +39,7 @@ class ProjectsController extends KakalikaController
     
     public function routeProjectSetup($id, $project)
     {
-        Ntentan::redirect(Ntentan::getUrl("projects/setup/$id"));
+        Ntentan::redirect(Ntentan::getUrl("admin/projects/setup/$id"));
     }
     
     public function setup($projectId)

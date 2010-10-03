@@ -1,0 +1,1 @@
+<input id="search-input" type='text' name='search' />

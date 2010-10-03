@@ -10,20 +10,23 @@
     <div class="column grid_20_15">
         <div id="title">
             <h1>Kakalika</h1>
-            <h2><?php echo $main_section == "" ? "Dashboard" : $main_section ?></h2>
+            <h2><?php echo $main_section ?></h2>
         </div>
     </div>
     <div class="column grid_20_5">
-        <?php echo $login_info_block?>
+        
+    </div>
+</div>
+<div class="row" id="top-menu-row">
+    <div class="column grid_20_15" id="top-menu">
+        <?php echo $top_menu_block ?>
+    </div>
+    <div class="column grid_20_5">
+        <?php echo $search_block ?>
     </div>
 </div>
 <div class="row">
-    <div class="column grid_10_10" id="top-menu">
-    <?php echo $top_menu_block ?>
-    </div>
-</div>
-<div class="row">
-    <div class="column grid_10_7" id="contents">
+    <div class="column grid_20_15" id="contents">
         <div id="body" class="big-allround-shadow">
             <h3 class='dark-grey-gradient'><?php echo $section ?></h3>
             <div class='body-menu grey-gradient'><?php echo $sub_menu_block; ?></div>
@@ -35,7 +38,10 @@
             </div>
         </div>
     </div>
-    <div class="column grid_10_3" id="side">Side blocks</div>
+    <div class="column grid_20_5" id="side">
+        <?php echo $login_info_block?>
+        <?php echo $projects_block?>
+    </div>
 </div>
 <div class="row">
     <div class="column_grid_10_10" id="footer">Hello</div>

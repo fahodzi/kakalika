@@ -3,6 +3,7 @@ body
 	margin:0px;
 	font-family:"Helvetica", sans-serif;
 	font-size:small;
+	background-color:#ffffff;
 }
 
 #header
@@ -10,6 +11,7 @@ body
 	background-position:0% 100%;
 	background-repeat:repeat-x;
 	min-height:60px;
+	background-color:#cdebf6;
 }
 
 #header h1
@@ -33,18 +35,16 @@ body
 
 #contents
 {
-	background-color:#cdebf6;
 	min-height:100px;
 }
 
 #footer
 {
-	background-color:white;
 	text-align:center;
 	min-height:50px;
 }
 
-div#top-menu
+div#top-menu-row
 {
     background:#0076a2;
 }
@@ -116,7 +116,7 @@ div.body-menu > ul > li > a:hover
 
 div#body
 {
-	margin:15px;
+	margin:10px;
     border-top-left-radius:10px;
     -moz-border-radius-topleft:10px;
     border-top-right-radius:10px;
@@ -148,12 +148,73 @@ div#body > div#body-contents > h4
 
 div#profile-box
 {
-	margin:5px;
+	margin:10px;
+	margin-left:5px;
 	padding:5px;
-	background-color:black;
-	color:white;
+	background-color:#f0f0f0;
+	color:black;
+	vertical-align:top;
+	font-weight:bold;
 }
 
+div#profile-box > img#profile-pic
+{
+	float:left;
+}
+
+div#profile-box > div#profile-info
+{
+	float:left;
+	margin-left:5px;
+	width:50%;
+}
+
+div#profile-box > div#profile-info > div#profile-name
+{
+	font-size:larger;
+	color:#404040;
+}
+
+.clearer
+{
+	clear:both;
+}
+
+div#profile-box a
+{
+	text-decoration:none;
+	color:#a0a0a0;
+	font-weight:normal;
+}
+
+div.sidebox-block
+{
+	margin:10px;
+	margin-left:0px;
+}
+
+div.sidebox-block > h4
+{
+    margin:0px;
+    font-size:larger;
+    background-color:#e0e0e0;
+    padding:5px;
+}
+
+table.sidebox-table
+{
+	/*font-size:larger;*/
+	border-collapse:collapse;
+}
+
+table.sidebox-table  td
+{
+	border-bottom:1px solid #f0f0f0;
+}
+table.sidebox-table  td
+{
+    padding:10px;
+}
 table.item-table
 {
 	width:100%;

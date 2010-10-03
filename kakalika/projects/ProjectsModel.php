@@ -3,6 +3,7 @@ namespace kakalika\projects;
 
 use ntentan\models\Model;
 use ntentan\Ntentan;
+use \Feed;
 
 Ntentan::addIncludePath("kakalika/roles");
 Ntentan::addIncludePath("kakalika/role_users");
@@ -12,6 +13,7 @@ class ProjectsModel extends Model
     public $hasMany = array(
         "roles"
     );
+    
     public function __toString()
     {
         return $this["name"];
@@ -28,5 +30,7 @@ class ProjectsModel extends Model
         $roleUser->role_id = $roleId;
         $roleUser->user_id = \ntentan\controllers\components\auth\Auth::userId();
         $roleUser->save();
+        
+        Feed::add(Feed::ACTIVITY_CREATED_PROJECT, $id);
     }
 }

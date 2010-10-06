@@ -23,6 +23,13 @@ class KakalikaController extends Controller
         $this->view->layout->addStyleSheet("resources/css/grid.css");
         $this->view->layout->title = "Kakalika";
         
+        $this->topMenuBlock->addItem(
+            array(
+                "label" => "Dashboard",
+                "path"  => Ntentan::getUrl("")
+            )
+        );
+        
         if(defined('MODE'))
         {
             switch(MODE)
@@ -49,6 +56,7 @@ class KakalikaController extends Controller
                         )
                     );
                     break;
+                    
                 case 'PROJECT':
                     $this->project = \kakalika\projects\ProjectsModel::getFirstWithMachineName(PROJECT_NAME);
                     if(isset($this->project["name"]))
@@ -82,14 +90,9 @@ class KakalikaController extends Controller
                         $this->notFound();
                     }
                     break;
+                    
                 case "DASHBOARD":
                     $this->set("main_section", "Dashboard");
-                    $this->topMenuBlock->addItem(
-                        array(
-                            "label" => "Feed",
-                            "path" => Ntentan::getUrl("feed")
-                        )
-                    );
                     $profile = \ntentan\controllers\components\auth\Auth::getProfile();
                     if($profile["is_admin"])
                     {

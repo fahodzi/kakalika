@@ -2,27 +2,31 @@
 namespace kakalika\issues;
 
 use kakalika\KakalikaController;
+use ntentan\Ntentan;
 use ntentan\controllers\Controller;
 
 class IssuesController extends KakalikaController
 {
+    public function init()
+    {
+        parent::init();
+        $this->addComponent("admin");
+        $this->adminComponent->prefix = PROJECT_NAME;
+        switch($this->method)
+        {
+            case "page":
+            case "run":
+                $this->subMenuBlock->addItem(
+                    array(
+                        "label" => "Create Issue",
+                        "path"  => Ntentan::getUrl(PROJECT_NAME . "/issues/add")
+                    )
+                );
+                break;
+        }        
+    }
     public function run()
     {
-        $this->addBlock("menu", "issues_menu");
-        $this->issuesMenuBlock->addItem(
-            array(
-                "label" => "Add a new issue",
-                "path"  => "issues/new"
-            )
-        );
-        
-        $this->issuesMenuBlock->addItem(
-            array(
-                "label" => "Search Issues",
-                "path"  => "issues/search"
-            )
-        );
-        
         $this->set("section", "Issues");
     }
 }

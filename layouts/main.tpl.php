@@ -6,6 +6,7 @@
     <?php echo $javascripts ?>
 </head>
 <body>
+<div id = "wrapper">
 <div class="row" id="header" >
     <div class="column grid_20_15">
         <div id="title">
@@ -45,6 +46,7 @@
 </div>
 <div class="row">
     <div class="column_grid_10_10" id="footer">Hello</div>
+</div>
 </div>
 </body>
 </html>

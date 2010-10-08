@@ -15,7 +15,7 @@ Ntentan::addIncludePath("lib");
 
 Ntentan::$routes = array(
     array(
-        "pattern" => "/(admin)(\/)?(?<path>[a-zA-Z1-3\/_]*)?/i",
+        "pattern" => "/(admin)(\/)?(?<path>[a-zA-Z0-9\/_]*)?/i",
         "route" => "::path",
         "globals" => array(
             "MODE" => "ADMIN"
@@ -28,7 +28,7 @@ Ntentan::$routes = array(
         "pattern" => "/(inbox)(\/)?.*/i"
     ),
     array(
-        "pattern" => "/(?<project>[a-zA-Z1-3_.\-]+){1}(\/)?(?<path>[a-zA-Z1-3\/_]*)?/i",
+        "pattern" => "/(?<project>[a-zA-Z1-3_.\-]+){1}(\/)?(?<path>[a-zA-Z0-9\/_]*)?/i",
         "route" => "::path",
         "globals" => array(
             "MODE" => "PROJECT",

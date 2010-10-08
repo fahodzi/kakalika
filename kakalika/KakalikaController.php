@@ -18,9 +18,10 @@ class KakalikaController extends Controller
         $this->addBlock("login_info");
         $this->addBlock("menu", "sub_menu");
         
-        $this->view->layout->addStyleSheet(Ntentan::getFilePath("views/helpers/forms/css/form.css"));
+        $this->view->layout->addStyleSheet(Ntentan::getFilePath("views/helpers/forms/stylesheets/forms.css"));
         $this->view->layout->addStyleSheet("resources/css/main.css");
-        $this->view->layout->addStyleSheet("resources/css/grid.css");
+        $this->view->layout->addStyleSheet(Ntentan::getFilePath("stylesheets/ntentan.css"));
+        $this->view->layout->addStyleSheet(Ntentan::getFilePath("stylesheets/grid.css"));
         $this->view->layout->title = "Kakalika";
         
         $this->topMenuBlock->addItem(
@@ -39,20 +40,20 @@ class KakalikaController extends Controller
                     $this->topMenuBlock->addItem(
                         array(
                             "label"=>"Feed",
-                            "path" => Ntentan::getUrl("admin/feed"),
+                            "url" => Ntentan::getUrl("admin/feed"),
                         )
                     );
                     $this->topMenuBlock->addItem(
                         array(
                             "label" => "Projects",
-                            "path" => Ntentan::getUrl("admin/projects")
+                            "url" => Ntentan::getUrl("admin/projects")
                         )
                     );
                     
                     $this->topMenuBlock->addItem(
                         array(
                             "label" => "Users",
-                            "path" => Ntentan::getUrl("admin/users")
+                            "url" => Ntentan::getUrl("admin/users")
                         )
                     );
                     break;
@@ -65,19 +66,19 @@ class KakalikaController extends Controller
                         $this->topMenuBlock->addItem(
                             array(
                                 "label"=>"Feed",
-                                "path" => Ntentan::getUrl($this->project->machine_name . "/feed"),
+                                "url" => Ntentan::getUrl($this->project->machine_name . "/feed"),
                             )
                         );
                         $this->topMenuBlock->addItem(
                             array(
                                 "label"=>"Issues",
-                                "path" => Ntentan::getUrl($this->project->machine_name . "/issues"),
+                                "url" => Ntentan::getUrl($this->project->machine_name . "/issues"),
                             )
                         );
                         $this->topMenuBlock->addItem(
                             array(
                                 "label"=>"Pages",
-                                "path" => Ntentan::getUrl($this->project->machine_name . "/pages"),
+                                "url" => Ntentan::getUrl($this->project->machine_name . "/pages"),
                             )
                         );
                     }
@@ -99,7 +100,7 @@ class KakalikaController extends Controller
                         $this->topMenuBlock->addItem(
                             array(
                                 "label" => "Administration",
-                                "path" => Ntentan::getUrl("admin")
+                                "url" => Ntentan::getUrl("admin")
                             )
                         );
                     }

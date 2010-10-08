@@ -19,7 +19,7 @@ class IssuesController extends KakalikaController
                 $this->subMenuBlock->addItem(
                     array(
                         "label" => "Create Issue",
-                        "path"  => Ntentan::getUrl(PROJECT_NAME . "/issues/add")
+                        "url"  => Ntentan::getUrl(PROJECT_NAME . "/issues/add")
                     )
                 );
                 break;

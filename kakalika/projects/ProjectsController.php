@@ -16,6 +16,7 @@ class ProjectsController extends KakalikaController
         $this->addComponent("admin");
         $this->adminComponent->postAddCallback = "routeProjectSetup";
         $this->adminComponent->prefix = "admin";
+        $this->adminComponent->headings = false;
         $this->adminComponent->listFields = array(
             "name",
             "machine_name",
@@ -30,7 +31,7 @@ class ProjectsController extends KakalikaController
                 $this->subMenuBlock->addItem(
                     array(
                         "label" => "Add a new Project",
-                        "path"  => "projects/add"
+                        "url"  => "projects/add"
                     )
                 );
                 break;

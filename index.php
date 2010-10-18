@@ -7,9 +7,7 @@ include "../ntentan/Ntentan.php";
 
 use ntentan\Ntentan;
 
-Ntentan::$basePath = "../ntentan/";
-Ntentan::$modulesPath = "kakalika";
-Ntentan::$defaultRoute = "feed";
+Ntentan::$defaultRoute = "dashboard";
 
 Ntentan::addIncludePath("lib");
 
@@ -26,6 +24,12 @@ Ntentan::$routes = array(
     ),
     array(
         "pattern" => "/(inbox)(\/)?.*/i"
+    ),
+    array(
+        "pattern" => "/(dashboard)(\/)?.*/i",
+        "globals" => array(
+            "MODE" => "DASHBOARD"
+        )
     ),
     array(
         "pattern" => "/(?<project>[a-zA-Z1-3_.\-]+){1}(\/)?(?<path>[a-zA-Z0-9\/_]*)?/i",

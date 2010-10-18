@@ -2,4 +2,6 @@
 .project
 .settings
 *.bak
-resources/css/all.css
+resources/public/all.css
+cache/*
+config/*

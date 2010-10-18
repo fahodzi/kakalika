@@ -6,16 +6,6 @@ body
 	background-color:#cdebf6;
 }
 
-/*#wrapper
-{
-	width:960px;
-	margin-left:auto;
-	margin-right:auto;
-	min-width:950px;
-    background-color:#ffffff;
-    min-height:600px;
-}*/
-
 #header
 {
 	background-position:0% 100%;
@@ -291,4 +281,62 @@ div.small-scroll-box
 	-moz-border-radius:5px;*/
 }
 
+/*********** FEED *************/
+table#feed
+{
+border-collapse:collapse;
+}
 
+tr.feed-head
+{
+	font-size:1.1em;
+	font-weight:bold;
+	border-bottom:2px solid #e8e8e8;
+	background-color:#f8f8f8;
+	color:#606060;
+}
+
+tr.feed-head > td
+{
+	padding:5px;
+}
+
+tr.feed-item
+{
+	border-bottom:1px solid #f0f0f0;
+}
+
+div.feed-time
+{
+	background-color:#f8f8f8;
+	color:#a0a0a0;
+	
+}
+
+img.feed-avatar
+{
+	padding:10px;
+}
+
+span.feed-clickable
+{
+	font-weight:bold;
+	color:#0d8fbf;'
+}
+
+div.feed-tag
+{
+    margin:10px;
+    padding:5px;
+    padding-top:15px;
+    padding-bottom:15px;
+    min-width:60px;
+    text-align:center;
+    font-weight:bold;
+}
+
+div.feed-project-tag
+{
+	background-color:#8fffb7;
+	color:#74bc7b;
+}

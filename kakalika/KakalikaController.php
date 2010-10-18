@@ -27,7 +27,7 @@ class KakalikaController extends Controller
         $this->topMenuBlock->addItem(
             array(
                 "label" => "Dashboard",
-                "path"  => Ntentan::getUrl("")
+                "path"  => Ntentan::getUrl("dashboard")
             )
         );
         
@@ -36,13 +36,6 @@ class KakalikaController extends Controller
             switch(MODE)
             {
                 case 'ADMIN':
-                    $this->set("main_section", "Administration");
-                    $this->topMenuBlock->addItem(
-                        array(
-                            "label"=>"Feed",
-                            "url" => Ntentan::getUrl("admin/feed"),
-                        )
-                    );
                     $this->topMenuBlock->addItem(
                         array(
                             "label" => "Projects",
@@ -63,12 +56,6 @@ class KakalikaController extends Controller
                     if(isset($this->project["name"]))
                     {
                         $this->set("main_section", $this->project->name);
-                        $this->topMenuBlock->addItem(
-                            array(
-                                "label"=>"Feed",
-                                "url" => Ntentan::getUrl($this->project->machine_name . "/feed"),
-                            )
-                        );
                         $this->topMenuBlock->addItem(
                             array(
                                 "label"=>"Issues",
@@ -93,7 +80,6 @@ class KakalikaController extends Controller
                     break;
                     
                 case "DASHBOARD":
-                    $this->set("main_section", "Dashboard");
                     $profile = \ntentan\controllers\components\auth\Auth::getProfile();
                     if($profile["is_admin"])
                     {

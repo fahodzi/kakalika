@@ -14,6 +14,8 @@ class UsersController extends KakalikaController
         parent::init();
         $this->set("section", "Users");
         $this->addComponent("admin");
+        $this->adminComponent->headings = false;
+        $this->adminComponent->notifications = false;
         
         switch($this->method)
         {

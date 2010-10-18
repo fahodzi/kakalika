@@ -5,5 +5,5 @@ use ntentan\models\Model;
 
 class RolesModel extends Model
 {
-    public $belongsTo = "project";
+    public $belongsTo = array("project");
 }

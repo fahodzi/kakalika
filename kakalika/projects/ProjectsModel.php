@@ -3,7 +3,7 @@ namespace kakalika\projects;
 
 use ntentan\models\Model;
 use ntentan\Ntentan;
-use \Feed;
+use kakalika\Feed;
 
 Ntentan::addIncludePath("kakalika/roles");
 Ntentan::addIncludePath("kakalika/role_users");

@@ -4,4 +4,4 @@
 *.bak
 resources/public/all.css
 cache/*
-config/*
+config/db.php

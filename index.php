@@ -3,7 +3,7 @@
  * 
  */
 
-include "../ntentan/Ntentan.php";
+include "ntentan/Ntentan.php";
 
 use ntentan\Ntentan;
 

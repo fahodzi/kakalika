@@ -2,6 +2,7 @@
 namespace kakalika\dashboard;
 
 use ntentan\controllers\Controller;
+use ntentan\controllers\components\auth\Auth;
 use kakalika\KakalikaController;
 
 require "kakalika/feed/FeedModel.php";
@@ -12,7 +13,7 @@ class DashboardController extends KakalikaController
     {
         parent::init();
         $this->set("main_section", "Dashboard");
-        $this->set("section", "Feed");
+        $this->addBlock("projects");
     }
     
     public function run()
@@ -22,6 +23,14 @@ class DashboardController extends KakalikaController
             case "ADMIN":
                 $feedItems = \kakalika\feed\FeedModel::getAllWithIsAdmin(true, array("sort"=>"time DESC"));
                 $this->set("feed_items", $feedItems->toArray());
+                break;
+            case "DASHBOARD":
+                $feedItems = \kakalika\feed\FeedModel::getAllWithUserId(Auth::userId(), array("sort"=>"time DESC"));
+                $this->set('feed_items', $feedItems->toArray());
+                break;
+            case "PROJECT":
+                $feedItems = \kakalika\feed\FeedModel::getAllWithProjectId($this->project->id, array("sort"=>"time DESC"));
+                $this->set('feed_items', $feedItems->toArray());
                 break;
         }
     }

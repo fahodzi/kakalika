@@ -49,8 +49,8 @@ class KakalikaController extends Controller
                             "url" => Ntentan::getUrl("admin/users")
                         )
                     );
+                    $this->set("main_section", "Administration");
                     break;
-                    
                 case 'PROJECT':
                     $this->project = \kakalika\projects\ProjectsModel::getFirstWithMachineName(PROJECT_NAME);
                     if(isset($this->project["name"]))

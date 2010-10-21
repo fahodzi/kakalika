@@ -12,6 +12,7 @@ class IssuesController extends KakalikaController
         parent::init();
         $this->addComponent("admin");
         $this->adminComponent->prefix = PROJECT_NAME;
+        $this->set("section", "Issues");
         switch($this->method)
         {
             case "page":

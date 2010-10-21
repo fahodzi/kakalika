@@ -285,6 +285,7 @@ div.small-scroll-box
 table#feed
 {
 border-collapse:collapse;
+width:100%;
 }
 
 tr.feed-head

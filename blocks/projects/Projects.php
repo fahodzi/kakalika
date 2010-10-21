@@ -14,7 +14,8 @@ class Projects extends Block
             array(
                 "fields" => array(
                     "projects.id",
-                    "projects.name"
+                    "projects.name",
+                    "projects.machine_name"
                 ),
                 "conditions" => array(
                     "role_users.user_id" => \ntentan\controllers\components\auth\Auth::userId()

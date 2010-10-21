@@ -4,8 +4,12 @@
 <table class='sidebox-table'>
 <?php foreach($projects as $project):?>
     <tr>
-        <td class='sidebox-table-item'><?php echo $project["name"]?></td>
-        <td class='sidebox-table-count'>7</td>
+        <td class='projects-table-name'>
+            <a href='<?php echo u($project["machine_name"])?>'>
+                <?php echo $project["name"]?>
+            </a>
+        </td>
+        <td class='projects-table-count'>7</td>
     </tr>
 <?php endforeach;?>
 </table>

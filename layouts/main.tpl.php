@@ -29,7 +29,9 @@
 <div class="row">
     <div class="column grid_20_15" id="contents">
         <div id="body" class="big-allround-shadow">
+            <?php if($section!=""):?>
             <h3 class='dark-grey-gradient'><?php echo $section ?></h3>
+            <?php endif;?>
             <div class='body-menu grey-gradient'><?php echo $sub_menu_block; ?></div>
             <?php if(isset($_GET["n"])):?>
                 <div class='notification'>

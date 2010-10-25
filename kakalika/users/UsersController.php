@@ -16,6 +16,7 @@ class UsersController extends KakalikaController
         $this->addComponent("admin");
         $this->adminComponent->headings = false;
         $this->adminComponent->notifications = false;
+        $this->adminComponent->prefix = "admin";
         
         switch($this->method)
         {
@@ -24,7 +25,7 @@ class UsersController extends KakalikaController
                 $this->subMenuBlock->addItem(
                     array(
                         "label" => "Add a new user",
-                        "path"  => "users/add"
+                        "url"  => u("admin/users/add")
                     )
                 );
                 

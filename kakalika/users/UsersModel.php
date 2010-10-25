@@ -22,6 +22,6 @@ class UsersModel extends Model
     
     public function __toString()
     {
-        return $this->data["full_name"] . ($this->data["email"] == "" ? "" : " &lt;{$this->data["email"]}&gt;") ;
+        return $this->data["full_name"];// . ($this->data["email"] == "" ? "" : " &lt;{$this->data["email"]}&gt;") ;
     }
 }

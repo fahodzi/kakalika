@@ -7,6 +7,7 @@ use kakalika\Feed;
 
 Ntentan::addIncludePath("kakalika/roles");
 Ntentan::addIncludePath("kakalika/role_users");
+Ntentan::addIncludePath("kakalika/permissions");
 
 class ProjectsModel extends Model
 {
@@ -25,6 +26,12 @@ class ProjectsModel extends Model
         $role->project_id = $id;
         $role->name = "Administrator";
         $roleId = $role->save();
+        
+        $permission = new \kakalika\permissions\PermissionsModel();
+        $permission->role_id = $roleId;
+        $permission->name = "project_admin";
+        $permission->value = 1;
+        $permission->save();
         
         $roleUser = new \kakalika\role_users\RoleUsersModel();
         $roleUser->role_id = $roleId;

@@ -1,3 +1,4 @@
+<h4>Add New Project</h4>
 <?php
 $form = $this->loadHelper("forms");
 $form->addModelField($fields["name"]);

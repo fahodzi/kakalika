@@ -50,7 +50,7 @@
                     }
                 ?>
                 </div>
-            <?php endif?>            
+            <?php endif?>
             <div id='body-contents'>
                 <?php echo $contents?>
             </div>

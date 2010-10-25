@@ -12,7 +12,6 @@ class DashboardController extends KakalikaController
     public function init()
     {
         parent::init();
-        $this->set("main_section", "Dashboard");
         $this->addBlock("projects");
     }
     

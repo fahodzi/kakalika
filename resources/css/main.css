@@ -126,8 +126,8 @@ div#body
 div#body > div#body-contents
 {
 	background-color:#ffffff;
-	padding:10px;
-	/*font-size:small;*/
+	/*padding:10px;
+	font-size:small;*/
 }
 
 div#body > div#body-contents p
@@ -140,10 +140,11 @@ div#body > div#body-contents p
 div#body > div#body-contents > h4
 {
 	margin:0px;
-	padding:0px;
+	padding:10px;
 	font-size:larger;
 	color:#a0a0a0;
-	margin-bottom:10px;
+	border-bottom:1px emboss #e0e0e0;
+	background-color:#f8f8f8;
 }
 
 div#profile-box
@@ -340,4 +341,30 @@ div.feed-project-tag
 {
 	background-color:#8fffb7;
 	color:#74bc7b;
+}
+
+form
+{
+	padding:10px;
+}
+
+div#admin-confirm-body
+{
+	padding:10px;
+}
+
+div.role-permission-block
+{
+	border:2px solid #f0f0f0;
+	margin:15px;
+	margin-right:0px;
+	width:45%;
+	display:inline-block
+}
+
+div.role-permission-block > span.title
+{
+    font-size:larger;
+    font-weight:bold;
+    color:#a0a0a0;
 }

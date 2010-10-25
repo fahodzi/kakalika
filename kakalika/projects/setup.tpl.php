@@ -1,3 +1,4 @@
-<h4><?php echo $name ?> has already been setup!</h4>
-<p>This project has already been configured and setup. Click <a href="<?php echo $project_path?>">here</a> to view the
-project home.</p>
+<h4>Setup <?php echo $qualifier ?><?php echo $project?></h4>
+<div>
+<?php echo $setup_menu_block ?>
+</div>

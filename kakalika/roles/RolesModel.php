@@ -6,4 +6,5 @@ use ntentan\models\Model;
 class RolesModel extends Model
 {
     public $belongsTo = array("project");
+    public $hasMany = array("permissions");
 }

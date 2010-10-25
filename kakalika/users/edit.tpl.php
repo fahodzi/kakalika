@@ -1,3 +1,4 @@
+<h4>Edit User</h4>
 <?php 
 $form = $this->loadHelper("forms");
 $form->add("TextField", "Full Name", "full_name","The fullname of the new user")->setRequired(true);

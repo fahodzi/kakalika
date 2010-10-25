@@ -2,6 +2,6 @@
 .project
 .settings
 *.bak
-resources/public/all.css
+public/all.css
 cache/*
 config/db.php

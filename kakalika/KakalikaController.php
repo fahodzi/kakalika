@@ -27,7 +27,7 @@ class KakalikaController extends Controller
         $this->topMenuBlock->addItem(
             array(
                 "label" => "Dashboard",
-                "path"  => Ntentan::getUrl("dashboard")
+                "url"  => Ntentan::getUrl("dashboard")
             )
         );
         
@@ -71,7 +71,7 @@ class KakalikaController extends Controller
                     }
                     else if($this->project["name"] == "")
                     {
-                        
+                        throw new Exception("Project not found");
                     }
                     else
                     {

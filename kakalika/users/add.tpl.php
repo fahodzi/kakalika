@@ -1,3 +1,4 @@
+<h4>Add new user</h4>
 <?php 
 $form = $this->loadHelper("forms");
 $form->add("TextField", "Full Name", "full_name","The fullname of the new user")->setRequired(true);
@@ -6,7 +7,6 @@ $form->add("TextField", "Username", "username", "The login username of the new u
 $form->add("PasswordField", "Password", "password")->setRequired(true);
 $form->add("PasswordField", "Retype Password", "password_2")->setRequired(true);
 $form->add("Checkbox", "Make Administrator?", "is_admin", "Should this user be allowed to administer the system","1");
-
 $form->setErrors($errors);
 $form->setData($data);
 

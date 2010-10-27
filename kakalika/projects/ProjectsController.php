@@ -1,6 +1,8 @@
 <?php
 namespace kakalika\projects;
 
+use kakalika\permissions\PermissionsModel;
+
 use kakalika\users\UsersModel;
 use kakalika\KakalikaController;
 use kakalika\roles\RolesModel;
@@ -69,6 +71,7 @@ class ProjectsController extends KakalikaController
         $roles = RolesModel::getAllWithProjectId($projectId);
         $this->rolesMenuBlock->addItem("Add New Role");
         $this->set("roles", $roles->toArray());
+        $this->set("permission_groups", PermissionsModel::$permissionGroups);
     }
     
     public function setup($projectId, $subSection = null)

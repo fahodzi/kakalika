@@ -38,10 +38,9 @@ function getDescription($feed_item, $gravatar)
                " created a new project <span class='feed-clickable'>{$feed_item["project"]["name"]}</span>";
     case "USER_ADDED_TO_PROJECT":
         $data = json_decode($feed_item["data"], true);
-        $avatar = $gravatar->get($data["user"]["email"], 16);
+        $avatar = $gravatar->get($data["email"], 16);
         return "<span class='feed-clickable'>{$feed_item["user"]["full_name"]}</span>" .
-               " added <img src='$avatar' /> <span class='feed-clickable'>{$data["user"]["full_name"]}</span> to the <span class='feed-clickable'>{$feed_item["project"]["name"]}</span>" .
-               " project as a member of the <span class='feed-clickable'>{$data["role"]["name"]}</span> group.";
+               " added <img src='$avatar' /> <span class='feed-clickable'>{$data["full_name"]}</span> to <span class='feed-clickable'>{$feed_item["project"]["name"]}</span>";
     }
 }
 

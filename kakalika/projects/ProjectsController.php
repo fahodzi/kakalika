@@ -3,13 +3,11 @@ namespace kakalika\projects;
 
 use kakalika\users\UsersModel;
 use kakalika\KakalikaController;
-use kakalika\roles\RolesModel;
 use ntentan\Ntentan;
 use ntentan\controllers\components\auth\Auth;
 use ntentan\models\Model;
 
 include "kakalika/users/UsersModel.php";
-include "kakalika/roles/RolesModel.php";
 
 class ProjectsController extends KakalikaController
 {
@@ -30,15 +28,8 @@ class ProjectsController extends KakalikaController
         
         $this->adminComponent->addOperation(
             array(
-                "label"     => "Setup",
-                "operation" => "setup"
-            )
-        );
-        
-        $this->adminComponent->addOperation(
-            array(
-                "label"     => "Roles",
-                "operation" => "roles"
+                "label"     => "Members",
+                "operation" => "members"
             )
         );
         $this->set("section", "Projects");
@@ -62,45 +53,9 @@ class ProjectsController extends KakalikaController
         Ntentan::redirect(Ntentan::getUrl("admin/projects/initialize/$id"));
     }
     
-    public function roles($projectId)
+    public function members($projectId)
     {
-        $this->view->template = "roles.tpl.php";
-        $this->addBlock("menu", "roles_menu");
-        $roles = RolesModel::getAllWithProjectId($projectId);
-        $this->rolesMenuBlock->addItem("Add New Role");
-        $this->set("roles", $roles->toArray());
-    }
-    
-    public function setup($projectId, $subSection = null)
-    {
-        $project = ProjectsModel::getFirstWithId($projectId);
-        $this->set("project", $project);
-        $this->addBlock("menu", "setup_menu");
-        $this->setupMenuBlock->addItem(
-            array(
-                "label" => "Roles", 
-                "url" => Ntentan::getUrl("admin/projects/setup/{$projectId}/roles")
-            )
-        );
-        $this->setupMenuBlock->addItem(
-            array(
-                "label" => "Members",
-                "url" => Ntentan::getUrl("admin/projects/setup/{$projectId}/members")
-            )
-        );
-        $this->setupMenuBlock->addItem(
-            array(
-                "label" => "Issue Settings",
-                "url" => Ntentan::getUrl("admin/projects/setup/{$projectId}/issue_settings")
-            )
-        );
         
-        switch($subSection)
-        {
-            case "roles":
-                $this->roles($projectId);
-                break;
-        }
     }
     
     public function initialize($projectId)
@@ -115,17 +70,13 @@ class ProjectsController extends KakalikaController
             
             if($_POST["form_submitted"] == "yes")
             {
-                $role = new \kakalika\roles\RolesModel();
-                $role->name = "Project Members";
-                $role->project_id = $projectId;
-                $roleId = $role->save();
-                
                 foreach($_POST["user_ids"] as $userId)
                 {
-                    $roleUser = new \kakalika\role_users\RoleUsersModel();
-                    $roleUser->user_id = $userId;
-                    $roleUser->role_id = $roleId;
-                    $roleUser->save();
+                    $projectUser = new \kakalika\project_users\ProjectUsersModel();
+                    $projectUser->user_id = $userId;
+                    $projectUser->project_id = $projectId;
+                    $projectUser->is_admin = '0';
+                    $projectUser->save();
                 }
                 $project->initialized = 1;
                 $project->update();

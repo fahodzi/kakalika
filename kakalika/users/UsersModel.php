@@ -10,8 +10,7 @@ class UsersModel extends Model
         $this->password = "";
         if($this->update()==false) 
         {
-            var_dump($this->invalidFields);
-            die();
+            
         }
     }
     

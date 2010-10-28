@@ -18,12 +18,9 @@ class Projects extends Block
                     "projects.machine_name"
                 ),
                 "conditions" => array(
-                    "role_users.user_id" => \ntentan\controllers\components\auth\Auth::userId()
+                    "project_users.user_id" => \ntentan\controllers\components\auth\Auth::userId()
                 ),
-                "through" => array(
-                    "roles",
-                    "role_users"
-                )
+                "through" => array("project_users")
             )
         );
         $projects = $projects->getData();

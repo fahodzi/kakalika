@@ -5,5 +5,5 @@ use ntentan\models\Model;
 
 class FeedModel extends Model
 {
-    public $belongsTo = array("project","user");
+    public $belongsTo = array("project", "user");
 }

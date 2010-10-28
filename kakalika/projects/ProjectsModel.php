@@ -1,18 +1,18 @@
 <?php
 namespace kakalika\projects;
 
+use ntentan\controllers\components\auth\Auth;
+
 use ntentan\models\Model;
 use ntentan\Ntentan;
 use kakalika\Feed;
 
-Ntentan::addIncludePath("kakalika/roles");
-Ntentan::addIncludePath("kakalika/role_users");
-Ntentan::addIncludePath("kakalika/permissions");
+Ntentan::addIncludePath("kakalika/project_users");
 
 class ProjectsModel extends Model
 {
     public $hasMany = array(
-        "roles"
+        "project_users"
     );
     
     public function __toString()
@@ -22,22 +22,11 @@ class ProjectsModel extends Model
     
     public function postSaveCallback($id)
     {
-        $role = new \kakalika\roles\RolesModel();
-        $role->project_id = $id;
-        $role->name = "Administrator";
-        $roleId = $role->save();
-        
-        $permission = new \kakalika\permissions\PermissionsModel();
-        $permission->role_id = $roleId;
-        $permission->name = "project_admin";
-        $permission->value = 1;
-        $permission->save();
-        
-        $roleUser = new \kakalika\role_users\RoleUsersModel();
-        $roleUser->role_id = $roleId;
-        $roleUser->user_id = \ntentan\controllers\components\auth\Auth::userId();
-        $roleUser->save();
-        
         Feed::add(Feed::ACTIVITY_CREATED_PROJECT, $id);
+        $projectUser = new \kakalika\project_users\ProjectUsersModel();
+        $projectUser->is_admin = true;
+        $projectUser->project_id = $id;
+        $projectUser->user_id = Auth::userId();
+        $projectUser->save();
     }
 }

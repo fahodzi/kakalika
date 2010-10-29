@@ -2,8 +2,8 @@
 /**
  * 
  */
-
-include "ntentan/Ntentan.php";
+include "config/ntentan.php";
+include $ntentan_home . "Ntentan.php";
 
 use ntentan\Ntentan;
 

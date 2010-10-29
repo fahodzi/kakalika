@@ -132,12 +132,11 @@ div#body > div#body-contents
 
 div#body > div#body-contents p
 {
-	padding:0px;
+	padding:10px;
 	margin:0px;
-	margin-bottom:10px;
 }
 
-div#body > div#body-contents > h4
+div#body > h4
 {
 	margin:0px;
 	padding:10px;

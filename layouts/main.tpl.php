@@ -32,6 +32,9 @@
             <?php if($section!=""):?>
             <h3 class='dark-grey-gradient'><?php echo $section ?></h3>
             <?php endif;?>
+            <?php if($sub_section!=""):?>
+            <h4><?php echo $sub_section?></h4>
+            <?php endif;?>
             <div class='body-menu grey-gradient'><?php echo $sub_menu_block; ?></div>
             <?php if(isset($_GET["n"])):?>
                 <div class='notification'>

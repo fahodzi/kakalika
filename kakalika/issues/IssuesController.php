@@ -1,6 +1,8 @@
 <?php
 namespace kakalika\issues;
 
+use kakalika\project_users\ProjectUsersModel;
+
 use kakalika\KakalikaController;
 use ntentan\Ntentan;
 use ntentan\controllers\Controller;
@@ -24,10 +26,19 @@ class IssuesController extends KakalikaController
                     )
                 );
                 break;
-        }        
+        }
     }
+    
+    public function add()
+    {
+        $projectUsers = ProjectUsersModel::getAllWithProjectId($this->project->id);
+        $this->set("sub_section", "Report a new Issue");
+        $this->set("project_users", $projectUsers->toArray());
+        $this->adminComponent->add();
+    }
+    
     public function run()
     {
-        $this->set("section", "Issues");
+        
     }
 }

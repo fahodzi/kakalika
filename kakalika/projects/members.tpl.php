@@ -1,3 +1,4 @@
+<?php include 'contents_frame_head.tpl.php'?>
 <div id='members-list'>
 <?php foreach($users as $user): ?>
 <div style="width:290px;float:left;margin:5px;padding:5px;background:#f8f8f8" class="rounded-5px">
@@ -15,3 +16,4 @@
 <?php endforeach;?>
 <div style="clear:both"></div>
 </div>
+<?php include 'contents_frame_foot.tpl.php'?>

@@ -18,4 +18,14 @@ class ProjectUsersModel extends Model
             json_encode($user->toArray())
         );
     }
+    
+    public function preDeleteCallback()
+    {
+        $user = UsersModel::getFirstWithId($this->user_id);
+        Feed::add(
+            Feed::ACTIVITY_USER_REMOVED_FROM_PROJECT,
+            $this->project_id,
+            json_encode($user->toArray())
+        );
+    }
 }

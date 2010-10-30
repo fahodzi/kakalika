@@ -151,7 +151,16 @@ class ProjectsController extends KakalikaController
                         )
                     )
                 );
-                $this->set("users", $users->getData());
+                if(count($users->getData()) > 0)
+                {
+                    $this->set("users", $users->getData());
+                }
+                else
+                {
+                    $project->initialized = 1;
+                    $project->update();
+                    Ntentan::redirect(Ntentan::getUrl($project->machine_name));
+                }
             }
         }
     }

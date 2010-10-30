@@ -20,10 +20,10 @@ $friendlyTime = $timeObject->friendly();
 </tr>
 <?php endif; ?>
 <tr class='feed-item'>
-<td><div class='feed-time rounded-5px feed-tag'><?php echo $timeObject->time()?></div></td>
-<td><img class='feed-avatar' src="<?php echo $gravatar->get($feed_item["user"]["email"], 48)?>" alt="user" /></td>
-<td><div class='feed-text'><?php echo getDescription($feed_item, $gravatar)?></div></td>
-<td><?php echo getItemType($feed_item)?></td>
+    <td><div class='feed-time rounded-5px feed-tag'><?php echo $timeObject->time()?></div></td>
+    <td><img class='feed-avatar' src="<?php echo $gravatar->get($feed_item["user"]["email"], 48)?>" alt="user" /></td>
+    <td><div class='feed-text'><?php echo getDescription($feed_item, $gravatar)?></div></td>
+    <td><?php echo getItemType($feed_item)?></td>
 </tr>
 <?php endforeach;?>
 </table>
@@ -40,7 +40,16 @@ function getDescription($feed_item, $gravatar)
         $data = json_decode($feed_item["data"], true);
         $avatar = $gravatar->get($data["email"], 16);
         return "<span class='feed-clickable'>{$feed_item["user"]["full_name"]}</span>" .
-               " added <img src='$avatar' /> <span class='feed-clickable'>{$data["full_name"]}</span> to <span class='feed-clickable'>{$feed_item["project"]["name"]}</span>";
+               " added <img src='$avatar' />" . 
+               "<span class='feed-clickable'>{$data["full_name"]}</span> to " . 
+               "<span class='feed-clickable'>{$feed_item["project"]["name"]}</span>";
+    case 'USER_REMOVED_FROM_PROJECT':
+        $data = json_decode($feed_item["data"], true);
+        $avatar = $gravatar->get($data["email"], 16);
+        return "<span class='feed-clickable'>{$feed_item["user"]["full_name"]}</span>" .
+               " removed <img src='$avatar' />" . 
+               "<span class='feed-clickable'>{$data["full_name"]}</span> from " . 
+               "<span class='feed-clickable'>{$feed_item["project"]["name"]}</span>";
     }
 }
 

@@ -62,4 +62,10 @@ class UsersController extends KakalikaController
             urlencode("Successfully reset user password <b>" . $user["username"] . "</b>")
         );        
     }
+    
+    public function add()
+    {
+        unset($_POST["password_2"]);
+        $this->adminComponent->add();
+    }
 }

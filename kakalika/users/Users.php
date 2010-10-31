@@ -3,7 +3,7 @@ namespace kakalika\users;
 
 use \ntentan\models\Model;
 
-class UsersModel extends Model
+class Users extends Model
 {
     public function resetPassword()
     {

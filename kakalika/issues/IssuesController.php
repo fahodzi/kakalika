@@ -1,8 +1,9 @@
 <?php
 namespace kakalika\issues;
 
-use kakalika\project_users\ProjectUsersModel;
+use ntentan\controllers\components\auth\Auth;
 
+use kakalika\project_users\ProjectUsersModel;
 use kakalika\KakalikaController;
 use ntentan\Ntentan;
 use ntentan\controllers\Controller;
@@ -34,7 +35,23 @@ class IssuesController extends KakalikaController
         $projectUsers = ProjectUsersModel::getAllWithProjectId($this->project->id);
         $this->set("sub_section", "Report a new Issue");
         $this->set("project_users", $projectUsers->toArray());
-        $this->adminComponent->add();
+        if(isset($_POST["title"]))
+        {
+            $issue = $this->model;
+            $issue->setData($_POST);
+            $issue->project_id = $this->project->id;
+            $issue->creator = Auth::userId();
+            $issue->status = 'New';
+            $id = $issue->save();
+            if($id === false)
+            {
+                $this->set("errors", $issue->invalidFields);
+            }
+            else
+            {
+                Ntentan::redirect($this->project->machine_name . "/issues");
+            }
+        }
     }
     
     public function run()

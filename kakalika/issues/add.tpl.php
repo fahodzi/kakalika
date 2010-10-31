@@ -1,8 +1,8 @@
 <?php 
-use kakalika\issues\IssuesModel;
+use kakalika\issues\Issues;
 include "contents_frame_head.tpl.php";
-var_dump($_POST);
 $this->forms->setData($_POST);
+$this->forms->setErrors($errors);
 echo $this->forms->open() 
 ?>
 <div class="row" style="width:100%">
@@ -11,7 +11,9 @@ echo $this->forms->open()
             <?php 
             echo $this->forms->get_text_field("Title", "title");
             echo $this->forms->get_text_area("Description", "description");
-            echo $this->forms->get_text_field("Tags", "tags");
+            echo $this->forms->open_field_set("Attachments");
+            echo $this->forms->get_upload_field("","files");
+            echo $this->forms->close_field_set();
             ?>
         </div>
     </div>
@@ -23,26 +25,25 @@ echo $this->forms->open()
             {
                 $assignees[$project_user["user"]["id"]] = $project_user["user"]["full_name"];
             }
-            echo $this->forms->get_selection_list("Assign this issue to", "assignee")->setOptions($assignees);
+            $assignees_list = $this->forms->get_selection_list("Assign this issue to", "assignee")->setOptions($assignees);
+            echo $assignees_list;
             
-            $types_list = $this->forms->get_selection_list("What type of issue is it");
-            foreach(IssuesModel::$types as $type)
+            $types_list = $this->forms->get_selection_list("What type of issue is it", "type");
+            foreach(Issues::$types as $type)
             {
                 $types_list->addOption($type);
             }
             echo $types_list;
             
-            $priorities_list = $this->forms->get_selection_list("What's the priority of the issue");
-            foreach(IssuesModel::$priorities as $priority)
+            $priorities_list = $this->forms->get_selection_list("What's the priority of the issue","priority");
+            foreach(Issues::$priorities as $priority)
             {
                 $priorities_list->addOption($priority);
             }
-            echo $priorities_list;
-            
-            echo $this->forms->open_field_set("Attachments");
-            
-            echo $this->forms->close_field_set();
-            
+            echo $priorities_list;            
+            echo $this->forms->get_text_area("Tags", "tags")
+                ->addAttribute("style", "height:100px")
+                ->setDescription("Use a comma separated list of tags");
             ?>
         </div>
     </div>

@@ -5,11 +5,10 @@
 <h2>Login</h2>
 <?php
 echo $login_message;
-$loginform = $this->loadHelper("forms");
-$loginform->add("TextField", "Username", "username");
-$loginform->add("PasswordField", "Password", "password");
-$loginform->id = "login-form";
-$loginform->submitValue = "Login";
-echo $loginform;
+$this->form->add("TextField", "Username", "username");
+$this->form->add("PasswordField", "Password", "password");
+$this->form->id = "login-form";
+$this->form->submitValue = "Login";
+echo $this->form;
 ?>
 </div>

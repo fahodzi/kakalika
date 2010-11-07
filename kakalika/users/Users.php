@@ -5,6 +5,8 @@ use \ntentan\models\Model;
 
 class Users extends Model
 {
+    public $defaultField = "full_name";
+    
     public function resetPassword()
     {
         $this->password = "";

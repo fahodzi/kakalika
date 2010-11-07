@@ -45,7 +45,8 @@ class Issues extends Model
     
     public $belongsTo = array(
         array("user", "as" => "creator"),
-        array("user", "as" => "assignee")
+        array("user", "as" => "assignee"),
+        "project"
     );
     
     public function preSaveCallback()

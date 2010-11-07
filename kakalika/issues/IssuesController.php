@@ -15,6 +15,8 @@ class IssuesController extends KakalikaController
         parent::init();
         $this->addComponent("admin");
         $this->adminComponent->prefix = PROJECT_NAME;
+        $this->adminComponent->headings = false;
+        $this->adminComponent->notifications = false;
         $this->set("section", "Issues");
         switch($this->method)
         {
@@ -52,10 +54,5 @@ class IssuesController extends KakalikaController
                 Ntentan::redirect($this->project->machine_name . "/issues");
             }
         }
-    }
-    
-    public function run()
-    {
-        
     }
 }

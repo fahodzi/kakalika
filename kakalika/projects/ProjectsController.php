@@ -9,7 +9,7 @@ use ntentan\Ntentan;
 use ntentan\controllers\components\auth\Auth;
 use ntentan\models\Model;
 
-include "kakalika/users/UsersModel.php";
+include "kakalika/users/Users.php";
 
 class ProjectsController extends KakalikaController
 {
@@ -69,7 +69,7 @@ class ProjectsController extends KakalikaController
         {
             $this->view->template = "add_member.tpl.php";
             $this->set("sub_section", "Add a new Project Member to {$project->name}");
-            $users = UsersModel::getAll();
+            $users = Users::getAll();
             $this->set("users", $users->toArray());
             
             if(isset($_POST["user_id"]))

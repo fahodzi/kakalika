@@ -13,9 +13,9 @@ class Projects extends Block
         $projects = ProjectsModel::getAll(
             array(
                 "fields" => array(
-                    "projects.id",
-                    "projects.name",
-                    "projects.machine_name"
+                    "id",
+                    "name",
+                    "machine_name"
                 ),
                 "conditions" => array(
                     "project_users.user_id" => \ntentan\controllers\components\auth\Auth::userId()

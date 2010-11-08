@@ -1,7 +1,7 @@
 <?php
 namespace kakalika;
 
-require "kakalika/projects/ProjectsModel.php";
+require "kakalika/projects/Projects.php";
 
 use ntentan\Ntentan;
 use ntentan\controllers\Controller;
@@ -52,7 +52,7 @@ class KakalikaController extends Controller
                     $this->set("main_section", "Administration");
                     break;
                 case 'PROJECT':
-                    $this->project = \kakalika\projects\ProjectsModel::getFirstWithMachineName(PROJECT_NAME);
+                    $this->project = \kakalika\projects\Projects::getFirstWithMachineName(PROJECT_NAME);
                     if(isset($this->project["name"]))
                     {
                         $this->set("main_section", $this->project->name);

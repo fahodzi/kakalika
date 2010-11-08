@@ -9,7 +9,7 @@ use kakalika\Feed;
 
 Ntentan::addIncludePath("kakalika/project_users");
 
-class ProjectsModel extends Model
+class Projects extends Model
 {
     public $hasMany = array(
         "project_users"
@@ -23,7 +23,7 @@ class ProjectsModel extends Model
     public function postSaveCallback($id)
     {
         Feed::add(Feed::ACTIVITY_CREATED_PROJECT, $id);
-        $projectUser = new \kakalika\project_users\ProjectUsersModel();
+        $projectUser = new \kakalika\project_users\ProjectUsers();
         $projectUser->is_admin = true;
         $projectUser->project_id = $id;
         $projectUser->user_id = Auth::userId();

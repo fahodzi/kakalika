@@ -17,6 +17,15 @@ class IssuesController extends KakalikaController
         $this->adminComponent->prefix = PROJECT_NAME;
         $this->adminComponent->headings = false;
         $this->adminComponent->notifications = false;
+        $this->adminComponent->listFields = array(
+            'status',
+            'title',
+            'created_by',
+            'assigned_to',
+            'type',
+            'priority',
+            'id'
+        );
         $this->set("section", "Issues");
         switch($this->method)
         {
@@ -34,7 +43,7 @@ class IssuesController extends KakalikaController
     
     public function add()
     {
-        $projectUsers = ProjectUsersModel::getAllWithProjectId($this->project->id);
+        $projectUsers = \kakalika\project_users\ProjectUsers::getAllWithProjectId($this->project->id);
         $this->set("sub_section", "Report a new Issue");
         $this->set("project_users", $projectUsers->toArray());
         if(isset($_POST["title"]))
@@ -42,12 +51,13 @@ class IssuesController extends KakalikaController
             $issue = $this->model;
             $issue->setData($_POST);
             $issue->project_id = $this->project->id;
-            $issue->creator = Auth::userId();
+            $issue->created_by = Auth::userId();
             $issue->status = 'New';
             $id = $issue->save();
             if($id === false)
             {
                 $this->set("errors", $issue->invalidFields);
+                var_dump($issue->invalidFields);
             }
             else
             {

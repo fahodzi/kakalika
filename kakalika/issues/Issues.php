@@ -44,8 +44,8 @@ class Issues extends Model
     );
     
     public $belongsTo = array(
-        array("user", "as" => "creator"),
-        array("user", "as" => "assignee"),
+        array("user", "as" => "created_by"),
+        array("user", "as" => "assigned_to"),
         "project"
     );
     

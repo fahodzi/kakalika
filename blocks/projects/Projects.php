@@ -1,7 +1,7 @@
 <?php
 namespace kakalika\blocks\projects;
 
-require_once "kakalika/projects/ProjectsModel.php";
+require_once "kakalika/projects/Projects.php";
 
 use ntentan\views\blocks\Block;
 use kakalika\projects\ProjectsModel;
@@ -10,7 +10,7 @@ class Projects extends Block
 {
     public function __construct()
     {
-        $projects = ProjectsModel::getAll(
+        $projects = \kakalika\projects\Projects::getAll(
             array(
                 "fields" => array(
                     "id",

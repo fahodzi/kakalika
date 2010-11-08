@@ -74,7 +74,7 @@ class ProjectsController extends KakalikaController
             
             if(isset($_POST["user_id"]))
             {
-                $projectUser = ProjectUsersModel::getAll(
+                $projectUser = ProjectUsers::getAll(
                     array(
                         "conditions" => array(
                             "user_id" => $_POST["user_id"],
@@ -99,7 +99,7 @@ class ProjectsController extends KakalikaController
         }
         elseif($operation == "")
         {
-            $users = ProjectUsersModel::getAllWithProjectId($projectId);
+            $users = ProjectUsers::getAllWithProjectId($projectId);
             $this->set("users", $users->toArray());
             $this->set("sub_section", "Members of {$project->name}");
             $this->set("project_id", $projectId);
@@ -112,7 +112,7 @@ class ProjectsController extends KakalikaController
         }
         elseif($operation == "delete")
         {
-            $user = ProjectUsersModel::getFirstWithId($operationId);
+            $user = ProjectUsers::getFirstWithId($operationId);
             $user->delete();
             Ntentan::redirect(u("admin/projects/members/{$projectId}"));
         }
@@ -132,7 +132,7 @@ class ProjectsController extends KakalikaController
             {
                 foreach($_POST["user_ids"] as $userId)
                 {
-                    $projectUser = new \kakalika\project_users\ProjectUsersModel();
+                    $projectUser = new \kakalika\project_users\ProjectUsers();
                     $projectUser->user_id = $userId;
                     $projectUser->project_id = $projectId;
                     $projectUser->is_admin = '0';
@@ -144,7 +144,7 @@ class ProjectsController extends KakalikaController
             }
             else
             {
-                $users = UsersModel::getAll(
+                $users = \kakalika\users\Users::getAll(
                     array(
                         "conditions" => array(
                             "users.id<>" => Auth::userId()

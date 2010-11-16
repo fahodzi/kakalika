@@ -5,6 +5,7 @@ require "kakalika/projects/Projects.php";
 
 use ntentan\Ntentan;
 use ntentan\controllers\Controller;
+use \Exception;
 
 class KakalikaController extends Controller
 {
@@ -22,6 +23,7 @@ class KakalikaController extends Controller
         $this->view->layout->addStyleSheet("resources/css/main.css");
         $this->view->layout->addStyleSheet(Ntentan::getFilePath("stylesheets/ntentan.css"));
         $this->view->layout->addStyleSheet(Ntentan::getFilePath("stylesheets/grid.css"));
+        $this->view->layout->addJavaScript(Ntentan::getFilePath("javascripts/jquery-1.4.4.min.js"));
         $this->view->layout->title = "Kakalika";
         
         $this->topMenuBlock->addItem(

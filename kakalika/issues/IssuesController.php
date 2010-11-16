@@ -1,8 +1,8 @@
 <?php
+
 namespace kakalika\issues;
 
 use ntentan\controllers\components\auth\Auth;
-
 use kakalika\project_users\ProjectUsersModel;
 use kakalika\KakalikaController;
 use ntentan\Ntentan;
@@ -21,11 +21,17 @@ class IssuesController extends KakalikaController
             'status',
             'title',
             'created_by',
+            'created',
+            'last_updated',
             'assigned_to',
             'type',
             'priority',
             'id'
         );
+        $this->adminComponent->hasAddOperation = false;
+        $this->adminComponent->hasEditOperation = false;
+        $this->adminComponent->itemOperationUrl = Ntentan::getUrl(Ntentan::$requestedRoute);
+        $this->adminComponent->rowTemplate = "row.tpl.php";
         $this->set("section", "Issues");
         switch($this->method)
         {
@@ -40,11 +46,20 @@ class IssuesController extends KakalikaController
                 break;
         }
     }
+
+    public function view($issueId)
+    {
+        $projectUsers = \kakalika\project_users\ProjectUsers::getAllWithProjectId($this->project->id);
+        $this->set("project_users", $projectUsers->toArray());
+        $issue = $this->model->getFirstWithId($issueId);
+        $this->set("issue", $issue->toArray());
+        $this->set("sub_section", $issue->title);
+    }
     
     public function add()
     {
-        $projectUsers = \kakalika\project_users\ProjectUsers::getAllWithProjectId($this->project->id);
         $this->set("sub_section", "Report a new Issue");
+        $projectUsers = \kakalika\project_users\ProjectUsers::getAllWithProjectId($this->project->id);
         $this->set("project_users", $projectUsers->toArray());
         if(isset($_POST["title"]))
         {
@@ -53,11 +68,12 @@ class IssuesController extends KakalikaController
             $issue->project_id = $this->project->id;
             $issue->created_by = Auth::userId();
             $issue->status = 'New';
+            $issue->created = date('Y-m-d H:i:s', time());
+            $issue->last_updated = date('Y-m-d H:i:s', time());
             $id = $issue->save();
             if($id === false)
             {
                 $this->set("errors", $issue->invalidFields);
-                var_dump($issue->invalidFields);
             }
             else
             {

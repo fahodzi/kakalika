@@ -32,7 +32,15 @@ Ntentan::$routes = array(
         )
     ),
     array(
-        "pattern" => "/(?<project>[a-zA-Z1-3_.\-]+){1}(\/)?(?<path>[a-zA-Z0-9\/_]*)?/i",
+        "pattern" => "/(?<project>[a-zA-Z1-3\_\.\-]+){1}(\/issues\/){1}(?<issue_id>\d+){1}/i",
+        "route" => "issues/view/::issue_id",
+        "globals" => array(
+            "MODE" => "PROJECT",
+            "PROJECT_NAME" => "::project"
+        )
+    ),
+    array(
+        "pattern" => "/(?<project>[a-zA-Z1-3\_\.\-]+){1}(\/)?(?<path>[a-zA-Z0-9\/_]*)?/i",
         "route" => "::path",
         "globals" => array(
             "MODE" => "PROJECT",
@@ -44,7 +52,7 @@ Ntentan::$routes = array(
         "globals" => array(
             "MODE" => "DASHBOARD"
         )
-    ),    
+    )    
 );
 
 Ntentan::boot();

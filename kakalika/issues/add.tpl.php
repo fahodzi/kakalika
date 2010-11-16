@@ -6,18 +6,15 @@ $this->form->setErrors($errors);
 echo $this->form->open() 
 ?>
 <div class="row" style="width:100%">
-    <div class="column grid_10_7">
+    <div class="column grid_10_6">
         <div style='padding-right:10px'>
             <?php 
             echo $this->form->get_text_field("Title", "title");
             echo $this->form->get_text_area("Description", "description");
-            echo $this->form->open_field_set("Attachments");
-            echo $this->form->get_upload_field("","files");
-            echo $this->form->close_field_set();
             ?>
         </div>
     </div>
-    <div class="column grid_10_3">
+    <div class="column grid_10_4">
         <div style="padding-left:5px; padding-right:5px">
             <?php 
             $assignees = array();
@@ -44,6 +41,7 @@ echo $this->form->open()
             echo $this->form->get_text_area("Tags", "tags")
                 ->addAttribute("style", "height:100px")
                 ->setDescription("Use a comma separated list of tags");
+            echo $this->form->get_upload_field("Attachment","files");
             ?>
         </div>
     </div>
@@ -51,4 +49,3 @@ echo $this->form->open()
 <?php 
 echo $this->form->close(); 
 include "contents_frame_foot.tpl.php";
-?>

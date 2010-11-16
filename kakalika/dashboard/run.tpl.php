@@ -2,12 +2,8 @@
 $previousDate = null;
 ?>
 <table id='feed'>
-<?php foreach($feed_items as $feed_item):?>
-<?php
-$timeObject = $this->date->parse($feed_item["time"]);
-$friendlyTime = $timeObject->friendly();
-?>
-<?php if($timeObject->friendly() != $previousDate):?>
+<?php foreach($feed_items as $feed_item): ?>
+<?php if($this->date->friendly($feed_item["time"]) != $previousDate): ?>
 <tr class='feed-head'>
     <td colspan="4">
         <?php 
@@ -18,7 +14,7 @@ $friendlyTime = $timeObject->friendly();
 </tr>
 <?php endif; ?>
 <tr class='feed-item'>
-    <td><div class='feed-time rounded-5px feed-tag'><?php echo $timeObject->time()?></div></td>
+    <td><div class='feed-time rounded-5px feed-tag'><?php echo $this->date->time($feed_item["time"])?></div></td>
     <td><img class='feed-avatar' src="<?php echo $this->gravatar->get($feed_item["user"]["email"], 48)?>" alt="user" /></td>
     <td><div class='feed-text'><?php echo getDescription($feed_item, $this->gravatar)?></div></td>
     <td><?php echo getItemType($feed_item)?></td>

@@ -1,9 +1,9 @@
 body
 {
-	margin:0px;
-	font-family:"Helvetica", sans-serif;
-	font-size:small;
-	background-color:#cdebf6;
+    margin:0px;
+    font-family:"Helvetica", sans-serif;
+    font-size:small;
+    background-color:#cdebf6;
 }
 
 #header
@@ -106,7 +106,6 @@ div.body-menu > ul > li > a
     padding:7px;
     color:#606060;
     text-decoration:none;
-    font-size:smaller;
 }
 
 div.body-menu > ul > li > a:hover
@@ -203,7 +202,6 @@ div.sidebox-block > h4
 
 table.sidebox-table
 {
-	/*font-size:larger;*/
 	border-collapse:collapse;
 }
 
@@ -241,7 +239,13 @@ table.item-table > tbody > tr > td
     padding:10px;
 }
 
-table.item-table > tbody > tr > td.operations
+table.item-table > tbody > tr.mouseover
+{
+    background-color:#fefdd6;
+    cursor:pointer;
+}
+
+table.item-table > tbody > tr > td.id_cell
 {
     border-bottom:1px solid #f0f0f0;
     margin:0px;
@@ -277,11 +281,8 @@ div.small-scroll-box
 	overflow:auto;
 	margin:5px;
 	border:2px solid #f0f0f0;
-	/*border-radius:5px;
-	-moz-border-radius:5px;*/
 }
 
-/*********** FEED *************/
 table#feed
 {
 border-collapse:collapse;
@@ -322,7 +323,7 @@ img.feed-avatar
 span.feed-clickable
 {
 	font-weight:bold;
-	color:#0d8fbf;'
+	color:#0d8fbf;
 }
 
 div.feed-tag
@@ -366,4 +367,27 @@ div.role-permission-block > span.title
     font-size:larger;
     font-weight:bold;
     color:#a0a0a0;
+}
+
+div.issue-summary
+{
+    padding:10px;
+    color:#a0a0a0;
+    font-size:smaller;
+}
+
+div.issue-attribute
+{
+    margin:10px;
+}
+
+div.issue-attribute-title
+{
+    color:#b0b0b0;
+    font-weight:bold;
+}
+
+div.issue-attribute-value
+{
+    color:#404040;
 }

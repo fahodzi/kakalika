@@ -48,6 +48,10 @@ class Issues extends Model
         array("user", "as" => "assigned_to"),
         "project"
     );
+
+    public $hasMany = array(
+        "tags"
+    );
     
     public function preSaveCallback()
     {
@@ -60,7 +64,7 @@ class Issues extends Model
     {
         if(count($this->tagsArray) > 0)
         {
-            $tags = Model::load("issue_tags");
+            $tags = Model::load("tags");
             foreach($this->tagsArray as $tag)
             {
                 $tags->tag = trim($tag);

@@ -1,0 +1,1 @@
+<td id=''><?php echo $this->date->sentence($column, array('elaborate_with' => 'ago')) ?></td>

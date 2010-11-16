@@ -2,7 +2,6 @@
 namespace kakalika\projects;
 
 use kakalika\project_users\ProjectUsersModel;
-
 use kakalika\users\UsersModel;
 use kakalika\KakalikaController;
 use ntentan\Ntentan;

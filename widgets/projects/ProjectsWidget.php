@@ -1,12 +1,12 @@
 <?php
-namespace kakalika\blocks\projects;
+namespace kakalika\widgets\projects;
 
 require_once "kakalika/projects/Projects.php";
 
-use ntentan\views\blocks\Block;
+use ntentan\views\widgets\Widget;
 use kakalika\projects\ProjectsModel;
 
-class Projects extends Block
+class ProjectsWidget extends Widget
 {
     public function __construct()
     {

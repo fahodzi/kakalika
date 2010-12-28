@@ -20,10 +20,10 @@
 </div>
 <div class="row" id="top-menu-row">
     <div class="column grid_20_15" id="top-menu">
-        <?php echo $top_menu_block ?>
+        <?php echo $top_menu_widget ?>
     </div>
     <div class="column grid_20_5">
-        <?php echo $search_block ?>
+        <?php echo $search_widget ?>
     </div>
 </div>
 <div class="row">
@@ -31,8 +31,8 @@
         <?php echo $contents?>
     </div>
     <div class="column grid_20_5" id="side">
-        <?php echo $login_info_block?>
-        <?php echo $projects_block?>
+        <?php echo $login_info_widget?>
+        <?php echo $projects_widget?>
     </div>
 </div>
 <div class="row">

@@ -1,12 +1,12 @@
 <?php
-namespace kakalika\blocks\login_info;
+namespace kakalika\widgets\login_info;
 
 use ntentan\Ntentan;
 
-use ntentan\views\blocks\Block;
+use ntentan\views\widgets\Widget;
 
 
-class LoginInfo extends Block
+class LoginInfoWidget extends Widget
 {
     public function __construct()
     {

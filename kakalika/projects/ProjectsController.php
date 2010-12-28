@@ -39,7 +39,7 @@ class ProjectsController extends KakalikaController
         {
             case "page":
             case "run":
-                $this->subMenuBlock->addItem(
+                $this->subMenuWidget->addItem(
                     array(
                         "label" => "Add a new Project",
                         "url"  => "projects/add"

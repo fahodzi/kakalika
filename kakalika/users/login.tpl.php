@@ -5,10 +5,9 @@
 <h2>Login</h2>
 <?php
 echo $login_message;
-$this->form->add("TextField", "Username", "username");
-$this->form->add("PasswordField", "Password", "password");
-$this->form->id = "login-form";
-$this->form->submitValue = "Login";
-echo $this->form;
+echo $this->form->open('login-form');
+echo $this->form->get_text_field("Username", "username");
+echo $this->form->get_password_field("Password", "password");
+echo $this->form->close("Login");
 ?>
 </div>

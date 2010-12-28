@@ -15,18 +15,18 @@ class KakalikaController extends Controller
     {
         $this->addComponent("auth");
         
-        $this->addBlock("menu", "top_menu");
-        $this->addBlock("login_info");
-        $this->addBlock("menu", "sub_menu");
+        $this->addWidget("menu", "top_menu");
+        $this->addWidget("login_info");
+        $this->addWidget("menu", "sub_menu");
         
-        $this->view->layout->addStyleSheet(Ntentan::getFilePath("views/helpers/forms/stylesheets/forms.css"));
+        $this->view->layout->addStyleSheet(Ntentan::getFilePath("lib/views/helpers/forms/css/forms.css"));
         $this->view->layout->addStyleSheet("resources/css/main.css");
-        $this->view->layout->addStyleSheet(Ntentan::getFilePath("stylesheets/ntentan.css"));
-        $this->view->layout->addStyleSheet(Ntentan::getFilePath("stylesheets/grid.css"));
-        $this->view->layout->addJavaScript(Ntentan::getFilePath("javascripts/jquery-1.4.4.min.js"));
+        //$this->view->layout->addStyleSheet(Ntentan::getFilePath("stylesheets/ntentan.css"));
+        $this->view->layout->addStyleSheet(Ntentan::getFilePath("css/grid.css"));
+        $this->view->layout->addJavaScript(Ntentan::getFilePath("js/jquery.js"));
         $this->view->layout->title = "Kakalika";
         
-        $this->topMenuBlock->addItem(
+        $this->topMenuWidget->addItem(
             array(
                 "label" => "Dashboard",
                 "url"  => Ntentan::getUrl("dashboard")
@@ -38,14 +38,14 @@ class KakalikaController extends Controller
             switch(MODE)
             {
                 case 'ADMIN':
-                    $this->topMenuBlock->addItem(
+                    $this->topMenuWidget->addItem(
                         array(
                             "label" => "Projects",
                             "url" => Ntentan::getUrl("admin/projects")
                         )
                     );
                     
-                    $this->topMenuBlock->addItem(
+                    $this->topMenuWidget->addItem(
                         array(
                             "label" => "Users",
                             "url" => Ntentan::getUrl("admin/users")
@@ -58,13 +58,13 @@ class KakalikaController extends Controller
                     if(isset($this->project["name"]))
                     {
                         $this->set("main_section", $this->project->name);
-                        $this->topMenuBlock->addItem(
+                        $this->topMenuWidget->addItem(
                             array(
                                 "label"=>"Issues",
                                 "url" => Ntentan::getUrl($this->project->machine_name . "/issues"),
                             )
                         );
-                        $this->topMenuBlock->addItem(
+                        $this->topMenuWidget->addItem(
                             array(
                                 "label"=>"Pages",
                                 "url" => Ntentan::getUrl($this->project->machine_name . "/pages"),
@@ -85,7 +85,7 @@ class KakalikaController extends Controller
                     $profile = \ntentan\controllers\components\auth\Auth::getProfile();
                     if($profile["is_admin"])
                     {
-                        $this->topMenuBlock->addItem(
+                        $this->topMenuWidget->addItem(
                             array(
                                 "label" => "Administration",
                                 "url" => Ntentan::getUrl("admin")
@@ -95,6 +95,6 @@ class KakalikaController extends Controller
                     break;
             }
         }
-        $this->topMenuBlock->addItem("Inbox");
+        $this->topMenuWidget->addItem("Inbox");
     }
 }

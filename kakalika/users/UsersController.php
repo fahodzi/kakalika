@@ -22,7 +22,7 @@ class UsersController extends KakalikaController
         {
             case "page":
             case "run":
-                $this->subMenuBlock->addItem(
+                $this->subMenuWidget->addItem(
                     array(
                         "label" => "Add a new user",
                         "url"  => u("admin/users/add")
@@ -52,10 +52,10 @@ class UsersController extends KakalikaController
         $this->layout->addStyleSheet("resources/css/login.css");
     }
     
-    public function reset_password($id)
+    public function resetPassword($id)
     {
         $this->view = false;
-        $user = UsersModel::getFirstWithId($id);
+        $user = Users::getFirstWithId($id);
         $user->resetPassword();
         Ntentan::redirect(
             Ntentan::getUrl("users") . "?n=" . 

@@ -3,6 +3,7 @@
 .settings
 *.bak
 public/all.css
-cache/*
-config/db.php
+cache
+config
 nbproject
+dev

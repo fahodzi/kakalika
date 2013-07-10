@@ -1,0 +1,3 @@
+[submodule "ntentan"]
+	path = ntentan
+	url = https://github.com/ekowabaka/ntentan.git

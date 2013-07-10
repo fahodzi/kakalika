@@ -7,3 +7,9 @@ cache
 config
 nbproject
 dev
+/playagoro/.cache/
+/playagoro/lib/fapi/CVS/
+/playagoro/lib/fapi/Forms/CVS/
+/playagoro/lib/fapi/Forms/Renderers/CVS/
+/playagoro/lib/fapi/css/CVS/
+/playagoro/lib/fapi/jscripts/CVS/

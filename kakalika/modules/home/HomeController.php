@@ -5,8 +5,8 @@ use kakalika\lib\KakalikaController;
 
 /**
  * 
- * 
  * @author ekow
+ * 
  */
 class HomeController extends KakalikaController
 {

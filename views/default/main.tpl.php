@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-    <?= $helpers->stylesheet->add(load_asset('css/main.css')); ?>
-    <?= $helpers->stylesheet->add(load_asset('css/main.css')); ?>
-    <?= $helpers->stylesheet->add(load_asset('css/forms.css')); ?>
+        <title>Kakalika Bug Tracker<?= ($title == '' ? '' : " - $title") ?></title>
+        <?= $helpers->stylesheet->add(load_asset('css/main.css')); ?>
+        <?= $helpers->stylesheet->add(load_asset('css/main.css')); ?>
+        <?= $helpers->stylesheet->add(load_asset('css/forms.css')); ?>
     </head>
     <body>
         <div id="wrapper">

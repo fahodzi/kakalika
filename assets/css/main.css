@@ -17,13 +17,45 @@ body{
 
 #head{
     background-color:#0a77b8;
-    padding:15px;
     color:#fff;
 }
 
-#head > h1{
+h2, h3{
     margin:0px;
+    padding:10px;
+}
+
+form{
+    margin:10px;
+}
+
+#head > #title_side > h1{
+    margin:0px;
+    margin-right:20px;
     font-size:large;
+    padding:15px;
+    display:inline-block;
+    border-right:2px solid #0262a7;
+}
+
+#head > #title_side > #header_menu{
+    display:inline-block;
+}
+
+#head > #status_side{
+    text-align: right;
+}
+
+#sub_head{
+    border-bottom:1px solid #6bc1ff;    
+}
+
+#sub_head > h2{
+    display:inline-block
+}
+
+#sub_head > #sub-menu{
+    display:inline-block
 }
 
 #login-box{
@@ -33,3 +65,13 @@ body{
     margin-top:100px;
 }
 
+ul.menu{
+   list-style: none;
+   margin:0px;
+   padding:0px;
+}
+
+ul.menu > li{
+    display:inline-block;
+    vertical-align: middle;
+}

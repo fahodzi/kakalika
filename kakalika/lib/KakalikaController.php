@@ -10,6 +10,13 @@ class KakalikaController extends Controller
     public function init()
     {
         parent::init();
-        $this->addComponent('auth');
+        TemplateEngine::appendPath('views/layouts');
+        $this->addComponent('auth', array(
+            'login_route' => 'login'
+        ));
+        if(!$this->authComponent->loggedIn())
+        {
+            $this->view->layout = 'layouts_login.tpl.php';
+        }
     }    
 }

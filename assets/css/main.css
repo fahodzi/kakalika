@@ -11,7 +11,7 @@ body{
     margin-left:auto;
     margin-right:auto;
     background-color:#fff;
-    box-shadow: 0px 0px 3px rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
     min-height:500px;
 }
 
@@ -47,11 +47,13 @@ form{
 }
 
 #sub_head{
-    border-bottom:1px solid #6bc1ff;    
+    border-bottom:2px solid #f0f0f0;  
+    background-color: #f8f8f8;
 }
 
 #sub_head > h2{
-    display:inline-block
+    display:inline-block;
+    color:#808080;
 }
 
 #sub_head > #sub-menu{
@@ -74,4 +76,36 @@ ul.menu{
 ul.menu > li{
     display:inline-block;
     vertical-align: middle;
+}
+
+ul.menu > li > a{
+    text-decoration: none;
+}
+
+ul.menu > li.menu-selected a{
+    font-weight:bold;
+}
+
+#main-menu a{
+    color:#e2f2fe;
+    font-size:0.9em;
+}
+
+.project-info-wrapper{
+    border-bottom:1px dashed #e0e0e0;
+    padding:10px;
+    padding-top:35px;
+}
+
+.project-info-wrapper .project-name{
+    font-size:large;
+    font-weight:bold;
+    color:#0a77b8;
+    text-decoration:none;
+    display:block;
+}
+
+.project-info-wrapper .project-desc{
+    font-size:small;
+    color:#808080;
 }

@@ -1,7 +1,7 @@
 label{
     display:block;
-    color:#a0a0a0;
-    margin-top:10px;
+    color:#909090;
+    margin-top:13px;
     
 }
 
@@ -12,6 +12,11 @@ input[type='text'], input[type='password']{
     border-radius: 3px;
     font-size:large;
     box-shadow: inset 1px 1px 3px rgba(64,64,64,0.1);
+}
+
+.form-description{
+    font-size:small;
+    color:#b0b0b0;
 }
 
 .form-submit-area{

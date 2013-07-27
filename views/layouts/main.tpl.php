@@ -14,7 +14,7 @@
                 <div id="title_side" class="column grid_10_5">
                     <h1>Kakalika</h1>
                     <div id="header_menu">
-                        <?= $widgets->menu(array('Projects')) ?>
+                        <?= $widgets->menu(array('Projects'))->alias('main') ?>
                     </div>                    
                 </div>
                 <div id="status_side" class="column grid_10_5">
@@ -30,7 +30,15 @@
             </div>
             <?php endif; ?>
             <div id="body">
+                
+                <?php if($split): ?>
+                <div class="row">
+                    <div class="column grid_10_7"><?= $contents ?></div>
+                    <div class="column grid_10_3"></div>
+                </div>
+                <?php else: ?>
                 <?= $contents ?>
+                <?php endif; ?>
             </div>
             <div id="foot"></div>
         </div>

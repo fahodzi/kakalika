@@ -10,8 +10,17 @@
         <div style="padding-right:1px">
         <?=
         $helpers->form->get_selection_list('Assignee', 'assignee')->options($assignees) .
-        $helpers->form->get_selection_list('Kind', 'kind') . 
+        $helpers->form->get_selection_list('Kind', 'kind')
+            ->option('Bug', 'BUG')
+            ->option('Enhancement', 'ENHANCEMENT')
+            ->option('Proposal', 'PROPOSAL')
+            ->option('Task', 'TASK'). 
         $helpers->form->get_selection_list('Priority', 'priority')
+            ->option('Trivial', 'TRIVIAL')
+            ->option('Minor', 'MINOR')
+            ->option('Normal', 'NORMAL')
+            ->option('Major', 'MAJOR')
+            ->option('Critical', 'CRITICAL')
         ?>
         </div>
     </div>

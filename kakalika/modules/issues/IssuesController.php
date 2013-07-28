@@ -8,11 +8,13 @@ class IssuesController extends \kakalika\lib\KakalikaController
     public function init()
     {
         parent::init();
+        $this->set('sub_section', 'Issues');
+        
         if($GLOBALS["ROUTE_MODE"] == 'project')
         {
             $project = \kakalika\modules\projects\Projects::getJustFirstWithCode($GLOBALS['ROUTE_PROJECT_CODE']);
             
-            $this->set('sub_section', $project->name);
+            $this->set('project_name', $project->name);
             $this->set('sub_section_menu', 
                 array(
                     array(
@@ -29,10 +31,6 @@ class IssuesController extends \kakalika\lib\KakalikaController
                 throw new \ntentan\exceptions\RouteNotAvailableException();
             }
         }   
-        else 
-        {
-            $this->set('sub_section', "All Issues");
-        }
     }
     
     public function run()
@@ -61,5 +59,6 @@ class IssuesController extends \kakalika\lib\KakalikaController
         }
         
         $this->set('assignees', $assignees);
+        $this->set('split', true);
     }
 }

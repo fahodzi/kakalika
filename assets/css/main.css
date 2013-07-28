@@ -31,11 +31,22 @@ form{
 
 #head > #title_side > h1{
     margin:0px;
-    margin-right:20px;
-    font-size:large;
+    font-size:larger;
     padding:15px;
     display:inline-block;
-    border-right:2px solid #0262a7;
+    border-right:1px solid #0262a7;
+    margin-right:15px;
+}
+
+#head > #title_side > h2{
+    display:inline-block;
+    margin:0px;
+    font-size:large;
+    padding:15px;
+    padding-left:0px;
+    border-right:1px solid #0262a7;
+    margin-right:15px;
+    font-weight:normal;
 }
 
 #head > #title_side > #header_menu{

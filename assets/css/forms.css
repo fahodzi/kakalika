@@ -2,7 +2,12 @@ label{
     display:block;
     color:#909090;
     margin-top:13px;
-    
+}
+
+select{
+    padding:1%;
+    font-size:large;
+    box-shadow:1px 1px 3px rgba(64,64,64,0.1);
 }
 
 input[type='text'], input[type='password']{

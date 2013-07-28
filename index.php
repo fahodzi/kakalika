@@ -16,7 +16,7 @@ Ntentan::$routes = array(
         'route' => 'projects/logout'
     ),
     array(
-        'pattern' => '/(users|projects|dashboard)/'
+        'pattern' => '/^(users|projects|dashboard|admin|account|issues)/'
     ),
     array(
         "pattern" => "/(?<project>[a-zA-Z1-3_.\-]*)(\/)?(?<path>[a-zA-Z1-3\/_]*)?/i",

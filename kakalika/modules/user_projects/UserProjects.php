@@ -6,6 +6,7 @@ use ntentan\models\Model;
 class UserProjects extends Model
 {
     public $belongsTo = array(
-        'project'
+        'project',
+        'user'
     );
 }

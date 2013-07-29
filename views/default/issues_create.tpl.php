@@ -1,4 +1,5 @@
 <h3>Create a new Issue</h3>
+<?php $helpers->form->setData($form_data) ?>
 <?= $helpers->form->open() ?>
 <div class="row">
     <div class="column grid_10_7">

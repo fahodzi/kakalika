@@ -40,6 +40,16 @@ class IssuesController extends \kakalika\lib\KakalikaController
     
     public function create()
     {
+        if(isset($_POST['title']))
+        {
+            $this->set('form_data', $_POST);
+            $newIssue = Issues::getNew();
+            $newIssue->setData($_POST);
+            $newIssue->project_id = $this->projectId;
+            $newIssue->save();
+            var_dump($newIssue->invalidFields);
+        }
+        
         $users = \kakalika\modules\user_projects\UserProjects::getAllWithProjectId(
             $this->projectId,
             array(

@@ -1,1 +1,4 @@
-<h3>Issues</h3>
+<?php foreach($issues as $issue): ?>
+#<?= $issue['number'] ?><b><?= $issue['title'] ?></b>
+<?php endforeach; ?>
+

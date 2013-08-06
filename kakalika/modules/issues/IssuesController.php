@@ -3,7 +3,7 @@ namespace kakalika\modules\issues;
 
 class IssuesController extends \kakalika\lib\KakalikaController
 {
-    private $projectId;
+    private $project;
     
     public function init()
     {
@@ -12,21 +12,19 @@ class IssuesController extends \kakalika\lib\KakalikaController
         
         if($GLOBALS["ROUTE_MODE"] == 'project')
         {
-            $project = \kakalika\modules\projects\Projects::getJustFirstWithCode($GLOBALS['ROUTE_PROJECT_CODE']);
+            $this->project = \kakalika\modules\projects\Projects::getJustFirstWithCode($GLOBALS['ROUTE_PROJECT_CODE']);
             
-            $this->set('project_name', $project->name);
+            $this->set('project_name', $this->project->name);
             $this->set('sub_section_menu', 
                 array(
                     array(
                         'label' => 'New Issue',
-                        'url' => \ntentan\Ntentan::getUrl("{$project->code}/issues/create")
+                        'url' => \ntentan\Ntentan::getUrl("{$this->project->code}/issues/create")
                     )
                 )
             );
-                        
-            $this->projectId = $project->id;
             
-            if($project->count() == 0)
+            if($this->project->count() == 0)
             {
                 throw new \ntentan\exceptions\RouteNotAvailableException();
             }
@@ -35,7 +33,8 @@ class IssuesController extends \kakalika\lib\KakalikaController
     
     public function run()
     {
-        
+        $issues = Issues::getAll();
+        $this->set('issues', $issues);
     }
     
     public function create()
@@ -45,13 +44,16 @@ class IssuesController extends \kakalika\lib\KakalikaController
             $this->set('form_data', $_POST);
             $newIssue = Issues::getNew();
             $newIssue->setData($_POST);
-            $newIssue->project_id = $this->projectId;
-            $newIssue->save();
-            var_dump($newIssue->invalidFields);
+            $newIssue->project_id = $this->project->id;
+            $saved = $newIssue->save();
+            if($saved === true)
+            {
+                \ntentan\Ntentan::redirect("{$this->project->code}/issues");
+            }
         }
         
         $users = \kakalika\modules\user_projects\UserProjects::getAllWithProjectId(
-            $this->projectId,
+            $this->project->id,
             array(
                 'fields' => array(
                     'id',

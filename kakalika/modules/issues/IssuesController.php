@@ -46,7 +46,8 @@ class IssuesController extends \kakalika\lib\KakalikaController
             $newIssue->setData($_POST);
             $newIssue->project_id = $this->project->id;
             $saved = $newIssue->save();
-            if($saved === true)
+            
+            if($saved !== false)
             {
                 \ntentan\Ntentan::redirect("{$this->project->code}/issues");
             }

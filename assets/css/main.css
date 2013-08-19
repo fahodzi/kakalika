@@ -1,6 +1,5 @@
 @CHARSET "UTF-8";
 
-
 body{
     font-family: sans-serif;
     background-color: #fcfcfc;
@@ -119,4 +118,26 @@ ul.menu > li.menu-selected a{
 .project-info-wrapper .project-desc{
     font-size:small;
     color:#808080;
+}
+
+.issue_summary{
+    padding:20px;
+    border-bottom:1px solid #f0f0f0;
+}
+
+.issue_summary .issue_id{
+    font-weight:bold;
+    font-size: x-large;
+    color:#528ecc;
+}
+
+.issue_summary .issue_title{
+    font-weight: bold;
+    font-size:large;
+}
+
+.issue_summary .issue_slug{
+    display:block;
+    font-size:small;
+    color:#a0a0a0;
 }

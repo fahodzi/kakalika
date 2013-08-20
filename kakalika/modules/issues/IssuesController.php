@@ -33,7 +33,11 @@ class IssuesController extends \kakalika\lib\KakalikaController
     
     public function run()
     {
-        $issues = Issues::getAll();
+        $issues = Issues::getAll(
+            array(
+                'sort' => 'id DESC'
+            )
+        );
         $this->set('issues', $issues);
     }
     

@@ -134,6 +134,7 @@ ul.menu > li.menu-selected a{
 .issue_summary .issue_title{
     font-weight: bold;
     font-size:large;
+    color:#02b01f;
 }
 
 .issue_summary .issue_slug{

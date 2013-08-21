@@ -19,9 +19,9 @@ body{
     color:#fff;
 }
 
-h2, h3{
+h2, h3, h4{
     margin:0px;
-    padding:10px;
+    padding:15px;
 }
 
 form{
@@ -66,7 +66,7 @@ form{
     background-color: #f8f8f8;
 }
 
-#sub_head > h2{
+#sub_head > h3{
     display:inline-block;
     color:#808080;
 }
@@ -137,7 +137,7 @@ ul.menu > li.menu-selected a{
 .issue_summary .issue_id{
     font-weight:bold;
     font-size: x-large;
-    color:#528ecc;
+    color:#88c0fe;
     padding:10px;
     text-align: center;
     vertical-align: middle;
@@ -148,7 +148,7 @@ ul.menu > li.menu-selected a{
     color:#02b01f;
 }
 
-.issue_summary .issue_slug{
+.issue_slug{
     display:block;
     font-size:small;
     color:#a0a0a0;
@@ -157,3 +157,19 @@ ul.menu > li.menu-selected a{
 .issue_summary .issue_details{
     padding:10px;
 }
+
+.issue_view #title_block{
+    color: #02b01f;
+    background-color:#defee3;
+}
+
+.issue_view #title_block h4{
+    display:inline-block;
+}
+
+.issue_view #title_block h4:first-child{
+    padding-right:0px;
+    font-size:larger;
+    color:#016310;
+}
+

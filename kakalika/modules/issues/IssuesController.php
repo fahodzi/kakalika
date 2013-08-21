@@ -32,6 +32,12 @@ class IssuesController extends \kakalika\lib\KakalikaController
         }   
     }
     
+    public function show($issueId)
+    {
+        $issue = $this->model->getFirstWithId($issueId);
+        $this->set('issue', $issue->toArray());
+    }
+    
     public function run()
     {
         $issues = Issues::getAll(

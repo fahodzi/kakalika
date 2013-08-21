@@ -23,7 +23,7 @@
             </div>
             <?php if($sub_section != ''): ?>
             <div id="sub_head">
-                <h2><?= $sub_section ?></h2>
+                <h3><?= $sub_section ?></h3>
                 <?php if(count($sub_section_menu) > 0){
                     echo $widgets->menu($sub_section_menu)->alias('sub');
                 }?>

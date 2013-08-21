@@ -178,3 +178,7 @@ ul.menu > li.menu-selected a{
     color:#016310;
 }
 
+.people-info img{
+    float:left;
+    margin-right:10px;
+}

@@ -15,6 +15,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
             $this->project = \kakalika\modules\projects\Projects::getJustFirstWithCode($GLOBALS['ROUTE_PROJECT_CODE']);
             
             $this->set('project_name', $this->project->name);
+            $this->set('project_code', $this->project->code);
             $this->set('sub_section_menu', 
                 array(
                     array(

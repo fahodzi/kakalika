@@ -12,13 +12,10 @@
         <div id="wrapper">
             <div id="head" class="row">
                 <div id="title_side" class="column grid_10_5">
-                    <h1>Kakalika</h1>
+                    <h1><a href="<?= u('') ?>">Kakalika</a></h1>
                     <?php if($project_name != ''): ?>
-                    <h2><?= $project_name ?></h2>
+                    <h2><a href="<?= u($project_code) ?>"><?= $project_name ?></a></h2>
                     <?php endif; ?>
-                    <div id="header_menu">
-                        <?= $widgets->menu(array('Projects'))->alias('main') ?>
-                    </div>                    
                 </div>
                 <div id="status_side" class="column grid_10_5">
                     <?= $widgets->menu(array('Administration', 'Account Settings', 'Logout')) ?>

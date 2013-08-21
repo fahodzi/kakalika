@@ -158,6 +158,11 @@ ul.menu > li.menu-selected a{
     padding:10px;
 }
 
+.issue_view p#description{
+    padding:15px;
+    padding-top:0px;
+}
+
 .issue_view #title_block{
     color: #02b01f;
     background-color:#defee3;

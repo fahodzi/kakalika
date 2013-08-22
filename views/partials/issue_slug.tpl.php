@@ -1,10 +1,8 @@
 <span class="issue_slug">
-    Opened by <img src="<?= $helpers->gravatar->image($issue['user']['email'])->size(16) ?>" /> 
-    <b><?= "{$issue['user']['lastname']} {$issue['user']['firstname']} " ?></b>
+    Opened by <img src="<?= $helpers->gravatar->image($issue['opener']['email'])->size(16) ?>" /> 
+    <b><?= "{$issue['opener']['lastname']} {$issue['opener']['firstname']} " ?></b>
     <?= $helpers->date($issue['created'])->sentence(array('elaborate_with' => 'ago')) ?>.
-    <?php if($issue['assignee'] != ''): ?>
+    <?php if(isset($issue['assignee_details'])): ?>
     Assigned to <b>James Ainooson</b>
-    <?php else: ?>
-    <b>Unassigned</b>
     <?php endif; ?>
 </span>

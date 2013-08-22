@@ -24,6 +24,13 @@ h2, h3, h4{
     padding:15px;
 }
 
+h5{
+    margin:0px;
+    padding:0px;
+    margin-top:10px;
+    margin-bottom: 5px;
+}
+
 form{
     margin:10px;
 }
@@ -181,4 +188,14 @@ ul.menu > li.menu-selected a{
 .people-info img{
     float:left;
     margin-right:10px;
+}
+
+.people-info .top-part{
+    font-weight:bold;
+    color:#0a77b8;
+}
+
+.people-info .bottom-part{
+    font-size:smaller;
+    color:#808080;
 }

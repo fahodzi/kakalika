@@ -6,7 +6,8 @@ use ntentan\models\Model;
 class Issues extends Model
 {
     public $belongsTo = array(
-        array('user', 'as' => 'opener')
+        array('user', 'as' => 'opener'),
+        array('user', 'as' => 'assignee')
     );
     
     public $behaviours = array(

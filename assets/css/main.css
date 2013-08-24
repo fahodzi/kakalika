@@ -203,6 +203,7 @@ ul.menu > li.menu-selected a{
 .people-info .top-part{
     font-weight:bold;
     color:#0a77b8;
+    display: block;
 }
 
 .people-info .bottom-part{
@@ -213,7 +214,6 @@ ul.menu > li.menu-selected a{
 dl{
     padding:15px;
     background-color:#f7fbfe;
-    font-size: smaller;
     margin:0px;
 }
 

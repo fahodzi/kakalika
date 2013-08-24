@@ -69,5 +69,7 @@ textarea{
     font-size:large;
     box-shadow: inset 1px 1px 3px rgba(64,64,64,0.1);    
     height:50px;
+    font-family: sans-serif;
+    font-size: smaller;
 }
 

@@ -32,6 +32,11 @@ class IssuesController extends \kakalika\lib\KakalikaController
         }   
     }
     
+    public function close($issueId)
+    {
+        
+    }
+    
     public function show($issueId)
     {
         $issue = $this->model->getFirstWithId($issueId);

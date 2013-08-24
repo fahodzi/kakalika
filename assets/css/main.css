@@ -188,8 +188,8 @@ ul.menu > li.menu-selected a{
 
 .people-info{
     min-height: 56px;
-    margin-bottom:10px;
-    padding-bottom: 5px;
+    margin-bottom:15px;
+    padding-bottom: 15px;
     border-bottom: 1px solid #f0f0f0;
     padding-right:10px;
 }
@@ -206,7 +206,7 @@ ul.menu > li.menu-selected a{
     display: block;
 }
 
-.people-info .bottom-part{
+.small-date{
     font-size:smaller;
     color:#808080;
 }
@@ -231,3 +231,34 @@ dd{
     margin:0px;
     margin-bottom:5px;
 }
+
+.striped
+{
+    background-color:#fcfcfc;
+}
+
+.issue_view .update
+{
+    padding:15px;
+    margin-right:10px;
+}
+
+.issue_view .update span.name
+{
+    font-weight:bold;
+    color:#0a77b8;    
+}
+
+.issue_view .update p
+{
+    margin:0px;
+    padding:0px;
+    margin-top:10px;
+}
+
+.issue_view .update img
+{
+    float:left;
+    margin-right:10px;
+}
+

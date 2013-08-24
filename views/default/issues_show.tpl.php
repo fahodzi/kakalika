@@ -3,24 +3,6 @@
         <div class="row">
             <div class="column grid_10_7"><h4>#<?= $issue['number'] ?></h4> <h4><?= $issue['title'] ?></h4></div>
             <div class="column grid_10_3">
-                <div style='text-align: right; padding:10px; font-size:x-large; font-weight: bold; color:#fff'>
-                    <?= strtoupper($issue['status']) ?>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class='row'>
-        <div class='column grid_10_7'>
-            <div style='padding:15px'><?= t('issue_slug.tpl.php', array('issue' => $issue)) ?></div>
-            <p id='description'><?= $this->nl2br($issue['description']) ?></p>     
-            <?= 
-                $helpers->form->open() .
-                $helpers->form->get_text_area('Comment', 'comment') .
-                $helpers->form->close('Post Comment') 
-            ?>
-        </div>
-        <div class='column grid_10_3'>
-            <div>
                 <?= $widgets->menu(
                     array(
                         array(
@@ -38,6 +20,30 @@
                     )
                 )
                 ?>
+            </div>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='column grid_10_7'>
+            <div style='padding:15px'><?= t('issue_slug.tpl.php', array('issue' => $issue)) ?></div>
+            <p id='description'><?= $this->nl2br($issue['description']) ?></p>  
+            <?php $stripe = true; foreach($issue['updates'] as $update): ?>
+            <div class="update <?= $stripe ? 'striped' : '' ?>">
+                <img src="<?= $helpers->gravatar->image($update['user']['email'])->size(32) ?>" />
+                <span class="name"><?= $update['user']['firstname'] . " " . $update['user']['lastname'] ?></span>
+                <div class="small-date"><?= $helpers->date($update['created'])->sentence(array('elaborate_with' => 'ago')) ?> ⚫ <?= $helpers->date($update['created'])->format('jS F, Y @ g:i a') ?></div>
+                <p><?= $update['comment'] ?></p>
+            </div>
+            
+            <?php $stripe = !$stripe; endforeach; ?>
+            <?= 
+                $helpers->form->open() .
+                $helpers->form->get_text_area('Comment', 'comment') .
+                $helpers->form->close('Post Comment') 
+            ?>
+        </div>
+        <div class='column grid_10_3'>
+            <div>
                 <h5>Details</h5>
                 <dl>
                     <dt>Status</dt>
@@ -54,7 +60,7 @@
                     <span class='top-part'>
                         Opened by <span class='name'><?= $issue['opener']['firstname'] ?> <?= $issue['opener']['lastname'] ?></span> 
                     </span>
-                    <span class='bottom-part'>
+                    <span class='bottom-part small-date'>
                         <?= $helpers->date($issue['created'])->sentence(array('elaborate_with' => 'ago')) ?> ⚫ <?= $helpers->date($issue['created'])->format('jS F, Y @ g:i a') ?>
                     </span>
                 </div>                
@@ -64,7 +70,7 @@
                     <span class='top-part'>
                         Assigned to <span class='name'><?= $issue['assignee']['firstname'] ?> <?= $issue['assignee']['lastname'] ?></span>
                     </span>
-                    <span class='bottom-part'>
+                    <span class='bottom-part small-date'>
                         <?= $helpers->date($issue['assigned'])->sentence(array('elaborate_with' => 'ago')) ?> ⚫ <?= $helpers->date($issue['assigned'])->format('jS F, Y @ g:i a') ?>
                     </span>
                 </div>

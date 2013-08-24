@@ -11,6 +11,8 @@ class Issues extends Model
         'project'
     );
     
+    public $hasMany = array('updates');
+    
     public $behaviours = array(
         'timestampable'
     );

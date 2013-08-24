@@ -1,6 +1,8 @@
 <?php
 namespace kakalika\modules\issues;
 
+use kakalika\modules\updates\Updates;
+
 class IssuesController extends \kakalika\lib\KakalikaController
 {
     private $project;
@@ -39,7 +41,16 @@ class IssuesController extends \kakalika\lib\KakalikaController
     
     public function show($issueId)
     {
-        $issue = $this->model->getFirstWithId($issueId);
+        if(isset($_POST['comment']))
+        {
+            $update = Updates::getNew();
+            $update->comment = $_POST['comment'];
+            $update->user_id = $_SESSION['user']['id'];
+            $update->issue_id = $issueId;
+            $update->save();
+        }
+        
+        $issue = $this->model->getFirstWithId($issueId);        
         $this->set('issue', $issue->toArray());
     }
     

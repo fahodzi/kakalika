@@ -63,6 +63,10 @@ class Issues extends Model
         $project = \kakalika\modules\projects\Projects::getJustFirstWithId(
             $this->project_id
         );
+        if($this->assignee != '')
+        {
+            $this->assigned = date('Y-m-d H:i:s');
+        }
         $this->number = ++$project->number_of_issues;
         $project->update();
     }

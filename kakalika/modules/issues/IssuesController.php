@@ -1,6 +1,6 @@
 <?php
-namespace kakalika\modules\issues;
 
+namespace kakalika\modules\issues;
 use kakalika\modules\updates\Updates;
 
 class IssuesController extends \kakalika\lib\KakalikaController
@@ -41,24 +41,33 @@ class IssuesController extends \kakalika\lib\KakalikaController
     
     public function show($issueId)
     {
+        $issue = $this->model->getFirst(
+            array(
+                'conditions' => array(
+                    'number' => $issueId,
+                    'project_id' => $this->project->id
+                )
+            )
+        ); 
+            
         if(isset($_POST['comment']))
         {
             $update = Updates::getNew();
             $update->comment = $_POST['comment'];
-            $update->issue_id = $issueId;
+            $update->issue_id = $issue->id;
             $update->save();
             \ntentan\Ntentan::redirect(\ntentan\Ntentan::$requestedRoute);
         }
         else
-        {
-            $issue = $this->model->getFirstWithId($issueId);        
+        {       
             $this->set('issue', $issue->toArray());
         }
     }
     
     public function run()
     {
-        $issues = Issues::getAll(
+        $issues = Issues::getAllWithProjectId(
+            $this->project->id,
             array(
                 'sort' => 'id DESC'
             )
@@ -68,7 +77,14 @@ class IssuesController extends \kakalika\lib\KakalikaController
     
     public function edit($issueId)
     {
-        $issue = Issues::getJustFirstWithId($issueId);        
+        $issue = Issues::getJustFirst(
+            array(
+                'conditions' => array(
+                    'project_id' => $this->project->id,
+                    'number' => $issueId
+                )
+            )
+        );
         if(isset($_POST['title']))
         {            
             $issue->setData($_POST);

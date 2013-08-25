@@ -7,15 +7,15 @@
                     array(
                         array(
                             'label' => 'Edit',
-                            'url' => u("{$project_code}/issues/edit/7")
+                            'url' => u("{$project_code}/issues/edit/{$issue['number']}")
                         ),
                         array(
                             'label' => 'Close',
-                            'url' => u("{$project_code}/issues/close/7")
+                            'url' => u("{$project_code}/issues/close/{$issue['number']}")
                         ),
                         array(
                             'label' => 'Delete',
-                            'url' => u("{$project_code}/issues/delete/7")
+                            'url' => u("{$project_code}/issues/delete/{$issue['number']}")
                         )
                     )
                 )

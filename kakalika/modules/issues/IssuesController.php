@@ -45,7 +45,6 @@ class IssuesController extends \kakalika\lib\KakalikaController
         {
             $update = Updates::getNew();
             $update->comment = $_POST['comment'];
-            $update->user_id = $_SESSION['user']['id'];
             $update->issue_id = $issueId;
             $update->save();
             \ntentan\Ntentan::redirect(\ntentan\Ntentan::$requestedRoute);
@@ -67,6 +66,22 @@ class IssuesController extends \kakalika\lib\KakalikaController
         $this->set('issues', $issues);
     }
     
+    public function edit($issueId)
+    {
+        $issue = Issues::getJustFirstWithId($issueId);        
+        if(isset($_POST['title']))
+        {            
+            $issue->setData($_POST);
+            $issue->update();
+            \ntentan\Ntentan::redirect("{$this->project->code}/issues/$issueId");
+        }
+        else
+        {
+            $this->set('form_data', $issue->toArray());
+            $this->setupAssignees();
+        }
+    }
+    
     public function create()
     {
         if(isset($_POST['title']))
@@ -83,6 +98,12 @@ class IssuesController extends \kakalika\lib\KakalikaController
             }
         }
         
+        $this->setupAssignees();
+        $this->set('split', true);
+    }
+    
+    private function setupAssignees()
+    {
         $users = \kakalika\modules\user_projects\UserProjects::getAllWithProjectId(
             $this->project->id,
             array(
@@ -101,7 +122,6 @@ class IssuesController extends \kakalika\lib\KakalikaController
             $assignees[$user['user']['id']] = "{$user['user']['firstname']} {$user['user']['lastname']}";
         }
         
-        $this->set('assignees', $assignees);
-        $this->set('split', true);
+        $this->set('assignees', $assignees);        
     }
 }

@@ -1,10 +1,17 @@
-<h3>Create a new Issue</h3>
-<?php $helpers->form->setData($form_data) ?>
+<h3>Edit Issue</h3>
+<?php 
+$form_data['assignee'] = (int) $form_data['assignee'];
+$helpers->form->setData($form_data);
+?>
 <?= $helpers->form->open() ?>
 <div class="row">
     <div class="column grid_10_7">
         <div style="padding-right:15px">
-        <?= $helpers->form->get_text_field('Title', 'title') . $helpers->form->get_text_area('Description', 'description')->id('description') ?>
+        <?= 
+            $helpers->form->get_text_field('Title', 'title') . 
+            $helpers->form->get_text_area('Description', 'description')->id('description') .
+            $helpers->form->get_text_area('Comment', 'comment')
+        ?>
         </div>
     </div>
     <div class="column grid_10_3">
@@ -27,4 +34,4 @@
     </div>
 </div>
 
-<?= $helpers->form->close('Create Issue') ?>
+<?= $helpers->form->close('Update Issue') ?>

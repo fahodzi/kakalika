@@ -32,10 +32,34 @@
             
             <?php $stripe = true; foreach($issue['updates'] as $update): ?>
             <div class="update <?= $stripe ? 'striped' : '' ?>">
-                <img src="<?= $helpers->gravatar->image($update['user']['email'])->size(32) ?>" />
+                <img src="<?= $helpers->gravatar->image($update['user']['email'])->size(54) ?>" />
                 <span class="name"><?= $update['user']['firstname'] . " " . $update['user']['lastname'] ?></span>
                 <div class="small-date"><?= $helpers->date($update['created'])->sentence(array('elaborate_with' => 'ago')) ?> ⚫ <?= $helpers->date($update['created'])->format('jS F, Y @ g:i a') ?></div>
-                <p><?= $update['comment'] ?></p>
+                <?php
+                $changes = array();
+                if($update['assignee']['id'] != '') 
+                    $changes[] = "Assigned <span class='name'>{$update['assignee']['firstname']} {$update['assignee']['lastname']}</span> to this issue";
+                    
+                if($update['priority'] != '')
+                    $changes[] = "Set priority to <b>{$update['priority']}</b>";
+                    
+                if($update['kind'] != '')
+                    $changes[] = "Marked issue as <b>{$update['kind']}</b>";
+                ?>
+                
+                <?php if($update['comment'] != ''): ?>
+                <p>                 
+                    <?= $update['comment'] ?>
+                </p>
+                <?php endif; ?>
+                
+                <?php if(count($changes) > 0): ?>
+                <ul>
+                    <?php foreach($changes as $change): ?>
+                    <li><?= $change ?></li>
+                    <?php endforeach; ?>
+                </ul>
+                <?php endif; ?>   
             </div>
             
             <?php $stripe = !$stripe; endforeach; ?>

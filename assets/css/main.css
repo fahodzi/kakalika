@@ -12,6 +12,8 @@ body{
     background-color:#fff;
     box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
     min-height:500px;
+    min-width:720px;
+    max-width:1400px;
 }
 
 #head{
@@ -166,6 +168,11 @@ ul.menu > li.menu-selected a{
     padding:10px;
 }
 
+.issue_view_content h5{
+    margin:0px;
+    padding:15px;
+}
+
 .issue_view p#description{
     padding:15px;
     padding-top:0px;
@@ -239,8 +246,10 @@ dd{
 
 .issue_view .update
 {
-    padding:15px;
+    padding:20px;
     margin-right:10px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #fcfcfc;
 }
 
 .issue_view .update span.name
@@ -253,7 +262,7 @@ dd{
 {
     margin:0px;
     padding:0px;
-    margin-top:10px;
+    margin-top:20px;
 }
 
 .issue_view .update img

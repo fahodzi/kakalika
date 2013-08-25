@@ -24,9 +24,12 @@
         </div>
     </div>
     <div class='row'>
-        <div class='column grid_10_7'>
+        <div class='column grid_10_7 issue_view_content'>
             <div style='padding:15px'><?= t('issue_slug.tpl.php', array('issue' => $issue)) ?></div>
             <p id='description'><?= $this->nl2br($issue['description']) ?></p>  
+            
+            <h5>Comments (<?= count($issue['updates']) ?>)</h5>
+            
             <?php $stripe = true; foreach($issue['updates'] as $update): ?>
             <div class="update <?= $stripe ? 'striped' : '' ?>">
                 <img src="<?= $helpers->gravatar->image($update['user']['email'])->size(32) ?>" />
@@ -42,7 +45,7 @@
                 $helpers->form->close('Post Comment') 
             ?>
         </div>
-        <div class='column grid_10_3'>
+        <div class='column grid_10_3 issue_view_side'>
             <div>
                 <h5>Details</h5>
                 <dl>
@@ -74,6 +77,16 @@
                         <?= $helpers->date($issue['assigned'])->sentence(array('elaborate_with' => 'ago')) ?> ⚫ <?= $helpers->date($issue['assigned'])->format('jS F, Y @ g:i a') ?>
                     </span>
                 </div>
+                
+                <div class='people-info'>
+                    <img src='<?= $helpers->gravatar->image($issue['updater']['email'])->size(56) ?>' /> 
+                    <span class='top-part'>
+                        Updated by <span class='name'><?= $issue['updater']['firstname'] ?> <?= $issue['updater']['lastname'] ?></span>
+                    </span>
+                    <span class='bottom-part small-date'>
+                        <?= $helpers->date($issue['updated'])->sentence(array('elaborate_with' => 'ago')) ?> ⚫ <?= $helpers->date($issue['updated'])->format('jS F, Y @ g:i a') ?>
+                    </span>
+                </div>                
             </div>
         </div>
     </div>

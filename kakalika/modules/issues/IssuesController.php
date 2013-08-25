@@ -48,10 +48,13 @@ class IssuesController extends \kakalika\lib\KakalikaController
             $update->user_id = $_SESSION['user']['id'];
             $update->issue_id = $issueId;
             $update->save();
+            \ntentan\Ntentan::redirect(\ntentan\Ntentan::$requestedRoute);
         }
-        
-        $issue = $this->model->getFirstWithId($issueId);        
-        $this->set('issue', $issue->toArray());
+        else
+        {
+            $issue = $this->model->getFirstWithId($issueId);        
+            $this->set('issue', $issue->toArray());
+        }
     }
     
     public function run()

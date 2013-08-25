@@ -75,42 +75,53 @@
                 <dl>
                     <dt>Status</dt>
                     <dd><?= $issue['status'] ?></dd>
+                    
+                    <?php if($issue['kind'] != ''): ?>
                     <dt>Kind</dt>
                     <dd><?= $issue['kind'] ?></dd>
+                    <?php endif; ?>
+                    
+                    <?php if($issue['priority'] != ''): ?>
                     <dt>Priority</dt>
                     <dd><?= $issue['priority'] ?></dd>
+                    <?php endif; ?>
                 </dl>
                 <h5>People</h5>
                 
-                <div class='people-info'>
-                    <img src='<?= $helpers->gravatar->image($issue['opener']['email'])->size(56) ?>' /> 
-                    <span class='top-part'>
-                        Opened by <span class='name'><?= $issue['opener']['firstname'] ?> <?= $issue['opener']['lastname'] ?></span> 
-                    </span>
-                    <span class='bottom-part small-date'>
-                        <?= $helpers->date($issue['created'])->sentence(array('elaborate_with' => 'ago')) ?> ⚫ <?= $helpers->date($issue['created'])->format('jS F, Y @ g:i a') ?>
-                    </span>
-                </div>                
+                <?php 
+                echo t('people_info.tpl.php', 
+                    array(
+                        'action' => 'Opened by',
+                        'email' => $issue['opener']['email'],
+                        'firstname' => $issue['opener']['firstname'],
+                        'lastname' => $issue['opener']['lastname'],
+                        'time' => $issue['created']
+                    )
+                );
                 
-                <div class='people-info'>
-                    <img src='<?= $helpers->gravatar->image($issue['assignee']['email'])->size(56) ?>' /> 
-                    <span class='top-part'>
-                        Assigned to <span class='name'><?= $issue['assignee']['firstname'] ?> <?= $issue['assignee']['lastname'] ?></span>
-                    </span>
-                    <span class='bottom-part small-date'>
-                        <?= $helpers->date($issue['assigned'])->sentence(array('elaborate_with' => 'ago')) ?> ⚫ <?= $helpers->date($issue['assigned'])->format('jS F, Y @ g:i a') ?>
-                    </span>
-                </div>
-                
-                <div class='people-info'>
-                    <img src='<?= $helpers->gravatar->image($issue['updater']['email'])->size(56) ?>' /> 
-                    <span class='top-part'>
-                        Updated by <span class='name'><?= $issue['updater']['firstname'] ?> <?= $issue['updater']['lastname'] ?></span>
-                    </span>
-                    <span class='bottom-part small-date'>
-                        <?= $helpers->date($issue['updated'])->sentence(array('elaborate_with' => 'ago')) ?> ⚫ <?= $helpers->date($issue['updated'])->format('jS F, Y @ g:i a') ?>
-                    </span>
-                </div>                
+                if($issue['assignee']['id'] != '')
+                    echo t('people_info.tpl.php', 
+                        array(
+                            'action' => 'Assigned to',
+                            'email' => $issue['assignee']['email'],
+                            'firstname' => $issue['assignee']['firstname'],
+                            'lastname' => $issue['assignee']['lastname'],
+                            'time' => $issue['assigned']
+                        )
+                    );
+                      
+                if($issue['updater']['id'] != '')
+                    echo t('people_info.tpl.php', 
+                        array(
+                            'action' => 'Updated by',
+                            'email' => $issue['updater']['email'],
+                            'firstname' => $issue['updater']['firstname'],
+                            'lastname' => $issue['updater']['lastname'],
+                            'time' => $issue['updated']
+                        )
+                    )                         
+                        
+                ?>
             </div>
         </div>
     </div>

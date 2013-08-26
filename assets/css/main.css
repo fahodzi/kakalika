@@ -89,6 +89,20 @@ form textarea#description{
     display:inline-block
 }
 
+ul#top-menu{
+    padding:15px;
+}
+
+ul#top-menu > li > a{
+    color:#eef5fe;
+    font-size:small;
+    padding-left:30px;
+    background-repeat: no-repeat;
+    background-position: 12px 50%;
+}
+
+ul#top-menu > li#logout-menu-item > a{background-image:url(../images/logout.png)}
+
 #login-box{
     width:30%;
     margin-left:auto;

@@ -18,7 +18,7 @@
                     <?php endif; ?>
                 </div>
                 <div id="status_side" class="column grid_10_5">
-                    <?= $widgets->menu(array('Administration', 'Account Settings', 'Logout')) ?>
+                    <?= $widgets->menu(array('Administration', 'Account', 'Logout'))->alias('top') ?>
                 </div>
             </div>
             <?php if($sub_section != ''): ?>
@@ -44,3 +44,4 @@
         </div>
     </body>
 </html>
+<?php load_asset('images/logout.png') ?>

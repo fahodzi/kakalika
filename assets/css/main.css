@@ -102,6 +102,8 @@ ul#top-menu > li > a{
 }
 
 ul#top-menu > li#logout-menu-item > a{background-image:url(../images/logout.png)}
+ul#top-menu > li#administration-menu-item > a{background-image:url(../images/settings_small.png)}
+ul#top-menu > li#account-menu-item > a{background-image:url(../images/account_small.png)}
 
 #login-box{
     width:30%;

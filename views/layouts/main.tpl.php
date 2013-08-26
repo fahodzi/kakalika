@@ -44,4 +44,8 @@
         </div>
     </body>
 </html>
-<?php load_asset('images/logout.png') ?>
+<?php 
+load_asset('images/logout.png') ;
+load_asset('images/settings_small.png') ;
+load_asset('images/account_small.png') ;
+?>

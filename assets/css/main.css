@@ -80,14 +80,31 @@ form textarea#description{
     background-color: #f8f8f8;
 }
 
-#sub_head > h3{
-    display:inline-block;
+#sub_head  h3{
     color:#808080;
 }
 
-#sub_head > #sub-menu{
-    display:inline-block
+#sub-menu > li > a{
+    display:inline-block;
+    padding:9px;
+    margin:6px;
+    padding-left:43px;
+    border:1px solid #f8f8f8;
+    background-repeat: no-repeat;
+    background-position: 5px 50%;
+    color:#404040;
 }
+
+#create_new_project-menu-item > a{
+    background-image: url(../images/add_project.png)
+}
+
+#sub-menu > li > a:hover{
+    
+    background-color:#fcfcfc;
+    box-shadow: 1px 1px 2px rgba(50, 50, 50, 0.1);
+}
+
 
 ul#top-menu{
     padding:15px;

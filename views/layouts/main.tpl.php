@@ -23,10 +23,16 @@
             </div>
             <?php if($sub_section != ''): ?>
             <div id="sub_head">
-                <h3><?= $sub_section ?></h3>
-                <?php if(count($sub_section_menu) > 0){
-                    echo $widgets->menu($sub_section_menu)->alias('sub');
-                }?>
+                <div class="row">
+                    <div class="column grid_10_7">
+                        <h3><?= $sub_section ?></h3>
+                    </div>
+                    <div class="column grid_10_3" align="right">
+                        <?php if(count($sub_section_menu) > 0){
+                            echo $widgets->menu($sub_section_menu)->alias('sub');
+                        }?>
+                    </div>
+                </div>
             </div>
             <?php endif; ?>
             <div id="body">
@@ -45,7 +51,10 @@
     </body>
 </html>
 <?php 
+
+// Load icons
 load_asset('images/logout.png') ;
 load_asset('images/settings_small.png') ;
 load_asset('images/account_small.png') ;
+load_asset('images/add_project.png') ;
 ?>

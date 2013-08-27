@@ -95,9 +95,8 @@ form textarea#description{
     color:#404040;
 }
 
-#menu-item-projects-create > a{
-    background-image: url(../images/add_project.png)
-}
+#menu-item-projects-create > a{ background-image: url(../images/add_project.png) }
+#menu-item-software-issues-create > a{ background-image: url(../images/add_issue.png) }
 
 #sub-menu > li > a:hover{
     
@@ -157,6 +156,10 @@ ul.menu > li.menu-selected a{
     border-bottom:1px dashed #e0e0e0;
     padding:10px;
     padding-top:35px;
+    padding-left: 65px;
+    background-image:url(../images/project.png);
+    background-position:10px 80%;
+    background-repeat: no-repeat;
 }
 
 .project-info-wrapper .project-name{

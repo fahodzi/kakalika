@@ -6,7 +6,7 @@
         <span class="project-desc"><?= $project['project']['description'] ?></span>
     </div>
     <div class="column grid_10_2">
-        Edit Settings
+        <a href="<?= u("{$project['project']['code']}/edit") ?>">Edit</a>
     </div>
     <div class="column grid_10_4">
         Resolved Open

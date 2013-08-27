@@ -18,7 +18,11 @@
                     <?php endif; ?>
                 </div>
                 <div id="status_side" class="column grid_10_5">
-                    <?= $widgets->menu(array('Administration', 'Account', 'Logout'))->alias('top') ?>
+                    <?= $widgets->menu(array(
+                        array(
+                            'label' => 'Administration',
+                            'url' => u('admin')
+                        ), 'Account', 'Logout'))->alias('top') ?>
                 </div>
             </div>
             <?php if($sub_section != ''): ?>

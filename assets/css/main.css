@@ -95,7 +95,7 @@ form textarea#description{
     color:#404040;
 }
 
-#create_new_project-menu-item > a{
+#menu-item-projects-create > a{
     background-image: url(../images/add_project.png)
 }
 
@@ -118,9 +118,9 @@ ul#top-menu > li > a{
     background-position: 12px 50%;
 }
 
-ul#top-menu > li#logout-menu-item > a{background-image:url(../images/logout.png)}
-ul#top-menu > li#administration-menu-item > a{background-image:url(../images/settings_small.png)}
-ul#top-menu > li#account-menu-item > a{background-image:url(../images/account_small.png)}
+ul#top-menu > li#menu-item-logout > a{background-image:url(../images/logout.png)}
+ul#top-menu > li#menu-item-admin > a{background-image:url(../images/settings_small.png)}
+ul#top-menu > li#menu-item-account > a{background-image:url(../images/account_small.png)}
 
 #login-box{
     width:30%;

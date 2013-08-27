@@ -13,7 +13,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         $this->set('sub_section_menu', 
             array(
                 array(
-                    'label' => 'Create new project',
+                    'label' => 'New project',
                     'url' => Ntentan::getUrl('projects/create')
                 )
             )

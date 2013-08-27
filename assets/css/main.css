@@ -16,6 +16,16 @@ body{
     max-width:1400px;
 }
 
+a.tinylink{
+    font-size:small;
+    text-decoration: none;
+    color:#88c0fe
+}
+
+a.tinylink > img{
+    vertical-align:-2px;    
+}
+
 #head{
     background-color:#0a77b8;
     color:#fff;
@@ -76,7 +86,7 @@ form textarea#description{
 }
 
 #sub_head{
-    border-bottom:2px solid #f0f0f0;  
+    /*border-bottom:2px solid #f0f0f0;  */
     background-color: #f8f8f8;
 }
 
@@ -156,10 +166,10 @@ ul.menu > li.menu-selected a{
     border-bottom:1px dashed #e0e0e0;
     padding:10px;
     padding-top:35px;
-    padding-left: 65px;
+    /*padding-left: 65px;
     background-image:url(../images/project.png);
     background-position:10px 80%;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat;*/
 }
 
 .project-info-wrapper .project-name{

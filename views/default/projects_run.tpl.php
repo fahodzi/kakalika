@@ -6,7 +6,9 @@
         <span class="project-desc"><?= $project['project']['description'] ?></span>
     </div>
     <div class="column grid_10_2">
-        <a href="<?= u("{$project['project']['code']}/edit") ?>">Edit</a>
+        <a class="tinylink" href="<?= u("{$project['project']['code']}/edit") ?>">
+            <img src="<?= load_asset('images/edit_small.png')?>" alt="edit" />Edit
+        </a>
     </div>
     <div class="column grid_10_4">
         Resolved Open

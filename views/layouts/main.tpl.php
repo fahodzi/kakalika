@@ -62,5 +62,5 @@ load_asset('images/settings_small.png') ;
 load_asset('images/account_small.png') ;
 load_asset('images/add_project.png') ;
 load_asset('images/add_issue.png') ;
-load_asset('images/project.png');
+load_asset('images/edit_small.png');
 ?>

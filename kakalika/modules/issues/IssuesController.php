@@ -50,22 +50,19 @@ class IssuesController extends \kakalika\lib\KakalikaController
                 )
             )
         ); 
+        
+        $status = $issue->status;
             
         if(isset($_POST['comment']))
         {
-            // @todo Move this section to the issues model
-            $update = Updates::getNew();
-            if($_POST['action'] == 'Resolve') $update->status = 'RESOLVED';
-            elseif($_POST['action'] == 'Close') $update->status = 'CLOSED';
-            elseif($_POST['action'] == 'Reopen') $update->status = 'REOPENED';
-            
-            $update->comment = $_POST['comment'];
-            $update->issue_id = $issue->id;
-            $update->save();
-            
+            if($_POST['action'] == 'Resolve') $status = 'RESOLVED';
+            elseif($_POST['action'] == 'Close') $status = 'CLOSED';
+            elseif($_POST['action'] == 'Reopen') $status = 'REOPENED';
+                        
             $updatedIssue = $this->model->getNew();
             $updatedIssue->id = $issue->id;
-            $updatedIssue->status = $update->status;
+            $updatedIssue->status = $status;
+            $updatedIssue->comment = $_POST['comment'];
             $updatedIssue->update();
             
             \ntentan\Ntentan::redirect(\ntentan\Ntentan::$requestedRoute);

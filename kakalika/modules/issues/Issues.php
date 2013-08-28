@@ -40,6 +40,7 @@ class Issues extends Model
         
         if($this->originalIssue['kind'] != $this->kind) $this->updateData['kind'] = $this->kind;
         if($this->originalIssue['priority'] != $this->priority) $this->updateData['priority'] = $this->priority;
+        if($this->originalIssue['status'] != $this->status) $this->updateData['status'] = $this->status;
         
         unset($this->data['comment']);        
     }

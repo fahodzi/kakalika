@@ -30,35 +30,33 @@ input[type='text'], input[type='password']{
 	border-top:1px solid #f0f0f0;
 }
 
-.form-submit {
-	-moz-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
-	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #378de5) );
-	background:-moz-linear-gradient( center top, #79bbff 5%, #378de5 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#378de5');
-	background-color:#79bbff;
-	-moz-border-radius:6px;
-	-webkit-border-radius:6px;
-	border-radius:6px;
-	border:1px solid #84bbf3;
-	display:inline-block;
-	color:#ffffff;
-	font-family:arial;
-	font-size:15px;
-	font-weight:bold;
-	padding:6px 24px;
-	text-decoration:none;
-	text-shadow:1px 1px 0px #528ecc;
+.form-submit{
+    padding:10px;
+    border:1px solid #6095cb;
+    margin-right:10px;
+    background-color: #79bbff;
+    color:#fff;
+    text-shadow:-1px -1px #6298cf;
+    font-size: 15px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #9bccff), color-stop(1, #6aa4df) );
+	background:-moz-linear-gradient( center top, #9bccff 5%, #6aa4df 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#9bccff', endColorstr='#6aa4df');
 }
-.form-submit:hover {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff) );
-	background:-moz-linear-gradient( center top, #378de5 5%, #79bbff 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff');
-	background-color:#378de5;
-}
-.form-submit:active {
 
+.form-submit:hover{
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #a4d0ff), color-stop(1, #8db5df) );
+	background:-moz-linear-gradient( center top, #a4d0ff 5%, #8db5df 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a4d0ff', endColorstr='#8db5df');
+}
+
+.form-submit:active{
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3);
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #9bccff), color-stop(1, #6aa4df) );
+	background:-moz-linear-gradient( center top, #9bccff 5%, #6aa4df 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#9bccff', endColorstr='#6aa4df');
 }
 
 textarea{
@@ -70,6 +68,6 @@ textarea{
     box-shadow: inset 1px 1px 3px rgba(64,64,64,0.1);    
     height:50px;
     font-family: sans-serif;
-    font-size: smaller; 
+    font-size: small; 
 }
 

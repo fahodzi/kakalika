@@ -68,22 +68,22 @@
                     case 'OPEN':
                     case 'REOPENED':
                         echo $helpers->form->close(
-                            array('value' => 'Post Comment', 'name' => 'action'),
-                            array('value' => 'Resolve', 'name' => 'action'),
-                            array('value' => 'Close', 'name' => 'action')
+                            array('value' => 'Comment', 'name' => 'action'),
+                            array('value' => 'Resolve', 'name' => 'action', 'id' => 'resolve'),
+                            array('value' => 'Close', 'name' => 'action', 'id' => 'close')
                         );
                         break;
                         
                     case 'CLOSED':
                         echo $helpers->form->close(
-                            array('value' => 'Post Comment', 'name' => 'action'),
-                            array('value' => 'Reopen', 'name' => 'action')
+                            array('value' => 'Comment', 'name' => 'action'),
+                            array('value' => 'Reopen', 'name' => 'action', 'id' => 'reopen')
                         );    
                         break;
                     
                     case 'RESOLVED':
                         echo $helpers->form->close(
-                            array('value' => 'Post Comment', 'name' => 'action'),
+                            array('value' => 'Comment', 'name' => 'action'),
                             array('value' => 'Reopen', 'name' => 'action'),
                             array('value' => 'Close', 'name' => 'action')
                         );

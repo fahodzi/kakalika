@@ -363,3 +363,27 @@ dd{
     margin-right:15px;
 }
 
+input[type='submit']#resolve{
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #9099db), color-stop(1, #606591) );
+	background:-moz-linear-gradient( center top, #9099db 5%, #606591 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#9bccff', endColorstr='#6aa4df');  
+    text-shadow:-1px -1px #4b4f71;
+    border-color:#6d73a5;
+}
+
+input[type='submit']#close{
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff6464), color-stop(1, #c13b3b) );
+	background:-moz-linear-gradient( center top, #ff6464 5%, #c13b3b 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff6464', endColorstr='#c13b3b');  
+    text-shadow:-1px -1px #ac3535;
+    border-color:#ac3535;
+}
+
+input[type='submit']#reopen{
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #99ea57), color-stop(1, #61ba55) );
+	background:-moz-linear-gradient( center top, #99ea57 5%, #61ba55 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#99ea57', endColorstr='#61ba55');  
+    text-shadow:-1px -1px #54a24a;
+    border-color:#54a24a;
+}
+

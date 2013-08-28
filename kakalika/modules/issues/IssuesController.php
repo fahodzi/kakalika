@@ -111,15 +111,21 @@ class IssuesController extends \kakalika\lib\KakalikaController
     {
         if(isset($_POST['title']))
         {
-            $this->set('form_data', $_POST);
             $newIssue = Issues::getNew();
             $newIssue->setData($_POST);
             $newIssue->project_id = $this->project->id;
-            $saved = $newIssue->save();
-            
-            if($saved !== false)
+            if($newIssue->save())
             {
                 \ntentan\Ntentan::redirect("{$this->project->code}/issues");
+            }
+            else 
+            {
+                $this->set(
+                    array(
+                        'data' => $_POST,
+                        'errors' => $newIssue->invalidFields
+                    )
+                );
             }
         }
         

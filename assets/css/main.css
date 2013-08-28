@@ -106,7 +106,7 @@ form textarea#description{
 }
 
 #menu-item-projects-create > a{ background-image: url(../images/add_project.png) }
-#menu-item-software-issues-create > a{ background-image: url(../images/add_issue.png) }
+#menu-item-issues-create > a{ background-image: url(../images/add_issue.png) }
 
 #sub-menu > li > a:hover{
     
@@ -203,9 +203,10 @@ ul.menu > li.menu-selected a{
     vertical-align: middle;
 }
 
-.issue_summary .issue_title{
+.issue_summary .issue_title > a{
     font-size:large;
-    color:#02b01f;
+    color:#0a77b8;
+    text-decoration: none;
 }
 
 .issue_slug{
@@ -215,7 +216,7 @@ ul.menu > li.menu-selected a{
 }
 
 .issue_summary .issue_details{
-    padding:10px;
+    padding:20px;
 }
 
 .issue_view_content h5{
@@ -294,6 +295,25 @@ dd{
     background-color:#fcfcfc;
 }
 
+#issue-menu{
+    text-align: right;
+}
+
+#issue-menu > li > a{
+    display: inline-block;
+    padding:6px;
+    margin:10px;
+    color:#404040;
+    padding-left:30px;
+    font-size:0.9em;
+    background-position: 3px 50%;
+    background-repeat: no-repeat;
+}
+
+#menu-item-edit-issue > a{
+    background-image:url(../images/edit_issue.png);
+}
+
 .issue_view .update
 {
     padding:20px;
@@ -320,11 +340,16 @@ dd{
 {
     margin:0px;
     padding:15px;
+    padding-left:30px;
     margin-left:69px;
-    list-style: none;
+    list-style: '-';
     font-size:0.9em;
     margin-top:25px;
     background-color: #fbfbfb;
+}
+
+.issue_view .update ul li{
+    padding:3px;
 }
 
 .issue_view .striped ul

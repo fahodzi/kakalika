@@ -21,8 +21,9 @@ class IssuesController extends \kakalika\lib\KakalikaController
             $this->set('sub_section_menu', 
                 array(
                     array(
-                        'label' => 'New Issue',
-                        'url' => \ntentan\Ntentan::getUrl("{$this->project->code}/issues/create")
+                        'label' => 'Create A New Issue',
+                        'url' => \ntentan\Ntentan::getUrl("{$this->project->code}/issues/create"),
+                        'id' => 'menu-item-issues-create'
                     )
                 )
             );
@@ -52,10 +53,21 @@ class IssuesController extends \kakalika\lib\KakalikaController
             
         if(isset($_POST['comment']))
         {
+            // @todo Move this section to the issues model
             $update = Updates::getNew();
+            if($_POST['action'] == 'Resolve') $update->status = 'RESOLVED';
+            elseif($_POST['action'] == 'Close') $update->status = 'CLOSED';
+            elseif($_POST['action'] == 'Reopen') $update->status = 'REOPENED';
+            
             $update->comment = $_POST['comment'];
             $update->issue_id = $issue->id;
             $update->save();
+            
+            $updatedIssue = $this->model->getNew();
+            $updatedIssue->id = $issue->id;
+            $updatedIssue->status = $update->status;
+            $updatedIssue->update();
+            
             \ntentan\Ntentan::redirect(\ntentan\Ntentan::$requestedRoute);
         }
         else
@@ -115,7 +127,6 @@ class IssuesController extends \kakalika\lib\KakalikaController
         }
         
         $this->setupAssignees();
-        $this->set('split', true);
     }
     
     private function setupAssignees()

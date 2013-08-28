@@ -7,7 +7,7 @@
     </div>
     <div class="column grid_10_2">
         <a class="tinylink" href="<?= u("{$project['project']['code']}/edit") ?>">
-            <img src="<?= load_asset('images/edit_small.png')?>" alt="edit" />Edit
+            <img src="<?= load_asset('images/edit_small.png')?>" alt="edit" /> Edit
         </a>
     </div>
     <div class="column grid_10_4">

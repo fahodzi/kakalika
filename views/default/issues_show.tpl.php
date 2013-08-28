@@ -6,19 +6,12 @@
                 <?= $widgets->menu(
                     array(
                         array(
-                            'label' => 'Edit',
-                            'url' => u("{$project_code}/issues/edit/{$issue['number']}")
-                        ),
-                        array(
-                            'label' => 'Close',
-                            'url' => u("{$project_code}/issues/close/{$issue['number']}")
-                        ),
-                        array(
-                            'label' => 'Delete',
-                            'url' => u("{$project_code}/issues/delete/{$issue['number']}")
+                            'label' => 'Edit this issue',
+                            'url' => u("{$project_code}/issues/edit/{$issue['number']}"),
+                            'id' => 'menu-item-edit-issue'
                         )
                     )
-                )
+                )->alias('issue')
                 ?>
             </div>
         </div>
@@ -63,10 +56,36 @@
             </div>
             
             <?php $stripe = !$stripe; endforeach; ?>
-            <?= 
-                $helpers->form->open() .
-                $helpers->form->get_text_area('Comment', 'comment') .
-                $helpers->form->close('Post Comment') 
+            
+            <?= $helpers->form->open() . $helpers->form->get_text_area('Comment', 'comment') ?>
+            
+            <?php
+                switch ($issue['status'])
+                {
+                    case 'OPEN':
+                    case 'REOPENED':
+                        echo $helpers->form->close(
+                            array('value' => 'Post Comment', 'name' => 'action'),
+                            array('value' => 'Resolve', 'name' => 'action'),
+                            array('value' => 'Close', 'name' => 'action')
+                        );
+                        break;
+                        
+                    case 'CLOSED':
+                        echo $helpers->form->close(
+                            array('value' => 'Post Comment', 'name' => 'action'),
+                            array('value' => 'Reopen', 'name' => 'action')
+                        );    
+                        break;
+                    
+                    case 'RESOLVED':
+                        echo $helpers->form->close(
+                            array('value' => 'Post Comment', 'name' => 'action'),
+                            array('value' => 'Reopen', 'name' => 'action'),
+                            array('value' => 'Close', 'name' => 'action')
+                        );
+                        break;
+                }
             ?>
         </div>
         <div class='column grid_10_3 issue_view_side'>

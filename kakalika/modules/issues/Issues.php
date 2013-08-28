@@ -58,7 +58,7 @@ class Issues extends Model
     
     public function preSaveCallback()
     {
-        $this->status = 'Open';
+        $this->status = 'OPEN';
         $this->opener = $_SESSION['user']['id'];
         $project = \kakalika\modules\projects\Projects::getJustFirstWithId(
             $this->project_id

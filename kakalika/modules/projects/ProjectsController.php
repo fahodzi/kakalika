@@ -28,6 +28,28 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         $this->set('projects', $projects->toArray());
     }
     
+    public function edit($code)
+    {
+        $project = $this->model->getJustFirstWithCode($code);
+        if(isset($_POST['name']))
+        {
+            $this->set('project', $_POST);
+            $project->setData($_POST);
+            if($project->update())
+            {
+                Ntentan::redirect(Ntentan::getUrl("projects"));
+            }
+            else
+            {
+                $this->set('errors', $project->invalidFields);
+            }
+        }
+        else 
+        {
+            $this->set('project', $project->toArray());
+        }
+    }
+    
     public function create()
     {
         $this->set('split', true);

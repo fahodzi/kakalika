@@ -19,6 +19,10 @@ input[type='text'], input[type='password']{
     box-shadow: inset 1px 1px 3px rgba(64,64,64,0.1);
 }
 
+input[type='text'].error{
+    border-color:#fea9b9;
+}
+
 .form-description{
     font-size:small;
     color:#b0b0b0;
@@ -71,3 +75,20 @@ textarea{
     font-size: small; 
 }
 
+.form-errors >ul {
+    list-style: none;
+    margin:0px;
+    padding:0px;
+    background-color:#fedee4;
+    margin-bottom: 10px;
+    margin-top:10px;
+    padding:10px;
+    border-radius: 5px;
+}
+
+.form-errors > ul > li {
+    font-size: small;
+    font-weight: bold;
+    color:#800;
+}
+    

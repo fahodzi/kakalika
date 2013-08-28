@@ -38,6 +38,9 @@
                     
                 if($update['kind'] != '')
                     $changes[] = "Marked issue as <b>{$update['kind']}</b>";
+                    
+                if($update['status'] != '')
+                    $changes[] = "<b>{$update['status']}</b> this issue";
                 ?>
                 
                 <?php if($update['comment'] != ''): ?>

@@ -26,6 +26,17 @@ Ntentan::$routes = array(
         'pattern' => "/account/",
         'route' => 'users/edit'
     ),    
+
+    // Admin
+    array(
+        "pattern" => "/^(admin)(\/)?(?<path>[a-zA-Z0-9\/_]*)?/",
+        "route" => "::path",
+        "default" => "users",
+        "globals" => array(
+            "MODE" => "admin"
+        )
+    ),
+    
     
     // Exclude the routing for certain pages
     array(

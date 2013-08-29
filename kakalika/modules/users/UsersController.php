@@ -8,11 +8,22 @@ class UsersController extends KakalikaController
     public function init()
     {
         parent::init();
-        $this->set('sub_section', 'Account');
+        $this->set('sub_section', 'Users');        
+    }
+    
+    public function run()
+    {
+        $users = $this->model->getAll(
+            array(
+                'fields' => array('firstname', 'lastname', 'username', 'email')
+            )
+        );
+        $this->set('users', $users->toArray());
     }
     
     public function edit($id = false)
     {
+        $this->set('sub_section', 'Account');
         if($id === false) $id = $_SESSION['user']['username'];
         if(is_numeric($id))
         {

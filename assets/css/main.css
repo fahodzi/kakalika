@@ -22,6 +22,10 @@ a.tinylink{
     color:#88c0fe
 }
 
+.p15{
+    padding:15px;
+}
+
 a.tinylink > img{
     vertical-align:-2px;    
 }
@@ -396,4 +400,10 @@ input[type='submit']#reopen{
 #profile_head img{
     float:left;
     margin-right:15px;
+}
+
+#side-menu > li{
+    display:block;
+    padding:15px;
+    border-bottom: 1px solid #f0f0f0;
 }

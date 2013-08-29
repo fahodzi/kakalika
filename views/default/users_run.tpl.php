@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="column grid_10_7">
+        <div class="p15">
+        <?php
+        $helpers->list->headers = array('Firstname', 'Lastname', 'Username', 'Email');
+        $helpers->list->data = $users;
+        echo $helpers->list;
+        ?>
+        </div>
+    </div>
+    <div class="column grid_10_3">
+        <?=
+        $widgets->menu(
+            array(
+                array(
+                    'label' => 'Users',
+                    'url' => u('users')
+                ),
+                array(
+                    'label' => 'Projects',
+                    'url' => u('admin/projects')
+                )
+            )
+        )->alias('side');
+        ?>
+    </div>
+</div>
+

@@ -322,7 +322,7 @@ dd{
     border-bottom: 3px solid #fcfcfc;
 }
 
-.issue_view .update span.name
+span.name
 {
     font-weight:bold;
     color:#0a77b8;    
@@ -387,3 +387,13 @@ input[type='submit']#reopen{
     border-color:#54a24a;
 }
 
+#profile_head {
+    padding:15px;
+    border-bottom: 1px solid #f0f0f0;
+    min-height: 96px;
+}
+
+#profile_head img{
+    float:left;
+    margin-right:15px;
+}

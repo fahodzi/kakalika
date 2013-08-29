@@ -21,6 +21,12 @@ Ntentan::$routes = array(
         'route' => 'projects/logout'
     ),
     
+    // Route to the users editor
+    array(
+        'pattern' => "/account/",
+        'route' => 'users/edit'
+    ),    
+    
     // Exclude the routing for certain pages
     array(
         'pattern' => '/^(users|projects|dashboard|admin|account|issues)/'

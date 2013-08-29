@@ -1,7 +1,5 @@
 <?php
-
 namespace kakalika\modules\issues;
-use kakalika\modules\updates\Updates;
 
 class IssuesController extends \kakalika\lib\KakalikaController
 {

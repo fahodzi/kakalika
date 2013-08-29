@@ -34,13 +34,13 @@ Ntentan::$routes = array(
     
     // Route to the project editor
     array(
-        "pattern" => "/(?<project>[a-zA-Z0-9_.\-]*)(\/edit)/i",
+        "pattern" => "/^(?<project>[a-zA-Z0-9_\-]+)(\/edit)/i",
         "route" => "projects/edit/::project"
     ),
     
     // Route to issue views
     array(
-        "pattern" => "/(?<project>[a-zA-Z0-9_.\-]*)(\/issues\/)(?<issue_id>[0-9]+)/i",
+        "pattern" => "/^(?<project>[a-zA-Z0-9_.\-]+)(\/issues\/)(?<issue_id>[0-9]+)/i",
         "route" => "issues/show/::issue_id",
         "globals" => array(
             "project" => "::project",

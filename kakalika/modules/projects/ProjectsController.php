@@ -10,34 +10,71 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         parent::init();
         
         $this->set('sub_section', 'Projects');
-        $this->set('sub_section_menu', 
-            array(
+        
+        if($GLOBALS['ROUTE_MODE'] == 'admin')
+        {
+            $this->set('admin', true);
+            $this->set('sub_section_menu', 
                 array(
-                    'label' => 'Create a new project',
-                    'url' => Ntentan::getUrl('projects/create')
+                    array(
+                        'label' => 'Create a new project',
+                        'url' => Ntentan::getUrl('admin/projects/create')
+                    )
                 )
-            )
-        );
+            );            
+        }
+        else
+        {
+            $this->set('sub_section_menu', 
+                array(
+                    array(
+                        'label' => 'Create a new project',
+                        'url' => Ntentan::getUrl('projects/create')
+                    )
+                )
+            );
+        }
     }
     
     public function run()
     {
-        $projects = \kakalika\modules\user_projects\UserProjects::getAllWithUserId(
-            $this->authComponent->userId()
-        );
+        if($GLOBALS['ROUTE_MODE'] == 'admin')
+        {
+            $projects = $this->model->getAll(
+                array('fields' => array('name', 'id'))
+            );            
+        }
+        else
+        {
+            $projects = \kakalika\modules\user_projects\UserProjects::getAllWithUserId(
+                $this->authComponent->userId()
+            );
+        }
+        
         $this->set('projects', $projects->toArray());
     }
     
     public function edit($code)
     {
-        $project = $this->model->getJustFirstWithCode($code);
+        if(is_numeric($code))
+        {
+            $project = $this->model->getJustFirstWithId($code);            
+        }
+        else
+        {
+            $project = $this->model->getJustFirstWithCode($code);
+        }
+        
         if(isset($_POST['name']))
         {
             $this->set('project', $_POST);
             $project->setData($_POST);
             if($project->update())
             {
-                Ntentan::redirect(Ntentan::getUrl("projects"));
+                if($GLOBALS['ROUTE_MODE'] == 'admin')
+                    Ntentan::redirect(Ntentan::getUrl("admin/projects"));
+                else
+                    Ntentan::redirect(Ntentan::getUrl("projects"));
             }
             else
             {
@@ -60,12 +97,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
             $newProject->code = $_POST['code'];
             $newProject->description = $_POST['description'];
             $newProjectId = $newProject->save();
-            
-            if($newProjectId === false)
-            {
-                var_dump($newProject->invalidFields);
-            }
-            else
+            if($newProjectId)
             {
                 $newUserProject = \kakalika\modules\user_projects\UserProjects::getNew();
                 $newUserProject->user_id = $this->authComponent->userId();
@@ -74,7 +106,19 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                 $newUserProject->admin = true;
                 $newUserProject->save();
                 
-                Ntentan::redirect(Ntentan::getUrl('projects'));
+                if($GLOBALS['ROUTE_MODE'] == 'admin')
+                {
+                    Ntentan::redirect(Ntentan::getUrl('projects'));
+                }
+                else
+                {
+                    Ntentan::redirect(Ntentan::getUrl('admin/projects'));
+                }
+            }
+            else
+            {
+                $this->set('project', $_POST);
+                $this->set('errors', $newProject->invalidFields);
             }
         }
     }

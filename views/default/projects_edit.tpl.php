@@ -1,5 +1,8 @@
 <h3>Edit project</h3>
+<div class="row">
+    <div class="column grid_10_7">
 <?php 
+
 $helpers->form->setData($project);
 $helpers->form->setErrors($errors);
 ?>
@@ -11,3 +14,26 @@ $helpers->form->get_text_field("Code", 'code')
 $helpers->form->get_text_area('A brief description', 'description') .
 $helpers->form->close('Update Project')
 ?>
+    </div>
+    <div class="column grid_10_3">
+    <?php if($admin){
+        echo $widgets->menu(
+            array(
+                array(
+                    'label' => 'Edit Project Members',
+                    'url' => u("admin/projects/members/{$project['id']}")
+                ),
+                array(
+                    'label' => 'Delete Project',
+                    'url' => u("admin/projects/delete/{$project['id']}")
+                ),
+                array(
+                    'label' => 'Return to Projects list',
+                    'url' => u("admin/projects")
+                )
+            )
+        )->alias('side');        
+    }
+    ?>
+    </div>
+</div>

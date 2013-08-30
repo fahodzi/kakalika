@@ -1,4 +1,8 @@
 <h3>Create a new project</h3>
+<?php
+$helpers->form->setData($project);
+$helpers->form->setErrors($errors);
+?>
 <?=
 $helpers->form->open() .
 $helpers->form->get_text_field("Project's Name", 'name') .

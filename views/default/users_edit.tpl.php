@@ -4,7 +4,7 @@
     <span class="email"><?= $_SESSION['user']['email'] ?></span>
 </div>
 <div class="row">
-<div class="column grid_10_8">
+<div class="column grid_10_7">
 <?php 
 $helpers->form->setData($user);
 $helpers->form->setErrors($errors);
@@ -48,4 +48,24 @@ $helpers->form->setErrors($errors);
     </div>
 </div>
 <?= $helpers->form->close("Update") ?>
-</div></div>
+</div>
+    <div class="column grid_10_3">
+    <?php
+    if($admin){
+        echo $widgets->menu(
+            array(
+                array(
+                    'label' => 'Delete User',
+                    'url' => u("admin/users/delete/{$project['id']}")
+                ),
+                array(
+                    'label' => 'Return to Users list',
+                    'url' => u("admin/users")
+                )
+            )
+        )->alias('side');        
+    }
+    ?>
+    </div>
+
+</div>

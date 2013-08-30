@@ -189,8 +189,9 @@ ul.menu > li.menu-selected a{
     color:#000;
 }
 
-#menu-item-projects-create > a { background-image: url(../images/add_project.png) }
+#menu-item-projects-create > a, #menu-item-admin-projects-create > a { background-image: url(../images/add_project.png) }
 #menu-item-issues-create > a { background-image: url(../images/add_issue.png) }
+
 
 #sub-menu > li:hover{
     

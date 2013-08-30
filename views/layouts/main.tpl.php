@@ -3,10 +3,10 @@
     <head>
         <title>Kakalika Issue Tracker<?= ($title == '' ? '' : " - $title") ?></title>
         <?= $helpers->stylesheet
+            ->add(load_asset('css/list.css', n('lib/views/helpers/lists/css/default.css')))
             ->add(load_asset('css/main.css'))
             ->add(load_asset('css/forms.css'))
-            ->add(load_asset('css/grid.css'))
-            ->add(load_asset('css/list.css', n('lib/views/helpers/lists/css/default.css'))); 
+            ->add(load_asset('css/grid.css'));
         ?>
     </head>
     <body>
@@ -51,7 +51,9 @@
                 <?= $contents ?>
                 <?php endif; ?>
             </div>
-            <div id="foot"></div>
+            <div id="foot">
+                <b>Kakalika</b> Issue Tracker. 
+            </div>
         </div>
     </body>
 </html>

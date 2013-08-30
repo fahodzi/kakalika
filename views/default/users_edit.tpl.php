@@ -27,7 +27,12 @@ $helpers->form->setErrors($errors);
             $helpers->form->get_text_field('Current Password', 'current_password') .
             $helpers->form->get_text_field('New Password', 'new_password') .
             $helpers->form->get_text_field('Repeat New Password', 'repeat_new_password') .
-            $helpers->form->close_fieldset() 
+            $helpers->form->close_fieldset() .
+        
+            $helpers->form->open_field_set("Account Details") .
+            $helpers->form->get_checkbox('User is administrator', 'is_admin') .
+            $helpers->form->close_fieldset()
+        
         ?>
     </div>
 </div>

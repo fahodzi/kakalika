@@ -8,14 +8,23 @@ class UsersController extends KakalikaController
     public function init()
     {
         parent::init();
-        $this->set('sub_section', 'Users');        
+        $this->set('sub_section', 'Users');      
+        $this->set('sub_section_menu', 
+            array(
+                array(
+                    'label' => 'Add a User',
+                    'url' => \ntentan\Ntentan::getUrl("admin/users/add"),
+                    'id' => 'menu-item-users-add'
+                )
+            )
+        );        
     }
     
     public function run()
     {
         $users = $this->model->getAll(
             array(
-                'fields' => array('firstname', 'lastname', 'username', 'email')
+                'fields' => array('firstname', 'lastname', 'username', 'email', 'id')
             )
         );
         $this->set('users', $users->toArray());
@@ -24,6 +33,12 @@ class UsersController extends KakalikaController
     public function edit($id = false)
     {
         $this->set('sub_section', 'Account');
+        
+        if($GLOBALS['ROUTE_MODE'] == 'admin')
+        {
+            $this->set('admin', true);
+        }
+        
         if($id === false) $id = $_SESSION['user']['username'];
         if(is_numeric($id))
         {

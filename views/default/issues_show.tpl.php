@@ -84,8 +84,8 @@
                     case 'RESOLVED':
                         echo $helpers->form->close(
                             array('value' => 'Comment', 'name' => 'action'),
-                            array('value' => 'Reopen', 'name' => 'action'),
-                            array('value' => 'Close', 'name' => 'action')
+                            array('value' => 'Reopen', 'name' => 'action', 'id' => 'reopen'),
+                            array('value' => 'Close', 'name' => 'action', 'id' => 'close')
                         );
                         break;
                 }

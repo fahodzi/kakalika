@@ -101,7 +101,6 @@ form textarea#description{
 }
 
 #sub_head{
-    /*border-bottom:2px solid #f0f0f0;  */
     background-color: #e8e8e8;
 }
 
@@ -110,37 +109,29 @@ form textarea#description{
     text-shadow: 0px 1px #fff;
 }
 
-#sub-menu > li > a{
-    display:inline-block;
-    padding:9px;
-    margin:6px;
-    padding-left:43px;
-    border:1px solid #e8e8e8;
-    background-repeat: no-repeat;
-    background-position: 5px 50%;
-    color:#404040;
-}
-
-#menu-item-projects-create > a{ background-image: url(../images/add_project.png) }
-#menu-item-issues-create > a{ background-image: url(../images/add_issue.png) }
-
-#sub-menu > li > a:hover{
-    
-    background-color:#ececec;
-    box-shadow: 1px 1px 2px rgba(50, 50, 50, 0.1);
-}
-
-
 ul#top-menu{
-    padding:15px;
+    padding:0px;
 }
 
 ul#top-menu > li > a{
     color:#eef5fe;
+    display:inline-block;
     font-size:small;
+    padding:19px;
     padding-left:30px;
     background-repeat: no-repeat;
     background-position: 12px 50%;
+}
+
+#top-menu > li.menu-selected{
+    background-image:url(../images/grey_tag.png);
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+}
+
+#top-menu > li.menu-selected > a{
+    font-weight: normal;
+    color:#fff;
 }
 
 ul#top-menu > li#menu-item-logout > a{background-image:url(../images/logout.png)}
@@ -176,6 +167,35 @@ ul.menu > li.menu-selected a{
 #main-menu a{
     color:#e2f2fe;
     font-size:0.9em;
+}
+
+
+#sub-menu > li > a{
+    display:inline-block;
+    padding:17px;
+    padding-left:53px;
+    background-repeat: no-repeat;
+    background-position: 10px 50%;
+    color:#404040;
+}
+
+#sub-menu > li.menu-selected{
+    background-image:url(../images/white_tag.png);
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+}
+
+#sub-menu > li.menu-selected > a{
+    font-weight: normal;
+    color:#000;
+}
+
+#menu-item-projects-create > a { background-image: url(../images/add_project.png) }
+#menu-item-issues-create > a { background-image: url(../images/add_issue.png) }
+
+#sub-menu > li:hover{
+    
+    background-color:#f0f0f0;
 }
 
 .project-info-wrapper{

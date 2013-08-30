@@ -30,6 +30,14 @@ class UsersController extends KakalikaController
         $this->set('users', $users->toArray());
     }
     
+    public function add()
+    {
+        if(isset($_POST['firstname']))
+        {
+            
+        }
+    }
+
     public function edit($id = false)
     {
         $this->set('sub_section', 'Account');

@@ -67,4 +67,6 @@ load_asset('images/add_project.png');
 load_asset('images/add_issue.png');
 load_asset('images/edit_small.png');
 load_asset('images/edit_issue.png');
+load_asset('images/white_tag.png');
+load_asset('images/grey_tag.png');
 ?>

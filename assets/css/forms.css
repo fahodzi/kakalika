@@ -23,18 +23,18 @@ input[type='text'].error{
     border-color:#fea9b9;
 }
 
-.form-description{
+.form-description {
     font-size:small;
     color:#b0b0b0;
 }
 
-.form-submit-area{
+.form-submit-area {
 	margin-top:10px;
 	padding-top:10px;
 	border-top:1px solid #f0f0f0;
 }
 
-.form-submit{
+.form-submit {
     padding:10px;
     border:1px solid #6095cb;
     margin-right:10px;
@@ -50,21 +50,21 @@ input[type='text'].error{
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#9bccff', endColorstr='#6aa4df');
 }
 
-.form-submit:hover{
+.form-submit:hover {
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #a4d0ff), color-stop(1, #8db5df) );
 	background:-moz-linear-gradient( center top, #a4d0ff 5%, #8db5df 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a4d0ff', endColorstr='#8db5df');
 }
 
-.form-submit:active{
+.form-submit:active {
     box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3);
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #9bccff), color-stop(1, #6aa4df) );
 	background:-moz-linear-gradient( center top, #9bccff 5%, #6aa4df 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#9bccff', endColorstr='#6aa4df');
 }
 
-textarea{
+textarea {
     border:1px solid #d0d0d0;
     padding:1%;
     width:98%;
@@ -93,14 +93,14 @@ textarea{
     color:#800;
 }
     
-fieldset{
+fieldset {
     border:none;
     padding:0px;
     margin-right:15px;
     margin-bottom: 20px;
 }
 
-fieldset > legend{
+fieldset > legend {
     border-bottom: 2px solid #a0a0a0;
     width:100%;
     margin:0px;

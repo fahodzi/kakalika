@@ -19,7 +19,7 @@ input[type='text'], input[type='password']{
     color:#404040;
 }
 
-input[type='text'].error{
+input[type='text'].error, input[type='password'].error{
     border-color:#fea9b9;
 }
 

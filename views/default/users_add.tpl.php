@@ -20,16 +20,17 @@ $helpers->form->setErrors($errors);
     <div class="column grid_10_5">
         <?=
             $helpers->form->open_field_set("Password") .
-            $helpers->form->get_text_field('New Password', 'new_password') .
-            $helpers->form->get_text_field('Repeat New Password', 'repeat_new_password') .
-            $helpers->form->close_fieldset() .
+            $helpers->form->get_password_field('New Password', 'password') .
+            $helpers->form->get_password_field('Repeat New Password', 'repeat_password') .
+            $helpers->form->close_fieldset() 
+        ?>
         
+        <?=
             $helpers->form->open_field_set("Account Details") .
             $helpers->form->get_checkbox('User is administrator', 'is_admin') .
             $helpers->form->close_fieldset()
-        
         ?>
     </div>
 </div>
-<?= $helpers->form->close("Update") ?>
+<?= $helpers->form->close("Add User") ?>
 </div></div>

@@ -31,6 +31,11 @@ a{
     color:#6ea0ff;
 }
 
+#body p{
+    padding:15px;
+    padding-top:0px;
+}
+
 a.tinylink, .operations > a{
     font-size:small;
     text-decoration: none;
@@ -261,11 +266,6 @@ ul.menu > li.menu-selected a{
     padding:15px;
 }
 
-.issue_view p#description{
-    padding:15px;
-    padding-top:0px;
-}
-
 .issue_view #title_block{
     color: #02b01f;
     background-color:#defee3;
@@ -398,6 +398,36 @@ span.name
 {
     float:left;
     margin-right:15px;
+}
+
+.form-submit, .button {
+    padding:10px;
+    border:1px solid #6095cb;
+    margin-right:10px;
+    background-color: #79bbff;
+    color:#fff;
+    text-shadow:0px -1px #6298cf;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 3px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #9bccff), color-stop(1, #6aa4df) );
+	background:-moz-linear-gradient( center top, #9bccff 5%, #6aa4df 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#9bccff', endColorstr='#6aa4df');
+}
+
+.form-submit:hover , .button:hover {
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #a4d0ff), color-stop(1, #8db5df) );
+	background:-moz-linear-gradient( center top, #a4d0ff 5%, #8db5df 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a4d0ff', endColorstr='#8db5df');
+}
+
+.form-submit:active, .button:active {
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3);
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #9bccff), color-stop(1, #6aa4df) );
+	background:-moz-linear-gradient( center top, #9bccff 5%, #6aa4df 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#9bccff', endColorstr='#6aa4df');
 }
 
 input[type='submit']#resolve{

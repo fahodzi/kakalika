@@ -25,6 +25,25 @@ class UsersController extends KakalikaController
         }
     }
     
+    public function block($id)
+    {
+        $user = $this->model->getJustFirstWithId($id);
+        
+        if($_GET['confirm'] == 'yes')
+        {
+            $user->delete();
+            Ntentan::redirect(Ntentan::getUrl("admin/users"));
+        }
+        
+        $this->set(
+            array(
+                'item_type' => 'user',
+                'item_name' => $user,
+                'extra_text' => 'All comments'
+            )
+        );
+    }
+    
     public function run()
     {
         $users = $this->model->getAll(

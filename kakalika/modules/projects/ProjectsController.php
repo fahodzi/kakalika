@@ -90,6 +90,24 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         }
     }
     
+    public function delete($id)
+    {
+        $project = $this->model->getJustFirstWithId($id);
+        
+        if($_GET['confirm'] == 'yes')
+        {
+            $project->delete();
+            Ntentan::redirect(Ntentan::getUrl("admin/projects"));
+        }
+        
+        $this->set(
+            array(
+                'item_type' => 'project',
+                'item_name' => $project,
+            )
+        );        
+    }
+    
     public function members($id, $command = '')
     {
         $this->set('sub_section', 'Project Members');

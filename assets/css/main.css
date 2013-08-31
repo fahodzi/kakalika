@@ -26,7 +26,12 @@ body{
     border-top:1px dotted #f0f0f0;
 }
 
-a.tinylink{
+a{
+    text-decoration: none;
+    color:#6ea0ff;
+}
+
+a.tinylink, .operations > a{
     font-size:small;
     text-decoration: none;
     color:#88c0fe
@@ -444,4 +449,8 @@ table.item-table > tbody >tr > td,
 table.item-table > thead >tr > td
 {
     padding:10px;
+}
+
+td.operations{
+    text-align: right;
 }

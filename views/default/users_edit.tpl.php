@@ -56,7 +56,7 @@ $helpers->form->setErrors($errors);
             array(
                 array(
                     'label' => 'Delete User',
-                    'url' => u("admin/users/delete/{$project['id']}")
+                    'url' => u("admin/users/delete/{$user['id']}")
                 ),
                 array(
                     'label' => 'Return to Users list',

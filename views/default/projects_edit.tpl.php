@@ -16,7 +16,8 @@ $helpers->form->close('Update Project')
 ?>
     </div>
     <div class="column grid_10_3">
-    <?php if($admin){
+    <?php 
+    if($admin){
         echo $widgets->menu(
             array(
                 array(

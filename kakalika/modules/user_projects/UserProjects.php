@@ -9,4 +9,26 @@ class UserProjects extends Model
         'project',
         'user'
     );
+    
+    public function validate()
+    {
+        $validation= parent::validate();
+        
+        $user = $this->getJustFirst(
+            array(
+                'conditions' => array(
+                    'user_id' => $this->user_id,
+                    'project_id' => $this->project_id
+                )
+            )
+        );
+        
+        if($user->count() == 1)
+        {
+            $this->invalidFields['user_id'][] = 'This user is already part of this project';
+            return false;
+        }
+        
+        return $validation;
+    }
 }

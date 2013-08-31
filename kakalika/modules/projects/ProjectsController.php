@@ -25,14 +25,17 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         }
         else
         {
-            $this->set('sub_section_menu', 
-                array(
+            if($_SESSION['user']['is_admin'])
+            {
+                $this->set('sub_section_menu', 
                     array(
-                        'label' => 'Create a new project',
-                        'url' => Ntentan::getUrl('projects/create')
+                        array(
+                            'label' => 'Create a new project',
+                            'url' => Ntentan::getUrl('projects/create')
+                        )
                     )
-                )
-            );
+                );
+            }
         }
     }
     
@@ -86,6 +89,76 @@ class ProjectsController extends \kakalika\lib\KakalikaController
             $this->set('project', $project->toArray());
         }
     }
+    
+    public function members($id, $command = '')
+    {
+        $this->set('sub_section', 'Project Members');
+        $this->set('sub_section_menu', 
+            array(
+                array(
+                    'label' => 'Assign a new Member',
+                    'url' => Ntentan::getUrl("admin/projects/members/$id/assign")
+                )
+            )
+        );         
+        
+        switch($command)
+        {
+        case 'assign':
+            if(isset($_POST['user_id']) && $_POST['user_id'] != '')
+            {
+                $userProject = \kakalika\modules\user_projects\UserProjects::getNew();
+                $userProject->project_id = $id;
+                $userProject->user_id = $_POST['user_id'];
+                if($userProject->save())
+                {
+                    Ntentan::redirect(Ntentan::getUrl("admin/projects/members/$id"));
+                }
+                else
+                {
+                    $this->set('errors', $userProject->invalidField);
+                }
+            }
+            
+            $this->view->template = 'projects_members_assign.tpl.php';
+            $users = \kakalika\modules\users\Users::getAll();
+            $newUsers = array();
+            foreach($users as $i => $user)
+            {
+                $newUsers[$user['id']] = "{$user['firstname']} {$user['lastname']} ({$user['username']})";
+            }
+            
+            $this->set('users', $newUsers);
+            break;
+        
+        default:
+
+            $projectMembers = \kakalika\modules\user_projects\UserProjects::getWithProjectId(
+                $id,
+                array(
+                    'fields' => array(
+                        'id',
+                        'user.firstname',
+                        'user.lastname',
+                        'user.username'
+                    )
+                )
+            );
+            $redoneProjectMembers = array();
+
+            foreach($projectMembers as $i => $member)
+            {
+                $redoneProjectMembers[] = array(
+                    'firstname' => $member['user']['firstname'],
+                    'lastname' => $member['user']['lastname'],
+                    'username' => $member['user']['username'],
+                    'id' => $member['id']
+                );
+            }
+
+            $this->set('members', $redoneProjectMembers);            
+        }
+    }    
     
     public function create()
     {

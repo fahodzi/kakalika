@@ -113,7 +113,7 @@ form textarea#description{
     background-color: #e8e8e8;
 }
 
-#sub_head  h3{
+#sub_head h3 > a{
     color:#606060;
     text-shadow: 0px 1px #fff;
 }

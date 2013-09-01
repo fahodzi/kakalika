@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Kakalika Issue Tracker<?= ($title == '' ? '' : " - $title") ?></title>
+        <title><?= ($title == '' ? '' : "$title | ") ?>Kakalika Issue Tracker</title>
         <?= $helpers->stylesheet
             ->add(load_asset('css/list.css', n('lib/views/helpers/lists/css/default.css')))
             ->add(load_asset('css/main.css'))
@@ -30,7 +30,7 @@
             <div id="sub_head">
                 <div class="row">
                     <div class="column grid_10_7">
-                        <h3><?= $sub_section ?></h3>
+                        <h3><a href="<?= u($sub_section_path) ?>"><?= $sub_section ?></a></h3>
                     </div>
                     <div class="column grid_10_3" align="right">
                         <?php if(count($sub_section_menu) > 0){

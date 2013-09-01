@@ -1,6 +1,6 @@
-<h3>Edit project</h3>
 <div class="row">
     <div class="column grid_10_7">
+<h3>Edit <?= $project['name'] ?> project</h3>
 <?php 
 
 $helpers->form->setData($project);

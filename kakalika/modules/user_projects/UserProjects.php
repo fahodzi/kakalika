@@ -34,6 +34,6 @@ class UserProjects extends Model
     
     public function __toString() 
     {
-        return "{$this->user->firstname} {$this->user->lastname} of {$this->project->name}";
+        return "{$this->user->firstname} {$this->user->lastname}, {$this->project->name}";
     }
 }

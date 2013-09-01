@@ -1,5 +1,4 @@
-
-<h3>Delete <?= $item_type ?></h3>
+<h3>Delete <?= $item_name ?> <?= $item_type ?></h3>
 <p>This operation cannot be reversed. Are you sure you really want to delete
  the <?= $item_type ?>, <b><?= $item_name ?>?</b>
 </p>

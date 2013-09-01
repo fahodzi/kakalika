@@ -31,15 +31,14 @@ class UsersController extends KakalikaController
         
         if($_GET['confirm'] == 'yes')
         {
-            $user->delete();
+            $user->blocked = true;
+            $user->update();
             Ntentan::redirect(Ntentan::getUrl("admin/users"));
         }
         
         $this->set(
             array(
-                'item_type' => 'user',
-                'item_name' => $user,
-                'extra_text' => 'All comments'
+                'name' => "{$user->firstname} {$user->lastname}",
             )
         );
     }

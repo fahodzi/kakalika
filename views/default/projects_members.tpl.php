@@ -1,5 +1,6 @@
 <div class="row">
     <div class="column grid_10_7">
+        <h3>Members of the <?= $project ?> project</h3>
         <div class="p15">
         <?php
         $helpers->list->headers = array('Firstname', 'Lastname', 'username', '');

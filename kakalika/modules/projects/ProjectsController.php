@@ -10,10 +10,12 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         parent::init();
         
         $this->set('sub_section', 'Projects');
+        $this->set('title', 'Projects');
         
         if($GLOBALS['ROUTE_MODE'] == 'admin')
         {
             $this->set('admin', true);
+            $this->set('sub_section_path', 'admin/projects');
             $this->set('sub_section_menu', 
                 array(
                     array(
@@ -25,6 +27,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         }
         else
         {
+            $this->set('sub_section_path', 'projects');
             if($_SESSION['user']['is_admin'])
             {
                 $this->set('sub_section_menu', 
@@ -111,6 +114,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
     public function members($id, $command = '', $subId = '')
     {
         $this->set('sub_section', 'Project Members');
+        $this->set('sub_section_path', "admin/projects/members/1");
         $this->set('sub_section_menu', 
             array(
                 array(
@@ -191,6 +195,9 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                     'id' => $member['id']
                 );
             }
+            
+            $project = $this->model->getJustFirstWithId($id);
+            $this->set('project', $project->name);            
 
             $this->set('members', $redoneProjectMembers);      
             $this->set('id', $id);
@@ -200,6 +207,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
     public function create()
     {
         $this->set('split', true);
+        $this->set('title', 'Create a new project');
         if(isset($_POST['name']))
         {
             $newProject = Projects::getNew();

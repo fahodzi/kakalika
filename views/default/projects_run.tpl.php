@@ -1,7 +1,7 @@
+<h4>List of projects</h4>
 <?php if($admin): ?>
     <div class="row">
         <div class="column grid_10_7">
-            <h3>List of projects</h3>
             <div class="p15">
             <?php
             $helpers->list->headers = array('Name', '');

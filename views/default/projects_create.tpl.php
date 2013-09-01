@@ -1,4 +1,4 @@
-<h3>Create a new project</h3>
+<h4>Create a new project</h4>
 <?php
 $helpers->form->setData($project);
 $helpers->form->setErrors($errors);

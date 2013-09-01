@@ -25,7 +25,7 @@ class UsersController extends KakalikaController
             );        
             $this->set('sub_section_path', 'admin/users');            
         }
-        else
+        else if(Ntentan::$requestedRoute != 'account')
         {
             throw new \ntentan\exceptions\RouteNotAvailableException();
         }

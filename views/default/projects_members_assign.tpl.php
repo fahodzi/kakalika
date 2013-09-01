@@ -1,4 +1,4 @@
-<h3><?= $title ?></h3>
+<h4><?= $title ?></h4>
 <?php
 $helpers->form->setErrors($errors);
 ?>

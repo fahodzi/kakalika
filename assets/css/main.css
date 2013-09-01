@@ -68,6 +68,11 @@ h5{
     font-size: larger;
 }
 
+h4{
+    background-color:#fcfcfc;
+    border-bottom:1px solid #f0f0f0;
+}
+
 form{
     padding:15px;
 }
@@ -273,11 +278,13 @@ ul.menu > li.menu-selected a{
 
 .issue_view #title_block h4{
     display:inline-block;
+    background-color: transparent;
 }
 
 .issue_view #title_block h4:first-child{
     padding-right:0px;
     font-size:larger;
+    background-color: transparent;
     color:#016310;
 }
 
@@ -458,6 +465,7 @@ input[type='submit']#reopen{
     padding:15px;
     border-bottom: 1px solid #f0f0f0;
     min-height: 96px;
+    background-color:#fcfcfc;
 }
 
 #profile_head img{

@@ -1,4 +1,4 @@
-<h3><?= $title ?></h3>
+<h4><?= $title ?></h4>
 <div class="row">
 <div class="column grid_10_8">
 <?php 

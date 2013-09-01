@@ -1,21 +1,5 @@
 <div class='issue_view'>
-    <div id='title_block'>
-        <div class="row">
-            <div class="column grid_10_7"><h4>#<?= $issue['number'] ?></h4> <h4><?= $issue['title'] ?></h4></div>
-            <div class="column grid_10_3">
-                <?= $widgets->menu(
-                    array(
-                        array(
-                            'label' => 'Edit this issue',
-                            'url' => u("{$project_code}/issues/edit/{$issue['number']}"),
-                            'id' => 'menu-item-edit-issue'
-                        )
-                    )
-                )->alias('issue')
-                ?>
-            </div>
-        </div>
-    </div>
+    <div id='title_block'><h4>#<?= $issue['number'] ?></h4> <h4><?= $issue['title'] ?></h4></div>
     <div class='row'>
         <div class='column grid_10_7 issue_view_content'>
             <div style='padding:15px'><?= t('issue_slug.tpl.php', array('issue' => $issue)) ?></div>
@@ -93,6 +77,16 @@
         </div>
         <div class='column grid_10_3 issue_view_side'>
             <div>
+                <?= $widgets->menu(
+                    array(
+                        array(
+                            'label' => 'Edit this issue',
+                            'url' => u("{$project_code}/issues/edit/{$issue['number']}")
+                        )
+                    )
+                )->alias('side')
+                ?>
+                
                 <h5>Details</h5>
                 <dl>
                     <dt>Status</dt>

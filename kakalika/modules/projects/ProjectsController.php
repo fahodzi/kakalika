@@ -108,7 +108,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         );        
     }
     
-    public function members($id, $command = '')
+    public function members($id, $command = '', $subId = '')
     {
         $this->set('sub_section', 'Project Members');
         $this->set('sub_section_menu', 
@@ -122,6 +122,24 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         
         switch($command)
         {
+        case 'delete':
+            $projectMember = \kakalika\modules\user_projects\UserProjects::getFirstWithId($subId);
+            $this->view->template = 'delete.tpl.php';
+
+            if($_GET['confirm'] == 'yes')
+            {
+                $projectMember->delete();
+                Ntentan::redirect(Ntentan::getUrl("admin/projects/members/$id"));
+            }
+
+            $this->set(
+                array(
+                    'item_type' => 'project member',
+                    'item_name' => $projectMember,
+                )
+            );             
+            break;
+        
         case 'assign':
             if(isset($_POST['user_id']) && $_POST['user_id'] != '')
             {
@@ -174,7 +192,8 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                 );
             }
 
-            $this->set('members', $redoneProjectMembers);            
+            $this->set('members', $redoneProjectMembers);      
+            $this->set('id', $id);
         }
     }    
     

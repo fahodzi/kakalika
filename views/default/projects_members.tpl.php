@@ -4,7 +4,8 @@
         <?php
         $helpers->list->headers = array('Firstname', 'Lastname', 'username', '');
         $helpers->list->data = $members;
-        $this->helpers->list->cellTemplates['id'] = 'projects_members_operations.tpl.php';
+        $helpers->list->cellTemplates['id'] = 'projects_members_operations.tpl.php';
+        $helpers->list->variables['id'] = $id;
         echo $helpers->list;
         ?>
         </div>

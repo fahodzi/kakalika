@@ -31,4 +31,9 @@ class UserProjects extends Model
         
         return $validation;
     }
+    
+    public function __toString() 
+    {
+        return "{$this->user->firstname} {$this->user->lastname} of {$this->project->name}";
+    }
 }

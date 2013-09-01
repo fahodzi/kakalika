@@ -4,6 +4,6 @@
  the <?= $item_type ?>, <b><?= $item_name ?>?</b>
 </p>
 <p>
-    <a class="button" href="?confirm=yes">Yes, Delete it</a>
+    <a class="button" href="?confirm=yes">Yes, Delete</a>
     <a class="button" href="../">No, Return to <?= $item_type ?> list</a>
 </p>

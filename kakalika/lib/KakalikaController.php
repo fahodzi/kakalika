@@ -22,5 +22,5 @@ class KakalikaController extends Controller
         {
             $this->view->layout = 'login_layout.tpl.php';
         }
-    }    
+    }
 }

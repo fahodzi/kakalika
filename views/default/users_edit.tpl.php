@@ -1,10 +1,11 @@
-<div id="profile_head">
-    <img src="<?= $helpers->gravatar->image($_SESSION['user']['email'])->size(96) ?>" />
-    <span class="name"><?= "{$_SESSION['user']['firstname']} {$_SESSION['user']['lastname']}" ?></span><br/>
-    <span class="email"><?= $_SESSION['user']['email'] ?></span>
-</div>
+
 <div class="row">
 <div class="column grid_10_7">
+    <div id="profile_head">
+        <img src="<?= $helpers->gravatar->image($_SESSION['user']['email'])->size(96) ?>" />
+        <span class="name"><?= "{$_SESSION['user']['firstname']} {$_SESSION['user']['lastname']}" ?></span><br/>
+        <span class="email"><?= $_SESSION['user']['email'] ?></span>
+    </div>        
 <?php 
 $helpers->form->setData($user);
 $helpers->form->setErrors($errors);
@@ -55,8 +56,8 @@ $helpers->form->setErrors($errors);
         echo $widgets->menu(
             array(
                 array(
-                    'label' => 'Delete User',
-                    'url' => u("admin/users/delete/{$user['id']}")
+                    'label' => 'Block this user',
+                    'url' => u("admin/users/block/{$user['id']}")
                 ),
                 array(
                     'label' => 'Return to Users list',

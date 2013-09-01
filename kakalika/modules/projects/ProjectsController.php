@@ -71,6 +71,8 @@ class ProjectsController extends \kakalika\lib\KakalikaController
             $project = $this->model->getJustFirstWithCode($code);
         }
         
+        $this->set('title', "Edit project {$project}");
+        
         if(isset($_POST['name']))
         {
             $this->set('project', $_POST);
@@ -96,6 +98,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
     public function delete($id)
     {
         $project = $this->model->getJustFirstWithId($id);
+        $this->set('title', "Delete {$project} project");
         
         if($_GET['confirm'] == 'yes')
         {
@@ -113,6 +116,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
     
     public function members($id, $command = '', $subId = '')
     {
+        $project = $this->model->getJustFirstWithId($id);        
         $this->set('sub_section', 'Project Members');
         $this->set('sub_section_path', "admin/projects/members/1");
         $this->set('sub_section_menu', 
@@ -141,7 +145,8 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                     'item_type' => 'project member',
                     'item_name' => $projectMember,
                 )
-            );             
+            );    
+            $this->set('title', "Delete a member from the $project project");
             break;
         
         case 'assign':
@@ -169,6 +174,8 @@ class ProjectsController extends \kakalika\lib\KakalikaController
             }
             
             $this->set('users', $newUsers);
+            $this->set('title', "Assign a member to the $project project");
+            
             break;
         
         default:
@@ -196,9 +203,8 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                 );
             }
             
-            $project = $this->model->getJustFirstWithId($id);
             $this->set('project', $project->name);            
-
+            $this->set('title', "Members of the $project project");
             $this->set('members', $redoneProjectMembers);      
             $this->set('id', $id);
         }

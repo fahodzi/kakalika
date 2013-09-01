@@ -1,4 +1,4 @@
-<h3>Add a User</h3>
+<h3><?= $title ?></h3>
 <div class="row">
 <div class="column grid_10_8">
 <?php 

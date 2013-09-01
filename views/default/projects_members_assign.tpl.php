@@ -1,4 +1,4 @@
-<h3>Assign Project Member</h3>
+<h3><?= $title ?></h3>
 <?php
 $helpers->form->setErrors($errors);
 ?>

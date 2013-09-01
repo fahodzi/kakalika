@@ -1,5 +1,6 @@
 <div class="row">
     <div class="column grid_10_7">
+        <h3>List of users</h3>
         <div class="p15">
         <?php
         $helpers->list->headers = array('Firstname', 'Lastname', 'Username', 'Email', '');
@@ -15,7 +16,7 @@
             array(
                 array(
                     'label' => 'Users',
-                    'url' => u('users')
+                    'url' => u('admin/users')
                 ),
                 array(
                     'label' => 'Projects',

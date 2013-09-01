@@ -10,24 +10,31 @@ class UsersController extends KakalikaController
     {
         parent::init();
         $this->set('sub_section', 'Users');    
+        $this->set('title', 'Users');
         
         if($GLOBALS['ROUTE_MODE'] == 'admin')
         {
             $this->set('sub_section_menu', 
                 array(
                     array(
-                        'label' => 'Add a User',
+                        'label' => 'Add a new uesr',
                         'url' => \ntentan\Ntentan::getUrl("admin/users/add"),
                         'id' => 'menu-item-users-add'
                     )
                 )
             );        
+            $this->set('sub_section_path', 'admin/users');            
+        }
+        else
+        {
+            throw new \ntentan\exceptions\RouteNotAvailableException();
         }
     }
     
     public function block($id)
     {
         $user = $this->model->getJustFirstWithId($id);
+        $this->set('title', "Block user $user");
         
         if($_GET['confirm'] == 'yes')
         {
@@ -55,6 +62,8 @@ class UsersController extends KakalikaController
     
     public function add()
     {
+        $this->set('title', 'Add an new user');
+            
         if(isset($_POST['firstname']))
         {
             $errors = array();
@@ -83,18 +92,7 @@ class UsersController extends KakalikaController
     }
 
     public function edit($id = false)
-    {        
-        if($GLOBALS['ROUTE_MODE'] == 'admin')
-        {
-            $this->set('admin', true);
-            $this->set('sub_section', 'Users');  
-        }
-        else
-        {
-            $this->set('sub_section', 'Account');            
-            if($id === false) $id = $_SESSION['user']['username'];
-        }        
-        
+    {                
         if(is_numeric($id))
         {
             $user = $this->model->getJustFirstWithId($id);
@@ -103,6 +101,19 @@ class UsersController extends KakalikaController
         {
             $user = $this->model->getJustFirstWithUsername($id);
         }
+        
+        if($GLOBALS['ROUTE_MODE'] == 'admin')
+        {
+            $this->set('admin', true);
+            $this->set('sub_section', 'Users');  
+            $this->set('title', "Edit user {$user}");
+        }
+        else
+        {
+            $this->set('sub_section', 'Account');            
+            if($id === false) $id = $_SESSION['user']['username'];
+            $this->set('title', 'My Account');
+        }          
         
         if(isset($_POST['firstname']))
         {   
@@ -170,6 +181,6 @@ class UsersController extends KakalikaController
         else
         {
             $this->set('user', $user->toArray());            
-        }
+        }        
     }
 }

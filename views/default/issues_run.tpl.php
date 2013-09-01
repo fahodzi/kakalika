@@ -1,3 +1,4 @@
+<h3><?= $title ?></h3>
 <div class="row">
     <div class="column grid_20_15">
         <table class='issues_list'>

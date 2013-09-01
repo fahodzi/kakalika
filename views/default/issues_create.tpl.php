@@ -1,4 +1,4 @@
-<h3>Create a new Issue</h3>
+<h3><?= $title ?></h3>
 <?php 
 $helpers->form->setData($data);
 $helpers->form->setErrors($errors);

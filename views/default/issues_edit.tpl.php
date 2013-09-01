@@ -1,4 +1,4 @@
-<h3>Edit Issue</h3>
+<h3><?= $title ?></h3>
 <?php 
 $form_data['assignee'] = (int) $form_data['assignee'];
 $helpers->form->setData($form_data);

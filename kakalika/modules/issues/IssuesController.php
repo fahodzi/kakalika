@@ -50,6 +50,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
         ); 
         
         $status = $issue->status;
+        $this->set('title', "[#{$issue['number']}] {$issue['title']}");        
             
         if(isset($_POST['comment']))
         {
@@ -80,6 +81,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
             )
         );
         $this->set('issues', $issues);
+        $this->set('title', "{$this->project->name} issues");
     }
     
     public function edit($issueId)
@@ -92,6 +94,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
                 )
             )
         );
+        $this->set('title', "Edit Issue #{$issue['number']} {$issue['title']}");
         if(isset($_POST['title']))
         {            
             $issue->setData($_POST);
@@ -126,7 +129,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
                 );
             }
         }
-        
+        $this->set('title', "Create a new {$this->project->name} issue");
         $this->setupAssignees();
     }
     

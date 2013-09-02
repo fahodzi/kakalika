@@ -16,8 +16,10 @@ CREATE TABLE IF NOT EXISTS `kakalika`.`users` (
   `password` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `is_admin` TINYINT(1) NULL,
+  `blocked` TINYINT(1) NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC))
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC))
 ENGINE = InnoDB;
 
 
@@ -47,16 +49,16 @@ CREATE TABLE IF NOT EXISTS `kakalika`.`user_projects` (
   PRIMARY KEY (`id`),
   INDEX `fk_user_projects_1_idx` (`project_id` ASC),
   INDEX `fk_user_projects_2_idx` (`user_id` ASC),
-  CONSTRAINT `fk_user_projects_1`
+  CONSTRAINT `fk_user_projects_projects`
     FOREIGN KEY (`project_id`)
     REFERENCES `kakalika`.`projects` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user_projects_2`
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_user_projects_users`
     FOREIGN KEY (`user_id`)
     REFERENCES `kakalika`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -78,6 +80,7 @@ CREATE TABLE IF NOT EXISTS `kakalika`.`issues` (
   `opener` INT NOT NULL,
   `updater` INT NULL,
   `assigned` TIMESTAMP NULL,
+  `number_of_updates` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_issues_1_idx` (`project_id` ASC),
   INDEX `fk_issues_2_idx` (`assignee` ASC),

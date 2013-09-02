@@ -123,7 +123,8 @@ class ProjectsController extends \kakalika\lib\KakalikaController
             array(
                 array(
                     'label' => 'Assign a new Member',
-                    'url' => Ntentan::getUrl("admin/projects/members/$id/assign")
+                    'url' => Ntentan::getUrl("admin/projects/members/$id/assign"),
+                    'id' => 'menu-item-projects-users-assign'
                 )
             )
         );         

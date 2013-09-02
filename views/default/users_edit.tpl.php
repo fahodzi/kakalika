@@ -57,7 +57,8 @@ $helpers->form->setErrors($errors);
             array(
                 array(
                     'label' => 'Block this user',
-                    'url' => u("admin/users/block/{$user['id']}")
+                    'url' => u("admin/users/block/{$user['id']}"),
+                    'id' => "menu-item-admin-users-block"
                 ),
                 array(
                     'label' => 'Return to Users list',

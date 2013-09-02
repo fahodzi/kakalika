@@ -172,8 +172,12 @@ ul.menu > li{
 
 ul.menu > li > a{
     text-decoration: none;
+    color:#909090;
 }
 
+ul.menu > li.menu-selected > a{
+    color:#808080;
+}
 ul.menu > li.menu-selected a{
     font-weight:bold;
 }
@@ -206,7 +210,27 @@ ul.menu > li.menu-selected a{
 
 #menu-item-projects-create > a, #menu-item-admin-projects-create > a { background-image: url(../images/add_project.png) }
 #menu-item-issues-create > a { background-image: url(../images/add_issue.png) }
+#menu-item-users-add > a { background-image: url(../images/add_user.png) }
+#menu-item-projects-users-assign > a { background-image: url(../images/assign_member.png) }
 
+ul#side-menu > li > a{
+    display:block;
+    padding:15px;    
+    padding-left:48px;
+    background-repeat:no-repeat;
+    background-position: 12px 50%;
+}
+
+ul#side-menu > li{
+    display:block;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+#menu-item-admin-users > a { background-image:url(../images/users.png) }
+#menu-item-admin-users-block > a { background-image:url(../images/block.png) }
+#menu-item-admin-projects > a { background-image:url(../images/projects.png) }
+#menu-item-admin-projects-members > a { background-image:url(../images/memberships.png) }
+#menu-item-admin-projects-delete > a { background-image:url(../images/delete_project.png) }
 
 #sub-menu > li:hover{
     
@@ -471,12 +495,6 @@ input[type='submit']#reopen{
 #profile_head img{
     float:left;
     margin-right:15px;
-}
-
-#side-menu > li{
-    display:block;
-    padding:15px;
-    border-bottom: 1px solid #f0f0f0;
 }
 
 .item-table{

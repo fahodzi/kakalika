@@ -510,3 +510,15 @@ table.item-table > thead >tr > td
 td.operations{
     text-align: right;
 }
+
+td.operations > a{
+    display: inline-block;
+    margin-left:15px;
+    padding-left:18px;
+    background-repeat: no-repeat;
+}
+
+a.edit-operation{ background-image: url(../images/edit_small.png) }
+a.delete-operation{ background-image: url(../images/delete_small.png) }
+a.members-operation{ background-image: url(../images/members_small.png) }
+a.block-operation{ background-image: url(../images/block_small.png) }

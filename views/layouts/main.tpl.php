@@ -65,7 +65,12 @@ load_asset('images/settings_small.png');
 load_asset('images/account_small.png');
 load_asset('images/add_project.png');
 load_asset('images/add_issue.png');
+
 load_asset('images/edit_small.png');
+load_asset('images/delete_small.png');
+load_asset('images/members_small.png');
+load_asset('images/block_small.png');
+
 load_asset('images/edit_issue.png');
 load_asset('images/white_tag.png');
 load_asset('images/grey_tag.png');

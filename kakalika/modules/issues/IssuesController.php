@@ -62,6 +62,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
             $updatedIssue->id = $issue->id;
             $updatedIssue->status = $status;
             $updatedIssue->comment = $_POST['comment'];
+            $updatedIssue->number_of_updates = $issue->number_of_updates;
             $updatedIssue->update();
             
             \ntentan\Ntentan::redirect(\ntentan\Ntentan::$requestedRoute);

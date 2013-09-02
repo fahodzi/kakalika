@@ -231,6 +231,7 @@ ul#side-menu > li{
 #menu-item-admin-projects > a { background-image:url(../images/projects.png) }
 #menu-item-admin-projects-members > a { background-image:url(../images/memberships.png) }
 #menu-item-admin-projects-delete > a { background-image:url(../images/delete_project.png) }
+#menu-item-issues-edit > a { background-image:url(../images/edit_issue.png) }
 
 #sub-menu > li:hover{
     
@@ -429,6 +430,12 @@ span.name
 {
     float:left;
     margin-right:15px;
+}
+
+.issue_view .update .issue_number{
+    float:right;
+    font-size:large;
+    color:#a0a0a0;
 }
 
 .form-submit, .button {

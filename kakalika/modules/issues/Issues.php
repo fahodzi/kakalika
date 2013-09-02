@@ -42,7 +42,12 @@ class Issues extends Model
         if($this->originalIssue['priority'] != $this->priority) $this->updateData['priority'] = $this->priority;
         if($this->originalIssue['status'] != $this->status) $this->updateData['status'] = $this->status;
         
-        unset($this->data['comment']);        
+        unset($this->data['comment']);    
+        
+        if(count($this->updateData) > 0)
+        {
+            $this->updateData['number'] = ++$this->number_of_updates;
+        }
     }
     
     public function postUpdateCallback() 

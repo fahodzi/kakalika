@@ -31,24 +31,25 @@
     </div>
 
 <?php else: ?>
-
+<table class="project-info-list">
     <?php foreach($projects as $project): ?>
-    <div class="project-info-wrapper">
-    <div class="row">
-        <div class="column grid_10_4">
+    <tr class="project-info-wrapper">
+        <td>
             <a href="<?= u($project['project']['code']) ?>" class="project-name"><?= $project['project']['name'] ?></a>
-            <span class="project-desc"><?= $project['project']['description'] ?></span>
-        </div>
-        <div class="column grid_10_2">
-            <a class="edit-operation tinylink" href="<?= u("{$project['project']['code']}/edit") ?>">
-                Edit
-            </a>
-        </div>
-        <div class="column grid_10_4">
-            Resolved Open
-        </div>
-    </div>
-    </div>
+            <span class="project-desc"><?= $this->truncate($project['project']['description'], 40) ?></span>            
+        </td>
+        <td>
+            <a class="edit-operation tinylink " href="<?= u("{$project['project']['code']}/edit") ?>">Edit</a>
+        </td>
+        <td>
+            <div class="issue-counter"><span class="open label"><?= $project['open'] ?></span>&nbsp;Open</div>
+            <div class="issue-counter"><span class="resolved label"><?= $project['resolved'] ?></span>&nbsp;Resolved</div>            
+        </td>
+        <td>
+            <div class="issue-counter"><span class="mine label"><?= $project['my_open'] ?></span>&nbsp;Mine</div>
+        </td>
+    </tr>
     <?php endforeach; ?>
+</table>
 
 <?php endif; ?>

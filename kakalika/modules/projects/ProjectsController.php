@@ -2,6 +2,7 @@
 namespace kakalika\modules\projects;
 
 use ntentan\Ntentan;
+use kakalika\modules\issues\Issues;
 
 class ProjectsController extends \kakalika\lib\KakalikaController
 {
@@ -57,7 +58,45 @@ class ProjectsController extends \kakalika\lib\KakalikaController
             );
         }
         
-        $this->set('projects', $projects->toArray());
+        $projects = $projects->toArray();
+        
+        foreach($projects as $i => $project)
+        {
+            $myOpen = Issues::getJustCount(
+                array(
+                    'conditions' => array(
+                        'project_id' => $project['id'],
+                        'status' => array('OPEN', 'REOPENED', 'RESOLVED'),
+                        'assignee' => $_SESSION['user']['id']
+                    )
+                )
+            );
+            
+            $projects[$i]['my_open']  = $myOpen;
+            
+            $open = Issues::getJustCount(
+                array(
+                    'conditions' => array(
+                        'project_id' => $project['id'],
+                        'status' => array('OPEN', 'REOPENED')
+                    )
+                )
+            );
+            $projects[$i]['open'] = $open;
+            
+            $resolved = Issues::getJustCount(
+                array(
+                    'conditions' => array(
+                        'project_id' => $project['id'],
+                        'status' => array('RESOLVED')
+                    )
+                )
+            );
+            $projects[$i]['resolved'] = $resolved;
+            
+        }
+        
+        $this->set('projects', $projects);
     }
     
     public function edit($code)

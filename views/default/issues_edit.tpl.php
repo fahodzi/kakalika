@@ -22,13 +22,16 @@ $helpers->form->setData($form_data);
             ->option('Bug', 'BUG')
             ->option('Enhancement', 'ENHANCEMENT')
             ->option('Proposal', 'PROPOSAL')
+            ->option('Question', 'QUESTION')
             ->option('Task', 'TASK'). 
         $helpers->form->get_selection_list('Priority', 'priority')
             ->option('Trivial', 'TRIVIAL')
-            ->option('Minor', 'MINOR')
-            ->option('Normal', 'NORMAL')
-            ->option('Major', 'MAJOR')
+            ->option('Low', 'LOW')
+            ->option('Medium', 'MEDIUM')       
+            ->option('High', 'HIGH')
             ->option('Critical', 'CRITICAL')
+            ->option('Blocker', 'BLOCKER')
+        
         ?>
         </div>
     </div>

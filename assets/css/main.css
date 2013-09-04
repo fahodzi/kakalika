@@ -59,7 +59,7 @@ h5{
     padding:0px;
     margin-top:20px;
     margin-bottom: 3px;
-    font-size: larger;
+    font-size: 1em;
 }
 
 h4{
@@ -271,7 +271,7 @@ table.project-info-list{
 
 .issue_summary .issue_id{
     font-weight:bold;
-    font-size: x-large;
+    font-size: large;
     color:#88c0fe;
     padding:10px;
     text-align: center;
@@ -279,8 +279,7 @@ table.project-info-list{
 }
 
 .issue_summary .issue_title > a{
-    font-size:large;
-    color:#0a77b8;
+    font-weight: bold;
     text-decoration: none;
 }
 
@@ -549,12 +548,48 @@ a.block-operation{ background-image: url(../images/block_small.png) }
     text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 }
 
-.open{background-color:#02b01f}
-.resolved{background-color:#6d73a5}
-.mine{background-color:darkorange}
+.issue-status{
+    text-align: center;
+    padding:8px;
+    color:#fff;
+    font-weight: bold;
+    font-size: 0.8em;
+    border-radius: 3px;
+    background-color: #aaa;
+    box-shadow: inset 1px 1px 2px rgba(0,0,0,0.2);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);    
+}
+
+.open, .reopened {background-color:#02b01f}
+.closed {background-color:#dd4740}
+.resolved {background-color:#6d73a5}
+.mine {background-color:darkorange}
+
+.open-link, .reopened-link{color:#02b01f}
+.closed-link{color:#dd4740}
+.resolved-link{color:#6d73a5}
+.mine-link{color:darkorange}
 
 .issue-counter{
     display:inline-block;
     margin:3px;
     font-size: 0.9em;
+}
+
+.issues-tag{
+    font-size: 0.9em;
+    display:inline-block;
+    color: #404040;
+    margin-right:15px;
+}
+
+.issues-tag img{
+    vertical-align: -2px;
+}
+
+.comments{
+    margin-top:10px;
+    text-align: right;
+    font-size:small;
+    color:#a0a0a0;
 }

@@ -36,16 +36,14 @@
     <tr class="project-info-wrapper">
         <td>
             <a href="<?= u($project['project']['code']) ?>" class="project-name"><?= $project['project']['name'] ?></a>
-            <span class="project-desc"><?= $this->truncate($project['project']['description'], 40) ?></span>            
+            <span class="project-desc"><?= $this->truncate($project['project']['description'], 30) ?></span>            
         </td>
-        <td>
+        <td style="text-align: center">
             <a class="edit-operation tinylink " href="<?= u("{$project['project']['code']}/edit") ?>">Edit</a>
         </td>
-        <td>
+        <td style="text-align:right">
             <div class="issue-counter"><span class="open label"><?= $project['open'] ?></span>&nbsp;Open</div>
             <div class="issue-counter"><span class="resolved label"><?= $project['resolved'] ?></span>&nbsp;Resolved</div>            
-        </td>
-        <td>
             <div class="issue-counter"><span class="mine label"><?= $project['my_open'] ?></span>&nbsp;Mine</div>
         </td>
     </tr>

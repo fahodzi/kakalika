@@ -51,6 +51,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
         
         $status = $issue->status;
         $this->set('title', "[#{$issue['number']}] {$issue['title']}");        
+        $this->set('sub_section_path', "{$this->project->code}/issues");
             
         if(isset($_POST['comment']))
         {
@@ -81,6 +82,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
                 'sort' => 'id DESC'
             )
         );
+        
         $this->set('issues', $issues);
         $this->set('title', "{$this->project->name} issues");
     }

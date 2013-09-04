@@ -1,4 +1,16 @@
-<h4><?= $title ?></h4>
+<div id="tool-header">
+    <div class="row">
+        <div class="column grid_10_7"><h4><?= $title ?></h4></div>
+        <div class="column grid_10_3" style="text-align:right">
+            <img src="<?= u(load_asset('images/filter.png')) ?>" /><select onchange="document.location='?filter=' + this.value">
+                <option></option>
+                <?php foreach($filters as $filter => $label): ?>
+                <option value="<?= $filter ?>" <?= $filter === $_GET['filter'] ? "selected='selected'" : "" ?> ><?= $label ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    </div>
+</div>
 <table class='issues_list'>
     <?php foreach($issues as $issue): ?>
     <tr class='issue_summary'>
@@ -14,21 +26,21 @@
         </td>
         <td>
             <div style="padding-left:10px; border-left:2px solid #f0f0f0; margin:10px">
+            <?php if($issue['number_of_updates'] > 0): ?>
+            <div class="issues-tag">
+                <img src="<?= u(load_asset("images/comment.png")) ?>" /> <?= $issue['number_of_updates'] ?>
+            </div>
+            <?php endif; ?>   
             <?php if($issue['priority'] != ''): ?>
             <div class="issues-tag">
                 <img src="<?= u(load_asset("images/priority_{$issue['priority']}.png")) ?>" /> <?= ucfirst(strtolower($issue['priority'])) ?>
             </div>
             <?php endif; ?>
-            
             <?php if($issue['kind'] != ''): ?>
             <div class="issues-tag">
                 <img src="<?= u(load_asset("images/kind_{$issue['kind']}.png")) ?>" /> <?= ucfirst(strtolower($issue['kind'])) ?>
             </div>
             <?php endif; ?>
-            <br/>
-            <?php if($issue['number_of_updates'] > 0): ?>
-            <div class="issues-tag comments">Comments <?= $issue['number_of_updates'] ?></div>
-            <?php endif; ?>   
             </div>
         </td>
     </tr>

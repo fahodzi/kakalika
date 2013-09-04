@@ -12,13 +12,13 @@ Ntentan::$routes = array(
     // Route the login pages
     array(
         'pattern' => '/login/',
-        'route' => 'projects/login'
+        'route' => 'dashboard/login'
     ),
     
     // Route the logout pages
     array(
         'pattern' => '/logout/',
-        'route' => 'projects/logout'
+        'route' => 'dashboard/logout'
     ),
     
     // Route to the users editor

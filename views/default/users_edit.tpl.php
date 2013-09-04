@@ -1,7 +1,7 @@
 <div id="profile_head">
-    <img src="<?= $helpers->gravatar->image($_SESSION['user']['email'])->size(96) ?>" />
-    <span class="name"><?= "{$_SESSION['user']['firstname']} {$_SESSION['user']['lastname']}" ?></span><br/>
-    <span class="email"><?= $_SESSION['user']['email'] ?></span>
+    <img src="<?= $helpers->gravatar->image($user['email'])->size(96) ?>" />
+    <span class="name"><?= "{$user['firstname']} {$user['lastname']}" ?></span><br/>
+    <span class="email"><?= $user['email'] ?></span>
 </div>   
 
 <div class="row">

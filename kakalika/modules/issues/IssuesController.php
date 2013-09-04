@@ -13,7 +13,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
         if($GLOBALS["ROUTE_MODE"] == 'project')
         {
             $this->project = \kakalika\modules\projects\Projects::getJustFirstWithCode($GLOBALS['ROUTE_PROJECT_CODE']);
-            
+            if($this->project->count() == 0) throw new \ntentan\exceptions\RouteNotAvailableException();
             $this->set('project_name', $this->project->name);
             $this->set('project_code', $this->project->code);
             $this->set('sub_section_menu', 
@@ -76,15 +76,60 @@ class IssuesController extends \kakalika\lib\KakalikaController
     
     public function run()
     {
+        switch ($_GET['filter'])
+        {
+            case 'open':
+                $filters = array(
+                    'status' => array('OPEN', 'REOPENED', 'RESOVED')
+                );
+                break;
+            
+            case 'closed':
+                $filters = array(
+                    'status' => 'CLOSED'
+                );
+                break;      
+            
+            case 'resolved':
+                $filters = array(
+                    'status' => 'RESOLVED'
+                );
+                break;              
+            
+            case 'mine':
+                $filters = array(
+                    'assignee' => $_SESSION['user']['id']
+                );                
+                break;
+            
+            case 'reported':
+                $filters = array(
+                    'opener' => $_SESSION['user']['id']
+                );
+                break;
+        }
+        
         $issues = Issues::getAllWithProjectId(
             $this->project->id,
             array(
-                'sort' => 'id DESC'
+                'sort' => 'id DESC',
+                'conditions' => $filters
             )
         );
         
         $this->set('issues', $issues);
         $this->set('title', "{$this->project->name} issues");
+        $this->set(
+            'filters', 
+            array(
+                'all' => 'All issues',
+                'mine' => 'Issues assigned to me',
+                'reported' => 'Issues opened by me',
+                'open' => 'All open issues',
+                'closed' => 'All closed issues',
+                'resolved' => 'All resolved issues'
+            )
+        );
     }
     
     public function edit($issueId)

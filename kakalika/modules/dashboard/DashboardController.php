@@ -11,6 +11,7 @@ class DashboardController extends KakalikaController
 {
     public function init()
     {
+        parent::init();
         $this->set('sub_section', 'Dashboard');
     }
     

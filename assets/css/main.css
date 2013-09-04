@@ -153,6 +153,15 @@ ul#top-menu > li#menu-item-account > a{background-image:url(../images/account_sm
     margin-top:100px;
 }
 
+#login-box .error-message
+{
+    margin-left:15px;
+    margin-right:15px;
+    padding:10px;
+    background-color:#fedee4;
+    color:#c13b3b;
+}
+
 ul.menu{
    list-style: none;
    margin:0px;
@@ -592,4 +601,24 @@ a.block-operation{ background-image: url(../images/block_small.png) }
     text-align: right;
     font-size:small;
     color:#a0a0a0;
+}
+
+#tool-header{
+    background-color:#fcfcfc;
+    border-bottom:1px solid #f0f0f0;    
+}
+
+#tool-header h4{
+    background-color:transparent;
+    border:none;
+}
+
+#tool-header select{
+    font-size:small;
+    margin: 8px;
+    display:inline;
+}
+
+#tool-header img{
+    vertical-align: -45%;
 }

@@ -19,11 +19,21 @@
                     <?php endif; ?>
                 </div>
                 <div id="status_side" class="column grid_10_5">
-                    <?= $widgets->menu(array(
-                        array(
+                    <?php
+                    $menu = array();
+                    if($_SESSION['user']['is_admin'])
+                    {
+                        $menu[] = array(
                             'label' => 'Administration',
                             'url' => u('admin')
-                        ), 'Account', 'Logout'))->alias('top') ?>
+                        );
+                    }
+                    
+                    $menu[]= 'Account';
+                    $menu[]= 'Logout';
+                    ?>
+                    
+                    <?= $widgets->menu($menu)->alias('top') ?>
                 </div>
             </div>
             <?php if($sub_section != ''): ?>

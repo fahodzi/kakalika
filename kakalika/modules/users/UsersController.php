@@ -12,7 +12,7 @@ class UsersController extends KakalikaController
         $this->set('sub_section', 'Users');    
         $this->set('title', 'Users');
         
-        if($GLOBALS['ROUTE_MODE'] == 'admin')
+        if($GLOBALS['ROUTE_MODE'] == 'admin' && $_SESSION['user']['is_admin'] == true)
         {
             $this->set('sub_section_menu', 
                 array(
@@ -73,7 +73,8 @@ class UsersController extends KakalikaController
             {
                 $errors['repeat_password'] = array('Passwords entered do not match');
             }     
-            unset($_POST['repeat_password']);            
+            unset($_POST['repeat_password']); 
+            $_POST['password'] = md5($_POST['password']);
             $user->setData($_POST);
             
             if(count($errors) == 0)
@@ -99,7 +100,7 @@ class UsersController extends KakalikaController
         }
         else 
         {
-            $user = $this->model->getJustFirstWithUsername($id);
+            $user = $this->model->getJustFirstWithUsername($_SESSION['user']['username']);
         }
         
         if($GLOBALS['ROUTE_MODE'] == 'admin')

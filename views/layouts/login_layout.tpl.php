@@ -9,16 +9,9 @@
         ?>
     </head>
     <body>
-        <div id="wrapper">
-            <div id="head" class="row">
-                <div id="title_side" class="column grid_10_5">
-                    <h1>Kakalika</h1>
-                </div>
-            </div>
             <div id="body">
                 <?= $contents ?>
             </div>
-            <div id="foot"></div>
         </div>
     </body>
 </html>

@@ -13,7 +13,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         $this->set('sub_section', 'Projects');
         $this->set('title', 'Projects');
         
-        if($GLOBALS['ROUTE_MODE'] == 'admin')
+        if($GLOBALS['ROUTE_MODE'] == 'admin' && $_SESSION['user']['is_admin'] == true)
         {
             $this->set('admin', true);
             $this->set('sub_section_path', 'admin/projects');
@@ -26,7 +26,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                 )
             );            
         }
-        else
+        else if(Ntentan::$route == 'projects')
         {
             $this->set('sub_section_path', 'projects');
             if($_SESSION['user']['is_admin'])
@@ -41,6 +41,10 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                 );
             }
         }
+        else
+        {
+            throw new \ntentan\exceptions\RouteNotAvailableException();            
+        }
     }
     
     public function run()
@@ -50,51 +54,50 @@ class ProjectsController extends \kakalika\lib\KakalikaController
             $projects = $this->model->getAll(
                 array('fields' => array('name', 'id'))
             );            
+            $projects = $projects->toArray();
         }
         else
         {
             $projects = \kakalika\modules\user_projects\UserProjects::getAllWithUserId(
                 $this->authComponent->userId()
             );
+            $projects = $projects->toArray();        
+            foreach($projects as $i => $project)
+            {
+                $myOpen = Issues::getJustCount(
+                    array(
+                        'conditions' => array(
+                            'project_id' => $project['id'],
+                            'status' => array('OPEN', 'REOPENED', 'RESOLVED'),
+                            'assignee' => $_SESSION['user']['id']
+                        )
+                    )
+                );
+
+                $projects[$i]['my_open']  = $myOpen;
+
+                $open = Issues::getJustCount(
+                    array(
+                        'conditions' => array(
+                            'project_id' => $project['id'],
+                            'status' => array('OPEN', 'REOPENED')
+                        )
+                    )
+                );
+                $projects[$i]['open'] = $open;
+
+                $resolved = Issues::getJustCount(
+                    array(
+                        'conditions' => array(
+                            'project_id' => $project['id'],
+                            'status' => array('RESOLVED')
+                        )
+                    )
+                );
+                $projects[$i]['resolved'] = $resolved;
+            }
         }
         
-        $projects = $projects->toArray();
-        
-        foreach($projects as $i => $project)
-        {
-            $myOpen = Issues::getJustCount(
-                array(
-                    'conditions' => array(
-                        'project_id' => $project['id'],
-                        'status' => array('OPEN', 'REOPENED', 'RESOLVED'),
-                        'assignee' => $_SESSION['user']['id']
-                    )
-                )
-            );
-            
-            $projects[$i]['my_open']  = $myOpen;
-            
-            $open = Issues::getJustCount(
-                array(
-                    'conditions' => array(
-                        'project_id' => $project['id'],
-                        'status' => array('OPEN', 'REOPENED')
-                    )
-                )
-            );
-            $projects[$i]['open'] = $open;
-            
-            $resolved = Issues::getJustCount(
-                array(
-                    'conditions' => array(
-                        'project_id' => $project['id'],
-                        'status' => array('RESOLVED')
-                    )
-                )
-            );
-            $projects[$i]['resolved'] = $resolved;
-            
-        }
         
         $this->set('projects', $projects);
     }

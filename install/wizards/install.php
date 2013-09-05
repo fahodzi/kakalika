@@ -19,16 +19,21 @@ class install extends wizard_logic
             $response["$directory directory is writeable"] = is_writable(__DIR__ . "/../../$directory");
         }
         
+        $success = 1;
         foreach($response as $res)
         {
-            $this->wizard->setData('f', 1);
+            $success &= $res;
         }
+        $this->wizard->setData('success', $success);
         
         return $response;        
     }
     
     public function checking_directories_route_callback()
     {
-        //$data = $th
+        if(!$this->wizard->getData('success'))
+        {
+            $this->wizard->repeatPage();
+        }
     }
 }

@@ -23,4 +23,39 @@
     -
       type: checklist
       function_name: check_directories
-        
+-
+  page: get_config
+  title: Get details for config
+  widgets:
+    -
+      type: text
+      text: >
+        Please provide the details for the database configuration.
+    -
+      type: text_input
+      name: backend
+      label: Which datastore backend should we use
+      options:
+        pgsql: "pgsql"
+        mysql: "mysql"
+      required : true
+    -
+      type: text_input
+      name: host
+      label: What is the host of the database connection
+      required: true
+      default: localhost
+    -
+      type: text_input
+      name: username
+      label: What username do you connect with
+      required: true
+    -
+      type: text_input
+      name: password
+      label: Any passwords for the user?
+    -
+      type: text_input
+      name: schema
+      label: Database to connect to?
+      

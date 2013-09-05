@@ -1,0 +1,7 @@
+#!/usr/bin/env php
+<?php
+error_reporting(E_ALL ^ E_NOTICE);
+
+require "anyen/src/Anyen.php";
+
+Anyen::run(__DIR__ . "/wizards/install.yml", array('banner' => 'Kakalika Issue Tracker'));

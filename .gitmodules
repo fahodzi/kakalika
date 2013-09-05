@@ -1,3 +1,6 @@
 [submodule "ntentan"]
 	path = ntentan
 	url = https://github.com/ekowabaka/ntentan.git
+[submodule "install/anyen"]
+	path = install/anyen
+	url = https://github.com/ekowabaka/anyen.git

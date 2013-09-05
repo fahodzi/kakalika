@@ -1,0 +1,26 @@
+## YAML Template.
+---
+-
+  page: welcome
+  title: Welcome to Kakalika
+  widgets:    
+    -
+      type: text
+      text: >
+        Welcome to the kakalika bug tracker installer. This wizard would help you 
+        setup the kakalika bug tracker on your server. Kakalika is a simple 
+        lightweight issue tracker. We hope you enjoy using it.
+
+-
+  page: checking_directories
+  title: Checking directories
+  
+  widgets:
+    -
+      type: text
+      text: >
+        Let's check to see if your directory structure is setup correctly.
+    -
+      type: checklist
+      function_name: check_directories
+        

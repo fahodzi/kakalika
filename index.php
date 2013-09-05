@@ -40,7 +40,7 @@ Ntentan::$routes = array(
     
     // Exclude the routing for certain pages
     array(
-        'pattern' => '/^(users|projects|dashboard|admin|account|issues)/'
+        'pattern' => '/^(users|projects|dashboard|admin|account|issues|error)/'
     ),
     
     // Route to the project editor

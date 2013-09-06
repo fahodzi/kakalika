@@ -33,7 +33,18 @@ class install extends wizard_logic
     {
         if(!$this->wizard->getData('success'))
         {
+            $this->wizard->showMessage(
+                "Some directories failed their tests. Please fix the problem and proceed.",
+                "error"
+            );
             $this->wizard->repeatPage();
         }
+    }
+    
+    public function get_db_config_route_callback()
+    {
+        $data = $this->wizard->getData();
+        mysql_connect($data['host'], $data['username'], $data['password']);
+        die();
     }
 }

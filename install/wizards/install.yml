@@ -23,22 +23,26 @@
     -
       type: checklist
       function_name: check_directories
+# -
+#  page: checking_extensions
+#  title: Checking extensions
+#  
+#  widgets:
+#    -
+#      type: text
+#      text: >
+#        Let's check to see if you have all the required 
+#    -
+#      type: checklist
+#      function_name: check_directories      
 -
-  page: get_config
-  title: Get details for config
+  page: get_db_config
+  title: Database Configuration
   widgets:
     -
       type: text
       text: >
         Please provide the details for the database configuration.
-    -
-      type: text_input
-      name: backend
-      label: Which datastore backend should we use
-      options:
-        pgsql: "pgsql"
-        mysql: "mysql"
-      required : true
     -
       type: text_input
       name: host
@@ -57,5 +61,6 @@
     -
       type: text_input
       name: schema
-      label: Database to connect to?
+      label: Schema to connect to? (must already exist)
+      required: true
       

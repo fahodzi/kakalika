@@ -44,7 +44,27 @@ class install extends wizard_logic
     public function get_db_config_route_callback()
     {
         $data = $this->wizard->getData();
-        mysql_connect($data['host'], $data['username'], $data['password']);
-        die();
+        @$connection = new mysqli(
+            $data["host"],
+            $data["username"],
+            $data["password"]
+        );
+        
+        if($connection->connect_error)
+        {
+            $this->wizard->showMessage(
+                "Failed to connect to the database",
+                "error"
+            );
+            $this->wizard->repeatPage();
+        }
+        elseif(!$connection->select_db($data['schema']))
+        {
+            $this->wizard->showMessage(
+                "Failed to select schema {$data['schema']}",
+                "error"
+            );
+            $this->wizard->repeatPage();            
+        }
     }
 }

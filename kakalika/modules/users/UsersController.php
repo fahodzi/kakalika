@@ -168,10 +168,13 @@ class UsersController extends KakalikaController
             {
                 if($user->update())
                 {
-                     $_SESSION['user'] = $user->getData();
                      if($GLOBALS['ROUTE_MODE'] == 'admin')
                      {
                          Ntentan::redirect(Ntentan::getUrl('admin/users'));
+                     }
+                     else
+                     {
+                        $_SESSION['user'] = $user->getData();                         
                      }
                 }
             }

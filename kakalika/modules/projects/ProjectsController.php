@@ -61,13 +61,14 @@ class ProjectsController extends \kakalika\lib\KakalikaController
             $projects = \kakalika\modules\user_projects\UserProjects::getAllWithUserId(
                 $this->authComponent->userId()
             );
-            $projects = $projects->toArray();        
+            
+            $projects = $projects->toArray();     
             foreach($projects as $i => $project)
             {
                 $myOpen = Issues::getJustCount(
                     array(
                         'conditions' => array(
-                            'project_id' => $project['id'],
+                            'project_id' => $project['project']['id'],
                             'status' => array('OPEN', 'REOPENED', 'RESOLVED'),
                             'assignee' => $_SESSION['user']['id']
                         )
@@ -79,8 +80,8 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                 $open = Issues::getJustCount(
                     array(
                         'conditions' => array(
-                            'project_id' => $project['id'],
-                            'status' => array('OPEN', 'REOPENED')
+                            'project_id' => $project['project']['id'],
+                            'status' => array('OPEN', 'REOPENED', 'RESOLVED')
                         )
                     )
                 );
@@ -89,7 +90,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                 $resolved = Issues::getJustCount(
                     array(
                         'conditions' => array(
-                            'project_id' => $project['id'],
+                            'project_id' => $project['project']['id'],
                             'status' => array('RESOLVED')
                         )
                     )

@@ -5,3 +5,4 @@ require "anyen/src/Anyen.php";
 require "anyen/src/AnyenWeb.php";
 
 Anyen::run("wizards/install.yml", array('banner' => 'Kakalika Installer'));
+

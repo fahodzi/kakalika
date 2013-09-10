@@ -15,7 +15,8 @@ class KakalikaController extends Controller
         TemplateEngine::appendPath('views/partials');
         
         $this->addComponent('auth', array(
-            'login_route' => 'login'
+            'login_route' => 'login',
+            'logout_route' => 'logout'
         ));
         
         if(!$this->authComponent->loggedIn())

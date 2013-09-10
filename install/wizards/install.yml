@@ -23,6 +23,22 @@
     -
       type: checklist
       function_name: check_directories
+-
+  page: setup_prefix
+  title: Web access prefix
+  
+  widgets:
+    -
+      type: text
+      text: >
+        The prefix is usually the name of the directory in which kakalika
+        resides on your document root. What web prefix would you like to access 
+        your application through?
+    -
+      type: text_input
+      name: prefix
+      label: Prefix
+      
 # -
 #  page: checking_extensions
 #  title: Checking extensions

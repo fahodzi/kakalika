@@ -41,8 +41,15 @@ class install extends wizard_logic
         }
     }
     
+    public function setup_prefix_render_callback()
+    {
+        //var_dump($_SERVER['REQUEST_URI']);
+        $this->wizard->setData('prefix', 'Hello');
+    }
+    
     public function get_db_config_route_callback()
     {
+        //@todo Allow the settings entered into anyen to be retained
         $data = $this->wizard->getData();
         @$connection = new mysqli(
             $data["host"],

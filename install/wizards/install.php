@@ -43,8 +43,8 @@ class install extends wizard_logic
     
     public function setup_prefix_render_callback()
     {
-        //var_dump($_SERVER['REQUEST_URI']);
-        $this->wizard->setData('prefix', 'Hello');
+        preg_match("/(?<prefix>.*)(\/install)/i", $_SERVER['REQUEST_URI'], $matches);
+        $this->wizard->setData('prefix', $matches['prefix']);
     }
     
     public function get_db_config_route_callback()
@@ -72,6 +72,25 @@ class install extends wizard_logic
                 "error"
             );
             $this->wizard->repeatPage();            
+        }
+    }
+    
+    public function setup_database()
+    {
+        $data = $this->wizard->getData();
+        @$connection = new mysqli(
+            $data["host"],
+            $data["username"],
+            $data["password"]
+        );
+
+        $connection->select_db($data['schema']);
+        $queries = file_get_contents('mysql_schema.sql');
+        $queries = explode(';', $queries);
+                
+        foreach($queries as $query)
+        {
+            $connection->query($query);
         }
     }
 }

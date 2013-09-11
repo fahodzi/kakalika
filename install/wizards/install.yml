@@ -48,6 +48,7 @@
 #      type: text
 #      text: >
 #        Let's check to see if you have all the required 
+#   check for the mysql extensions
 #    -
 #      type: checklist
 #      function_name: check_directories      
@@ -79,4 +80,12 @@
       name: schema
       label: Schema to connect to? (must already exist)
       required: true
+      
+-
+  page: setup_db
+  title: Setting up database
+  widgets:
+    -
+      type: function
+      function_name: setup_database
       

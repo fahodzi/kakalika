@@ -75,6 +75,8 @@
       type: text_input
       name: password
       label: Any passwords for the user?
+      masked: true
+      
     -
       type: text_input
       name: schema
@@ -88,4 +90,48 @@
     -
       type: function
       function_name: setup_database
-      
+-
+  page: setup_admin
+  title: Create your administrative user
+  widgets:
+    -
+      type: text
+      text: >
+        Create the first administrative user of the system. You can use this
+        user account to login after the installer has finished running.
+    -
+      type: text_input
+      name: firstname
+      label: What's your firstname
+      required: true
+    -
+      type: text_input
+      name: lastname
+      label: What's your lastname
+    -
+      type: text_input
+      name: email
+      label: What's your email address
+      required: true
+    -
+      type: text_input
+      name: admin_username
+      label: Choose a username for yourself
+      required: true
+    -
+      type: text_input
+      name: admin_password
+      label: Enter a password for your account
+      masked: true
+      required: true
+
+-
+  page: thanks
+  title: Thanks!
+  widgets:
+    -
+      type: text
+      text: >
+        Thanks for trying out kakalika. For security reasons please delete the
+        install directory once you are done installing the application. 
+        Hope'n you enjoy this. Happy issue tracking!

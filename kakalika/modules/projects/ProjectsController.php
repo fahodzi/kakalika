@@ -41,6 +41,10 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                 );
             }
         }
+        else if(Ntentan::$route == 'projects/create' && $_SESSION['user']['is_admin'])
+        {
+            // Just allow the admins to go through
+        }
         else
         {
             throw new \ntentan\exceptions\RouteNotAvailableException();            
@@ -291,3 +295,4 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         }
     }
 }
+

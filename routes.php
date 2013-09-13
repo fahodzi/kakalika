@@ -1,4 +1,11 @@
 <?php
+//If not installed redirect to the installer
+if(!file_exists('config/app.ini'))
+{
+    header('Location: install');
+}
+
+
 // Make projects the default route
 ntentan\Ntentan::$defaultRoute = 'projects';
 

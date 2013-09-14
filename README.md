@@ -14,6 +14,41 @@ can:
 - Categorize all your issues with our built in categories
 - Comment on issues and keep track of all the history of comments
 
-See INSTALL.md for more information on how to install kakalika.
+Installing Kakalika
+-------------------
+
+### Requirements
+
+- Apache web server
+- PHP 5.3+
+- MySQL server 5+
+- mysqli extension for PHP
+- `mod_rewrite` and `.htaccess` enabled
+
+### Setting up
+
+1. Download and extract release to your document root.
+2. Ensure that the following directories exist and are writable by the web server:
+   - `cache`
+   - `public/js`
+   - `public/css`
+   - `public/images`
+   - `config`
+3. Create a blank database on your mysql server to hold the data
+
+4. Point browser to `/install` and follow the steps on the browser. 
+   You can also execute `install/run` on the command line. If you choose
+   the command line option ensure you run as the web server's user so that
+   permissions are properly checked.
+
+5. Delete the install directory or make it inaccesible to the web server
+6. Protect the config directory and make it read only
+6. Point your browser to the document root and enjoy Kakalika
+
+
+
+
+
+
 
 

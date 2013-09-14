@@ -46,7 +46,10 @@ Installing Kakalika
 6. Point your browser to the document root and enjoy Kakalika
 
 
-
+Contributing
+------------
+If you wish to help on this project feel free to fork the code and
+send in pull requests.
 
 
 

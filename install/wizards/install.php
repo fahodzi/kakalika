@@ -44,7 +44,7 @@ class install extends wizard_logic
     public function setup_prefix_render_callback()
     {
         preg_match("/(?<prefix>.*)(\/install)/i", $_SERVER['REQUEST_URI'], $matches);
-        $this->wizard->setData('prefix', $matches['prefix']);
+        $this->wizard->setData('prefix', str_replace('/', '', $matches['prefix']));
     }
     
     public function get_db_config_route_callback()
@@ -121,33 +121,31 @@ class install extends wizard_logic
             )
         );
         
-        
-$configFile = <<< CONFIG
-<?php
-error_reporting(E_ALL ^ E_NOTICE);
+$appFile = <<< APPFILE
+context = deployed
+prefix = {$data['prefix']}
 
-\$config = array(
-    'application' => array(
-        'name' => 'Kakalika',
-        'context' => 'production',
-        'ntentan_home' => 'ntentan',
-        'namespace' => 'kakalika',
-        'prefix' => '{$data['prefix']}'
-    ),
-    'production' => array(
-        'caching' => 'file',
-        'debug' => false,
-        'datastore' => 'mysql',
-        'database_host' => '{$data['host']}',
-        'database_user' => '{$data['username']}',
-        'database_password' => '{$data['password']}',
-        'database_name' => '{$data['schema']}',        
-        'error_handler' => 'error'
-    )
-); 
-CONFIG;
+[deployed]
+caching = file
+error_reporting = error
+
+APPFILE;
+
+        file_put_contents("../config/app.ini", $appFile);        
         
-        file_put_contents("../config/config.php", $configFile);
+$dbFile = <<< DBFILE
+[deployed]
+datastore = mysql
+host = {$data['host']}
+user = {$data['username']}
+password = {$data['password']}
+name = {$data['schema']}
+
+DBFILE;
+        
+        file_put_contents("../config/db.ini", $dbFile);
         
     }
 }
+
+

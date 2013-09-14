@@ -5,7 +5,8 @@
         <?= $helpers->stylesheet
             ->add(load_asset('css/main.css'))
             ->add(load_asset('css/forms.css'))
-            ->add(load_asset('css/grid.css')); 
+            ->add(load_asset('css/grid.css'))
+            ->context('login'); 
         ?>
     </head>
     <body>

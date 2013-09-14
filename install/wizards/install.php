@@ -85,7 +85,7 @@ class install extends wizard_logic
         );
 
         $connection->select_db($data['schema']);
-        $queries = file_get_contents('mysql_schema.sql');
+        $queries = file_get_contents(__DIR__ . '/../mysql_schema.sql');
         $queries = explode(';', $queries);
                 
         foreach($queries as $query)
@@ -131,7 +131,7 @@ error_reporting = error
 
 APPFILE;
 
-        file_put_contents("../config/app.ini", $appFile);        
+        file_put_contents(__DIR__ . "/../../config/app.ini", $appFile);        
         
 $dbFile = <<< DBFILE
 [deployed]
@@ -143,7 +143,7 @@ name = {$data['schema']}
 
 DBFILE;
         
-        file_put_contents("../config/db.ini", $dbFile);
+        file_put_contents(__DIR__ . "/../../config/db.ini", $dbFile);
         
     }
 }

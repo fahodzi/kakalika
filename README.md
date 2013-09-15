@@ -29,8 +29,9 @@ Installing Kakalika
 
 ### Setting up
 
-1. Download and extract release to your document root. If you clone the git repository
-   however, initialize and update all submodules before proceeding with the installation.
+1. Download and extract release to your document root. If you however clone the git repository 
+   instead of installing then initialize and update all submodules before proceeding 
+   with the installation.
 2. Ensure that the following directories exist and are writable by the web server:
    - `cache`
    - `public/js`
@@ -44,9 +45,11 @@ Installing Kakalika
    the command line option ensure you run as the web server's user so that
    permissions are properly checked.
 
-5. Delete the install directory or make it inaccesible to the web server
-6. Protect the config directory and make it read only
-6. Point your browser to the document root and enjoy Kakalika
+After installation completes successfuly:
+
+1. Delete the `install` directory or make it inaccesible to the web server
+2. Protect the `config` directory and make it read only
+3. Point your browser to the document root and enjoy Kakalika
 
 
 Contributing

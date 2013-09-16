@@ -14,7 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+# Protect certain directories
+<FilesMatch \.(config|ini|.*sql|tpl(\.php)?)$>
+  Order allow,deny
+  deny from all
+</FilesMatch>
  
+RedirectMatch 404 \.(ini|.*sql|tpl(\.php)?)$
+
 # Don't show directories.
 Options -Indexes
 

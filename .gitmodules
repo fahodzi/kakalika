@@ -4,3 +4,6 @@
 [submodule "install/anyen"]
 	path = install/anyen
 	url = https://github.com/ekowabaka/anyen.git
+[submodule "plugins/gravatar"]
+	path = plugins/gravatar
+	url = https://github.com/ekowabaka/ntentan.gravatar.git

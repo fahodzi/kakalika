@@ -8,7 +8,7 @@ $helpers->form->setData($form_data);
     <div class="column grid_10_7">
         <div style="padding-right:15px">
         <?= 
-            $helpers->form->get_text_field('Title', 'title') . 
+            $helpers->form->get_text_field('Title', 'title')->id('title'). 
             $helpers->form->get_text_area('Description', 'description')->id('description') .
             $helpers->form->get_text_area('Comment', 'comment')
         ?>

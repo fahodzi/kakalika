@@ -71,6 +71,10 @@ form{
     padding:15px;
 }
 
+form #title{
+    font-size:large;
+}
+
 form textarea#description{
     height:200px;
 }

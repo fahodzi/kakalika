@@ -78,7 +78,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                         )
                     )
                 );
-
+                
                 $projects[$i]['my_open']  = $myOpen;
 
                 $open = Issues::getJustCount(

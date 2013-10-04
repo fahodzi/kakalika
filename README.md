@@ -3,8 +3,7 @@ Kakalika Issue Tracker
 
 ![Screenshot](http://ekowabaka.me/kakalika/screen.png)
 
-A simple issue management tool for small teams. The goal behind 
-kakalika is to provide an issue managment tool that is easy to setup, easy to
+The goal behind kakalika is to provide an issue managment tool that is easy to setup, easy to
 administer and easy to use. It is meant to be that kind of tool that anyone can
 figure out in just a few clicks. 
 

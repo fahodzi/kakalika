@@ -42,9 +42,18 @@
             <a class="edit-operation tinylink " href="<?= u("{$project['project']['code']}/edit") ?>">Edit</a>
         </td>
         <td style="text-align:right">
-            <div class="issue-counter"><span class="open label"><?= $project['open'] ?></span>&nbsp;Open</div>
-            <div class="issue-counter"><span class="resolved label"><?= $project['resolved'] ?></span>&nbsp;Resolved</div>            
-            <div class="issue-counter"><span class="mine label"><?= $project['my_open'] ?></span>&nbsp;Mine</div>
+            <div class="issue-counter">
+                <span class="open label"><?= $project['open'] ?></span>&nbsp;
+                <a href='<?= u($project['project']['code']) ?>?filter=open'>Open</a>
+            </div>
+            <div class="issue-counter">
+                <span class="resolved label"><?= $project['resolved'] ?></span>&nbsp;
+                <a href='<?= u($project['project']['code']) ?>?filter=resolved'>Resolved</a>
+            </div>            
+            <div class="issue-counter">
+                <span class="mine label"><?= $project['my_open'] ?></span>&nbsp;
+                <a href='<?= u($project['project']['code']) ?>?filter=mine'>Mine</a>
+            </div>
         </td>
     </tr>
     <?php endforeach; ?>

@@ -11,7 +11,7 @@
     </head>
     <body>
             <div id="body">
-                <?= $contents ?>
+                <?= $contents->unescape() ?>
             </div>
         </div>
     </body>

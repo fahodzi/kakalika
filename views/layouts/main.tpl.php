@@ -54,11 +54,11 @@
                 
                 <?php if($split): ?>
                 <div class="row">
-                    <div class="column grid_10_7"><?= $contents ?></div>
+                    <div class="column grid_10_7"><?= $contents->unescape() ?></div>
                     <div class="column grid_10_3"></div>
                 </div>
                 <?php else: ?>
-                <?= $contents ?>
+                <?= $contents->unescape() ?>
                 <?php endif; ?>
             </div>
             <div id="foot">

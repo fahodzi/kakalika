@@ -10,22 +10,6 @@
         ?>
         </div>
     </div>
-    <div class="column grid_10_3">
-        <?=
-        $widgets->menu(
-            array(
-                array(
-                    'label' => 'Users',
-                    'url' => u('admin/users'),
-                    'default' => true
-                ),
-                array(
-                    'label' => 'Projects',
-                    'url' => u('admin/projects')
-                )
-            )
-        )->alias('side');
-        ?>
-    </div>
+    <div class="column grid_10_3"><?= t('admin_side_menu.tpl.php') ?></div>
 </div>
 

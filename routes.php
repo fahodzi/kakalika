@@ -58,7 +58,7 @@ ntentan\Ntentan::$routes = array(
     array(
         "pattern" => "/^(admin)(\/)?(?<path>[a-zA-Z0-9\/_]*)?/",
         "route" => "::path",
-        "default" => "users",
+        "default" => "projects",
         "globals" => array(
             "MODE" => "admin"
         )

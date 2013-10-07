@@ -157,6 +157,8 @@ class ProjectsController extends \kakalika\lib\KakalikaController
             array(
                 'item_type' => 'project',
                 'item_name' => $project,
+                'id' => $id,
+                'show_side' =>true
             )
         );        
     }
@@ -260,7 +262,6 @@ class ProjectsController extends \kakalika\lib\KakalikaController
     
     public function create()
     {
-        $this->set('split', true);
         $this->set('title', 'Create a new project');
         if(isset($_POST['name']))
         {

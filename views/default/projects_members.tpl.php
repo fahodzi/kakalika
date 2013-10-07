@@ -12,15 +12,6 @@
         </div>
     </div>
     <div class="column grid_10_3">
-        <?=
-        $widgets->menu(
-            array(
-                array(
-                    'label' => 'Back to Projects',
-                    'url' => u('admin/projects')
-                )
-            )
-        )->alias('side');
-        ?>
+        <?= t('project_side_menu.tpl.php', array('id' => $id))?>
     </div>
 </div>

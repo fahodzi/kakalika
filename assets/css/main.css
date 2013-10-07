@@ -71,8 +71,9 @@ form{
     padding:15px;
 }
 
-form #title{
-    font-size:large;
+form .title{
+    font-size: large;
+    font-weight: bold;
 }
 
 form textarea#description{
@@ -112,6 +113,12 @@ form textarea#description{
     text-align: right;
 }
 
+#head > #status_side > img{
+    float: right;
+    padding:0px;
+    background-color:#0262a7;
+}
+
 #sub_head{
     background-color: #e8e8e8;
 }
@@ -123,6 +130,7 @@ form textarea#description{
 
 ul#top-menu{
     padding:0px;
+    float:right;
 }
 
 ul#top-menu > li > a{
@@ -133,6 +141,7 @@ ul#top-menu > li > a{
     padding-left:30px;
     background-repeat: no-repeat;
     background-position: 12px 50%;
+    border-left:1px solid #0262a7;
 }
 
 #top-menu > li.menu-selected{
@@ -144,6 +153,7 @@ ul#top-menu > li > a{
 #top-menu > li.menu-selected > a{
     font-weight: normal;
     color:#fff;
+    font-weight: bold;
 }
 
 ul#top-menu > li#menu-item-logout > a{background-image:url(../images/logout.png)}
@@ -184,8 +194,6 @@ ul.menu > li > a{
 
 ul.menu > li.menu-selected > a{
     color:#808080;
-}
-ul.menu > li.menu-selected a{
     font-weight:bold;
 }
 
@@ -228,6 +236,14 @@ ul#side-menu > li > a{
     background-position: 12px 50%;
 }
 
+ul#side-menu > li.menu-selected > a{
+    font-weight: normal;
+}
+
+ul#side-menu > li.menu-fully-matched > a{
+    font-weight: bold;
+}
+
 ul#side-menu > li{
     display:block;
     border-bottom: 1px solid #f0f0f0;
@@ -238,7 +254,8 @@ ul#side-menu > li{
 #menu-item-admin-projects > a { background-image:url(../images/projects.png) }
 #menu-item-admin-projects-members > a { background-image:url(../images/memberships.png) }
 #menu-item-admin-projects-delete > a { background-image:url(../images/delete_project.png) }
-#menu-item-issues-edit > a { background-image:url(../images/edit_issue.png) }
+
+#menu-item-issues-edit > a, #menu-item-admin-projects-edit > a { background-image:url(../images/edit_big.png) }
 
 #sub-menu > li:hover{
     

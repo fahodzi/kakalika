@@ -16,7 +16,8 @@
             array(
                 array(
                     'label' => 'Users',
-                    'url' => u('admin/users')
+                    'url' => u('admin/users'),
+                    'default' => true
                 ),
                 array(
                     'label' => 'Projects',

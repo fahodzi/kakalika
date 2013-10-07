@@ -16,27 +16,6 @@ $helpers->form->close('Update Project')
 ?>
     </div>
     <div class="column grid_10_3">
-    <?php 
-    if($admin){
-        echo $widgets->menu(
-            array(
-                array(
-                    'label' => 'Edit Project Members',
-                    'url' => u("admin/projects/members/{$project['id']}"),
-                    'id' => 'menu-item-admin-projects-members'
-                ),
-                array(
-                    'label' => 'Delete Project',
-                    'url' => u("admin/projects/delete/{$project['id']}"),
-                    'id' => 'menu-item-admin-projects-delete'
-                ),
-                array(
-                    'label' => 'Return to Projects list',
-                    'url' => u("admin/projects")
-                )
-            )
-        )->alias('side');        
-    }
-    ?>
+    <?= t('project_side_menu.tpl.php', array('id' => $project['id']))?>
     </div>
 </div>

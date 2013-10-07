@@ -19,6 +19,7 @@
                     <?php endif; ?>
                 </div>
                 <div id="status_side" class="column grid_10_5">
+                    <img src="<?= $helpers->gravatar->image($_SESSION['user']['email'])->size(54) ?>" />
                     <?php
                     $menu = array();
                     if($_SESSION['user']['is_admin'])
@@ -27,10 +28,12 @@
                             'label' => 'Administration',
                             'url' => u('admin')
                         );
-                    }
-                    
-                    $menu[]= 'Account';
+                    }                    
                     $menu[]= 'Logout';
+                    $menu[]= array(
+                        'label' => "Account ⚫ {$_SESSION['user']['username']}",
+                        'url' => u('account')
+                    );
                     ?>
                     
                     <?= $widgets->menu($menu)->alias('top') ?>
@@ -81,7 +84,7 @@ load_asset('images/delete_small.png');
 load_asset('images/members_small.png');
 load_asset('images/block_small.png');
 
-load_asset('images/edit_issue.png');
+load_asset('images/edit_big.png');
 load_asset('images/white_tag.png');
 load_asset('images/grey_tag.png');
 load_asset('images/users.png');

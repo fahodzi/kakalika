@@ -7,7 +7,7 @@ $helpers->form->setErrors($errors);
 <div class="row">
     <div class="column grid_10_7">
         <div style="padding-right:15px">
-        <?= $helpers->form->get_text_field('Title', 'title')->id('title') . $helpers->form->get_text_area('Description', 'description')->id('description') ?>
+        <?= $helpers->form->get_text_field('Title', 'title')->addCssClass('title') . $helpers->form->get_text_area('Description', 'description')->id('description') ?>
         </div>
     </div>
     <div class="column grid_10_3">

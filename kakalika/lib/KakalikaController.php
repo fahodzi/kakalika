@@ -13,6 +13,7 @@ class KakalikaController extends Controller
         
         TemplateEngine::appendPath('views/layouts');
         TemplateEngine::appendPath('views/partials');
+        TemplateEngine::appendPath('views/forms');
         
         $this->addComponent('auth', array(
             'login_route' => 'login',

@@ -95,4 +95,5 @@ load_asset('images/add_user.png');
 load_asset('images/memberships.png');
 load_asset('images/assign_member.png');
 load_asset('images/delete_project.png');
+load_asset('images/milestones.png');
 ?>

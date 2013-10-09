@@ -40,6 +40,14 @@ a{
     padding:15px;
 }
 
+.p15-right{
+    padding-right:15px;
+}
+
+.p1-right{
+    padding-right:2px;
+}
+
 a.tinylink > img{
     vertical-align:-2px;    
 }
@@ -254,6 +262,7 @@ ul#side-menu > li{
 #menu-item-admin-projects > a { background-image:url(../images/projects.png) }
 #menu-item-admin-projects-members > a { background-image:url(../images/memberships.png) }
 #menu-item-admin-projects-delete > a { background-image:url(../images/delete_project.png) }
+#menu-item-admin-projects-milestones > a { background-image:url(../images/milestones.png) }
 
 #menu-item-issues-edit > a, #menu-item-admin-projects-edit > a { background-image:url(../images/edit_big.png) }
 

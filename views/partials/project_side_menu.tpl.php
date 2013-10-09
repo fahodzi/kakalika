@@ -1,12 +1,22 @@
 <?= $widgets->menu(
     array(
         array(
-            'label' => 'Edit Project Details',
+            'label' => 'Project Details',
             'url' => u("admin/projects/edit/$id"),
             'id' => 'menu-item-admin-projects-edit'
         ),
         array(
-            'label' => 'Edit Project Members',
+            'label' => 'Components',
+            'url' => u("admin/projects/components/$id"),
+            'id' => 'menu-item-admin-projects-edit'
+        ),
+        array(
+            'label' => 'Milestones',
+            'url' => u("admin/projects/milestones/$id"),
+            'id' => 'menu-item-admin-projects-milestones'
+        ),
+        array(
+            'label' => 'Project Members',
             'url' => u("admin/projects/members/$id"),
             'id' => 'menu-item-admin-projects-members'
         ),
@@ -16,7 +26,7 @@
             'id' => 'menu-item-admin-projects-delete'
         ),
         array(
-            'label' => 'Return to Projects list',
+            'label' => 'Return to Projects',
             'url' => u("admin/projects")
         )
     )

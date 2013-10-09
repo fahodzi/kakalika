@@ -163,6 +163,22 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         );        
     }
     
+    public function milestones($id)
+    {
+        $project = $this->model->getJustFirstWithId($id);
+        $this->set('sub_section', 'Project Milestones');
+        $this->set('sub_section_menu', 
+            array(
+                array(
+                    'label' => 'Add a new Milestone',
+                    'url' => Ntentan::getUrl("admin/projects/milestones/$id/add"),
+                    'id' => 'menu-item-projects-milestones-add'
+                )
+            )
+        );         
+        
+    }
+    
     public function members($id, $command = '', $subId = '')
     {
         $project = $this->model->getJustFirstWithId($id);        

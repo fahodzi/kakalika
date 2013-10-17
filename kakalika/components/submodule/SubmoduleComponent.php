@@ -8,9 +8,9 @@ class SubmoduleComponent extends \ntentan\controllers\components\Component
         var_dump($params);
     }
     
-    public function init()
+    public function submodule($subModule)
     {
-        var_dump('hello');
+        
     }
 }
 

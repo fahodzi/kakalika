@@ -24,7 +24,8 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                         'url' => Ntentan::getUrl('admin/projects/create')
                     )
                 )
-            );            
+            );       
+            $this->addComponent('submodule', 'hello');
         }
         else if(Ntentan::$route == 'projects')
         {
@@ -163,7 +164,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         );        
     }
     
-    public function milestones($id)
+    /*public function milestones($id)
     {
         $project = $this->model->getJustFirstWithId($id);
         $this->set('sub_section', 'Project Milestones');
@@ -177,7 +178,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
             )
         );         
         
-    }
+    }*/
     
     public function members($id, $command = '', $subId = '')
     {

@@ -53,6 +53,16 @@ ntentan\Ntentan::$routes = array(
         'pattern' => "/account/",
         'route' => 'users/edit'
     ),    
+    
+    // Admin sub module pages for project 
+    array(
+        "pattern" => "/^(admin\/projects\/)(?<sub_module>milestones)(\/)(?<id>[0-9]*)/",
+        "route" => "projects/submodule/::sub_module/::id",
+        "default" => "projects",
+        "globals" => array(
+            "MODE" => "admin"
+        )
+    ),    
 
     // Admin
     array(
@@ -63,7 +73,7 @@ ntentan\Ntentan::$routes = array(
             "MODE" => "admin"
         )
     ),
-    
+        
     // Exclude the routing for certain pages
     array(
         'pattern' => '/^(users|projects|dashboard|admin|account|issues|error)/'

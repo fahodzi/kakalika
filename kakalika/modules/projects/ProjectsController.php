@@ -25,7 +25,14 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                     )
                 )
             );       
-            $this->addComponent('submodule', 'hello');
+            $this->addComponent('submodule', 
+                array(
+                    'milestones' => array(
+                        'title' => 'Project Milestones',
+                        'item' => 'Milestone'
+                    )
+                )
+            );
         }
         else if(Ntentan::$route == 'projects')
         {
@@ -184,7 +191,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
     {
         $project = $this->model->getJustFirstWithId($id);        
         $this->set('sub_section', 'Project Members');
-        $this->set('sub_section_path', "admin/projects/members/1");
+        $this->set('sub_section_path', "admin/projects/members/$id");
         $this->set('sub_section_menu', 
             array(
                 array(

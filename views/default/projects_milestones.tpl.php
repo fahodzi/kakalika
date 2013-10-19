@@ -4,7 +4,7 @@
         <div class="p15">
         <?php
             $helpers->list->headers = array('Milestone', '');
-            $helpers->list->data = $items;
+            $helpers->list->data = $milestones;
             $helpers->list->cellTemplates['id'] = 'projects_milestones_operations.tpl.php';
             $helpers->list->variables['id'] = $id;
             echo $helpers->list;

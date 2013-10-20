@@ -5,8 +5,11 @@
         <?php
             $helpers->list->headers = array('Milestone', '');
             $helpers->list->data = $milestones;
-            $helpers->list->cellTemplates['id'] = 'projects_milestones_operations.tpl.php';
-            $helpers->list->variables['id'] = $id;
+            $helpers->list->cellTemplates['id'] = 'projects_submodule_operations.tpl.php';
+            $helpers->list->variables = array(
+                'id' => $id,
+                'module' => $module,
+            );
             echo $helpers->list;
         ?>
         </div>

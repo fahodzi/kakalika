@@ -56,8 +56,8 @@ ntentan\Ntentan::$routes = array(
     
     // Admin sub module pages for project 
     array(
-        "pattern" => "/^(admin\/projects\/)(?<sub_module>milestones)(\/)(?<id>[0-9]*)/",
-        "route" => "projects/submodule/::sub_module/::id",
+        "pattern" => "/^(admin\/projects\/)(?<sub_module>milestones)(\/)(?<id>[0-9]*)(\/)?(?<command>[a-zA-Z0-9_]*)?(\/)?(?<subid>[0-9]*)?/",
+        "route" => "projects/submodule/::sub_module/::id/::command/::subid",
         "default" => "projects",
         "globals" => array(
             "MODE" => "admin"

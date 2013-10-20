@@ -36,4 +36,14 @@ class UserProjects extends Model
     {
         return "{$this->user->firstname} {$this->user->lastname}, {$this->project->name}";
     }
+    
+    public function getVars()
+    {
+        $users = \kakalika\modules\users\Users::getAll();
+        $newUsers = array();
+        foreach($users as $i => $user)
+        {
+            $newUsers[$user['id']] = "{$user['firstname']} {$user['lastname']} ({$user['username']})";
+        }
+    }
 }

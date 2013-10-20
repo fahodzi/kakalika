@@ -10,13 +10,16 @@ select{
     box-shadow:1px 1px 3px rgba(64,64,64,0.1);
 }
 
-input[type='text'], input[type='password']{
+input[type='text'], input[type='password'], input[type='date']{
     border:1px solid #d0d0d0;
-    padding:2%;
-    width:96%;
     border-radius: 3px;
     box-shadow: inset 1px 1px 3px rgba(64,64,64,0.1);
     color:#404040;
+    padding:5px;
+}
+input[type='text'], input[type='password']{
+    padding:2%;
+    width:96%;
 }
 
 input[type='text'].error, input[type='password'].error{

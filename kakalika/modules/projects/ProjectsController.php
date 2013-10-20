@@ -29,7 +29,10 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                 array(
                     'milestones' => array(
                         'title' => 'Project Milestones',
-                        'item' => 'Milestone'
+                        'item' => 'milestone',
+                        'items' => 'milestones',
+                        'model' => 'milestones',
+                        'fields' => array('name', 'id')
                     )
                 )
             );

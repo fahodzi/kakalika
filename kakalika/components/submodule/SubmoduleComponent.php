@@ -14,14 +14,7 @@ class SubmoduleComponent extends \ntentan\controllers\components\Component
     }
     
     public function submodule($module, $id, $command = null, $subId = null)
-    {
-        /*$this->module = $module;
-        $items = Model::load($module)->getAll();
-        
-        $this->set('id', $id);
-        $this->set($module, $items->toArray());
-        $this->view->template = "projects_{$module}.tpl.php";*/
-        
+    {        
         $project = \kakalika\modules\projects\Projects::getJustFirstWithId($id);
         $model = Model::load($this->modules[$module]['model']);
         $this->view->template = "projects_submodule.tpl.php";
@@ -42,6 +35,27 @@ class SubmoduleComponent extends \ntentan\controllers\components\Component
                     
         switch($command)
         {
+        case 'edit':
+            $subItem = $model->getFirstWithId($subId);
+            
+            if(count($_POST) > 0)
+            {
+                $subItem->setData($_POST);
+                $subItem->project_id = $id;
+                if($subItem->update())
+                {
+                    Ntentan::redirect(Ntentan::getUrl("admin/projects/$module/$id"));
+                }
+                else
+                {
+                    $this->set('errors', $subItem->invalidFields);
+                }
+            }
+            
+            $this->set('title', "Edit the {$subItem} {$this->modules[$module]['item']}");
+            $this->set('data', $subItem->toArray());
+            $this->view->template = "projects_submodule_edit.tpl.php";
+            break;
         case 'delete':
             $item = $model->getFirstWithId($subId);
             $this->view->template = 'delete.tpl.php';

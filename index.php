@@ -34,6 +34,9 @@ $ntentan = parse_ini_file('config/ntentan.ini', true);
 require "{$ntentan['home']}/lib/Ntentan.php";
 use ntentan\Ntentan;
 
+// @todo Allow the timezone to be set during installation time
+date_default_timezone_set('Africa/Accra');
+
 try{
     Ntentan::setup($ntentan);
     include('routes.php');

@@ -67,7 +67,10 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         if($GLOBALS['ROUTE_MODE'] == 'admin')
         {
             $projects = $this->model->getAll(
-                array('fields' => array('name', 'id'))
+                array(
+                    'fields' => array('name', 'id'),
+                    'sort' => 'id desc'
+                )
             );            
             $projects = $projects->toArray();
         }

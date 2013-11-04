@@ -112,7 +112,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
         $issues = Issues::getAllWithProjectId(
             $this->project->id,
             array(
-                'sort' => 'id DESC',
+                'sort' => 'updated DESC',
                 'conditions' => $filters
             )
         );

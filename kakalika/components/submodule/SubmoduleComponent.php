@@ -103,12 +103,13 @@ class SubmoduleComponent extends \ntentan\controllers\components\Component
             $items = $model->getWithProjectId(
                 $id,
                 array(
-                    'fields' => $this->modules[$module]['fields']
+                    'fields' => $this->modules[$module]['fields'],
+                    'sort' => 'id desc'
                 )
             );
             
             $this->set('project', $project->name);            
-            $this->set('title', "{$this->modules[$module]['items']} of the $project project");
+            $this->set('title', ucfirst($this->modules[$module]['items']) . " of the $project project");
             $this->set($module, $items);      
             $this->set('id', $id);
         }                    

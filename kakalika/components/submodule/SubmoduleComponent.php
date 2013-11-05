@@ -76,6 +76,7 @@ class SubmoduleComponent extends \ntentan\controllers\components\Component
             break;
         
         case 'add':
+            $formVars = array();
             if(count($_POST) > 0)
             {
                 $newItem = $model->getNew();
@@ -87,20 +88,27 @@ class SubmoduleComponent extends \ntentan\controllers\components\Component
                 }
                 else
                 {
-                    $this->set('errors', $newItem->invalidFields);
+                    $formVars['errors'] = $newItem->invalidFields;
+                    $formVars['data'] = $_POST;
                 }
             }
             
             $this->view->template = "projects_submodule_add.tpl.php";
             
-            $this->set('users', $newUsers);
+            if(is_object($this->modules[$module]['get_form_vars']))
+            {
+                 $formVars = array_merge($formVars, $this->modules[$module]['get_form_vars']());
+            }
+            
+            $this->set('form_vars', $formVars);
+                
             $this->set('title', "Add a new {$this->modules[$module]['item']} to the $project project");
             
             break;
         
         default:
 
-            $items = $model->getWithProjectId(
+            $items = $model->getAllWithProjectId(
                 $id,
                 array(
                     'fields' => $this->modules[$module]['fields'],
@@ -108,9 +116,16 @@ class SubmoduleComponent extends \ntentan\controllers\components\Component
                 )
             );
             
+            if(is_object($this->modules[$module]['filter']))
+            {
+                $items = $this->modules[$module]['filter']($items);
+            }
+            
+            $this->set('disable_edit', $this->modules[$module]['disable_edit']);
             $this->set('project', $project->name);            
             $this->set('title', ucfirst($this->modules[$module]['items']) . " of the $project project");
-            $this->set($module, $items);      
+            $this->set('items', $items);    
+            $this->set('item_type', $this->modules[$module]['item']);
             $this->set('id', $id);
         }                    
     }

@@ -1,0 +1,1 @@
+<?= t('projects_components_form.tpl.php', array('errors' => $errors, 'data' => $data)) ?>

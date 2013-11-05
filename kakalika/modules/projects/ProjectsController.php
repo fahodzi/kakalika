@@ -33,6 +33,47 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                         'items' => 'milestones',
                         'model' => 'milestones',
                         'fields' => array('name', 'id')
+                    ),
+                    'components' => array(
+                        'title' => 'Project Components',
+                        'item' => 'component',
+                        'items' => 'components',
+                        'model' => 'components',
+                        'fields' => array('name', 'id')
+                    ),                    
+                    'members' => array(
+                        'title' => 'Project Members',
+                        'item' => 'member',
+                        'items' => 'members',
+                        'model' => 'user_projects',
+                        'fields' => array('user.firstname', 'user.lastname', 'id'),
+                        'disable_edit' => true,
+                        
+                        'get_form_vars' => function() 
+                        {
+                            $users = \kakalika\modules\users\Users::getAll();
+                            $newUsers = array();
+                            foreach($users as $i => $user)
+                            {
+                                $newUsers[$user['id']] = "{$user['firstname']} {$user['lastname']} ({$user['username']})";
+                            } 
+                            return array(
+                                'users' => $newUsers
+                            );
+                        },
+                                
+                        'filter' => function($items) 
+                        {
+                            $returnItems = array();
+                            foreach($items as $item)
+                            {
+                                $returnItems[] = array(
+                                    'name' => "{$item['user']['firstname']} {$item['user']['lastname']}",
+                                    'id' => $item['id']
+                                );
+                            }
+                            return $returnItems;
+                        }
                     )
                 )
             );
@@ -176,120 +217,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
             )
         );        
     }
-    
-    /*public function milestones($id)
-    {
-        $project = $this->model->getJustFirstWithId($id);
-        $this->set('sub_section', 'Project Milestones');
-        $this->set('sub_section_menu', 
-            array(
-                array(
-                    'label' => 'Add a new Milestone',
-                    'url' => Ntentan::getUrl("admin/projects/milestones/$id/add"),
-                    'id' => 'menu-item-projects-milestones-add'
-                )
-            )
-        );         
         
-    }*/
-    
-    public function members($id, $command = '', $subId = '')
-    {
-        $project = $this->model->getJustFirstWithId($id);        
-        $this->set('sub_section', 'Project Members');
-        $this->set('sub_section_path', "admin/projects/members/$id");
-        $this->set('sub_section_menu', 
-            array(
-                array(
-                    'label' => 'Assign a new Member',
-                    'url' => Ntentan::getUrl("admin/projects/members/$id/assign"),
-                    'id' => 'menu-item-projects-users-assign'
-                )
-            )
-        );         
-        
-        switch($command)
-        {
-        case 'delete':
-            $projectMember = \kakalika\modules\user_projects\UserProjects::getFirstWithId($subId);
-            $this->view->template = 'delete.tpl.php';
-
-            if($_GET['confirm'] == 'yes')
-            {
-                $projectMember->delete();
-                Ntentan::redirect(Ntentan::getUrl("admin/projects/members/$id"));
-            }
-
-            $this->set(
-                array(
-                    'item_type' => 'project member',
-                    'item_name' => $projectMember,
-                )
-            );    
-            $this->set('title', "Delete a member from the $project project");
-            break;
-        
-        case 'assign':
-            if(isset($_POST['user_id']) && $_POST['user_id'] != '')
-            {
-                $userProject = \kakalika\modules\user_projects\UserProjects::getNew();
-                $userProject->project_id = $id;
-                $userProject->user_id = $_POST['user_id'];
-                if($userProject->save())
-                {
-                    Ntentan::redirect(Ntentan::getUrl("admin/projects/members/$id"));
-                }
-                else
-                {
-                    $this->set('errors', $userProject->invalidField);
-                }
-            }
-            
-            $this->view->template = 'projects_members_assign.tpl.php';
-            $users = \kakalika\modules\users\Users::getAll();
-            $newUsers = array();
-            foreach($users as $i => $user)
-            {
-                $newUsers[$user['id']] = "{$user['firstname']} {$user['lastname']} ({$user['username']})";
-            }
-            
-            $this->set('users', $newUsers);
-            $this->set('title', "Assign a member to the $project project");
-            
-            break;
-        
-        default:
-
-            $projectMembers = \kakalika\modules\user_projects\UserProjects::getWithProjectId(
-                $id,
-                array(
-                    'fields' => array(
-                        'id',
-                        'user.firstname',
-                        'user.lastname',
-                        'user.username'
-                    )
-                )
-            );
-            $redoneProjectMembers = array();
-
-            foreach($projectMembers as $i => $member)
-            {
-                $redoneProjectMembers[] = array(
-                    'firstname' => $member['user']['firstname'],
-                    'lastname' => $member['user']['lastname'],
-                    'username' => $member['user']['username'],
-                    'id' => $member['id']
-                );
-            }
-            
-            $this->set('project', $project->name);            
-            $this->set('title', "Members of the $project project");
-            $this->set('members', $redoneProjectMembers);      
-            $this->set('id', $id);
-        }
-    }    
-    
     public function create()
     {
         $this->set('title', 'Create a new project');

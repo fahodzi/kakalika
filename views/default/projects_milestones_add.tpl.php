@@ -1,1 +1,1 @@
-<?= t('projects_milestones_form.tpl.php') ?>
+<?= t('projects_milestones_form.tpl.php', array('errors' => $errors, 'data' => $data)) ?>?>

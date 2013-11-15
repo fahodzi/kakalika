@@ -25,15 +25,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
-     inkscape:cx="528.56049"
-     inkscape:cy="742.52743"
+     inkscape:cx="198.56049"
+     inkscape:cy="862.52743"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1440"
-     inkscape:window-height="871"
-     inkscape:window-x="1366"
-     inkscape:window-y="0"
+     inkscape:window-width="1366"
+     inkscape:window-height="715"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -265,6 +265,33 @@
        height="54.803352"
        x="608.32098"
        y="440.43304"
+       rx="10"
+       ry="10" />
+    <rect
+       style="fill:#d4ffda;fill-opacity:1"
+       id="rect2987-8-1-7-8"
+       width="104.47902"
+       height="54.803352"
+       x="82.320969"
+       y="440.43304"
+       rx="10"
+       ry="10" />
+    <rect
+       style="fill:#fceceb;fill-opacity:1"
+       id="rect2987-8-4-9"
+       width="104.47902"
+       height="54.803352"
+       x="82.320969"
+       y="362.43307"
+       rx="10"
+       ry="10" />
+    <rect
+       style="fill:#f1f7fc;fill-opacity:1"
+       id="rect2987-7"
+       width="104.47902"
+       height="54.803352"
+       x="82.320969"
+       y="46.433083"
        rx="10"
        ry="10" />
   </g>

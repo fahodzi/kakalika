@@ -1,3 +1,7 @@
+/**
+Colour schemes
+**/
+
 @CHARSET "UTF-8";
 
 body{
@@ -28,7 +32,7 @@ body{
 
 a{
     text-decoration: none;
-    color:#6ea0ff;
+    color:#62b0db;
 }
 
 #body p{
@@ -70,9 +74,11 @@ h5{
     font-size: 1em;
 }
 
-h4{
-    background-color:#fcfcfc;
-    border-bottom:1px solid #f0f0f0;
+#tool-header, h4{
+    background-color:#f1f7fc;
+    border-bottom:2px solid #c2e0f2;
+    border-top:1px solid #c2e0f2;
+    color:#62b0db;
 }
 
 form{
@@ -128,7 +134,7 @@ form textarea#description{
 }
 
 #sub_head{
-    background-color: #e8e8e8;
+    background-color: #fafafa;
 }
 
 #sub_head h3 > a{
@@ -337,22 +343,29 @@ table.project-info-list{
     padding:15px;
 }
 
-.issue_view #title_block{
-    color: #02b01f;
-    background-color:#defee3;
-}
-
 .issue_view #title_block h4{
     display:inline-block;
     background-color: transparent;
+    border:none;
 }
 
 .issue_view #title_block h4:first-child{
     padding-right:0px;
-    font-size:larger;
     background-color: transparent;
-    color:#016310;
+    border:none;
 }
+
+.REOPENED_title, .OPEN_title{ background-color: #d4ffda; border-top: 1px solid #85ff97; border-bottom:2px solid #85ff97}
+.REOPENED_title h4, .OPEN_title h4{ color:#02b01f }
+.REOPENED_title h4:first-child, .OPEN_title h4:first-child{ color:#006a11 }
+
+.RESOLVED_title{ background-color: #f7f7ff; border-top: 1px solid #c3c5d9; border-bottom: 2px solid #c3c5d9}
+.RESOLVED_title h4{ color:#6d73a5 }
+.RESOLVED_title h4:first-child{ color:#373d6f }
+
+.CLOSED_title{ background-color: #fff6f5; border-top: 1px solid #f4b9b6; border-bottom: 2px solid #f4b9b6}
+.CLOSED_title h4{ color:#dd4740 }
+.CLOSED_title h4:first-child{ color:#ab0801 }
 
 .people-info{
     min-height: 56px;
@@ -562,7 +575,7 @@ td.operations{
 a.tinylink, td.operations > a{
     font-size:small;
     text-decoration: none;
-    color:#88c0fe;
+    color:#62b0db;
     display: inline-block;
     margin-left:15px;
     padding-left:18px;
@@ -633,10 +646,10 @@ a.block-operation{ background-image: url(../images/block_small.png) }
     color:#a0a0a0;
 }
 
-#tool-header{
+/*#tool-header{
     background-color:#fcfcfc;
     border-bottom:1px solid #f0f0f0;    
-}
+}*/
 
 #tool-header h4{
     background-color:transparent;

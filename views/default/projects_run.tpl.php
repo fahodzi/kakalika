@@ -1,5 +1,5 @@
-<h4>List of projects</h4>
 <?php if($admin): ?>
+<h4>List of projects</h4>    
     <div class="row">
         <div class="column grid_10_7">
             <div class="p15">

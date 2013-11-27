@@ -8,7 +8,7 @@
         array(
             'label' => 'Components',
             'url' => u("admin/projects/components/$id"),
-            'id' => 'menu-item-admin-projects-edit'
+            'id' => 'menu-item-admin-projects-components'
         ),
         array(
             'label' => 'Milestones',

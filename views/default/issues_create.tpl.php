@@ -26,7 +26,9 @@ $helpers->form->setErrors($errors);
             ->option('Medium', 'MEDIUM')       
             ->option('High', 'HIGH')
             ->option('Critical', 'CRITICAL')
-            ->option('Blocker', 'BLOCKER')
+            ->option('Blocker', 'BLOCKER').
+        $helpers->form->get_selection_list('Component', 'component')->options($components).
+        $helpers->form->get_selection_list('Milestone', 'milestone')->options($milestones)
         ?>
         </div>
     </div>

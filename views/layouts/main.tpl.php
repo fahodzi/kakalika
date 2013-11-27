@@ -92,8 +92,12 @@ load_asset('images/projects.png');
 load_asset('images/block.png');
 
 load_asset('images/add_user.png');
+load_asset('images/add_milestone.png');
+load_asset('images/add_component.png');
+
 load_asset('images/memberships.png');
 load_asset('images/assign_member.png');
 load_asset('images/delete_project.png');
 load_asset('images/milestones.png');
+load_asset('images/components.png');
 ?>

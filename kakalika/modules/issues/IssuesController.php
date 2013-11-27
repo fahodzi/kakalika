@@ -179,6 +179,22 @@ class IssuesController extends \kakalika\lib\KakalikaController
         }
         $this->set('title', "Create a new {$this->project->name} issue");
         $this->setupAssignees();
+        
+        $components = \kakalika\modules\components\Components::getJustAllWithProjectId($this->project->id);
+        $componentsOptions = array();
+        foreach($components as $component)
+        {
+            $componentsOptions[$component->id] = $component->name;
+        }
+        $this->set('components', $componentsOptions);
+        
+        $milestones = \kakalika\modules\milestones\Milestones::getJustAllWithProjectId($this->project->id);
+        $milestonesOptions = array();
+        foreach($milestones as $milestone)
+        {
+            $milestonesOptions[$milestone->id] = $milestone->name;
+        }
+        $this->set('milestones', $milestonesOptions);
     }
     
     private function setupAssignees()

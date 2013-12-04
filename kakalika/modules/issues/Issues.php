@@ -41,6 +41,8 @@ class Issues extends Model
         if($this->originalIssue['kind'] != $this->kind) $this->updateData['kind'] = $this->kind;
         if($this->originalIssue['priority'] != $this->priority) $this->updateData['priority'] = $this->priority;
         if($this->originalIssue['status'] != $this->status) $this->updateData['status'] = $this->status;
+        if($this->originalIssue['milestone_id'] != $this->milestone_id) $this->updateData['milestone_id'] = $this->milestone_id;
+        if($this->originalIssue['component_id'] != $this->component_id) $this->updateData['component_id'] = $this->component_id;
         
         unset($this->data['comment']);    
         

@@ -5,7 +5,9 @@ class Updates extends \ntentan\models\Model
 {
     public $belongsTo = array(
         'user',
-        array('user', 'as' => 'assignee')
+        array('user', 'as' => 'assignee'),
+        'milestone',
+        'component'
     );
     
     public $behaviours = array(

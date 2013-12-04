@@ -152,7 +152,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
         else
         {
             $this->set('form_data', $issue->toArray());
-            $this->setupAssignees();
+            $this->setupOptions();
         }
     }
     
@@ -178,26 +178,10 @@ class IssuesController extends \kakalika\lib\KakalikaController
             }
         }
         $this->set('title', "Create a new {$this->project->name} issue");
-        $this->setupAssignees();
-        
-        $components = \kakalika\modules\components\Components::getJustAllWithProjectId($this->project->id);
-        $componentsOptions = array();
-        foreach($components as $component)
-        {
-            $componentsOptions[$component->id] = $component->name;
-        }
-        $this->set('components', $componentsOptions);
-        
-        $milestones = \kakalika\modules\milestones\Milestones::getJustAllWithProjectId($this->project->id);
-        $milestonesOptions = array();
-        foreach($milestones as $milestone)
-        {
-            $milestonesOptions[$milestone->id] = $milestone->name;
-        }
-        $this->set('milestones', $milestonesOptions);
+        $this->setupOptions();        
     }
     
-    private function setupAssignees()
+    private function setupOptions()
     {
         $users = \kakalika\modules\user_projects\UserProjects::getAllWithProjectId(
             $this->project->id,
@@ -217,6 +201,23 @@ class IssuesController extends \kakalika\lib\KakalikaController
             $assignees[$user['user']['id']] = "{$user['user']['firstname']} {$user['user']['lastname']}";
         }
         
-        $this->set('assignees', $assignees);        
+        $this->set('assignees', $assignees);   
+        
+        $components = \kakalika\modules\components\Components::getJustAllWithProjectId($this->project->id);
+        $componentsOptions = array();
+        foreach($components as $component)
+        {
+            $componentsOptions[$component->id] = $component->name;
+        }
+        $this->set('components', $componentsOptions);
+        
+        $milestones = \kakalika\modules\milestones\Milestones::getJustAllWithProjectId($this->project->id);
+        $milestonesOptions = array();
+        foreach($milestones as $milestone)
+        {
+            $milestonesOptions[$milestone->id] = $milestone->name;
+        }
+        $this->set('milestones', $milestonesOptions);
+        
     }
 }

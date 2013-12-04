@@ -26,6 +26,13 @@
                     
                 if($update['status'] != '')
                     $changes[] = "<b>{$update['status']}</b> this issue";
+                    
+                if($update['milestone_id'] != '')
+                    $changes[] = "Set milestone to <b>{$update['milestone']['name']}</b>";
+                    
+                if($update['component_id'] != '')
+                    $changes[] = "Set component as <b>{$update['component']['name']}</b>";
+                    
                 ?>
                 
                 <?php if($update['comment'] != ''): ?>

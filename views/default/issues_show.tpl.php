@@ -110,6 +110,17 @@
                     <dt>Priority</dt>
                     <dd><?= $issue['priority'] ?></dd>
                     <?php endif; ?>
+                    
+                    <?php if($issue['milestone']['id'] != ''): ?>
+                    <dt>Milestone</dt>
+                    <dd><?= $issue['milestone']['name'] ?></dd>
+                    <?php endif; ?>
+                    
+                    <?php if($issue['component']['id'] != ''): ?>
+                    <dt>Component</dt>
+                    <dd><?= $issue['component']['name'] ?></dd>
+                    <?php endif; ?>
+                    
                 </dl>
                 <h5>People</h5>
                 

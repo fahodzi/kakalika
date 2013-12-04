@@ -9,7 +9,9 @@ class Issues extends Model
         array('user', 'as' => 'opener'),
         array('user', 'as' => 'assignee'),
         array('user', 'as' => 'updater'),
-        'project'
+        'project',
+        'milestone',
+        'component'
     );
     
     public $hasMany = array('updates');

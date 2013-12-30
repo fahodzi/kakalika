@@ -103,4 +103,7 @@ load_asset('images/components.png');
 
 load_asset('images/component_small.png');
 load_asset('images/milestone_small.png');
-?>
+
+load_asset('images/status_OPEN.png');
+load_asset('images/status_CLOSED.png');
+load_asset('images/status_RESOLVED.png');

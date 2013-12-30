@@ -435,6 +435,10 @@ dd.kind_QUESTION{background-image: url('../images/kind_QUESTION.png')}
 dd.kind_TASK{background-image: url('../images/kind_TASK.png')}
 dd.kind_ENHANCEMENT{background-image: url('../images/kind_ENHANCEMENT.png')}
 
+dd.status_OPEN, dd.status_REOPENED{background-image: url('../images/status_OPEN.png')}
+dd.status_RESOLVED{background-image: url('../images/status_RESOLVED.png')}
+dd.status_CLOSED{background-image: url('../images/status_CLOSED.png')}
+
 .striped
 {
     background-color:#fcfcfc;

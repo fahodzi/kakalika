@@ -85,7 +85,7 @@ load_asset('images/members_small.png');
 load_asset('images/block_small.png');
 
 load_asset('images/edit_big.png');
-load_asset('images/white_tag.png');
+load_asset('images/blue_tag.png');
 load_asset('images/grey_tag.png');
 load_asset('images/users.png');
 load_asset('images/projects.png');
@@ -100,4 +100,7 @@ load_asset('images/assign_member.png');
 load_asset('images/delete_project.png');
 load_asset('images/milestones.png');
 load_asset('images/components.png');
+
+load_asset('images/component_small.png');
+load_asset('images/milestone_small.png');
 ?>

@@ -227,9 +227,9 @@ ul.menu > li.menu-selected > a{
 }
 
 #sub-menu > li.menu-selected{
-    background-image:url(../images/white_tag.png);
+    background-image:url(../images/blue_tag.png);
     background-repeat: no-repeat;
-    background-position: 50% 100%;
+    background-position: 50% 105%;
 }
 
 #sub-menu > li.menu-selected > a{
@@ -397,16 +397,17 @@ table.project-info-list{
 
 dl{
     padding:15px;
-    background-color:#f7fbfe;
+    background-color:#fcfcfc;
     margin:0px;
 }
 
 dt{
     font-weight: bold;
     display:inline-block;
-    width:35%;
+    width:30%;
     margin:0px;
     padding-bottom:10px;
+    color:#808080;
 }
 
 dd{
@@ -414,7 +415,25 @@ dd{
     width:60%;
     margin:0px;
     padding-bottom:10px;
+    padding-left:20px;
+    background-repeat: no-repeat;
 }
+
+dd.component{background-image: url('../images/component_small.png')}
+dd.milestone{background-image: url('../images/milestone_small.png')}
+
+dd.priority_TRIVIAL{background-image: url('../images/priority_TRIVIAL.png')}
+dd.priority_LOW{background-image: url('../images/priority_LOW.png')}
+dd.priority_MEDIUM{background-image: url('../images/priority_MEDIUM.png')}
+dd.priority_HIGH{background-image: url('../images/priority_HIGH.png')}
+dd.priority_CRITICAL{background-image: url('../images/priority_CRITICAL.png')}
+dd.priority_BLOCKER{background-image: url('../images/priority_BLOCKER.png')}
+
+dd.kind_BUG{background-image: url('../images/kind_BUG.png')}
+dd.kind_PROPOSAL{background-image: url('../images/kind_PROPOSAL.png')}
+dd.kind_QUESTION{background-image: url('../images/kind_QUESTION.png')}
+dd.kind_TASK{background-image: url('../images/kind_TASK.png')}
+dd.kind_ENHANCEMENT{background-image: url('../images/kind_ENHANCEMENT.png')}
 
 .striped
 {
@@ -506,9 +525,9 @@ span.name
     font-weight: bold;
     border-radius: 3px;
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #9bccff), color-stop(1, #6aa4df) );
-	background:-moz-linear-gradient( center top, #9bccff 5%, #6aa4df 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#9bccff', endColorstr='#6aa4df');
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #9bccff), color-stop(1, #6aa4df) );
+    background:-moz-linear-gradient( center top, #9bccff 5%, #6aa4df 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#9bccff', endColorstr='#6aa4df');
 }
 
 .form-submit:hover , .button:hover {

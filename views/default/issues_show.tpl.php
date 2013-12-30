@@ -99,26 +99,26 @@
                 <h5>Details</h5>
                 <dl>
                     <dt>Status</dt>
-                    <dd><?= $issue['status'] ?></dd>
+                    <dd class="status_<?= $issue['status'] ?>"><?= $issue['status'] ?></dd>
                     
                     <?php if($issue['kind'] != ''): ?>
                     <dt>Kind</dt>
-                    <dd><?= $issue['kind'] ?></dd>
+                    <dd class="kind_<?= $issue['kind'] ?>"><?= $issue['kind'] ?></dd>
                     <?php endif; ?>
                     
                     <?php if($issue['priority'] != ''): ?>
                     <dt>Priority</dt>
-                    <dd><?= $issue['priority'] ?></dd>
+                    <dd class="priority_<?= $issue['priority'] ?>"><?= $issue['priority'] ?></dd>
                     <?php endif; ?>
                     
                     <?php if($issue['milestone']['id'] != ''): ?>
                     <dt>Milestone</dt>
-                    <dd><?= $issue['milestone']['name'] ?></dd>
+                    <dd class="milestone"><?= $issue['milestone']['name'] ?><span class='small-date'> ⚫ Due <?= $helpers->date($issue['milestone']['due_date'])->sentence(array('elaborate_with' => 'ago')) ?></span></dd>
                     <?php endif; ?>
                     
                     <?php if($issue['component']['id'] != ''): ?>
                     <dt>Component</dt>
-                    <dd><?= $issue['component']['name'] ?></dd>
+                    <dd class="component"><?= $issue['component']['name'] ?></dd>
                     <?php endif; ?>
                     
                 </dl>

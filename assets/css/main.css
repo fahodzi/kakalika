@@ -30,9 +30,10 @@ body{
     border-top:1px dotted #f0f0f0;
 }
 
-a{
+a, .link{
     text-decoration: none;
     color:#62b0db;
+    cursor:pointer;
 }
 
 #body p{
@@ -690,4 +691,19 @@ a.block-operation{ background-image: url(../images/block_small.png) }
 
 #tool-header img{
     vertical-align: -45%;
+}
+
+.attachment-box{
+    background-color:#fafafa;
+    padding:10px;
+    margin-top:10px;
+    background-image:url(../images/attachment.png);
+    background-position: 99% 10px;
+    background-repeat: no-repeat;
+    padding-right:48px;
+    min-height: 48px;
+}
+
+#issue-attachments{
+    margin-bottom:10px;
 }

@@ -8,6 +8,11 @@
             ->add(load_asset('css/forms.css'))
             ->add(load_asset('css/grid.css'));
         ?>
+        <?= $helpers->javascript
+            ->add(load_asset('js/kakalika.js'))
+            ->add(load_asset('js/mustache.js'))
+            ->add(load_asset('js/jquery.js'))
+        ?>
     </head>
     <body>
         <div id="wrapper">
@@ -107,3 +112,5 @@ load_asset('images/milestone_small.png');
 load_asset('images/status_OPEN.png');
 load_asset('images/status_CLOSED.png');
 load_asset('images/status_RESOLVED.png');
+
+load_asset('images/attachment.png');

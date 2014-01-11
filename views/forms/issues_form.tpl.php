@@ -2,7 +2,7 @@
 $helpers->form->setData($data);
 $helpers->form->setErrors($errors);
 ?>
-<?= $helpers->form->open() ?>
+<?= $helpers->form->open()->attribute('enctype', 'multipart/form-data') ?>
 <div class="row">
     <div class="column grid_10_7">
         <div style="padding-right:15px">
@@ -11,6 +11,10 @@ $helpers->form->setErrors($errors);
         $helpers->form->get_text_area('Description', 'description')->id('description') 
         ?>
         <?php if($comment) echo $helpers->form->get_text_area('Comment', 'comment') ?>
+            <div class="attachment-box">
+                <div id="issue-attachments"></div>
+                <span id="attachment-link" class="link" onclick="kakalika.addUploadField()">Add Attachment</span>
+            </div>
         </div>
     </div>
     <div class="column grid_10_3">
@@ -36,3 +40,6 @@ $helpers->form->setErrors($errors);
         </div>
     </div>
 </div>
+<script type="text/html" id="upload-field">
+<?= $helpers->form->get_upload_field('', 'attachment[]') ?>    
+</script>    

@@ -22,6 +22,32 @@ class Issues extends Model
     
     private $originalIssue;
     private $updateData = array();
+    private $attachments = array();
+    
+    public function validate()
+    {
+        $valid = parent::validate();
+        
+        // Validate attachments
+        foreach($_FILES['attachment']['error'] as $index => $error)
+        {
+            if($error == UPLOAD_ERR_OK)
+            {
+                $this->attachments[] = array(
+                    'tmp_file' => $_FILES['attachment']['tmp_name'][$index],
+                    'name' => $_FILES['attachment']['name'][$index],
+                    'size' => $_FILES['attachment']['size'][$index],
+                    'type' => $_FILES['attachment']['type'][$index]
+                );
+            }
+            else
+            {
+                $valid = false;
+            }
+        }
+
+        return $valid;
+    }
     
     public function preUpdateCallback() 
     {
@@ -79,5 +105,21 @@ class Issues extends Model
         }
         $this->number = ++$project->number_of_issues;
         $project->update();
+    }
+    
+    public function postSaveCallback($id) 
+    {
+        foreach($this->attachments as $attachment)
+        {
+            $destination = "{$id}_0_{$attachment['name']}";
+            move_uploaded_file($attachment['tmp_file'], "uploads/$destination");
+            $issueAttachment = \kakalika\modules\issue_attachments\IssueAttachments::getNew();
+            $issueAttachment->issue_id = $id;
+            $issueAttachment->attachment_name = $destination;
+            $issueAttachment->type = $attachment['type'];
+            $issueAttachment->user_id = $_SESSION['user']['id'];
+            $issueAttachment->size = $attachment['size'];
+            $issueAttachment->save();
+        }
     }
 }

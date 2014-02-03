@@ -5,7 +5,18 @@
             <div style='padding:15px'><?= t('issue_slug.tpl.php', array('issue' => $issue)) ?></div>
             <p id='description'><?= $this->nl2br($issue['description']) ?></p>  
             
-            <h5>Comments (<?= count($issue['updates']) ?>)</h5>
+            <?php if(count($issue['issue_attachments']->unescape()) > 0): ?>
+            <h5>Attachments (<?= count($issue['issue_attachments']->unescape()) ?>)</h5>
+            <ul>
+            <?php foreach($issue['issue_attachments'] as $attachment): ?>
+                <li><a href='<?= u('issues/attachment/' . $attachment['id']) ?>'><?= $attachment['name'] ?></a></li>
+            <?php endforeach; ?>
+            </ul>
+            <?php endif; ?>
+            
+            <?php if(count($issue['updates']->unescape()) > 0): ?>
+            <h5>Comments (<?= count($issue['updates']->unescape()) ?>)</h5>
+            <?php endif; ?>
             
             <?php $stripe = true; foreach($issue['updates'] as $update): ?>
             <div class="update <?= $stripe ? 'striped' : '' ?>">
@@ -162,3 +173,4 @@
         </div>
     </div>
 </div>
+

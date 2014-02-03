@@ -14,7 +14,7 @@ class Issues extends Model
         'component'
     );
     
-    public $hasMany = array('updates');
+    public $hasMany = array('updates', 'issue_attachments');
     
     public $behaviours = array(
         'timestampable'
@@ -29,20 +29,23 @@ class Issues extends Model
         $valid = parent::validate();
         
         // Validate attachments
-        foreach($_FILES['attachment']['error'] as $index => $error)
+        if(count($_FILES['attachment']) > 0)
         {
-            if($error == UPLOAD_ERR_OK)
+            foreach($_FILES['attachment']['error'] as $index => $error)
             {
-                $this->attachments[] = array(
-                    'tmp_file' => $_FILES['attachment']['tmp_name'][$index],
-                    'name' => $_FILES['attachment']['name'][$index],
-                    'size' => $_FILES['attachment']['size'][$index],
-                    'type' => $_FILES['attachment']['type'][$index]
-                );
-            }
-            else
-            {
-                $valid = false;
+                if($error == UPLOAD_ERR_OK)
+                {
+                    $this->attachments[] = array(
+                        'tmp_file' => $_FILES['attachment']['tmp_name'][$index],
+                        'name' => $_FILES['attachment']['name'][$index],
+                        'size' => $_FILES['attachment']['size'][$index],
+                        'type' => $_FILES['attachment']['type'][$index]
+                    );
+                }
+                else
+                {
+                    $valid = false;
+                }
             }
         }
 
@@ -115,7 +118,8 @@ class Issues extends Model
             move_uploaded_file($attachment['tmp_file'], "uploads/$destination");
             $issueAttachment = \kakalika\modules\issue_attachments\IssueAttachments::getNew();
             $issueAttachment->issue_id = $id;
-            $issueAttachment->attachment_name = $destination;
+            $issueAttachment->attachment_file = $destination;
+            $issueAttachment->name = $attachment['name'];
             $issueAttachment->type = $attachment['type'];
             $issueAttachment->user_id = $_SESSION['user']['id'];
             $issueAttachment->size = $attachment['size'];

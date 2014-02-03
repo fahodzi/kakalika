@@ -156,6 +156,27 @@ class IssuesController extends \kakalika\lib\KakalikaController
         }
     }
     
+    public function attachment($id)
+    {
+        $this->view->template = false;
+        $this->view->layout = false;
+        $attachment = \kakalika\modules\issue_attachments\IssueAttachments::getJustFirstWithId($id);
+        $file = "uploads/{$attachment->attachment_file}";
+        
+        $this->view->setContentType($attachment->type);
+        header("Content-Disposition: attachment; filename=\"{$attachment->name}\"");
+        
+        if(file_exists($file))
+        {
+            header("Content-Length: {$attachment->size}");
+            echo file_get_contents($file);
+        }
+        else
+        {
+            header('HTTP/1.0 404 Not Found');
+        }
+    }
+    
     public function create()
     {
         if(isset($_POST['title']))

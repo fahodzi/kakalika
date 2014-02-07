@@ -6,10 +6,12 @@
             <p id='description'><?= $this->nl2br($issue['description']) ?></p>  
             
             <?php if(count($issue['issue_attachments']->unescape()) > 0): ?>
-            <h5>Attachments (<?= count($issue['issue_attachments']->unescape()) ?>)</h5>
-            <ul>
+            <ul class="main-attachment-box">
             <?php foreach($issue['issue_attachments'] as $attachment): ?>
-                <li><a href='<?= u('issues/attachment/' . $attachment['id']) ?>'><?= $attachment['name'] ?></a></li>
+                <li>
+                    <a href='<?= u('issues/attachment/' . $attachment['id']) ?>'><?= $attachment['name'] ?></a>
+                    <br/><span class="small-date"><?= $helpers->file_size($attachment['size']->unescape()) ?></span>
+                </li>
             <?php endforeach; ?>
             </ul>
             <?php endif; ?>

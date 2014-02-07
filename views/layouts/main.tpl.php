@@ -114,3 +114,4 @@ load_asset('images/status_CLOSED.png');
 load_asset('images/status_RESOLVED.png');
 
 load_asset('images/attachment.png');
+load_asset('images/attached_file.png');

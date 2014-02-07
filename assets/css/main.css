@@ -704,6 +704,21 @@ a.block-operation{ background-image: url(../images/block_small.png) }
     min-height: 48px;
 }
 
-#issue-attachments{
-    margin-bottom:10px;
+.main-attachment-box{
+    margin-right: 10px;
+    padding:10px;
+    list-style: none;
+    border-top:1px #f8f8f8 solid;
+    border-bottom:1px #f8f8f8 solid;
 }
+
+.main-attachment-box > li{
+    display: inline-block;
+    margin:0px;
+    padding:10px;
+    background-image:url(../images/attached_file.png);
+    background-repeat: no-repeat;
+    background-position-y: 50%;
+    padding-left: 36px;
+}
+

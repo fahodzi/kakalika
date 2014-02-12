@@ -6,8 +6,9 @@
             <p id='description'><?= $this->nl2br($issue['description']) ?></p>  
             
             <?php if(count($issue['issue_attachments']->unescape()) > 0): ?>
-            <ul class="main-attachment-box">
+            <ul class="attachment-display-box">
             <?php foreach($issue['issue_attachments'] as $attachment): ?>
+                <?php if($attachment['update_id'] != '')  continue; ?>
                 <li>
                     <a href='<?= u('issues/attachment/' . $attachment['id']) ?>'><?= $attachment['name'] ?></a>
                     <br/><span class="small-date"><?= $helpers->file_size($attachment['size']->unescape()) ?></span>
@@ -55,18 +56,34 @@
                 <?php endif; ?>
                 
                 <?php if(count($changes) > 0): ?>
-                <ul>
+                <ul class="changes-list">
                     <?php foreach($changes as $change): ?>
                     <li><?= $change ?></li>
                     <?php endforeach; ?>
                 </ul>
-                <?php endif; ?>   
+                <?php endif; ?> 
+                
+                <?php if(count($update['issue_attachments']->unescape()) > 0): ?>
+                <ul class="attachment-display-box sub-attachment-box">
+                <?php foreach($update['issue_attachments'] as $attachment): ?>
+                    <li>
+                        <a href='<?= u('issues/attachment/' . $attachment['id']) ?>'><?= $attachment['name'] ?></a>
+                        <br/><span class="small-date"><?= $helpers->file_size($attachment['size']->unescape()) ?></span>
+                    </li>
+                <?php endforeach; ?>
+                </ul>
+                <?php endif; ?>
+                
+                
             </div>
             
             <?php $stripe = !$stripe; endforeach; ?>
             
-            <?= $helpers->form->open() . $helpers->form->get_text_area('Comment', 'comment') ?>
-            
+            <?= $helpers->form->open()->attribute('enctype', 'multipart/form-data') . $helpers->form->get_text_area('Comment', 'comment') ?>  
+            <div class="attachment-box">
+                <div id="issue-attachments"></div>
+                <span id="attachment-link" class="link" onclick="kakalika.addUploadField()">Add Attachment</span>
+            </div>
             <?php
                 switch ($issue['status'])
                 {
@@ -176,3 +193,6 @@
     </div>
 </div>
 
+<script type="text/html" id="upload-field">
+<?= $helpers->form->get_upload_field('', 'attachment[]') ?>    
+</script>

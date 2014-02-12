@@ -91,7 +91,22 @@ class Issues extends Model
             $update = \kakalika\modules\updates\Updates::getNew();
             $update->setData($this->updateData);
             $update->updateIssue = false;
-            $update->save();
+            $updateId = $update->save();
+                        
+            foreach($this->attachments as $attachment)
+            {
+                $destination = uniqid() . "_{$attachment['name']}";
+                move_uploaded_file($attachment['tmp_file'], "uploads/$destination");
+                $issueAttachment = \kakalika\modules\issue_attachments\IssueAttachments::getNew();
+                $issueAttachment->issue_id = $this->id;
+                $issueAttachment->attachment_file = $destination;
+                $issueAttachment->name = $attachment['name'];
+                $issueAttachment->type = $attachment['type'];
+                $issueAttachment->user_id = $_SESSION['user']['id'];
+                $issueAttachment->size = $attachment['size'];
+                $issueAttachment->update_id = $updateId;
+                $issueAttachment->save();
+            }
         }
     }
     
@@ -114,7 +129,7 @@ class Issues extends Model
     {
         foreach($this->attachments as $attachment)
         {
-            $destination = "{$id}_0_{$attachment['name']}";
+            $destination = uniqid() . "_{$attachment['name']}";
             move_uploaded_file($attachment['tmp_file'], "uploads/$destination");
             $issueAttachment = \kakalika\modules\issue_attachments\IssueAttachments::getNew();
             $issueAttachment->issue_id = $id;

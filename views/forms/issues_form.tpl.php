@@ -42,4 +42,4 @@ $helpers->form->setErrors($errors);
 </div>
 <script type="text/html" id="upload-field">
 <?= $helpers->form->get_upload_field('', 'attachment[]') ?>    
-</script>    
+</script>

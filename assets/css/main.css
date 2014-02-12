@@ -486,7 +486,7 @@ span.name
     margin-left:69px;
 }
 
-.issue_view .update ul
+.issue_view .update ul.changes-list
 {
     margin:0px;
     padding:15px;
@@ -498,7 +498,7 @@ span.name
     background-color: #fbfbfb;
 }
 
-.issue_view .update ul li{
+.issue_view .update ul.changes-list li{
     padding:3px;
 }
 
@@ -704,7 +704,7 @@ a.block-operation{ background-image: url(../images/block_small.png) }
     min-height: 48px;
 }
 
-.main-attachment-box{
+.attachment-display-box{
     margin-right: 10px;
     padding:10px;
     list-style: none;
@@ -712,7 +712,7 @@ a.block-operation{ background-image: url(../images/block_small.png) }
     border-bottom:1px #f8f8f8 solid;
 }
 
-.main-attachment-box > li{
+.attachment-display-box > li{
     display: inline-block;
     margin:0px;
     padding:10px;
@@ -720,5 +720,13 @@ a.block-operation{ background-image: url(../images/block_small.png) }
     background-repeat: no-repeat;
     background-position-y: 50%;
     padding-left: 36px;
+    width:180px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;    
+    
 }
 
+.sub-attachment-box{
+    margin-left:69px;
+}

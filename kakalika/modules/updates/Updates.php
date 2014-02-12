@@ -10,6 +10,8 @@ class Updates extends \ntentan\models\Model
         'component'
     );
     
+    public $hasMany = array('issue_attachments');    
+    
     public $behaviours = array(
         'timestampable'
     );

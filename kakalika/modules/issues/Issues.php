@@ -122,6 +122,7 @@ class Issues extends Model
             $this->assigned = date('Y-m-d H:i:s');
         }
         $this->number = ++$project->number_of_issues;
+        $this->updated = date('Y-m-d H:i:s');
         $project->update();
     }
     

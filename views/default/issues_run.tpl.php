@@ -1,8 +1,16 @@
 <div id="tool-header">
     <div class="row">
-        <div class="column grid_10_7"><h4><?= $title ?></h4></div>
-        <div class="column grid_10_3" style="text-align:right">
-            <img src="<?= u(load_asset('images/filter.png')) ?>" /><select onchange="document.location='?filter=' + this.value">
+        <div class="column grid_10_5"><h4><?= $title ?></h4></div>
+        <div class="column grid_10_5" style="text-align:right">
+            <img src="<?= u(load_asset('images/sort.png')) ?>" />
+            <select onchange="document.location='?filter=' + this.value">
+                <option></option>
+                <?php foreach($filters as $filter => $label): ?>
+                <option value="<?= $filter ?>" <?= $filter === $_GET['filter'] ? "selected='selected'" : "" ?> ><?= $label ?></option>
+                <?php endforeach; ?>
+            </select>            
+            <img src="<?= u(load_asset('images/filter.png')) ?>" />
+            <select onchange="document.location='?filter=' + this.value">
                 <option></option>
                 <?php foreach($filters as $filter => $label): ?>
                 <option value="<?= $filter ?>" <?= $filter === $_GET['filter'] ? "selected='selected'" : "" ?> ><?= $label ?></option>

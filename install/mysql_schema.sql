@@ -61,6 +61,44 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `components`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `components` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `description` TEXT NULL,
+  `project_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC),
+  INDEX `fk_components_1_idx` (`project_id` ASC),
+  CONSTRAINT `fk_components_1`
+    FOREIGN KEY (`project_id`)
+    REFERENCES `projects` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `milestones`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `milestones` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `description` TEXT NULL,
+  `due_date` DATE NULL,
+  `project_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_milestones_1_idx` (`project_id` ASC),
+  CONSTRAINT `fk_milestones_1`
+    FOREIGN KEY (`project_id`)
+    REFERENCES `projects` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `issues`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `issues` (
@@ -79,29 +117,43 @@ CREATE TABLE IF NOT EXISTS `issues` (
   `updater` INT NULL,
   `assigned` TIMESTAMP NULL,
   `number_of_updates` INT NULL,
+  `milestone_id` INT NULL,
+  `component_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_issues_1_idx` (`project_id` ASC),
   INDEX `fk_issues_2_idx` (`assignee` ASC),
   INDEX `fk_issues_3_idx` (`opener` ASC),
   INDEX `fk_issues_4_idx` (`updater` ASC),
-  CONSTRAINT `fk_issues_1`
+  INDEX `fk_issues_5_idx` (`component_id` ASC),
+  INDEX `fk_issues_6_idx` (`milestone_id` ASC),
+  CONSTRAINT `fk_issues_projects`
     FOREIGN KEY (`project_id`)
     REFERENCES `projects` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_issues_2`
+  CONSTRAINT `fk_issues_users_assignee`
     FOREIGN KEY (`assignee`)
     REFERENCES `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_issues_3`
+  CONSTRAINT `fk_issues_users_opener`
     FOREIGN KEY (`opener`)
     REFERENCES `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_issues_4`
+  CONSTRAINT `fk_issues_users_updater`
     FOREIGN KEY (`updater`)
     REFERENCES `users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_issues_components`
+    FOREIGN KEY (`component_id`)
+    REFERENCES `components` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_issues_milestones`
+    FOREIGN KEY (`milestone_id`)
+    REFERENCES `milestones` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -122,6 +174,8 @@ CREATE TABLE IF NOT EXISTS `updates` (
   `kind` VARCHAR(45) NULL,
   `priority` VARCHAR(45) NULL,
   `number` INT(11) NOT NULL,
+  `milestone_id` INT NULL,
+  `component_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_activities_1_idx` (`issue_id` ASC),
   INDEX `fk_activities_2_idx` (`user_id` ASC),
@@ -131,6 +185,36 @@ CREATE TABLE IF NOT EXISTS `updates` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_activities_2`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `issue_attachments`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `issue_attachments` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `issue_id` INT UNSIGNED NOT NULL,
+  `attachment_file` VARCHAR(255) NOT NULL,
+  `type` VARCHAR(45) NULL,
+  `user_id` INT NOT NULL,
+  `update_id` INT NULL,
+  `created` TIMESTAMP NULL,
+  `size` MEDIUMTEXT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_issue_attachments_1_idx` (`issue_id` ASC),
+  INDEX `fk_issue_attachments_2_idx` (`user_id` ASC),
+  UNIQUE INDEX `attachment_file_UNIQUE` (`attachment_file` ASC),
+  CONSTRAINT `fk_issue_attachments_1`
+    FOREIGN KEY (`issue_id`)
+    REFERENCES `issues` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_issue_attachments_2`
     FOREIGN KEY (`user_id`)
     REFERENCES `users` (`id`)
     ON DELETE NO ACTION

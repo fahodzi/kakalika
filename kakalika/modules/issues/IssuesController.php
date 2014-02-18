@@ -107,18 +107,41 @@ class IssuesController extends \kakalika\lib\KakalikaController
                     'opener' => $_SESSION['user']['id']
                 );
                 break;
+            
+            case 'unassigned':
+                $filters = array(
+                    'assignee' => null
+                );
+                break;            
+        }
+        
+        switch($_GET['sorter'])
+        {
+            case 'created':
+                $sort = 'created desc';
+                break;
+            case 'updated':
+                $sort = 'updated desc';
+                break;
+            case 'kind':
+                $sort = 'kind desc';
+                break;
+            case 'priority':
+                $sort = 'priority desc';
+                break;
         }
         
         $issues = Issues::getAllWithProjectId(
             $this->project->id,
             array(
-                'sort' => 'updated DESC',
+                'sort' => $sort,
                 'conditions' => $filters
             )
         );
         
         $this->set('issues', $issues);
         $this->set('title', "{$this->project->name} issues");
+        
         $this->set(
             'filters', 
             array(
@@ -127,7 +150,18 @@ class IssuesController extends \kakalika\lib\KakalikaController
                 'reported' => 'Issues opened by me',
                 'open' => 'All open issues',
                 'closed' => 'All closed issues',
-                'resolved' => 'All resolved issues'
+                'resolved' => 'All resolved issues',
+                'unassigned' => 'Unasigned issues'
+            )
+        );
+        
+        $this->set(
+            'sorters', 
+            array(
+                'created' => 'Creation Date',
+                'updated' => 'Last updated',
+                'kind' => 'Issue kind',
+                'priority' => 'Issue priority'
             )
         );
     }

@@ -3,14 +3,14 @@
         <div class="column grid_10_5"><h4><?= $title ?></h4></div>
         <div class="column grid_10_5" style="text-align:right">
             <img src="<?= u(load_asset('images/sort.png')) ?>" />
-            <select onchange="document.location='?filter=' + this.value">
+            <select onchange="document.location='?sorter=' + this.value + ('<?= $_GET['filter'] ?>' != '' ? '&filter=<?= $_GET['filter'] ?>' : '')">
                 <option></option>
-                <?php foreach($filters as $filter => $label): ?>
-                <option value="<?= $filter ?>" <?= $filter === $_GET['filter'] ? "selected='selected'" : "" ?> ><?= $label ?></option>
+                <?php foreach($sorters as $sorter => $label): ?>
+                <option value="<?= $sorter ?>" <?= $sorter === $_GET['sorter'] ? "selected='selected'" : "" ?> ><?= $label ?></option>
                 <?php endforeach; ?>
             </select>            
             <img src="<?= u(load_asset('images/filter.png')) ?>" />
-            <select onchange="document.location='?filter=' + this.value">
+            <select onchange="document.location='?filter=' + this.value + ('<?= $_GET['sorter'] ?>' != '' ? '&sorter=<?= $_GET['sorter'] ?>' : '')">
                 <option></option>
                 <?php foreach($filters as $filter => $label): ?>
                 <option value="<?= $filter ?>" <?= $filter === $_GET['filter'] ? "selected='selected'" : "" ?> ><?= $label ?></option>

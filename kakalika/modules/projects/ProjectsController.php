@@ -5,7 +5,7 @@ use ntentan\Ntentan;
 use kakalika\modules\issues\Issues;
 
 class ProjectsController extends \kakalika\lib\KakalikaController
-{
+{    
     private $userProjects;
     
     public function init()
@@ -15,9 +15,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         $this->set('sub_section', 'Projects');
         $this->set('title', 'Projects');
         
-        $this->userProjects = \kakalika\modules\user_projects\UserProjects::getAllWithUserId(
-            $this->authComponent->userId()
-        ); 
+        $this->userProjects = $this->getUserProjects();
            
         
         if($GLOBALS['ROUTE_MODE'] == 'admin' && $_SESSION['user']['is_admin'] == true)
@@ -87,6 +85,10 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         }
         else if(Ntentan::$route == 'projects')
         {
+            
+        }
+        /*else if(Ntentan::$route == 'projects')
+        {
             $this->set('sub_section_path', 'projects');
             if($_SESSION['user']['is_admin'])
             {
@@ -111,15 +113,17 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                 
                 $this->set('sub_section_menu_sub_menu', $projectsMenu);
             }
-        }
+        }*/
         else if(Ntentan::$route == 'projects/create' && $_SESSION['user']['is_admin'])
         {
             // Just allow the admins to go through
         }
         else
         {
+            // Throw an exception for others
             throw new \ntentan\exceptions\RouteNotAvailableException();            
         }
+        $this->setupCreateIssueButton();
     }
     
     public function run()

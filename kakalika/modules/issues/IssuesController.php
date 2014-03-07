@@ -30,6 +30,8 @@ class IssuesController extends \kakalika\lib\KakalikaController
             {
                 throw new \ntentan\exceptions\RouteNotAvailableException();
             }
+            
+            $this->setupCreateIssueButton();
         }   
     }
     
@@ -240,6 +242,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
         }
         else
         {
+            $this->set('projects', $this->getUserProjects());
             $this->view->template = 'issues_select_project.tpl.php';
         }
            

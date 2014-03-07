@@ -1,7 +1,3 @@
-/**
-Colour schemes
-**/
-
 @CHARSET "UTF-8";
 
 body{
@@ -293,6 +289,10 @@ ul#side-menu > li.menu-fully-matched > a{
 ul#side-menu > li{
     display:block;
     border-bottom: 1px solid #f0f0f0;
+}
+
+ul#side-menu{
+    display:block;
 }
 
 #menu-item-admin-users > a { background-image:url(../images/users.png) }
@@ -753,4 +753,25 @@ a.block-operation{ background-image: url(../images/block_small.png) }
 
 .sub-attachment-box{
     margin-left:69px;
+}
+
+ul.spreadout-list{
+    list-style: none;
+    margin:0px;
+    padding:0px;
+}
+
+ul.spreadout-list > li{
+    list-style: none;
+    margin:10px;
+    padding:10px;
+    display: inline-block;
+    width:270px;
+    height:80px;
+    overflow: hidden;
+    text-overflow:ellipsis
+}
+
+#projects-list > li{
+    border:none;
 }

@@ -51,10 +51,10 @@
                         <h3><a href="<?= u($sub_section_path) ?>"><?= $sub_section ?></a></h3>
                     </div>
                     <div class="column grid_10_3" align="right">
-                        <?php if(count($sub_section_menu) > 0){
-                            echo $widgets->menu($sub_section_menu_sub_menu)->alias('sub-sub')->addCssClass('.hideable');
-                            echo $widgets->menu($sub_section_menu)->alias('sub');
-                        }?>
+                        <?php 
+                        if(count($sub_section_menu_sub_menu) > 0) echo $widgets->menu($sub_section_menu_sub_menu)->alias('sub-sub')->addCssClass('.hideable');
+                        if(count($sub_section_menu) > 0) echo $widgets->menu($sub_section_menu)->alias('sub');
+                        ?>
                     </div>
                 </div>
             </div>

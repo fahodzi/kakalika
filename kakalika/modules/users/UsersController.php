@@ -42,17 +42,9 @@ class UsersController extends KakalikaController
         $this->set('title', 'Users');
         
         if($GLOBALS['ROUTE_MODE'] == 'admin' && $_SESSION['user']['is_admin'] == true)
-        {
-            /*$this->set('sub_section_menu', 
-                array(
-                    array(
-                        'label' => 'Add a new uesr',
-                        'url' => \ntentan\Ntentan::getUrl("admin/users/add"),
-                        'id' => 'menu-item-users-add'
-                    )
-                )
-            );*/        
+        {      
             $this->set('sub_section_path', 'admin/users');            
+            $this->setupCreateIssueButton();
         }
         else if(Ntentan::$requestedRoute != 'account')
         {

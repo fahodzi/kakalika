@@ -85,35 +85,8 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         }
         else if(Ntentan::$route == 'projects')
         {
-            
-        }
-        /*else if(Ntentan::$route == 'projects')
-        {
             $this->set('sub_section_path', 'projects');
-            if($_SESSION['user']['is_admin'])
-            {
-                $this->set('sub_section_menu', 
-                    array(
-                        array(
-                            'label' => 'Create a new issue',
-                            'url' => Ntentan::getUrl('issues/create'),
-                            'id' => 'menu-item-issues-create'
-                        )
-                    )
-                );
-                $projectsMenu = array();
-                
-                foreach($this->userProjects as $userProject)
-                {
-                    $projectsMenu[] = array(
-                        'label' => $userProject->project->name,
-                        'url' => Ntentan::getUrl($userProject->project->code . "/issues/create")
-                    );
-                }
-                
-                $this->set('sub_section_menu_sub_menu', $projectsMenu);
-            }
-        }*/
+        }
         else if(Ntentan::$route == 'projects/create' && $_SESSION['user']['is_admin'])
         {
             // Just allow the admins to go through

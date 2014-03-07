@@ -43,7 +43,7 @@ class UsersController extends KakalikaController
         
         if($GLOBALS['ROUTE_MODE'] == 'admin' && $_SESSION['user']['is_admin'] == true)
         {
-            $this->set('sub_section_menu', 
+            /*$this->set('sub_section_menu', 
                 array(
                     array(
                         'label' => 'Add a new uesr',
@@ -51,7 +51,7 @@ class UsersController extends KakalikaController
                         'id' => 'menu-item-users-add'
                     )
                 )
-            );        
+            );*/        
             $this->set('sub_section_path', 'admin/users');            
         }
         else if(Ntentan::$requestedRoute != 'account')

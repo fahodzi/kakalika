@@ -23,7 +23,7 @@ class SubmoduleComponent extends \ntentan\controllers\components\Component
         $this->set('id', $id);
         $this->set('sub_section', $this->modules[$module]['title']);
         $this->set('sub_section_path', "admin/projects/$module/$id");
-        $this->set('sub_section_menu', 
+        /*$this->set('sub_section_menu', 
             array(
                 array(
                     'label' => "Add a new {$this->modules[$module]['item']}",
@@ -31,7 +31,7 @@ class SubmoduleComponent extends \ntentan\controllers\components\Component
                     'id' => "menu-item-projects-$module-add"
                 )
             )
-        ); 
+        );*/ 
                     
         switch($command)
         {

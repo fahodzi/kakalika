@@ -195,6 +195,7 @@ ul.menu{
    list-style: none;
    margin:0px;
    padding:0px;
+   display:inline-block;
 }
 
 ul.menu > li{
@@ -238,6 +239,34 @@ ul.menu > li.menu-selected > a{
     color:#000;
 }
 
+#sub-sub-menu {
+    position:absolute;
+    background-color:#fafafa;
+    min-width: 204px;
+    text-align: left;
+    font-size:smaller;
+    margin-top: 53px;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
+    display: none;
+}
+
+#sub-sub-menu > li{
+    display:block;
+}
+
+#sub-menu > li:hover{
+    background-color:#f0f0f0;
+}
+
+#sub-sub-menu > li > a{
+    display:block;
+    padding:10px;
+}
+
+#sub-sub-menu > li > a:hover{
+    background-color:#f0f0f0;
+}
+
 #menu-item-projects-create > a, #menu-item-admin-projects-create > a { background-image: url(../images/add_project.png) }
 #menu-item-issues-create > a { background-image: url(../images/add_issue.png) }
 #menu-item-users-add > a { background-image: url(../images/add_user.png) }
@@ -275,11 +304,6 @@ ul#side-menu > li{
 #menu-item-admin-projects-components > a { background-image:url(../images/components.png) }
 
 #menu-item-issues-edit > a, #menu-item-admin-projects-edit > a { background-image:url(../images/edit_big.png) }
-
-#sub-menu > li:hover{
-    
-    background-color:#f0f0f0;
-}
 
 table.project-info-list{
     width:100%;

@@ -9,9 +9,9 @@
             ->add(load_asset('css/grid.css'));
         ?>
         <?= $helpers->javascript
-            ->add(load_asset('js/kakalika.js'))
             ->add(load_asset('js/mustache.js'))
             ->add(load_asset('js/jquery.js'))
+            ->add(load_asset('js/kakalika.js'))
         ?>
     </head>
     <body>
@@ -52,6 +52,7 @@
                     </div>
                     <div class="column grid_10_3" align="right">
                         <?php if(count($sub_section_menu) > 0){
+                            echo $widgets->menu($sub_section_menu_sub_menu)->alias('sub-sub')->addCssClass('.hideable');
                             echo $widgets->menu($sub_section_menu)->alias('sub');
                         }?>
                     </div>

@@ -6,6 +6,8 @@ use kakalika\modules\issues\Issues;
 
 class ProjectsController extends \kakalika\lib\KakalikaController
 {
+    private $userProjects;
+    
     public function init()
     {
         parent::init();
@@ -13,18 +15,23 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         $this->set('sub_section', 'Projects');
         $this->set('title', 'Projects');
         
+        $this->userProjects = \kakalika\modules\user_projects\UserProjects::getAllWithUserId(
+            $this->authComponent->userId()
+        ); 
+           
+        
         if($GLOBALS['ROUTE_MODE'] == 'admin' && $_SESSION['user']['is_admin'] == true)
         {
             $this->set('admin', true);
             $this->set('sub_section_path', 'admin/projects');
-            $this->set('sub_section_menu', 
+            /*$this->set('sub_section_menu', 
                 array(
                     array(
                         'label' => 'Create a new project',
                         'url' => Ntentan::getUrl('admin/projects/create')
                     )
                 )
-            );       
+            );*/       
             $this->addComponent('submodule', 
                 array(
                     'milestones' => array(
@@ -86,11 +93,23 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                 $this->set('sub_section_menu', 
                     array(
                         array(
-                            'label' => 'Create a new project',
-                            'url' => Ntentan::getUrl('projects/create')
+                            'label' => 'Create a new issue',
+                            'url' => Ntentan::getUrl('issues/create'),
+                            'id' => 'menu-item-issues-create'
                         )
                     )
                 );
+                $projectsMenu = array();
+                
+                foreach($this->userProjects as $userProject)
+                {
+                    $projectsMenu[] = array(
+                        'label' => $userProject->project->name,
+                        'url' => Ntentan::getUrl($userProject->project->code . "/issues/create")
+                    );
+                }
+                
+                $this->set('sub_section_menu_sub_menu', $projectsMenu);
             }
         }
         else if(Ntentan::$route == 'projects/create' && $_SESSION['user']['is_admin'])
@@ -117,11 +136,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         }
         else
         {
-            $projects = \kakalika\modules\user_projects\UserProjects::getAllWithUserId(
-                $this->authComponent->userId()
-            );
-            
-            $projects = $projects->toArray();     
+            $projects = $this->userProjects->toArray();     
             foreach($projects as $i => $project)
             {
                 $myOpen = Issues::getJustCount(

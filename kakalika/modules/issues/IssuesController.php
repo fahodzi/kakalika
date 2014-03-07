@@ -232,8 +232,17 @@ class IssuesController extends \kakalika\lib\KakalikaController
                 );
             }
         }
-        $this->set('title', "Create a new {$this->project->name} issue");
-        $this->setupOptions();        
+        
+        if($this->project->id)
+        {
+            $this->set('title', "Create a new {$this->project->name} issue");
+            $this->setupOptions();                 
+        }
+        else
+        {
+            $this->view->template = 'issues_select_project.tpl.php';
+        }
+           
     }
     
     private function setupOptions()

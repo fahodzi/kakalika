@@ -1,6 +1,11 @@
 <h4><?= $title ?></h4>
 <div class="row">
     <div class="column grid_10_7">
+        <div class="tool-section">
+            <a href="<?= u($add_path) ?>" class="button greenbutton add-operation">
+                <img src="<?= u(load_asset("images/add_{$item_type}.png")) ?>"/> Add a new <?= $item_type ?> to <?= $project ?>
+            </a>
+        </div>        
         <div class="p15">
         <?php
             $helpers->list->headers = array($item_type, '');

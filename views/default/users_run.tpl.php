@@ -1,6 +1,13 @@
 <h4>List of users</h4>
 <div class="row">
     <div class="column grid_10_7">
+        
+        <div class="tool-section">
+            <a href="<?= u('admin/users/add') ?>" class="button greenbutton add-operation">
+                <img src="<?= u(load_asset('images/add_user.png')) ?>"/> Add a new user
+            </a>
+        </div>
+        
         <div class="p15">
         <?php
         $helpers->list->headers = array('Firstname', 'Lastname', 'Username', 'Email', '');

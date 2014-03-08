@@ -1,19 +1,24 @@
 <?php if($admin): ?>
 <h4>List of projects</h4>    
-    <div class="row">
-        <div class="column grid_10_7">
-            <div class="p15">
-            <?php
-            $helpers->list->headers = array('Name', '');
-            $helpers->list->data = $projects;
-            $helpers->list->cellTemplates['id'] = 'projects_run_operations.tpl.php';
-            
-            echo $helpers->list;
-            ?>
-            </div>
-        </div>    
-        <div class="column grid_10_3"><?= t('admin_side_menu.tpl.php') ?></div>
-    </div>
+<div class="row">
+    <div class="column grid_10_7">
+        <div class="tool-section">
+            <a href="<?= u('admin/projects/create') ?>" class="button greenbutton add-operation">
+                <img src="<?= u(load_asset('images/add_project.png')) ?>"/> Add a new project
+            </a>
+        </div>
+        <div class="p15">
+        <?php
+        $helpers->list->headers = array('Name', '');
+        $helpers->list->data = $projects;
+        $helpers->list->cellTemplates['id'] = 'projects_run_operations.tpl.php';
+
+        echo $helpers->list;
+        ?>
+        </div>
+    </div>    
+    <div class="column grid_10_3"><?= t('admin_side_menu.tpl.php') ?></div>
+</div>
 
 <?php else: ?>
 <table class="project-info-list">

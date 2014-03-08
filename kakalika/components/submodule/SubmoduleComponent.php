@@ -127,6 +127,8 @@ class SubmoduleComponent extends \ntentan\controllers\components\Component
             $this->set('items', $items);    
             $this->set('item_type', $this->modules[$module]['item']);
             $this->set('id', $id);
+            $this->set('add_path', "admin/projects/$module/$id/add");
+            
         }                    
     }
 }

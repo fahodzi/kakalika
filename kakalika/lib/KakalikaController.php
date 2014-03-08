@@ -40,7 +40,7 @@ class KakalikaController extends Controller
             array(
                 array(
                     'label' => 'Create a new issue',
-                    'url' => Ntentan::getUrl('issues/create'),
+                    'url' => $GLOBALS['ROUTE_MODE'] == 'project' ? Ntentan::getUrl("{$GLOBALS['ROUTE_PROJECT_CODE']}/issues/create") : Ntentan::getUrl('issues/create'),
                     'id' => 'menu-item-issues-create'
                 )
             )

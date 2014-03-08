@@ -20,4 +20,4 @@ echo $helpers->form->open();
         </div>
     </div>
 </div>
-<?= $helpers->form->close('Create Project') ?>
+<?= $helpers->form->close('Save') ?>

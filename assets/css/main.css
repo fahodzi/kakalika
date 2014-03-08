@@ -302,6 +302,7 @@ ul#side-menu{
 #menu-item-admin-projects-delete > a { background-image:url(../images/delete_project.png) }
 #menu-item-admin-projects-milestones > a { background-image:url(../images/milestones.png) }
 #menu-item-admin-projects-components > a { background-image:url(../images/components.png) }
+#menu-item-admin-projects-email > a { background-image:url(../images/email.png) }
 
 #menu-item-issues-edit > a, #menu-item-admin-projects-edit > a { background-image:url(../images/edit_big.png) }
 

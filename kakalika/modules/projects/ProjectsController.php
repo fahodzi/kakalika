@@ -21,15 +21,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         if($GLOBALS['ROUTE_MODE'] == 'admin' && $_SESSION['user']['is_admin'] == true)
         {
             $this->set('admin', true);
-            $this->set('sub_section_path', 'admin/projects');
-            /*$this->set('sub_section_menu', 
-                array(
-                    array(
-                        'label' => 'Create a new project',
-                        'url' => Ntentan::getUrl('admin/projects/create')
-                    )
-                )
-            );*/       
+            $this->set('sub_section_path', 'admin/projects');    
             $this->addComponent('submodule', 
                 array(
                     'milestones' => array(
@@ -45,7 +37,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                         'items' => 'components',
                         'model' => 'components',
                         'fields' => array('name', 'id')
-                    ),                    
+                    ),  
                     'members' => array(
                         'title' => 'Project Members',
                         'item' => 'member',
@@ -152,6 +144,38 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         
         
         $this->set('projects', $projects);
+    }
+    
+    public function email($id)
+    {
+        $project = $this->model->getFirstWithId($id);
+        $this->set('id', $id);
+        $this->set('project', $project->toArray());
+        
+        if(isset($_POST['incoming_server_host']))
+        {
+            $emailSettings = email_settings\EmailSettings::getFirstWithProjectId($id);
+            if($emailSettings->count() == 0)
+            {
+                $emailSettings = email_settings\EmailSettings::getNew();
+                $emailSettings->setData($_POST);
+                $emailSettings->project_id = $id;
+                $emailSettings->save();
+            }
+            else
+            {
+                $emailSettings->incoming_server_ssl = 0;
+                $emailSettings->outgoing_server_authentication = 0;
+                $emailSettings->setData($_POST);
+                $emailSettings->update();
+            }
+            Ntentan::redirect(Ntentan::$requestedRoute);
+        }
+        else
+        {
+            $emailSettings = email_settings\EmailSettings::getFirstWithProjectId($id);
+            $this->set('settings', $emailSettings->toArray());
+        }
     }
     
     public function edit($code)

@@ -14,6 +14,8 @@ can:
 - Give your issues statuses with our simple built in workflow
 - Categorize all your issues with our built in categories
 - Comment on issues and keep track of all the history of comments
+- Track your projects with milestones
+- Categorize issues by components to which they belong in your project
 
 Installing Kakalika
 -------------------

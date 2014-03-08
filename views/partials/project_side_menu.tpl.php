@@ -21,6 +21,11 @@
             'id' => 'menu-item-admin-projects-members'
         ),
         array(
+            'label' => 'Email Integration',
+            'url' => u("admin/projects/email/$id"),
+            'id' => 'menu-item-admin-projects-email'
+        ),        
+        array(
             'label' => 'Delete Project',
             'url' => u("admin/projects/delete/$id"),
             'id' => 'menu-item-admin-projects-delete'

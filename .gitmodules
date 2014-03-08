@@ -7,3 +7,6 @@
 [submodule "plugins/gravatar"]
 	path = plugins/gravatar
 	url = https://github.com/ekowabaka/ntentan.gravatar.git
+[submodule "vendor/PHPMailer"]
+	path = vendor/PHPMailer
+	url = https://github.com/PHPMailer/PHPMailer.git

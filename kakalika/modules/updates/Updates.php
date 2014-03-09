@@ -18,8 +18,9 @@ class Updates extends \ntentan\models\Model
     
     public $updateIssue = true;
     
-    public function preSaveCallback() {
-        $this->user_id = $_SESSION['user']['id'];
+    public function preSaveCallback() 
+    {
+        if($this->user_id == '') $this->user_id = $_SESSION['user']['id'];
     }
     
     public function postSaveCallback($id) 
@@ -28,7 +29,7 @@ class Updates extends \ntentan\models\Model
         {
             $issue = \kakalika\modules\issues\Issues::getJustFirstWithId($this->issue_id);
             $issue->updated = date('Y-m-d h:i:s');
-            $issue->updater = $_SESSION['user']['id'];
+            $issue->updater = $this->user_id;
             $issue->update();
         }
     }

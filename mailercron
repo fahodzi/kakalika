@@ -47,16 +47,25 @@ foreach($emailSettings->toArray() as $settings)
             foreach($messages as $message)
             {
                 $decodedMessage = new ImapMessage($imap, $message);
-                
-                $user = \kakalika\modules\users\Users::getJustFirstWithEmail($decodedMessage->getFromAddress());
-                
-                $issue = kakalika\modules\issues\Issues::getNew();
-                $issue->title = $decodedMessage->getSubject();
-                $issue->opener = $user->id;
-                $issue->created = $decodedMessage->getTimestamp();
-                $issue->description = $decodedMessage->getPlainText();
-                $issue->project_id = $settings['project']['id'];
-                $issue->save();
+                $user = \kakalika\modules\users\Users::getJustFirstWithEmail($decodedMessage->getFromAddress());                
+                $to = $decodedMessage->getToAddress();
+                if(preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*(\+){1}(?<issue_number>[_a-z0-9-]+)/i", $to, $matches))
+                {
+                    $issue = kakalika\modules\issues\Issues::getJustFirstWithNumber($matches['issue_number']);
+                    $issue->updater = $user->id;
+                    $issue->comment = $decodedMessage->getPlainText();
+                    $issue->update();
+                }
+                else
+                {
+                    $issue = kakalika\modules\issues\Issues::getNew();
+                    $issue->title = $decodedMessage->getSubject();
+                    $issue->opener = $user->id;
+                    $issue->created = $decodedMessage->getTimestamp();
+                    $issue->description = $decodedMessage->getPlainText();
+                    $issue->project_id = $settings['project']['id'];
+                    $issue->save();
+                }
             }
         }
         imap_close($imap);

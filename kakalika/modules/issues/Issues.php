@@ -54,8 +54,9 @@ class Issues extends Model
     
     public function preUpdateCallback() 
     {
-        $this->updater = $_SESSION['user']['id'];
-        $this->updated = date('Y-m-d H:i:s');
+        if($this->updater == '') $this->updater = $_SESSION['user']['id'];
+        if($this->updated == '') $this->updated = date('Y-m-d H:i:s');
+        
         $this->originalIssue = $this->getJustFirstWithId($this->id)->toArray();
         
         if($this->data['comment'] != '') 
@@ -80,6 +81,7 @@ class Issues extends Model
         if(count($this->updateData) > 0)
         {
             $this->updateData['number'] = ++$this->number_of_updates;
+            $this->updateData['user_id'] = $this->updater;
         }
     }
     

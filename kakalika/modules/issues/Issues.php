@@ -113,7 +113,7 @@ class Issues extends Model
     public function preSaveCallback()
     {
         $this->status = 'OPEN';
-        $this->opener = $_SESSION['user']['id'];
+        if(isset($_SESSION['user']['id'])) $this->opener = $_SESSION['user']['id'];
         $project = \kakalika\modules\projects\Projects::getJustFirstWithId(
             $this->project_id
         );
@@ -122,7 +122,7 @@ class Issues extends Model
             $this->assigned = date('Y-m-d H:i:s');
         }
         $this->number = ++$project->number_of_issues;
-        $this->updated = date('Y-m-d H:i:s');
+        if($this->updated == '') $this->updated = date('Y-m-d H:i:s');
         $project->update();
     }
     

@@ -122,14 +122,15 @@ class IssuesController extends \kakalika\lib\KakalikaController
             case 'created':
                 $sort = 'created desc';
                 break;
-            case 'updated':
-                $sort = 'updated desc';
-                break;
             case 'kind':
                 $sort = 'kind desc';
                 break;
             case 'priority':
                 $sort = 'priority desc';
+                break;
+            case 'updated':
+            default:
+                $sort = 'updated desc';
                 break;
         }
         

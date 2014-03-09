@@ -1,14 +1,12 @@
 label{
-    display:block;
     color:#404040;
-    margin-top:13px;
-    font-weight:bold;
 }
 
 select{
     padding:1%;
     font-size:large;
     box-shadow:1px 1px 3px rgba(64,64,64,0.1);
+    display:block;
 }
 
 input[type='text'], input[type='password'], input[type='date']{
@@ -16,6 +14,7 @@ input[type='text'], input[type='password'], input[type='date']{
     border-radius: 3px;
     box-shadow: inset 1px 1px 3px rgba(64,64,64,0.1);
     color:#404040;
+    display:block;
     padding:5px;
 }
 input[type='text'], input[type='password']{
@@ -23,8 +22,17 @@ input[type='text'], input[type='password']{
     width:96%;
 }
 
+input[type='text'].normal-size{
+    width:500px;
+    padding:8px;
+}
+
 input[type='text'].error, input[type='password'].error{
     border-color:#fea9b9;
+}
+
+.form-element-div{
+    margin-bottom:18px;
 }
 
 .form-description {
@@ -73,12 +81,16 @@ fieldset {
     padding:0px;
     margin-right:15px;
     margin-bottom: 20px;
+    margin-top:10px;
 }
 
 fieldset > legend {
-    border-bottom: 2px solid #a0a0a0;
     width:100%;
     margin:0px;
     padding:0px;
+    padding-bottom:5px;
     margin-bottom: 10px;
+    color:#606060;
+    font-weight:bold;
+    border-bottom:2px solid #f8f8f8;
 }

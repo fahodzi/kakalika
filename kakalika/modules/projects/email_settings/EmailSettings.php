@@ -5,5 +5,5 @@ use ntentan\models\Model;
 
 class EmailSettings extends Model
 {
-    
+    public $belongsTo = array('project');
 }

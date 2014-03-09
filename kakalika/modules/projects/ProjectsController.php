@@ -148,13 +148,25 @@ class ProjectsController extends \kakalika\lib\KakalikaController
     
     public function email($id)
     {
-        $project = $this->model->getFirstWithId($id);
+        $project = $this->model->getJustFirstWithId($id);
         $this->set('id', $id);
         $this->set('project', $project->toArray());
         
         if(isset($_POST['incoming_server_host']))
         {
             $emailSettings = email_settings\EmailSettings::getFirstWithProjectId($id);
+            
+            if(isset($_POST['email_integration']) && $project->emal_integration == 0)
+            {
+                $project->email_integration = 1;
+                $project->update();
+            }
+            else if($project->email_integration == 1)
+            {
+                $project->email_integration = 0;
+                $project->update();
+            }
+            
             if($emailSettings->count() == 0)
             {
                 $emailSettings = email_settings\EmailSettings::getNew();
@@ -174,6 +186,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         else
         {
             $emailSettings = email_settings\EmailSettings::getFirstWithProjectId($id);
+            $emailSettings->email_integration = $project->email_integration;
             $this->set('settings', $emailSettings->toArray());
         }
     }

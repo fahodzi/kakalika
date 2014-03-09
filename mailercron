@@ -1,0 +1,65 @@
+#!/usr/bin/env php
+<?php
+error_reporting(E_ALL ^ E_NOTICE);
+
+// Ensure that only a single instance of the cron runs at any time
+$lockFile = sys_get_temp_dir() . "/kakalika-cron.log";
+if(file_exists($lockFile)){
+    fputs(STDERR, "Lock file $lockFile found. Exiting ...\n");
+    die();
+}
+touch($lockFile);
+
+$ntentan = parse_ini_file('config/ntentan.ini', true);
+require "{$ntentan['home']}/lib/Ntentan.php";
+use ntentan\Ntentan;
+
+// @todo Allow the timezone to be set during installation
+date_default_timezone_set('Africa/Accra');
+Ntentan::setup($ntentan);
+$emailSettings = \kakalika\modules\projects\email_settings\EmailSettings::getAll();
+
+foreach($emailSettings->toArray() as $settings)
+{
+    if($settings['project']['email_integration'] != '1'){
+        echo "Skipping emails for {$settings['project']['name']}\n";
+        continue;
+    }
+    
+    // Check for incoming mails
+    echo "Processing emails for {$settings['project']['name']}\n";
+    echo "Connecting to {$settings['incoming_server_type']}://{$settings['incoming_server_host']}:{$settings['incoming_server_port']} ... ";
+    
+    $ssl = $settings['incoming_server_ssl'] == '1' ? "/ssl/novalidate-cert" : "";
+    $imap = imap_open(
+        "{{$settings['incoming_server_host']}:{$settings['incoming_server_port']}/{$settings['incoming_server_type']}$ssl}INBOX",
+        $settings['incoming_server_username'], $settings['incoming_server_password']
+    );
+    
+    if($imap !== false)
+    {
+        echo "OK\n";
+        $messages = imap_search($imap, 'UNSEEN');
+        if($messages)
+        {
+            echo "Processing " . count($messages) . " new mails.\n";
+            foreach($messages as $message)
+            {
+                $details = imap_fetch_overview($imap, $message);
+                
+            }
+        }
+        imap_close($imap);
+    }
+    else 
+    {
+        echo "FAILED\n";
+    }
+        
+    
+    // Send outgoing mails
+
+}
+
+    
+unlink($lockFile);

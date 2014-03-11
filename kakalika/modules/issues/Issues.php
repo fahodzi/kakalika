@@ -94,6 +94,9 @@ class Issues extends Model
             $update->setData($this->updateData);
             $update->updateIssue = false;
             $updateId = $update->save();
+            
+            $this->addWatcher($this->updater);
+            $this->addWatcher($this->assignee);
                         
             foreach($this->attachments as $attachment)
             {
@@ -110,6 +113,8 @@ class Issues extends Model
                 $issueAttachment->save();
             }
         }
+        
+        $this->notify($this->updateData['comment']);        
     }
     
     public function preSaveCallback()
@@ -128,8 +133,34 @@ class Issues extends Model
         $project->update();
     }
     
+    public function addWatcher($userId)
+    {
+        $watcher = \kakalika\modules\watchers\Watchers::getJustFirst(
+            array(
+                'conditions' => array(
+                    'issue_id' => $this->id,
+                    'user_id' => $userId
+                )
+            )
+        );
+
+        if($watcher->count() == 0)
+        {
+            $watcher->user_id = $userId;
+            $watcher->issue_id = $this->id;
+            $watcher->save();
+        }        
+    }
+    
     public function postSaveCallback($id) 
     {
+        $this->addWatcher($this->opener);
+        
+        if($this->assignee != '' && $this->assignee != $this->opener)
+        {
+            $this->addWatcher($this->assignee);
+        }
+        
         foreach($this->attachments as $attachment)
         {
             $destination = uniqid() . "_{$attachment['name']}";
@@ -143,5 +174,47 @@ class Issues extends Model
             $issueAttachment->size = $attachment['size'];
             $issueAttachment->save();
         }
+        
+        $this->notify($this->description);
+    }
+    
+    public function notify($message)    
+    {
+        $watchers = \kakalika\modules\watchers\Watchers::getAll(
+            array(
+                'conditions' => array(
+                    'issue_id' => $this->id,
+                    'user_id<>' => $_SESSION['user']['id']
+                )
+            )
+        );
+        
+        foreach($watchers as $watcher)
+        {
+            $watcher = $watcher->toArray();
+            
+            $emailSender = new \kakalika\lib\EmailSender();
+            $emailSender->setDestination($watcher['user']['email'], "{$watcher['user']['firstname']} {$watcher['user']['lastname']}");
+            $emailSender->setMessage($message);
+            $emailSender->setSource("{$_SESSION['user']['firstname']} {$_SESSION['user']['lastname']} {$_SESSION['othernames']}");            
+            $outgoingMail = \kakalika\modules\outgoing_mails\OutgoingMails::getNew();
+            
+            if($this->project_id == '' || $this->number == '' || $this->tite == '')
+            {
+                $issue = Issues::getJustFirstWithId($this->id, array('fields'=>array('project_id', 'number', 'title')));
+                $outgoingMail->project_id = $issue->project_id;
+                $emailSender->setIssueNumber($issue->number);
+                $emailSender->setSubject($issue->title);
+            }
+            else
+            {
+                $outgoingMail->project_id = $this->project_id;
+                $emailSender->setIssueNumber($this->number);
+                $emailSender->setSubject($this->title);
+            }
+            $outgoingMail->object = serialize($emailSender);
+            $outgoingMail->save();
+        }     
     }
 }
+

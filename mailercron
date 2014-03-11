@@ -3,7 +3,8 @@
 error_reporting(E_ALL ^ E_NOTICE);
 
 // Ensure that only a single instance of the cron runs at any time
-$lockFile = sys_get_temp_dir() . "/kakalika-cron.log";
+$lockFile = sys_get_temp_dir() . "/kakalika-cron.lock";
+
 if(file_exists($lockFile)){
     fputs(STDERR, "Lock file $lockFile found. Exiting ...\n");
     die();
@@ -46,9 +47,11 @@ foreach($emailSettings->toArray() as $settings)
             
             foreach($messages as $message)
             {
-                $decodedMessage = new ImapMessage($imap, $message);
-                $user = \kakalika\modules\users\Users::getJustFirstWithEmail($decodedMessage->getFromAddress());                
+                $decodedMessage = new \kakalika\lib\EmailDecoder($imap, $message);
+                $user = \kakalika\modules\users\Users::getJustFirstWithEmail($decodedMessage->getFromAddress());   
+                $_SESSION['user'] = $user->toArray();
                 $to = $decodedMessage->getToAddress();
+                
                 if(preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*(\+){1}(?<issue_number>[_a-z0-9-]+)/i", $to, $matches))
                 {
                     $issue = kakalika\modules\issues\Issues::getJustFirstWithNumber($matches['issue_number']);
@@ -76,147 +79,13 @@ foreach($emailSettings->toArray() as $settings)
     }
         
     // Send outgoing mails
-
+    $outgoingMails = \kakalika\modules\outgoing_mails\OutgoingMails::getJustAllWithProjectId($settings['project']['id']);
+    foreach($outgoingMails as $outgoingMail)
+    {
+        $sender = unserialize($outgoingMail->object);
+        $sender->send($settings);
+        $outgoingMail->delete();
+    }
 }
 
 unlink($lockFile);
-
-/**
- * A simple class to decode the IMAP messages.
- * 
- * Adapted from user contributed note on imap_fetchstructure help page by
- * david at hundsness dot com.
- */
-class ImapMessage
-{
-    private $imap;
-    private $message;
-    private $plainTextMessage = false;
-    private $htmlMessage = false;
-    private $attachments = array();
-    private $characterSet = false;
-    private $overview;
-    private $headers;
-    
-    
-    public function __construct($imap, $message)
-    {
-        $this->imap = $imap;
-        $this->message = $message;
-        $this->headers = imap_header($imap, $message);
-        $this->overview = imap_fetch_overview($imap, $message);
-        $structure = imap_fetchstructure($imap, $message);
-        
-        if(!$structure->parts)
-        {
-            $this->plainTextMessage = imap_body($imap, $message);
-        }
-        else
-        {
-            foreach($structure->parts as $partNumber => $part)
-            {
-                $this->decode($partNumber + 1, $part);
-            }
-        }
-    }
-    
-    private function decode($partNumber, $part)
-    {
-        $data = imap_fetchbody($this->imap, $this->message, $partNumber);
-        switch($part->encoding)
-        {
-            case 4:
-                $data = quoted_printable_decode($data);
-                break;
-            case 3:
-                $data = base64_decode($data);
-                break;
-        }
-        
-        $params = array();
-        
-        if($part->parameters)
-        {
-            foreach($part->parameters as $parameter)
-            {
-                $params[strtolower($parameter->attribute)] = $parameter->value;
-            }
-        }
-        if($part->dparameters)
-        {
-            foreach($part->dparameters as $parameter)
-            {
-                $params[strtolower($parameter->attribute)] = $parameter->value;
-            }
-        }
-        
-        // Extract text
-        if ($part->type == 0 && $data) 
-        {
-            if (strtolower($part->subtype)=='plain')
-            {
-                $this->plainTextMessage .= trim($data);
-            }
-            else
-            {    
-                $this->htmlMessage .= $data;
-            }
-            $this->characterSet = $params['charset'];  // assume all parts are same charset
-        }  
-        
-        // process sub parts
-        if ($part->parts) {
-            foreach ($part->parts as $subPartNumber => $subPart)
-            {
-                $this->decode($partNumber . '.' . ($subPartNumber + 1));
-            }
-        }
-    }
-    
-    public function getPlainText()
-    {
-        return $this->plainTextMessage;
-    }
-    
-    public function getHtml()
-    {
-        return $this->htmlMessage;
-    }
-    
-    public function getMessage()
-    {
-        if($this->htmlMessage !== false)
-        {
-            return $this->htmlMessage;
-        }
-        else
-        {
-            return $this->plainTextMessage;
-        }
-    }
-    
-    public function getSubject()
-    {
-        return $this->overview[0]->subject;
-    }
-    
-    public function getToAddress()
-    {
-        return "{$this->headers->to[0]->mailbox}@{$this->headers->to[0]->host}";
-    }
-    
-    public function getFromAddress()
-    {
-        return "{$this->headers->from[0]->mailbox}@{$this->headers->from[0]->host}";
-    }
-    
-    public function getSenderName()
-    {
-        return $this->headers->from[0]->personal;
-    }
-    
-    public function getTimestamp()
-    {
-        return date('Y-m-d H:i:s', $this->headers->udate);
-    }
-}

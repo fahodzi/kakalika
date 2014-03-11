@@ -51,7 +51,7 @@
                 
                 <?php if($update['comment'] != ''): ?>
                 <p>                 
-                    <?= $update['comment'] ?>
+                    <?= $this->nl2br($update['comment']) ?>
                 </p>
                 <?php endif; ?>
                 

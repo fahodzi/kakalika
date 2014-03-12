@@ -1,23 +1,32 @@
 #!/usr/bin/env php
 <?php
+use ntentan\Ntentan;
+
+// @todo Allow the timezone to be set during installation
+date_default_timezone_set('Africa/Accra');
+
+// Tell PHP to stop barking
 error_reporting(E_ALL ^ E_NOTICE);
 
 // Ensure that only a single instance of the cron runs at any time
 $lockFile = sys_get_temp_dir() . "/kakalika-cron.lock";
-
 if(file_exists($lockFile)){
     fputs(STDERR, "Lock file $lockFile found. Exiting ...\n");
     die();
 }
 touch($lockFile);
 
-$ntentan = parse_ini_file('config/ntentan.ini', true);
+// Load configurations
+$ntentan = parse_ini_file(__DIR__ . '/config/ntentan.ini', true);
+$ntentan['home'] = __DIR__ . "/ntentan";
+$app = parse_ini_file(__DIR__ . "/config/app.ini", true);
+$app['home'] = __DIR__;
 require "{$ntentan['home']}/lib/Ntentan.php";
-use ntentan\Ntentan;
 
-// @todo Allow the timezone to be set during installation
-date_default_timezone_set('Africa/Accra');
-Ntentan::setup($ntentan);
+
+Ntentan::$configPath = __DIR__ . "/config/";
+Ntentan::setup($ntentan, $app);
+
 $emailSettings = \kakalika\modules\projects\email_settings\EmailSettings::getAll();
 
 foreach($emailSettings->toArray() as $settings)

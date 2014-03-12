@@ -2,13 +2,11 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-CREATE SCHEMA IF NOT EXISTS `kakalika` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-USE `kakalika` ;
 
 -- -----------------------------------------------------
--- Table `kakalika`.`users`
+-- Table `users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `kakalika`.`users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
   `firstname` VARCHAR(45) NOT NULL,
@@ -24,9 +22,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `kakalika`.`projects`
+-- Table `projects`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `kakalika`.`projects` (
+CREATE TABLE IF NOT EXISTS `projects` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `code` VARCHAR(45) NOT NULL,
@@ -39,9 +37,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `kakalika`.`user_projects`
+-- Table `user_projects`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `kakalika`.`user_projects` (
+CREATE TABLE IF NOT EXISTS `user_projects` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `project_id` INT NOT NULL,
   `user_id` INT NOT NULL,
@@ -52,21 +50,21 @@ CREATE TABLE IF NOT EXISTS `kakalika`.`user_projects` (
   INDEX `fk_user_projects_2_idx` (`user_id` ASC),
   CONSTRAINT `fk_user_projects_projects`
     FOREIGN KEY (`project_id`)
-    REFERENCES `kakalika`.`projects` (`id`)
+    REFERENCES `projects` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_user_projects_users`
     FOREIGN KEY (`user_id`)
-    REFERENCES `kakalika`.`users` (`id`)
+    REFERENCES `users` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `kakalika`.`components`
+-- Table `components`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `kakalika`.`components` (
+CREATE TABLE IF NOT EXISTS `components` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `description` TEXT NULL,
@@ -76,16 +74,16 @@ CREATE TABLE IF NOT EXISTS `kakalika`.`components` (
   INDEX `fk_components_1_idx` (`project_id` ASC),
   CONSTRAINT `fk_components_1`
     FOREIGN KEY (`project_id`)
-    REFERENCES `kakalika`.`projects` (`id`)
+    REFERENCES `projects` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `kakalika`.`milestones`
+-- Table `milestones`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `kakalika`.`milestones` (
+CREATE TABLE IF NOT EXISTS `milestones` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `description` TEXT NULL,
@@ -95,16 +93,16 @@ CREATE TABLE IF NOT EXISTS `kakalika`.`milestones` (
   INDEX `fk_milestones_1_idx` (`project_id` ASC),
   CONSTRAINT `fk_milestones_1`
     FOREIGN KEY (`project_id`)
-    REFERENCES `kakalika`.`projects` (`id`)
+    REFERENCES `projects` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `kakalika`.`issues`
+-- Table `issues`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `kakalika`.`issues` (
+CREATE TABLE IF NOT EXISTS `issues` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `project_id` INT NOT NULL,
   `title` VARCHAR(255) NOT NULL,
@@ -131,41 +129,41 @@ CREATE TABLE IF NOT EXISTS `kakalika`.`issues` (
   INDEX `fk_issues_6_idx` (`milestone_id` ASC),
   CONSTRAINT `fk_issues_projects`
     FOREIGN KEY (`project_id`)
-    REFERENCES `kakalika`.`projects` (`id`)
+    REFERENCES `projects` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_issues_users_assignee`
     FOREIGN KEY (`assignee`)
-    REFERENCES `kakalika`.`users` (`id`)
+    REFERENCES `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_issues_users_opener`
     FOREIGN KEY (`opener`)
-    REFERENCES `kakalika`.`users` (`id`)
+    REFERENCES `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_issues_users_updater`
     FOREIGN KEY (`updater`)
-    REFERENCES `kakalika`.`users` (`id`)
+    REFERENCES `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_issues_components`
     FOREIGN KEY (`component_id`)
-    REFERENCES `kakalika`.`components` (`id`)
+    REFERENCES `components` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_issues_milestones`
     FOREIGN KEY (`milestone_id`)
-    REFERENCES `kakalika`.`milestones` (`id`)
+    REFERENCES `milestones` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `kakalika`.`updates`
+-- Table `updates`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `kakalika`.`updates` (
+CREATE TABLE IF NOT EXISTS `updates` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `issue_id` INT UNSIGNED NOT NULL,
   `user_id` INT NOT NULL,
@@ -184,21 +182,21 @@ CREATE TABLE IF NOT EXISTS `kakalika`.`updates` (
   INDEX `fk_activities_2_idx` (`user_id` ASC),
   CONSTRAINT `fk_activities_1`
     FOREIGN KEY (`issue_id`)
-    REFERENCES `kakalika`.`issues` (`id`)
+    REFERENCES `issues` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_activities_2`
     FOREIGN KEY (`user_id`)
-    REFERENCES `kakalika`.`users` (`id`)
+    REFERENCES `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `kakalika`.`issue_attachments`
+-- Table `issue_attachments`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `kakalika`.`issue_attachments` (
+CREATE TABLE IF NOT EXISTS `issue_attachments` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `issue_id` INT UNSIGNED NOT NULL,
   `attachment_file` VARCHAR(255) NOT NULL,
@@ -214,21 +212,21 @@ CREATE TABLE IF NOT EXISTS `kakalika`.`issue_attachments` (
   UNIQUE INDEX `attachment_file_UNIQUE` (`attachment_file` ASC),
   CONSTRAINT `fk_issue_attachments_1`
     FOREIGN KEY (`issue_id`)
-    REFERENCES `kakalika`.`issues` (`id`)
+    REFERENCES `issues` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_issue_attachments_2`
     FOREIGN KEY (`user_id`)
-    REFERENCES `kakalika`.`users` (`id`)
+    REFERENCES `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `kakalika`.`projects_email_settings`
+-- Table `projects_email_settings`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `kakalika`.`projects_email_settings` (
+CREATE TABLE IF NOT EXISTS `projects_email_settings` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `project_id` INT NOT NULL,
   `incoming_server_host` VARCHAR(255) NULL,
@@ -249,16 +247,16 @@ CREATE TABLE IF NOT EXISTS `kakalika`.`projects_email_settings` (
   INDEX `fk_email_integration_settings_1_idx` (`project_id` ASC),
   CONSTRAINT `fk_email_integration_settings_1`
     FOREIGN KEY (`project_id`)
-    REFERENCES `kakalika`.`projects` (`id`)
+    REFERENCES `projects` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `kakalika`.`watchers`
+-- Table `watchers`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `kakalika`.`watchers` (
+CREATE TABLE IF NOT EXISTS `watchers` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NULL,
   `issue_id` INT UNSIGNED NULL,
@@ -267,21 +265,21 @@ CREATE TABLE IF NOT EXISTS `kakalika`.`watchers` (
   INDEX `fk_watchers_2_idx` (`issue_id` ASC),
   CONSTRAINT `fk_watchers_1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `kakalika`.`users` (`id`)
+    REFERENCES `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_watchers_2`
     FOREIGN KEY (`issue_id`)
-    REFERENCES `kakalika`.`issues` (`id`)
+    REFERENCES `issues` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `kakalika`.`outgoing_mails`
+-- Table `outgoing_mails`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `kakalika`.`outgoing_mails` (
+CREATE TABLE IF NOT EXISTS `outgoing_mails` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `object` TEXT NOT NULL,
   `project_id` INT NOT NULL,
@@ -289,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `kakalika`.`outgoing_mails` (
   INDEX `fk_outgoing_mails_1_idx` (`project_id` ASC),
   CONSTRAINT `fk_outgoing_mails_1`
     FOREIGN KEY (`project_id`)
-    REFERENCES `kakalika`.`projects` (`id`)
+    REFERENCES `projects` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;

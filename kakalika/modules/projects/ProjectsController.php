@@ -167,6 +167,8 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                 $project->update();
             }
             
+            unset($_POST['email_integration']);
+            
             if($emailSettings->count() == 0)
             {
                 $emailSettings = email_settings\EmailSettings::getNew();

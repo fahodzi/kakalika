@@ -1,8 +1,6 @@
 <?php
 namespace kakalika\lib;
 
-require 'vendor/PHPMailer/PHPMailerAutoload.php';
-
 class EmailSender
 {
     private $issueNumber;

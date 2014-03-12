@@ -1,6 +1,7 @@
 #!/usr/bin/env php
 <?php
 use ntentan\Ntentan;
+require __DIR__ . '/vendor/PHPMailer/PHPMailerAutoload.php';
 
 // @todo Allow the timezone to be set during installation
 date_default_timezone_set('Africa/Accra');
@@ -21,6 +22,7 @@ $ntentan = parse_ini_file(__DIR__ . '/config/ntentan.ini', true);
 $ntentan['home'] = __DIR__ . "/ntentan";
 $app = parse_ini_file(__DIR__ . "/config/app.ini", true);
 $app['home'] = __DIR__;
+
 require "{$ntentan['home']}/lib/Ntentan.php";
 
 

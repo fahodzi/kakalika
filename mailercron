@@ -49,6 +49,19 @@ foreach($emailSettings->toArray() as $settings)
             {
                 $decodedMessage = new \kakalika\lib\EmailDecoder($imap, $message);
                 $user = \kakalika\modules\users\Users::getJustFirstWithEmail($decodedMessage->getFromAddress());   
+                
+                if($user->count() == 0)
+                {
+                    $user = \kakalika\modules\users\Users::getNew();
+                    $user->firstname = $decodedMessage->getSenderName();
+                    $user->email = $decodedMessage->getFromAddress();
+                    $user->username = $decodedMessage->getFromAddress();
+                    $user->password = uniqid();
+                    $id = $user->save();
+                    $user->id = $id;
+                    
+                }
+                
                 $_SESSION['user'] = $user->toArray();
                 $to = $decodedMessage->getToAddress();
                 

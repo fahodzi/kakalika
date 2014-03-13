@@ -28,7 +28,7 @@ require "{$ntentan['home']}/lib/Ntentan.php";
 
 Ntentan::$configPath = __DIR__ . "/config/";
 Ntentan::setup($ntentan, $app);
-
+\ntentan\views\template_engines\TemplateEngine::prependPath(__DIR__ . '/views/emails');
 $emailSettings = \kakalika\modules\projects\email_settings\EmailSettings::getAll();
 
 foreach($emailSettings->toArray() as $settings)

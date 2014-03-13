@@ -30,13 +30,18 @@ class EmailSender
         $mail->addReplyTo("{$email[0]}+{$this->issueNumber}@{$email[1]}", $this->name);
         $mail->Subject = "Re: {$this->subject} [#{$this->issueNumber}]";
         
-        TemplateEngine::appendPath("views/emails");
-        
         if($this->changes['assignee'] != '')
         {
             $this->changes['assignee'] = \kakalika\modules\users\Users::getJustFirstWithId($this->changes['assignee'])->toArray();
         }
-               
+        if($this->changes['milestone_id'] != '')       
+        {
+            $this->changes['milestone'] = \kakalika\modules\milestones\Milestones::getJustFirstWithId($this->changes['milestone_id'])->toArray();
+        }
+        if($this->changes['component_id'] != '')       
+        {
+            $this->changes['component'] = \kakalika\modules\components\Components::getJustFirstWithId($this->changes['component_id'])->toArray();
+        }
         
         $data = array(
             'message' => $this->message,

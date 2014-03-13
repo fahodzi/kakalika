@@ -1,6 +1,8 @@
 <?php
 namespace kakalika\lib;
 
+use ntentan\views\template_engines\TemplateEngine;
+
 class EmailSender
 {
     private $issueNumber;
@@ -9,6 +11,7 @@ class EmailSender
     private $name;
     private $sourceName;
     private $subject;
+    private $changes;
     
     public function send($server)
     {
@@ -26,8 +29,22 @@ class EmailSender
         $email = explode('@', $server['email_address']);
         $mail->addReplyTo("{$email[0]}+{$this->issueNumber}@{$email[1]}", $this->name);
         $mail->Subject = "Re: {$this->subject} [#{$this->issueNumber}]";
-        $mail->Body = "<span style='font-size:x-small; color:#808080'>------ Please reply above this ------</span>\n<br/><br/><p>{$this->message}</p>";
-        $mail->AltBody = "------ Please reply above this ------\n\n" . $this->message;
+        
+        TemplateEngine::appendPath("views/emails");
+        
+        if($this->changes['assignee'] != '')
+        {
+            $this->changes['assignee'] = \kakalika\modules\users\Users::getJustFirstWithId($this->changes['assignee'])->toArray();
+        }
+               
+        
+        $data = array(
+            'message' => $this->message,
+            'changes' => $this->changes
+        );
+        
+        $mail->Body = TemplateEngine::render("html_update.tpl.php", $data);//"<span style='font-size:x-small; color:#808080'>------ Please reply above this ------</span>\n<br/><br/><p>{$this->message}</p>";
+        $mail->AltBody = TemplateEngine::render("txt_update.tpl.php", $data);//"------ Please reply above this ------\n\n" . $this->message;
         
         if(!$mail->send())
         {
@@ -37,6 +54,11 @@ class EmailSender
         {
             echo "Sent [{$mail->Subject}] to [$this->email]\n";
         }
+    }
+    
+    public function setChanges($changes)
+    {
+        $this->changes = $changes;
     }
     
     public function setSubject($subject)

@@ -113,8 +113,8 @@ class Issues extends Model
                 $issueAttachment->save();
             }
         }
-        
-        $this->notify($this->updateData['comment']);        
+                
+        $this->notify($this->updateData['comment'], $this->updateData);        
     }
     
     public function preSaveCallback()
@@ -178,7 +178,7 @@ class Issues extends Model
         $this->notify($this->description);
     }
     
-    public function notify($message)    
+    public function notify($message, $changes = array())    
     {
         $watchers = \kakalika\modules\watchers\Watchers::getAll(
             array(
@@ -196,6 +196,7 @@ class Issues extends Model
             $emailSender = new \kakalika\lib\EmailSender();
             $emailSender->setDestination($watcher['user']['email'], "{$watcher['user']['firstname']} {$watcher['user']['lastname']}");
             $emailSender->setMessage($message);
+            $emailSender->setChanges($changes);
             $emailSender->setSource("{$_SESSION['user']['firstname']} {$_SESSION['user']['lastname']} {$_SESSION['othernames']}");            
             $outgoingMail = \kakalika\modules\outgoing_mails\OutgoingMails::getNew();
             

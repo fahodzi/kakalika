@@ -48,12 +48,11 @@ class EmailDecoder
         $output = array();
         foreach($lines as $line)
         {
-            if(trim($line) == "------ Please reply above this ------") break;
+            if(preg_match("/Reply above this line to comment on this issue/", $line)) break;
             $output[] = $line;
         }
         
         $lines = $output;
-        
         
         // Remove any extra lines added by the mail cient
         for($i = count($lines) - 1; $i >= 0; $i--)

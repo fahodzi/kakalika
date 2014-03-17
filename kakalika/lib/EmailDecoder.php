@@ -64,8 +64,26 @@ class EmailDecoder
             }
             else
             {
+                // Gmail and Yahoo so far. I'm sure a lot more clients use this
                 if(preg_match("/(on)(.*)(wrote)/i", $lines[$i])) unset($output[$i]);
-                if(preg_match("/(original message)/i", $lines[$i])) unset($output[$i]);
+                
+                // Zimbra 7.x
+                if(preg_match("/Subject:(.*)/i", $lines[$i]))
+                {
+                    if(
+                        preg_match("/Sent:(.*)/i", $lines[$i-1]) &&
+                        preg_match("/To:(.*)/i", $lines[$i-2]) &&
+                        preg_match("/From:(.*)/i", $lines[$i-3]) &&
+                        preg_match("/----- Original Message -----/i", $lines[$i-4])
+                    )
+                    {
+                        unset($output[$i]);
+                        unset($output[$i-1]);
+                        unset($output[$i-2]);
+                        unset($output[$i-3]);
+                        unset($output[$i-4]);
+                    }
+                }
                 break;
             }
         }

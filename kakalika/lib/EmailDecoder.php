@@ -48,7 +48,7 @@ class EmailDecoder
         $output = array();
         foreach($lines as $line)
         {
-            if(preg_match("/Reply above this line to comment on this issue/", $line)) break;
+            if(preg_match("/Reply above this line to comment on this issue/i", $line)) break;
             $output[] = $line;
         }
         

@@ -30,7 +30,7 @@ class EmailDecoder
         
         if(!$structure->parts)
         {
-            $this->plainTextMessage = imap_body($imap, $message);
+            $this->decode(0, $structure);
         }
         else
         {
@@ -75,7 +75,15 @@ class EmailDecoder
     
     private function decode($partNumber, $part)
     {
-        $data = imap_fetchbody($this->imap, $this->message, $partNumber);
+        if($partNumber > 0)
+        {
+            $data = imap_fetchbody($this->imap, $this->message, $partNumber);
+        }
+        else
+        {
+            $data = imap_body($this->imap, $this->message);
+        }
+        
         switch($part->encoding)
         {
             case 4:

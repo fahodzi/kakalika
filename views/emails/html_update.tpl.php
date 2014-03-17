@@ -2,7 +2,7 @@
 <div style="color:#c0c0c0; border-bottom: 1px solid #c0c0c0; padding-bottom: 5px; font-size:x-small">Reply above this line to comment on this issue</div>
 <br/>
 <p>
-    <?= $message ?>
+    <?= $this->nl2br($message) ?>
 </p>
 <?php if($changes['assignee'] != '' || $changes['priority'] != '' || $changes['kind'] != '' || $changes['status'] != '' || $changes['milestone_id'] || $changes['component_id']): ?>
 

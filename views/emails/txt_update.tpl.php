@@ -29,7 +29,7 @@ Changes
         $messages[] = "Set component as {$changes['component']['name']}";
 ?>
 <?php foreach($messages as $message): ?>
-    - <?= $message ?></li>
+    ***  <?= $message ?>
 <?php endforeach; ?>
 <?php endif; ?>
 

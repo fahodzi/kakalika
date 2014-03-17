@@ -41,7 +41,7 @@ class EmailDecoder
         }
     }
     
-    private function stripQuotedMessages($message)
+    public static function stripQuotedMessages($message)
     {
         // Remove everything after the please reply above this
         $lines = explode("\n", $message);
@@ -108,7 +108,7 @@ class EmailDecoder
         {
             if (strtolower($part->subtype)=='plain')
             {
-                $this->plainTextMessage .= $this->stripQuotedMessages(trim($data));
+                $this->plainTextMessage .= self::stripQuotedMessages(trim($data));
             }
             else
             {    

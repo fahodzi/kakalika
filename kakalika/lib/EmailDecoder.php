@@ -91,6 +91,21 @@ class EmailDecoder
         return implode("\n", $output);
     }
     
+    private function getType($type)
+    {
+        switch($type)
+        {
+            case 0: return 'text';
+            case 1: return 'multipart';
+            case 2: return 'message';
+            case 3: return 'application';
+            case 4: return 'audio';
+            case 5: return 'image';
+            case 6: return 'video';
+            case 7: return 'other';
+        }
+    }
+    
     private function decode($partNumber, $part)
     {
         if($partNumber > 0)
@@ -129,6 +144,21 @@ class EmailDecoder
             }
         }
         
+        // Extract attachment
+        if($params['filename'] || $params['name'])
+        {
+            //var_dump($params, $part);
+            $filename = ($params['filename'])? $params['filename'] : $params['name'];
+            $destination = uniqid() . "_{$filename}";
+            $this->attachments[] = array(
+                'file' => $destination,
+                'name' => $filename,
+                'size' => $part->bytes,
+                'type' => "{$this->getType($part->type)}/" . strtolower($part->subtype)
+            );
+            file_put_contents("uploads/$destination", $data);
+        }
+        
         // Extract text
         if ($part->type == 0 && $data) 
         {
@@ -147,7 +177,7 @@ class EmailDecoder
         if ($part->parts) {
             foreach ($part->parts as $subPartNumber => $subPart)
             {
-                $this->decode($partNumber . '.' . ($subPartNumber + 1));
+                $this->decode($partNumber . '.' . ($subPartNumber + 1), $subPart);
             }
         }
     }
@@ -197,6 +227,11 @@ class EmailDecoder
     public function getTimestamp()
     {
         return date('Y-m-d H:i:s', $this->headers->udate);
+    }
+    
+    public function getAttachments()
+    {
+        return $this->attachments;
     }
 }
 

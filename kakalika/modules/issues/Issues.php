@@ -29,7 +29,7 @@ class Issues extends Model
         $valid = parent::validate();
         
         // Validate attachments
-        if(count($_FILES['attachment']) > 0)
+        /*if(count($_FILES['attachment']) > 0)
         {
             foreach($_FILES['attachment']['error'] as $index => $error)
             {
@@ -47,9 +47,14 @@ class Issues extends Model
                     $valid = false;
                 }
             }
-        }
+        }*/
 
         return $valid;
+    }
+    
+    public function addAttachment($attachment)
+    {
+        $this->attachments[] = $attachment;
     }
     
     public function preUpdateCallback() 
@@ -100,11 +105,9 @@ class Issues extends Model
                         
             foreach($this->attachments as $attachment)
             {
-                $destination = uniqid() . "_{$attachment['name']}";
-                move_uploaded_file($attachment['tmp_file'], "uploads/$destination");
                 $issueAttachment = \kakalika\modules\issue_attachments\IssueAttachments::getNew();
                 $issueAttachment->issue_id = $this->id;
-                $issueAttachment->attachment_file = $destination;
+                $issueAttachment->attachment_file = $attachment['file'];
                 $issueAttachment->name = $attachment['name'];
                 $issueAttachment->type = $attachment['type'];
                 $issueAttachment->user_id = $_SESSION['user']['id'];
@@ -163,11 +166,9 @@ class Issues extends Model
         
         foreach($this->attachments as $attachment)
         {
-            $destination = uniqid() . "_{$attachment['name']}";
-            move_uploaded_file($attachment['tmp_file'], "uploads/$destination");
             $issueAttachment = \kakalika\modules\issue_attachments\IssueAttachments::getNew();
             $issueAttachment->issue_id = $id;
-            $issueAttachment->attachment_file = $destination;
+            $issueAttachment->attachment_file = $attachment['file'];
             $issueAttachment->name = $attachment['name'];
             $issueAttachment->type = $attachment['type'];
             $issueAttachment->user_id = $_SESSION['user']['id'];
@@ -218,4 +219,3 @@ class Issues extends Model
         }     
     }
 }
-

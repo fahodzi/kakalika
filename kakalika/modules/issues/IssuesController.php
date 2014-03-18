@@ -35,9 +35,33 @@ class IssuesController extends \kakalika\lib\KakalikaController
         }   
     }
     
-    public function close($issueId)
+    private function harvestAttachments($issue)
     {
-        
+        $valid = true;
+        if(count($_FILES['attachment']) > 0)
+        {
+            foreach($_FILES['attachment']['error'] as $index => $error)
+            {
+                if($error == UPLOAD_ERR_OK)
+                {
+                    $destination = uniqid() . "_{$_FILES['attachment']['name'][$index]}";
+                    move_uploaded_file($_FILES['attachment']['tmp_name'][$index], "uploads/$destination");
+                    $issue->addAttachment(
+                        array(
+                            'file' => $destination,
+                            'name' => $_FILES['attachment']['name'][$index],
+                            'size' => $_FILES['attachment']['size'][$index],
+                            'type' => $_FILES['attachment']['type'][$index]
+                        )
+                    );
+                }
+                else
+                {
+                    $valid = false;
+                }
+            }
+        }
+        return $valid;
     }
     
     public function show($issueId)
@@ -66,6 +90,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
             $updatedIssue->status = $status;
             $updatedIssue->comment = $_POST['comment'];
             $updatedIssue->number_of_updates = $issue->number_of_updates;
+            $this->harvestAttachments($updatedIssue);
             $updatedIssue->update();
             
             \ntentan\Ntentan::redirect(\ntentan\Ntentan::$requestedRoute);
@@ -181,8 +206,9 @@ class IssuesController extends \kakalika\lib\KakalikaController
         );
         $this->set('title', "Edit Issue #{$issue['number']} {$issue['title']}");
         if(isset($_POST['title']))
-        {            
+        {
             $issue->setData($_POST);
+            $this->harvestAttachments($issue);
             $issue->update();
             \ntentan\Ntentan::redirect("{$this->project->code}/issues/$issueId");
         }
@@ -221,6 +247,8 @@ class IssuesController extends \kakalika\lib\KakalikaController
             $newIssue = Issues::getNew();
             $newIssue->setData($_POST);
             $newIssue->project_id = $this->project->id;
+            $this->harvestAttachments($newIssue);            
+            
             if($newIssue->save())
             {
                 \ntentan\Ntentan::redirect("{$this->project->code}/issues");
@@ -233,7 +261,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
                         'errors' => $newIssue->invalidFields
                     )
                 );
-            }
+            }           
         }
         
         if($this->project->id)

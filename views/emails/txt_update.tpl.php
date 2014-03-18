@@ -5,8 +5,7 @@
 
 <?php if($changes['assignee'] != '' || $changes['priority'] != '' || $changes['kind'] != '' || $changes['status'] != '' || $changes['milestone_id'] || $changes['component_id']): ?>
 
-Changes
-=======
+The following change(s) were made to this issue.
 <?php
     $messages = array();
 
@@ -29,7 +28,7 @@ Changes
         $messages[] = "Set component as {$changes['component']['name']}";
 ?>
 <?php foreach($messages as $message): ?>
-    ***  <?= $message ?>
+   • <?= $message ?>
 <?php endforeach; ?>
 <?php endif; ?>
 

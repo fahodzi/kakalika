@@ -81,6 +81,10 @@ foreach($emailSettings->toArray() as $settings)
                     $issue = kakalika\modules\issues\Issues::getJustFirstWithNumber($matches['issue_number']);
                     $issue->updater = $user->id;
                     $issue->comment = $decodedMessage->getPlainText();
+                    foreach($decodedMessage->getAttachments() as $attachment)
+                    {
+                        $issue->addAttachment($attachment);
+                    }
                     $issue->update();
                 }
                 else
@@ -91,6 +95,10 @@ foreach($emailSettings->toArray() as $settings)
                     $issue->created = $decodedMessage->getTimestamp();
                     $issue->description = $decodedMessage->getPlainText();
                     $issue->project_id = $settings['project']['id'];
+                    foreach($decodedMessage->getAttachments() as $attachment)
+                    {
+                        $issue->addAttachment($attachment);
+                    }
                     $issue->save();
                 }
             }

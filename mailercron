@@ -97,6 +97,15 @@ foreach($emailSettings->toArray() as $settings)
             $issue->save();
         }
     }    
+    
+    // Send outgoing mails
+    $outgoingMails = \kakalika\modules\outgoing_mails\OutgoingMails::getJustAllWithProjectId($settings['project']['id']);
+    foreach($outgoingMails as $outgoingMail)
+    {
+        $sender = unserialize($outgoingMail->object);
+        $sender->send($settings);
+        $outgoingMail->delete();
+    }    
 }
 
 unlink($lockFile);

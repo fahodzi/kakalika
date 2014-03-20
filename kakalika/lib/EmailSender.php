@@ -27,7 +27,7 @@ class EmailSender
         $mail->FromName = $this->sourceName;
         $mail->addAddress($this->email, $this->name);
         $email = explode('@', $server['email_address']);
-        $mail->addReplyTo("{$email[0]}+{$this->issueNumber}@{$email[1]}", $this->name);
+        $mail->addReplyTo("{$email[0]}+{$this->issueNumber}@{$email[1]}", $server["email_display_name"]);
         $mail->Subject = "Re: {$this->subject} [#{$this->issueNumber}]";
         
         if($this->changes['assignee'] != '')

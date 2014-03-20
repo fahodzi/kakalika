@@ -6,6 +6,7 @@ class EmailConnection
     private $connection;
     private $params;
     private $messages;
+    private $numberOfMessages = 0;
     private $messageKeys = array();
     private $currentMessage = 0;
     
@@ -59,6 +60,7 @@ class EmailConnection
         if($this->messages)
         {
             $this->messageKeys = array_keys($this->messages);
+            $this->numberOfMessages = count($this->messages);
         }
     }
     
@@ -69,11 +71,11 @@ class EmailConnection
     
     public function getNextMessage()
     {
-        return new EmailMessage($this->connection, $this->messages[$this->currentMessage++]);
+        return new EmailMessage($this->connection, $this->messages[$this->messageKeys[$this->currentMessage++]]);
     }
     
     public function hasMessage()
     {
-        return $this->currentMessage < count($this->messages);
+        return $this->currentMessage < $this->numberOfMessages;
     }
 }

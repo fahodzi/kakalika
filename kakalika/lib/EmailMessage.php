@@ -8,7 +8,7 @@ namespace kakalika\lib;
  * Adapted from user contributed note on imap_fetchstructure help page by
  * david at hundsness dot com.
  */
-class EmailDecoder
+class EmailMessage
 {
     private $imap;
     private $message;

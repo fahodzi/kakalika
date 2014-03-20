@@ -25,7 +25,6 @@ $app['home'] = __DIR__;
 
 require "{$ntentan['home']}/lib/Ntentan.php";
 
-
 Ntentan::$configPath = __DIR__ . "/config/";
 Ntentan::setup($ntentan, $app);
 \ntentan\views\template_engines\TemplateEngine::prependPath(__DIR__ . '/views/emails');
@@ -42,82 +41,82 @@ foreach($emailSettings->toArray() as $settings)
     echo "Processing emails for {$settings['project']['name']}\n";
     echo "Connecting to {$settings['incoming_server_type']}://{$settings['incoming_server_host']}:{$settings['incoming_server_port']} ... ";
     
-    $ssl = $settings['incoming_server_ssl'] == '1' ? "/ssl/novalidate-cert" : "";
-    $imap = imap_open(
-        "{{$settings['incoming_server_host']}:{$settings['incoming_server_port']}/{$settings['incoming_server_type']}$ssl}INBOX",
-        $settings['incoming_server_username'], $settings['incoming_server_password']
-    );
+    $emailConnection = new \kakalika\lib\EmailConnection();
+    $emailConnection->setHost($settings['incoming_server_host']);
+    $emailConnection->setPort($settings['incoming_server_port']);
+    $emailConnection->setType($settings['incoming_server_type']);
+    $emailConnection->setUsername($settings['incoming_server_username']);
+    $emailConnection->setPassword($settings['incoming_server_password']);
+    $emailConnection->setSsl($settings['incoming_server_ssl']);
+    $emailConnection->open();
+    echo "OK\n";
     
-    if($imap !== false)
+    while($emailConnection->hasMessage())
     {
-        echo "OK\n";
-        $messages = imap_search($imap, 'UNSEEN');
-        if($messages)
+        $emailMessage = $emailConnection->getNextMessage();
+        echo "Processing [{$emailMessage->getSubject()}] from ({$emailMessage->getFromAddress()})\n";
+        $user = \kakalika\modules\users\Users::getJustFirstWithEmail($emailMessage->getFromAddress());   
+
+        if($user->count() == 0)
         {
-            echo "Processing " . count($messages) . " new mail(s).\n";
-            
-            foreach($messages as $message)
-            {
-                $decodedMessage = new \kakalika\lib\EmailDecoder($imap, $message);
-                $user = \kakalika\modules\users\Users::getJustFirstWithEmail($decodedMessage->getFromAddress());   
-                
-                if($user->count() == 0)
-                {
-                    $user = \kakalika\modules\users\Users::getNew();
-                    $user->firstname = $decodedMessage->getSenderName();
-                    $user->email = $decodedMessage->getFromAddress();
-                    $user->username = $decodedMessage->getFromAddress();
-                    $user->password = uniqid();
-                    $id = $user->save();
-                    $user->id = $id;
-                    
-                }
-                
-                $_SESSION['user'] = $user->toArray();
-                $to = $decodedMessage->getToAddress();
-                
-                if(preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*(\+){1}(?<issue_number>[_a-z0-9-]+)/i", $to, $matches))
-                {
-                    $issue = kakalika\modules\issues\Issues::getJustFirstWithNumber($matches['issue_number']);
-                    $issue->updater = $user->id;
-                    $issue->comment = $decodedMessage->getPlainText();
-                    foreach($decodedMessage->getAttachments() as $attachment)
-                    {
-                        $issue->addAttachment($attachment);
-                    }
-                    $issue->update();
-                }
-                else
-                {
-                    $issue = kakalika\modules\issues\Issues::getNew();
-                    $issue->title = $decodedMessage->getSubject();
-                    $issue->opener = $user->id;
-                    $issue->created = $decodedMessage->getTimestamp();
-                    $issue->description = $decodedMessage->getPlainText();
-                    $issue->project_id = $settings['project']['id'];
-                    foreach($decodedMessage->getAttachments() as $attachment)
-                    {
-                        $issue->addAttachment($attachment);
-                    }
-                    $issue->save();
-                }
-            }
+            $user = \kakalika\modules\users\Users::getNew();
+            $user->firstname = $emailMessage->getSenderName();
+            $user->email = $emailMessage->getFromAddress();
+            $user->username = $emailMessage->getFromAddress();
+            $user->password = uniqid();
+            $id = $user->save();
+            $user->id = $id;
+
         }
-        imap_close($imap);
-    }
-    else 
-    {
-        echo "FAILED\n";
-    }
-        
-    // Send outgoing mails
-    $outgoingMails = \kakalika\modules\outgoing_mails\OutgoingMails::getJustAllWithProjectId($settings['project']['id']);
-    foreach($outgoingMails as $outgoingMail)
-    {
-        $sender = unserialize($outgoingMail->object);
-        $sender->send($settings);
-        $outgoingMail->delete();
-    }
+
+        $_SESSION['user'] = $user->toArray();
+        $to = $emailMessage->getToAddress();
+        $commented = false;
+
+        if(preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*(\+){1}(?<issue_number>[_a-z0-9-]+)/i", $to, $matches))
+        {
+            $commented = comment_on_issue($matches['issue_number'], $user, $emailMessage);
+        }
+        else if(preg_match("/^Re: (?<subject>.*) \[\#(?<issue_number>[_a-z0-9]+)\]/i", $emailMessage->getSubject(), $matches))
+        {
+            $commented = comment_on_issue($matches['issue_number'], $user, $emailMessage);
+        }
+
+        if(!$commented)
+        {
+            $issue = kakalika\modules\issues\Issues::getNew();
+            $issue->title = $emailMessage->getSubject();
+            $issue->opener = $user->id;
+            $issue->created = $emailMessage->getTimestamp();
+            $issue->description = $emailMessage->getPlainText();
+            $issue->project_id = $settings['project']['id'];
+            foreach($emailMessage->getAttachments() as $attachment)
+            {
+                $issue->addAttachment($attachment);
+            }
+            $issue->save();
+        }
+    }    
 }
 
 unlink($lockFile);
+
+function comment_on_issue($issueNumber, $user, $emailMessage)
+{
+    $issue = kakalika\modules\issues\Issues::getJustFirstWithNumber($issueNumber);
+    if($issue->count() > 0)
+    {
+        $issue->updater = $user->id;
+        $issue->comment = $emailMessage->getPlainText();
+        foreach($emailMessage->getAttachments() as $attachment)
+        {
+            $issue->addAttachment($attachment);
+        }
+        $issue->update();
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}

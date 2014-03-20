@@ -313,7 +313,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
         {
             $milestonesOptions[$milestone->id] = $milestone->name;
         }
-        $this->set('milestones', $milestonesOptions);
-        
+         
+       $this->set('milestones', $milestonesOptions);
     }
 }

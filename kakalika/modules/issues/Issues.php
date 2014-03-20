@@ -24,34 +24,6 @@ class Issues extends Model
     private $updateData = array();
     private $attachments = array();
     
-    public function validate()
-    {
-        $valid = parent::validate();
-        
-        // Validate attachments
-        /*if(count($_FILES['attachment']) > 0)
-        {
-            foreach($_FILES['attachment']['error'] as $index => $error)
-            {
-                if($error == UPLOAD_ERR_OK)
-                {
-                    $this->attachments[] = array(
-                        'tmp_file' => $_FILES['attachment']['tmp_name'][$index],
-                        'name' => $_FILES['attachment']['name'][$index],
-                        'size' => $_FILES['attachment']['size'][$index],
-                        'type' => $_FILES['attachment']['type'][$index]
-                    );
-                }
-                else
-                {
-                    $valid = false;
-                }
-            }
-        }*/
-
-        return $valid;
-    }
-    
     public function addAttachment($attachment)
     {
         $this->attachments[] = $attachment;

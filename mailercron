@@ -113,6 +113,7 @@ unlink($lockFile);
 function comment_on_issue($issueNumber, $user, $emailMessage)
 {
     $issue = kakalika\modules\issues\Issues::getJustFirstWithNumber($issueNumber);
+    
     if($issue->count() > 0)
     {
         $issue->updater = $user->id;
@@ -129,3 +130,4 @@ function comment_on_issue($issueNumber, $user, $emailMessage)
         return false;
     }
 }
+

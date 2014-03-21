@@ -186,6 +186,12 @@ class Issues extends Model
                 $emailSender->setIssueNumber($this->number);
                 $emailSender->setSubject($this->title);
             }
+            
+            foreach($this->attachments as $attachment)
+            {
+                $emailSender->addAttachment($attachment['file'], $attachment['name']);
+            }
+            
             $outgoingMail->object = serialize($emailSender);
             $outgoingMail->save();
         }     

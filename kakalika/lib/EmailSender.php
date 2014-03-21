@@ -12,6 +12,7 @@ class EmailSender
     private $sourceName;
     private $subject;
     private $changes;
+    private $attachments = array();
     
     public function send($server)
     {
@@ -48,8 +49,13 @@ class EmailSender
             'changes' => $this->changes
         );
         
-        $mail->Body = TemplateEngine::render("html_update.tpl.php", $data);//"<span style='font-size:x-small; color:#808080'>------ Please reply above this ------</span>\n<br/><br/><p>{$this->message}</p>";
-        $mail->AltBody = TemplateEngine::render("txt_update.tpl.php", $data);//"------ Please reply above this ------\n\n" . $this->message;
+        $mail->Body = TemplateEngine::render("html_update.tpl.php", $data);
+        $mail->AltBody = TemplateEngine::render("txt_update.tpl.php", $data);
+        
+        foreach($this->attachments as $attachment)
+        {
+            $mail->addAttachment($attachment['path'], $attachment['filename']);
+        }
         
         if(!$mail->send())
         {
@@ -90,5 +96,13 @@ class EmailSender
     public function setSource($name)
     {
         $this->sourceName = $name;
+    }
+    
+    public function addAttachment($path, $filename)
+    {
+        $this->attachments[] = array(
+            'path' => "uploads/$path",
+            'filename' => $filename
+        );
     }
 }

@@ -227,7 +227,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
         $file = "uploads/{$attachment->attachment_file}";
         
         $this->view->setContentType($attachment->type);
-        header("Content-Disposition: attachment; filename=\"{$attachment->name}\"");
+        //header("Content-Disposition: attachment; filename=\"{$attachment->name}\"");
         
         if(file_exists($file))
         {

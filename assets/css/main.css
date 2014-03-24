@@ -787,3 +787,23 @@ ul.spreadout-list > li{
 #projects-list > li{
     border:none;
 }
+
+/******************* PAGINATION *******************/
+.item-pages-list{
+    padding:15px;
+}
+
+.item-pages-list > a{
+    display:inline-block;
+    padding:3px;
+    border:1px solid #ececec;
+    color:#808080;
+    font-size: smaller;
+    font-weight: bold;
+}
+
+.item-pages-list > a.selected{
+    background-color:#808080;
+    color:#fff;
+    font-weight: bold;
+}

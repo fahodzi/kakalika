@@ -8,6 +8,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
     public function init()
     {
         parent::init();
+        $this->defaultMethodName = 'page';
         $this->set('sub_section', 'Issues');
         
         if($GLOBALS["ROUTE_MODE"] == 'project')
@@ -101,7 +102,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
         }
     }
     
-    public function run()
+    public function page($pageNumber)
     {
         switch ($_GET['filter'])
         {
@@ -159,11 +160,19 @@ class IssuesController extends \kakalika\lib\KakalikaController
                 break;
         }
         
-        $issues = Issues::getAllWithProjectId(
+        $numIssues = Issues::getCountWithProjectId($this->project->id);
+        $numPages = ceil($numIssues / 15);
+        $this->set('number_of_pages', $numPages);
+        $this->set('base_route', "{$this->project->code}/issues/page/"); 
+        $this->set('page_number', $pageNumber);
+       
+        $issues = Issues::getWithProjectId(
             $this->project->id,
             array(
                 'sort' => $sort,
-                'conditions' => $filters
+                'conditions' => $filters,
+                'limit' => 15,
+                'offset' => ($pageNumber - 1) * 15
             )
         );
         
@@ -227,7 +236,6 @@ class IssuesController extends \kakalika\lib\KakalikaController
         $file = "uploads/{$attachment->attachment_file}";
         
         $this->view->setContentType($attachment->type);
-        //header("Content-Disposition: attachment; filename=\"{$attachment->name}\"");
         
         if(file_exists($file))
         {

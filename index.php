@@ -47,4 +47,3 @@ catch(\ntentan\exceptions\ApiIniFileNotFoundException $e)
 {
     header("Location: {$_SERVER['REQUEST_URI']}install");
 }
-

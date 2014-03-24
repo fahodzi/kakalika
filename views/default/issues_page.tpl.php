@@ -54,3 +54,5 @@
     </tr>
     <?php endforeach; ?>
 </table>
+
+<?= $widgets->pagination($page_number, $number_of_pages, $base_route) ?>

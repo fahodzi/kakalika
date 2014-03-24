@@ -102,7 +102,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
         }
     }
     
-    public function page($pageNumber)
+    public function page()
     {
         switch ($_GET['filter'])
         {
@@ -159,22 +159,22 @@ class IssuesController extends \kakalika\lib\KakalikaController
                 $sort = 'updated desc';
                 break;
         }
+        if($_GET['page'] == '') $_GET['page'] = 1;
         
-        $numIssues = Issues::getCountWithProjectId($this->project->id);
+        $params = array(
+            'sort' => $sort,
+            'conditions' => $filters
+        );
+        
+        $numIssues = Issues::getCountWithProjectId($this->project->id, $params);
         $numPages = ceil($numIssues / 15);
         $this->set('number_of_pages', $numPages);
-        $this->set('base_route', "{$this->project->code}/issues/page/"); 
-        $this->set('page_number', $pageNumber);
+        $this->set('base_route', "{$this->project->code}"); 
        
-        $issues = Issues::getWithProjectId(
-            $this->project->id,
-            array(
-                'sort' => $sort,
-                'conditions' => $filters,
-                'limit' => 15,
-                'offset' => ($pageNumber - 1) * 15
-            )
-        );
+        $params['limit'] = 15;
+        $params['offset'] = ($_GET['page'] - 1) * 15;
+
+        $issues = Issues::getWithProjectId($this->project->id, $params);
         
         $this->set('issues', $issues);
         $this->set('title', "{$this->project->name} issues");

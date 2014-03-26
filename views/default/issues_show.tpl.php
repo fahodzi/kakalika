@@ -10,7 +10,7 @@
             <?php foreach($issue['issue_attachments'] as $attachment): ?>
                 <?php if($attachment['update_id'] != '')  continue; ?>
                 <li>
-                    <a href='<?= u('issues/attachment/' . $attachment['id']) ?>'><?= $attachment['name'] ?></a>
+                    <a href='<?= u("issues/attachment/{$attachment['id']}/{$attachment['name']}") ?>'><?= $attachment['name'] ?></a>
                     <br/><span class="small-date"><?= $helpers->file_size($attachment['size']->unescape()) ?></span>
                 </li>
             <?php endforeach; ?>
@@ -67,7 +67,7 @@
                 <ul class="attachment-display-box sub-attachment-box">
                 <?php foreach($update['issue_attachments'] as $attachment): ?>
                     <li>
-                        <a href='<?= u('issues/attachment/' . $attachment['id']) ?>'><?= $attachment['name'] ?></a>
+                        <a href='<?= u("issues/attachment/{$attachment['id']}/{$attachment['name']}") ?>'><?= $attachment['name'] ?></a>
                         <br/><span class="small-date"><?= $helpers->file_size($attachment['size']->unescape()) ?></span>
                     </li>
                 <?php endforeach; ?>

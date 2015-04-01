@@ -1,0 +1,15 @@
+{
+    "name": "ekowabaka/kakalika",
+    "description": "Simple issue management with hyper integrations.",
+    "license" : "MIT",
+    "authors": [
+        {
+            "name": "Ekow Abaka Ainooson",
+            "email": "jainooson@gmail.com"
+        }
+    ],
+    "require": {
+        "ntentan/ntentan" : "dev-master",
+        "ekowabaka/yentu" : "dev-master"
+    }
+}

@@ -8,3 +8,4 @@ config
 nbproject
 logs
 uploads
+vendor

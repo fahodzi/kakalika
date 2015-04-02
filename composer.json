@@ -8,8 +8,29 @@
             "email": "jainooson@gmail.com"
         }
     ],
+    "repositories":[
+        {
+            "type": "package",
+            "package": {
+                "name": "yahoo/yos-social-php5",
+                "version": "0.2",
+                "source": {
+                    "url" : "https://github.com/yahoo/yos-social-php5.git",
+                    "type": "git",
+                    "reference": "tags/0.2"
+                },
+                "autoload" : {
+                    "files": [
+                        "lib/OAuth/OAuth.php",
+                        "lib/Yahoo/YahooOAuthApplication.class.php"
+                    ]
+                }
+            }
+        }
+    ],
     "require": {
         "ntentan/ntentan" : "dev-master",
-        "ekowabaka/yentu" : "dev-master"
+        "ekowabaka/yentu" : "dev-master",
+        "ntentan/social-extension": "dev-master"
     }
 }

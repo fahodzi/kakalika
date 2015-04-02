@@ -24,7 +24,7 @@
             <?php $stripe = true; foreach($issue['updates'] as $update): ?>
             <div class="update <?= $stripe ? 'striped' : '' ?>">
                 <div class="issue_number">#<?= $update['number'] ?></div>
-                <img src="<?= $helpers->gravatar->image($update['user']['email'])->size(54) ?>" />
+                <img src="<?= $helpers->social->gravatar($update['user']['email'])->size(54) ?>" />
                 <span class="name"><?= $update['user']['firstname'] . " " . $update['user']['lastname'] ?></span>
                 <div class="small-date"><?= $helpers->date($update['created'])->sentence(array('elaborate_with' => 'ago')) ?> ⚫ <?= $helpers->date($update['created'])->format('jS F, Y @ g:i a') ?></div>
                 <?php

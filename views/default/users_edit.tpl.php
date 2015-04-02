@@ -1,5 +1,5 @@
 <div id="profile_head">
-    <img src="<?= $helpers->gravatar->image($user['email'])->size(96) ?>" />
+    <img src="<?= $helpers->social->gravatar($user['email'])->size(96) ?>" />
     <span class="name"><?= "{$user['firstname']} {$user['lastname']}" ?></span><br/>
     <span class="email"><?= $user['email'] ?></span>
 </div>   

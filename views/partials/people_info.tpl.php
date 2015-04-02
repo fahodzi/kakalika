@@ -1,5 +1,5 @@
 <div class='people-info'>
-    <img src='<?= $helpers->gravatar->image($email)->size(56) ?>' /> 
+    <img src='<?= $helpers->social->gravatar($email)->size(56) ?>' /> 
     <span class='top-part'>
         <?= $action ?> <span class='name'><?= $firstname ?> <?= $lastname ?></span>
     </span>

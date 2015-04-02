@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4740ece27d8b34beddb2dbbfa10623e3",
+    "hash": "36871f46c3636c382cefda89c1be3746",
     "packages": [
         {
             "name": "ekowabaka/clearice",
@@ -53,12 +53,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekowabaka/yentu.git",
-                "reference": "e833816eda17ea096b741a226f59bb47f2f932db"
+                "reference": "5f6640542e69934eeeecca6c245bb08a4fb5dcca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekowabaka/yentu/zipball/e833816eda17ea096b741a226f59bb47f2f932db",
-                "reference": "e833816eda17ea096b741a226f59bb47f2f932db",
+                "url": "https://api.github.com/repos/ekowabaka/yentu/zipball/5f6640542e69934eeeecca6c245bb08a4fb5dcca",
+                "reference": "5f6640542e69934eeeecca6c245bb08a4fb5dcca",
                 "shasum": ""
             },
             "require": {
@@ -91,7 +91,7 @@
                 }
             ],
             "description": "A database migration tool with intimate integration with git",
-            "time": "2015-03-26 16:53:48"
+            "time": "2015-04-02 07:24:37"
         },
         {
             "name": "monolog/monolog",
@@ -333,6 +333,44 @@
             "time": "2015-03-21 13:36:13"
         },
         {
+            "name": "ntentan/social-extension",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ntentan/social-extension.git",
+                "reference": "601ee5095b9321d1262c943813929b50b47e3e9f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ntentan/social-extension/zipball/601ee5095b9321d1262c943813929b50b47e3e9f",
+                "reference": "601ee5095b9321d1262c943813929b50b47e3e9f",
+                "shasum": ""
+            },
+            "suggest": {
+                "facebook/php-sdk-v4": "For facebook authentication (4.0.*)",
+                "google/apiclient": "For google authentication (1.*)",
+                "yahoo/yos-social-php5": "For yahoo authentication (0.2)"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ntentan\\extensions\\social\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ekow Abaka Ainooson",
+                    "email": "jainooson@gmail.com"
+                }
+            ],
+            "description": "An ntentan framework plugin for integrating your application with social network APIs",
+            "time": "2015-04-02 07:33:41"
+        },
+        {
             "name": "psr/log",
             "version": "1.0.0",
             "source": {
@@ -422,7 +460,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "ntentan/ntentan": 20,
-        "ekowabaka/yentu": 20
+        "ekowabaka/yentu": 20,
+        "ntentan/social-extension": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -24,7 +24,7 @@
                     <?php endif; ?>
                 </div>
                 <div id="status_side" class="column grid_10_5">
-                    <img src="<?= $helpers->gravatar->image($_SESSION['user']['email'])->size(53) ?>" />
+                    <img src="<?= $helpers->social->gravatar($_SESSION['user']['email'])->size(53) ?>" />
                     <?php
                     $menu = array();
                     if($_SESSION['user']['is_admin'])

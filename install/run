@@ -2,6 +2,6 @@
 <?php
 error_reporting(E_ALL ^ E_NOTICE);
 
-require "anyen/src/Anyen.php";
+require "../vendor/autoload.php";
 
-Anyen::run(__DIR__ . "/wizards/install.yml", array('banner' => 'Kakalika Issue Tracker'));
+anyen\Runner::run(__DIR__ . "/wizards/install.yml", array('banner' => 'Kakalika Issue Tracker'));

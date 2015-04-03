@@ -116,7 +116,7 @@ DBFILE;
         
         $user = kakalika\modules\users\Users::getNew();
         $user->username = $data['admin_username'];
-        $user->password = $data['admin_password'];
+        $user->password = md5($data['admin_password']);
         $user->firstname = $data['firstname'];
         $user->lastname = $data['lastname'];
         $user->email = $data['email'];

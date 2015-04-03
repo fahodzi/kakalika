@@ -1,5 +1,5 @@
 <?php
-class install extends wizard_logic
+class install extends anyen\wizard_logic
 {
     public function check_directories()
     {
@@ -49,78 +49,18 @@ class install extends wizard_logic
     
     public function get_db_config_route_callback()
     {
-        //@todo Allow the settings entered into anyen to be retained
         $data = $this->wizard->getData();
-        @$connection = new mysqli(
-            $data["host"],
-            $data["username"],
-            $data["password"]
-        );
-        
-        if($connection->connect_error)
-        {
-            $this->wizard->showMessage(
-                "Failed to connect to the database",
-                "error"
+        try{
+            $driver =ntentan\atiaa\Driver::getConnection(
+                array(
+                    'driver' => 'mysql',
+                    'user' => $data['username'],
+                    'password' => $data['password'],
+                    'host' => $data['host'],
+                    'dbname' => $data['schema']
+                )
             );
-            $this->wizard->repeatPage();
-        }
-        elseif(!$connection->select_db($data['schema']))
-        {
-            $this->wizard->showMessage(
-                "Failed to select schema {$data['schema']}",
-                "error"
-            );
-            $this->wizard->repeatPage();            
-        }
-    }
-    
-    public function setup_database()
-    {
-        $data = $this->wizard->getData();
-        @$connection = new mysqli(
-            $data["host"],
-            $data["username"],
-            $data["password"]
-        );
-
-        $connection->select_db($data['schema']);
-        $queries = file_get_contents(__DIR__ . '/../mysql_schema.sql');
-        $queries = explode(';', $queries);
-                
-        foreach($queries as $query)
-        {
-            $connection->query($query);
-        }
-        
-        print "Done setting up database";
-    }
-    
-    public function setup_admin_route_callback()
-    {
-        $data = $this->wizard->getData();
-
-        @$connection = new mysqli(
-            $data["host"],
-            $data["username"],
-            $data["password"]
-        );
-
-        $connection->select_db($data['schema']);        
-        
-        $connection->query(
-            sprintf(
-                "INSERT INTO 
-                    users(username, password, firstname, lastname, email, is_admin)
-                 VALUES ('%s', '%s', '%s', '%s', '%s', true)",
-                $connection->escape_string($data['admin_username']),
-                $connection->escape_string(md5($data['admin_password'])),
-                $connection->escape_string($data['firstname']),
-                $connection->escape_string($data['lastname']),
-                $connection->escape_string($data['email'])
-            )
-        );
-        
+            
 $appFile = <<< APPFILE
 context = deployed
 prefix = {$data['prefix']}
@@ -131,7 +71,7 @@ error_reporting = error
 
 APPFILE;
 
-        file_put_contents(__DIR__ . "/../../config/app.ini", $appFile);        
+            file_put_contents(__DIR__ . "/../../config/app.ini", $appFile);        
         
 $dbFile = <<< DBFILE
 [deployed]
@@ -143,8 +83,46 @@ name = {$data['schema']}
 
 DBFILE;
         
-        file_put_contents(__DIR__ . "/../../config/db.ini", $dbFile);
+            file_put_contents(__DIR__ . "/../../config/db.ini", $dbFile);            
+            $driver->disconnect();
+            
+        }
+        catch(PDOException $e)
+        {
+            $this->wizard->showMessage(
+                "Failed to connect to the database. Database driver says \"{$e->getMessage()}\"",
+                "error"
+            );
+            $this->wizard->repeatPage();            
+        }
+    }
+    
+    public function setup_database()
+    {
+        chdir("..");
+        $command = new yentu\commands\Migrate();
+        $command->run();
+        chdir("install");
         
+        print "Done setting up database";
+    }
+    
+    public function setup_admin_route_callback()
+    {
+        $data = $this->wizard->getData();
+        chdir("..");
+        $ntentan = parse_ini_file('config/ntentan.ini', true);
+        ntentan\Ntentan::setup($ntentan);
+        
+        $user = kakalika\modules\users\Users::getNew();
+        $user->username = $data['admin_username'];
+        $user->password = $data['admin_password'];
+        $user->firstname = $data['firstname'];
+        $user->lastname = $data['lastname'];
+        $user->email = $data['email'];
+        $user->is_admin = true;
+        
+        $user->save();
     }
 }
 

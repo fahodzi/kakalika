@@ -4,8 +4,44 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "36871f46c3636c382cefda89c1be3746",
+    "hash": "218ba3fda32aee9d0d76b4cffd03e904",
     "packages": [
+        {
+            "name": "ekowabaka/anyen",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ekowabaka/anyen.git",
+                "reference": "0bc9a235ff2296310cf7ea38a102d171aafa8243"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ekowabaka/anyen/zipball/0bc9a235ff2296310cf7ea38a102d171aafa8243",
+                "reference": "0bc9a235ff2296310cf7ea38a102d171aafa8243",
+                "shasum": ""
+            },
+            "require": {
+                "mustangostang/spyc": "0.5.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "anyen\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ekow Abaka Ainooson",
+                    "email": "jainooson@gmail.com"
+                }
+            ],
+            "description": "A simple wizard creation tool. Anyen helps you to create wizards that work both on the CLI and the web interface.",
+            "time": "2015-04-03 15:07:25"
+        },
         {
             "name": "ekowabaka/clearice",
             "version": "v0.4.2",
@@ -53,12 +89,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekowabaka/yentu.git",
-                "reference": "5f6640542e69934eeeecca6c245bb08a4fb5dcca"
+                "reference": "7bac5de2bb5e7366a502e981433b7672bfd3eedf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekowabaka/yentu/zipball/5f6640542e69934eeeecca6c245bb08a4fb5dcca",
-                "reference": "5f6640542e69934eeeecca6c245bb08a4fb5dcca",
+                "url": "https://api.github.com/repos/ekowabaka/yentu/zipball/7bac5de2bb5e7366a502e981433b7672bfd3eedf",
+                "reference": "7bac5de2bb5e7366a502e981433b7672bfd3eedf",
                 "shasum": ""
             },
             "require": {
@@ -91,7 +127,7 @@
                 }
             ],
             "description": "A database migration tool with intimate integration with git",
-            "time": "2015-04-02 07:24:37"
+            "time": "2015-04-03 15:05:39"
         },
         {
             "name": "monolog/monolog",
@@ -165,6 +201,53 @@
                 "psr-3"
             ],
             "time": "2015-03-09 09:58:04"
+        },
+        {
+            "name": "mustangostang/spyc",
+            "version": "0.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mustangostang/spyc.git",
+                "reference": "dc4785b4d7227fd9905e086d499fb8abfadf9977"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mustangostang/spyc/zipball/dc4785b4d7227fd9905e086d499fb8abfadf9977",
+                "reference": "dc4785b4d7227fd9905e086d499fb8abfadf9977",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.5.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "Spyc.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT License"
+            ],
+            "authors": [
+                {
+                    "name": "mustangostang",
+                    "email": "vlad.andersen@gmail.com"
+                }
+            ],
+            "description": "A simple YAML loader/dumper class for PHP",
+            "homepage": "https://github.com/mustangostang/spyc/",
+            "keywords": [
+                "spyc",
+                "yaml",
+                "yml"
+            ],
+            "time": "2013-02-21 10:52:01"
         },
         {
             "name": "natxet/CssMin",
@@ -461,6 +544,7 @@
     "stability-flags": {
         "ntentan/ntentan": 20,
         "ekowabaka/yentu": 20,
+        "ekowabaka/anyen": 20,
         "ntentan/social-extension": 20
     },
     "prefer-stable": false,

@@ -67,7 +67,7 @@ prefix = {$data['prefix']}
 
 [deployed]
 caching = file
-error_reporting = error
+error_handler = error
 
 APPFILE;
 

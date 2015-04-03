@@ -55,12 +55,14 @@
     <?php endforeach; ?>
 </table>
 
-<?= $widgets->pagination(
-    array(
-        'page_number' => $page_number, 
-        'number_of_pages' => $number_of_pages, 
-        'base_route' => $base_route,
-        'query' => 'page'
-    )
-) 
+<?php if($number_of_pages > 1){
+        echo $widgets->pagination(
+        array(
+            'page_number' => $page_number, 
+            'number_of_pages' => $number_of_pages, 
+            'base_route' => $base_route,
+            'query' => 'page'
+        )
+    );
+}
 ?>

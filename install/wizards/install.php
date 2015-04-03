@@ -53,7 +53,7 @@ class install extends anyen\wizard_logic
         try{
             $driver =ntentan\atiaa\Driver::getConnection(
                 array(
-                    'driver' => 'mysql',
+                    'driver' => $data['driver'],
                     'user' => $data['username'],
                     'password' => $data['password'],
                     'host' => $data['host'],
@@ -75,7 +75,7 @@ APPFILE;
         
 $dbFile = <<< DBFILE
 [deployed]
-datastore = mysql
+datastore = {$data['driver']}
 host = {$data['host']}
 user = {$data['username']}
 password = {$data['password']}

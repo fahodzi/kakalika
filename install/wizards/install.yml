@@ -37,21 +37,7 @@
     -
       type: text_input
       name: prefix
-      label: Prefix
-      
-# -
-#  page: checking_extensions
-#  title: Checking extensions
-#  
-#  widgets:
-#    -
-#      type: text
-#      text: >
-#        Let's check to see if you have all the required 
-#   check for the mysql extensions
-#    -
-#      type: checklist
-#      function_name: check_directories      
+      label: Prefix   
 -
   page: get_db_config
   title: Database Configuration
@@ -60,6 +46,15 @@
       type: text
       text: >
         Please provide the details for the database configuration.
+    -
+      type: text_input
+      name: driver
+      label: What database are we connecting to
+      required: true
+      options:
+        - postgresql
+        - mysql
+      
     -
       type: text_input
       name: host

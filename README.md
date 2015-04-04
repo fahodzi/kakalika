@@ -1,51 +1,61 @@
 Kakalika Issue Tracker
 ======================
 
-![Screenshot](http://ekowabaka.me/kakalika/screen.png)
-
 The goal behind kakalika is to provide an issue managment tool that is easy to setup, easy to
 administer and easy to use. It is meant to be that kind of tool that anyone can
 figure out in just a few clicks. 
 
-Although kakalika is currently in its infancy and is obviously quite far from 
-what it is actually supposed to be, it still packs a little punch. For now you
-can: 
-- Log your issues (that's why its an issue tracker)
-- Give your issues statuses with our simple built in workflow
-- Categorize all your issues with our built in categories
-- Comment on issues and keep track of all the history of comments
-- Track your projects with milestones
-- Categorize issues by components to which they belong in your project
+Since kakalika is currently in its infancy and is obviously quite far from 
+what it is actually supposed to be. It still however, packs a little punch. 
+For now you can: 
+- Log your issues (that's why its an issue tracker).
+- Give your issues statuses with our simple built in workflow.
+- Categorize all your issues with our built in issue statuses.
+- Comment on issues and keep track of the history of all comments.
+- Track your projects with milestones.
+- Categorize issues by components to which they belong in your project.
+- Create and comment on issues over email.
 
 Installing Kakalika
 -------------------
+There are two primary ways of installing kakalika. You could either use the 
+release archive or you could checkout the source code and configure it yourself.
+Using the release archive is recommended for server environments and checking
+out the code is recommended for tinkerers and hackers.
 
 ### Requirements
 
 - Apache web server
 - PHP 5.3+
-- MySQL server 5+
-- mysqli extension for PHP
+- MySQL server 5+ or PostgreSQL
 - `mod_rewrite` and `.htaccess` enabled
 
-### Setting up
+### Installing from the Release Archive
 
-1. Download and extract release to your document root. If you however clone the git repository 
-   instead of installing then initialize and update all submodules before proceeding 
-   with the installation.
-2. Ensure that the following directories exist and are writable by the web server:
-   - `cache`
-   - `public/js`
-   - `public/css`
-   - `public/images`
-   - `config`
-3. Create a blank database on your mysql server to hold the data
+1. Download and extract the release archive to the document root of your apache
+   web server.
+   
+2. Create a blank database on your preferred database server (mysql or postgresql) 
+   to hold the data.
 
-4. Point browser to `/install` and follow the steps on the browser. 
-   You can also execute `install/run` on the command line. If you choose
-   the command line option ensure you run as the web server's user so that
-   permissions are properly checked.
+3. Point browser to `/install` and follow the steps on the browser. 
 
+4. Alternatively, you can execute `install/run` on the command line. If you choose
+   the command line option ensure you run the script as the web server's user 
+   to ensure that file permissions are properly set.
+
+### Checking Out the Code
+1. Clone the source repository `git clone https://github.com/ekowabaka/kakalika.git`
+2. Change directory into the newly cloned kakalika directory and execute `composer install`
+3. Create the following directories in the new kakalika directory:
+    - `cache`
+    - `public/js`
+    - `public/css`
+    - `public/images`
+    - `config`
+4. Execute `install/run` from the command line or point your browser to `/install`.
+
+### Post Installation Steps
 After installation completes successfuly:
 
 1. Delete the `install` directory or make it inaccesible to the web server
@@ -80,8 +90,4 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
 LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-
-
 

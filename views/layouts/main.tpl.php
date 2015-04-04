@@ -59,6 +59,11 @@
                 </div>
             </div>
             <?php endif; ?>
+            <?php if($install_active): ?>
+            <div class="warning-banner">
+                Your install directory is still accessible. For the security of your Kakalika installation please remove this directory or make it inaccessible to the web server.
+            </div>            
+            <?php endif; ?>            
             <div id="body">
                 
                 <?php if($split): ?>

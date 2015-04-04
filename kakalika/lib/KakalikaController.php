@@ -11,6 +11,11 @@ class KakalikaController extends Controller
     {
         parent::init();
         
+        if(is_readable("install"))
+        {
+            $this->set("install_active", true);
+        }
+        
         TemplateEngine::appendPath('views/layouts');
         TemplateEngine::appendPath('views/partials');
         TemplateEngine::appendPath('views/forms');

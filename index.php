@@ -29,8 +29,6 @@
  * @license MIT
  */
 
-xdebug_start_trace("logs/tracy.out");
-
 error_reporting(E_ALL  ^ E_NOTICE);
 $ntentan = parse_ini_file('config/ntentan.ini', true);
 require "vendor/autoload.php";

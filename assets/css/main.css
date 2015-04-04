@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 body{
-    font-family: sans-serif;
+    font-family: "Open Sans", sans-serif;
     background-color: #fcfcfc;
 }
 
@@ -806,4 +806,14 @@ ul.spreadout-list > li{
     background-color:#808080;
     color:#fff;
     font-weight: bold;
+}
+
+.warning-banner{
+    padding:20px;
+    background-color:#fff99c;
+    color:#c76e1d;
+    font-weight: bold;
+    font-size: small;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }

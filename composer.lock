@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "02284d1c6530c7cc248edabb0bda1ee1",
+    "hash": "697b4c2b8994472299b7ef55886fdda3",
     "packages": [
         {
             "name": "ekowabaka/anyen",

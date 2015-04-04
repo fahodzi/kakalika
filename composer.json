@@ -1,6 +1,6 @@
 {
     "name": "ekowabaka/kakalika",
-    "description": "Simple issue management with hyper integrations.",
+    "description": "Simple issue management.",
     "license" : "MIT",
     "authors": [
         {
@@ -8,30 +8,14 @@
             "email": "jainooson@gmail.com"
         }
     ],
-    "repositories":[
-        {
-            "type": "package",
-            "package": {
-                "name": "yahoo/yos-social-php5",
-                "version": "0.2",
-                "source": {
-                    "url" : "https://github.com/yahoo/yos-social-php5.git",
-                    "type": "git",
-                    "reference": "tags/0.2"
-                },
-                "autoload" : {
-                    "files": [
-                        "lib/OAuth/OAuth.php",
-                        "lib/Yahoo/YahooOAuthApplication.class.php"
-                    ]
-                }
-            }
-        }
-    ],
     "require": {
         "ntentan/ntentan" : "dev-master",
         "ekowabaka/yentu" : "dev-master",
         "ekowabaka/anyen" : "dev-master",
         "ntentan/social-extension": "dev-master"
+    },
+    "require-dev": {
+        "phing/phing": "2.*",
+        "pear/versioncontrol_git": "dev-master"
     }
 }

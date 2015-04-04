@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Kakalika" default="dist" basedir="." description="a simple issue tracker">
+    <property name="build.dir" value="./build" />
+    
+    <target name="clean">
+        <delete dir="${build.dir}" />
+    </target>
+    
+    <target name="prepare">
+        <echo msg="Creating release archive"/>
+        <exec command="git describe --tags" outputProperty="build.version" />
+        <mkdir dir="${build.dir}" />
+        <property name="build.dir.src" value="${build.dir}/src/kakalika-${build.version}" />
+        <mkdir dir="${build.dir.src}" />
+    </target>
+        
+    <target name="dist" depends="prepare">
+        <resolvepath propertyName = "repo.target" file="${build.dir.src}" />
+        <gitclone repository="./" targetPath = "${repo.target}" />
+        <composer command="install" composer="${composer.binary}">
+            <arg line="--working-dir ${repo.target}" />
+            <arg line="--prefer-dist" />
+        </composer>
+        <mkdir dir="${build.dir.src}/public" />
+        <mkdir dir="${build.dir.src}/public/js" />
+        <mkdir dir="${build.dir.src}/public/css" />
+        <mkdir dir="${build.dir.src}/public/images" />
+        <mkdir dir="${build.dir.src}/cache" />
+        <delete dir="${build.dir.src}/.git" />
+        <delete file="${build.dir.src}/.gitignore" />
+        <delete file="${build.dir.src}/composer.json" />
+        <delete file="${build.dir.src}/composer.lock" />
+        <delete file="${build.dir.src}/build.xml" />
+        
+        <tar destfile="${build.dir}/kakalika-${build.version}.tar.gz" basedir="${build.dir}/src" compression="gzip"/>
+        <delete dir="${build.dir}/src" />
+    </target>
+</project>

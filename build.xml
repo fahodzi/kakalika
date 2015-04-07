@@ -17,15 +17,18 @@
     <target name="dist" depends="prepare">
         <resolvepath propertyName = "repo.target" file="${build.dir.src}" />
         <gitclone repository="./" targetPath = "${repo.target}" />
-        <composer command="install" composer="${composer.binary}">
+        <composer command="install">
             <arg line="--working-dir ${repo.target}" />
             <arg line="--prefer-dist" />
+            <arg line="--optimize-autoloader" />
+            <arg line="--no-dev" />
         </composer>
         <mkdir dir="${build.dir.src}/public" />
         <mkdir dir="${build.dir.src}/public/js" />
         <mkdir dir="${build.dir.src}/public/css" />
         <mkdir dir="${build.dir.src}/public/images" />
         <mkdir dir="${build.dir.src}/cache" />
+        <mkdir dir="${build.dir.src}/logs" />
         <delete dir="${build.dir.src}/.git" />
         <delete file="${build.dir.src}/.gitignore" />
         <delete file="${build.dir.src}/composer.json" />

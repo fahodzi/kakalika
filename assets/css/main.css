@@ -167,7 +167,7 @@ ul#top-menu > li > a{
     font-weight: bold;
 }
 
-ul#top-menu > li#menu-item-logout > a{background-image:url(../images/logout.png)}
+ul#top-menu > li#menu-item-logout > a{background-image:url('../images/logout.png')}
 ul#top-menu > li#menu-item-admin > a{background-image:url(../images/settings_small.png)}
 ul#top-menu > li#menu-item-account > a{background-image:url(../images/account_small.png)}
 

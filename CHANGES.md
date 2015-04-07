@@ -1,5 +1,5 @@
-0.2.0 - 4th April, 2015
-=======================
+v0.2.0 - 7th April, 2015
+========================
 - Added support for PostgreSQL database.
 - Switched database schema management to the yentu migration tool.
 - Organized packages with composer and dropped all git submodules.
@@ -12,8 +12,8 @@
   email.
 - A couple of bug fixes.
 
-0.1.5 - 24th February, 2014
-===========================
+v0.1.5 - 24th February, 2014
+============================
 - Added support for attachments on issues and comments.
 - Added support for milestones.
 - Issues can now be categorized into Components.
@@ -25,6 +25,6 @@
 - Improved the colour schemes and made them uniform accross the UI. 
 
 
-0.1.0 - 18th October, 2013 
-==========================
+v0.1.0 - 18th October, 2013 
+===========================
 First Public Release

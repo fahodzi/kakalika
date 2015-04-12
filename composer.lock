@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "697b4c2b8994472299b7ef55886fdda3",
+    "hash": "2b17ec8967cc969820be75ad4eff16fe",
     "packages": [
         {
             "name": "ekowabaka/anyen",
@@ -131,16 +131,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.13.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "c31a2c4e8db5da8b46c74cf275d7f109c0f249ac"
+                "reference": "a54d460500aeaf653cabc1059cc33d07e7b544ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c31a2c4e8db5da8b46c74cf275d7f109c0f249ac",
-                "reference": "c31a2c4e8db5da8b46c74cf275d7f109c0f249ac",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/a54d460500aeaf653cabc1059cc33d07e7b544ad",
+                "reference": "a54d460500aeaf653cabc1059cc33d07e7b544ad",
                 "shasum": ""
             },
             "require": {
@@ -200,20 +200,20 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-03-09 09:58:04"
+            "time": "2015-04-04 10:50:52"
         },
         {
             "name": "mustangostang/spyc",
-            "version": "0.5.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mustangostang/spyc.git",
-                "reference": "dc4785b4d7227fd9905e086d499fb8abfadf9977"
+                "reference": "eeb9f7c47e1457770d64c7fb1f3d4aabff52de4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mustangostang/spyc/zipball/dc4785b4d7227fd9905e086d499fb8abfadf9977",
-                "reference": "dc4785b4d7227fd9905e086d499fb8abfadf9977",
+                "url": "https://api.github.com/repos/mustangostang/spyc/zipball/eeb9f7c47e1457770d64c7fb1f3d4aabff52de4b",
+                "reference": "eeb9f7c47e1457770d64c7fb1f3d4aabff52de4b",
                 "shasum": ""
             },
             "require": {
@@ -232,7 +232,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT License"
+                "MIT"
             ],
             "authors": [
                 {
@@ -247,26 +247,31 @@
                 "yaml",
                 "yml"
             ],
-            "time": "2013-02-21 10:52:01"
+            "time": "2014-08-21 09:14:01"
         },
         {
             "name": "natxet/CssMin",
-            "version": "3.0.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/natxet/CssMin.git",
-                "reference": "afdcdbdb5fc332313f47a79ae60346df3e69a572"
+                "reference": "2feb2aa71c5b299369c63ecc256185aaa5c05bcf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/natxet/CssMin/zipball/afdcdbdb5fc332313f47a79ae60346df3e69a572",
-                "reference": "afdcdbdb5fc332313f47a79ae60346df3e69a572",
+                "url": "https://api.github.com/repos/natxet/CssMin/zipball/2feb2aa71c5b299369c63ecc256185aaa5c05bcf",
+                "reference": "2feb2aa71c5b299369c63ecc256185aaa5c05bcf",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
             "autoload": {
                 "classmap": [
                     "src/"
@@ -289,7 +294,7 @@
                 "css",
                 "minify"
             ],
-            "time": "2013-07-02 20:53:35"
+            "time": "2015-01-21 10:40:33"
         },
         {
             "name": "ntentan/atiaa",
@@ -331,6 +336,48 @@
             ],
             "description": "A slim wrapper around PDO to provide some extra utilities",
             "time": "2015-02-15 12:00:27"
+        },
+        {
+            "name": "ntentan/honam",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ntentan/honam.git",
+                "reference": "6a6fb70a358cd42b13303b89ac7b4abc2f3911bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ntentan/honam/zipball/6a6fb70a358cd42b13303b89ac7b4abc2f3911bf",
+                "reference": "6a6fb70a358cd42b13303b89ac7b4abc2f3911bf",
+                "shasum": ""
+            },
+            "require": {
+                "natxet/cssmin": "3.*",
+                "tedivm/jshrink": "1.*"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "1.*",
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ntentan\\honam\\": "src/",
+                    "ntentan\\honam\\tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ekow Abaka Ainooson",
+                    "email": "jainooson@gmail.com"
+                }
+            ],
+            "description": "The views component of the ntentan framework.",
+            "time": "2015-04-11 17:41:12"
         },
         {
             "name": "ntentan/logger",
@@ -378,20 +425,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/ntentan.git",
-                "reference": "98d382c229076863e9c7ba4c13008fdee37c71a0"
+                "reference": "5c9feef6c1587a6f3a36d0d345f3fb050ff8a67c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/98d382c229076863e9c7ba4c13008fdee37c71a0",
-                "reference": "98d382c229076863e9c7ba4c13008fdee37c71a0",
+                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/5c9feef6c1587a6f3a36d0d345f3fb050ff8a67c",
+                "reference": "5c9feef6c1587a6f3a36d0d345f3fb050ff8a67c",
                 "shasum": ""
             },
             "require": {
-                "natxet/cssmin": "3.*",
                 "ntentan/atiaa": "0.*",
+                "ntentan/honam": "dev-master",
                 "ntentan/logger": "0.*",
-                "php": ">=5.3.0",
-                "tedivm/jshrink": "1.*"
+                "php": ">=5.3.0"
             },
             "type": "library",
             "autoload": {
@@ -413,7 +459,7 @@
                 }
             ],
             "description": "Another PHP application framework.",
-            "time": "2015-04-07 12:03:27"
+            "time": "2015-04-09 10:11:55"
         },
         {
             "name": "ntentan/social-extension",
@@ -421,12 +467,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/social-extension.git",
-                "reference": "c9f6a011a4e8c993402049aecf42a717adde36ee"
+                "reference": "ad737c8305b8dd357b2103b501ff38b342b7fca3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/social-extension/zipball/c9f6a011a4e8c993402049aecf42a717adde36ee",
-                "reference": "c9f6a011a4e8c993402049aecf42a717adde36ee",
+                "url": "https://api.github.com/repos/ntentan/social-extension/zipball/ad737c8305b8dd357b2103b501ff38b342b7fca3",
+                "reference": "ad737c8305b8dd357b2103b501ff38b342b7fca3",
                 "shasum": ""
             },
             "suggest": {
@@ -451,26 +497,31 @@
                 }
             ],
             "description": "An ntentan framework plugin for integrating your application with social network APIs",
-            "time": "2015-04-03 16:11:56"
+            "time": "2015-04-09 10:14:41"
         },
         {
             "name": "psr/log",
-            "version": "1.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
+                "reference": "bf2c13de4300e227d7b2fd08027673a79c519987"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
-                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/bf2c13de4300e227d7b2fd08027673a79c519987",
+                "reference": "bf2c13de4300e227d7b2fd08027673a79c519987",
                 "shasum": ""
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
             "autoload": {
-                "psr-0": {
-                    "Psr\\Log\\": ""
+                "psr-4": {
+                    "Psr\\Log\\": "Psr/Log/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -489,7 +540,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2012-12-21 11:40:51"
+            "time": "2015-03-26 14:39:45"
         },
         {
             "name": "tedivm/jshrink",
@@ -541,7 +592,7 @@
     "packages-dev": [
         {
             "name": "pear/pear_exception",
-            "version": "v1.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pear/PEAR_Exception.git",
@@ -639,16 +690,16 @@
         },
         {
             "name": "phing/phing",
-            "version": "2.10.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phingofficial/phing.git",
-                "reference": "f6c25373cbce5e042dddd9b951a3d5638bb78f67"
+                "reference": "4e6c51e6f3b4029de05dae48393fcbfdc91c0e33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phingofficial/phing/zipball/f6c25373cbce5e042dddd9b951a3d5638bb78f67",
-                "reference": "f6c25373cbce5e042dddd9b951a3d5638bb78f67",
+                "url": "https://api.github.com/repos/phingofficial/phing/zipball/4e6c51e6f3b4029de05dae48393fcbfdc91c0e33",
+                "reference": "4e6c51e6f3b4029de05dae48393fcbfdc91c0e33",
                 "shasum": ""
             },
             "require": {
@@ -692,7 +743,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.10.x-dev"
+                    "dev-master": "2.11.x-dev"
                 }
             },
             "autoload": {
@@ -709,27 +760,27 @@
             ],
             "authors": [
                 {
-                    "name": "Phing Community",
-                    "homepage": "http://www.phing.info/trac/wiki/Development/Contributors"
-                },
-                {
                     "name": "Michiel Rook",
                     "email": "mrook@php.net"
+                },
+                {
+                    "name": "Phing Community",
+                    "homepage": "https://www.phing.info/trac/wiki/Development/Contributors"
                 }
             ],
             "description": "PHing Is Not GNU make; it's a PHP project build system or build tool based on Apache Ant.",
-            "homepage": "http://www.phing.info/",
+            "homepage": "https://www.phing.info/",
             "keywords": [
                 "build",
                 "phing",
                 "task",
                 "tool"
             ],
-            "time": "2015-02-19 15:49:46"
+            "time": "2015-04-08 13:47:27"
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
         "ntentan/ntentan": 20,
         "ekowabaka/yentu": 20,

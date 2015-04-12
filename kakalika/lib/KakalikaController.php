@@ -1,7 +1,7 @@
 <?php
 namespace kakalika\lib;
 
-use ntentan\views\template_engines\TemplateEngine;
+use ntentan\honam\template_engines\TemplateEngine;
 use ntentan\controllers\Controller;
 use ntentan\Ntentan;
 

@@ -17,5 +17,6 @@
     "require-dev": {
         "phing/phing": "2.*",
         "pear/versioncontrol_git": "dev-master"
-    }
+    },
+   "minimum-stability": "dev"
 }

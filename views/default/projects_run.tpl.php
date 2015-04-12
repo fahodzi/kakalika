@@ -9,11 +9,11 @@
         </div>
         <div class="p15">
         <?php
-        $helpers->list->headers = array('Name', '');
-        $helpers->list->data = $projects;
-        $helpers->list->cellTemplates['id'] = 'projects_run_operations.tpl.php';
+        $helpers->lists->headers = array('Name', '');
+        $helpers->lists->data = $projects;
+        $helpers->lists->cellTemplates['id'] = 'projects_run_operations.tpl.php';
 
-        echo $helpers->list;
+        echo $helpers->lists;
         ?>
         </div>
     </div>    

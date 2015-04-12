@@ -17,7 +17,7 @@ class SubmoduleComponent extends \ntentan\controllers\components\Component
     {        
         $project = \kakalika\modules\projects\Projects::getJustFirstWithId($id);
         $model = Model::load($this->modules[$module]['model']);
-        $this->view->template = "projects_submodule.tpl.php";
+        $this->view->setTamplate("projects_submodule.tpl.php");
         
         $this->set('module', $module);
         $this->set('id', $id);
@@ -54,11 +54,11 @@ class SubmoduleComponent extends \ntentan\controllers\components\Component
             
             $this->set('title', "Edit the {$subItem} {$this->modules[$module]['item']}");
             $this->set('data', $subItem->toArray());
-            $this->view->template = "projects_submodule_edit.tpl.php";
+            $this->view->setTemplate("projects_submodule_edit.tpl.php");
             break;
         case 'delete':
             $item = $model->getFirstWithId($subId);
-            $this->view->template = 'delete.tpl.php';
+            $this->view->setTemplate('delete.tpl.php');
 
             if($_GET['confirm'] == 'yes')
             {
@@ -93,7 +93,7 @@ class SubmoduleComponent extends \ntentan\controllers\components\Component
                 }
             }
             
-            $this->view->template = "projects_submodule_add.tpl.php";
+            $this->view->setTemplate("projects_submodule_add.tpl.php");
             
             if(is_object($this->modules[$module]['get_form_vars']))
             {

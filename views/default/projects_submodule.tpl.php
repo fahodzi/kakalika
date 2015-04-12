@@ -8,15 +8,15 @@
         </div>        
         <div class="p15">
         <?php
-            $helpers->list->headers = array($item_type, '');
-            $helpers->list->data = $items;
-            $helpers->list->cellTemplates['id'] = 'projects_submodule_operations.tpl.php';
-            $helpers->list->variables = array(
+            $helpers->lists->headers = array($item_type, '');
+            $helpers->lists->data = $items;
+            $helpers->lists->cellTemplates['id'] = 'projects_submodule_operations.tpl.php';
+            $helpers->lists->variables = array(
                 'id' => $id,
                 'module' => $module,
                 'disable_edit' => $disable_edit
             );
-            echo $helpers->list;
+            echo $helpers->lists;
         ?>
         </div>
     </div>

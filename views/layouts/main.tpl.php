@@ -2,13 +2,13 @@
 <html lang="en">
     <head>
         <title><?= ($title == '' ? '' : "$title | ") ?>Kakalika Issue Tracker</title>
-        <?= $helpers->stylesheet
-            ->add(load_asset('css/list.css', n('lib/views/helpers/lists/css/default.css')))
+        <?= $helpers->stylesheets
+            ->add(load_asset('css/list.css', 'vendor/ntentan/honam/src/helpers/lists/css/default.css'))
             ->add(load_asset('css/main.css'))
             ->add(load_asset('css/forms.css'))
             ->add(load_asset('css/grid.css'));
         ?>
-        <?= $helpers->javascript
+        <?= $helpers->javascripts
             ->add(load_asset('js/mustache.js'))
             ->add(load_asset('js/jquery.js'))
             ->add(load_asset('js/kakalika.js'))

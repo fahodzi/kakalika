@@ -10,10 +10,10 @@
         
         <div class="p15">
         <?php
-        $helpers->list->headers = array('Firstname', 'Lastname', 'Username', 'Email', '');
-        $helpers->list->data = $users;
+        $helpers->lists->headers = array('Firstname', 'Lastname', 'Username', 'Email', '');
+        $helpers->lists->data = $users;
         $this->helpers->list->cellTemplates['id'] = 'users_run_operations.tpl.php';
-        echo $helpers->list;
+        echo $helpers->lists;
         ?>
         </div>
     </div>

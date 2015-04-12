@@ -230,8 +230,8 @@ class IssuesController extends \kakalika\lib\KakalikaController
     
     public function attachment($id)
     {
-        $this->view->template = false;
-        $this->view->layout = false;
+        $this->view->setTemplate(false);
+        $this->view->setLayout(false);
         $attachment = \kakalika\modules\issue_attachments\IssueAttachments::getJustFirstWithId($id);
         $file = "uploads/{$attachment->attachment_file}";
         
@@ -280,9 +280,8 @@ class IssuesController extends \kakalika\lib\KakalikaController
         else
         {
             $this->set('projects', $this->getUserProjects());
-            $this->view->template = 'issues_select_project.tpl.php';
+            $this->view->setTemplate('issues_select_project.tpl.php');
         }
-           
     }
     
     private function setupOptions()

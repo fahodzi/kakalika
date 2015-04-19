@@ -1,7 +1,7 @@
 <?php
 namespace kakalika\lib;
 
-use ntentan\honam\template_engines\TemplateEngine;
+use ntentan\views\template_engines\TemplateEngine;
 
 class EmailSender
 {

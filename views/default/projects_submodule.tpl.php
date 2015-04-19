@@ -7,16 +7,19 @@
             </a>
         </div>        
         <div class="p15">
-        <?php
-            $helpers->lists->headers = array($item_type, '');
-            $helpers->lists->data = $items;
-            $helpers->lists->cellTemplates['id'] = 'projects_submodule_operations.tpl.php';
-            $helpers->lists->variables = array(
-                'id' => $id,
-                'module' => $module,
-                'disable_edit' => $disable_edit
+        <?=
+            $helpers->listing(
+                array(
+                    'headers' => array($item_type, ''),
+                    'data' => $items,
+                    'cell_templates' => ['id' => 'projects_submodule_operations.tpl.php'],
+                    'variables' => array(
+                        'id' => $id,
+                        'module' => $module,
+                        'disable_edit' => $disable_edit
+                    )
+                )
             );
-            echo $helpers->lists;
         ?>
         </div>
     </div>

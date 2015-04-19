@@ -8,9 +8,9 @@ echo $helpers->form->open();
         <div class="p15-right">
         <?=
         $helpers->form->get_text_field("Project's Name", 'name')
-            ->description("A name for the project").
+            ->setDescription("A name for the project").
         $helpers->form->get_text_field("Code", 'code')
-            ->description("A name to use for the projects url e.g. http://{$_SERVER['HTTP_HOST']}/shortname. No spaces, alpha numeric and underscores only.")
+            ->setDescription("A name to use for the projects url e.g. http://{$_SERVER['HTTP_HOST']}/shortname. No spaces, alpha numeric and underscores only.")
         ?>
         </div>
     </div>

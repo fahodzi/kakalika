@@ -27,7 +27,7 @@ class KakalikaController extends Controller
         
         if(!$this->authComponent->loggedIn())
         {
-            $this->view->layout = 'login_layout.tpl.php';
+            $this->view->setLayout('login_layout.tpl.php');
         }
     }
     

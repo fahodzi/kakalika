@@ -2,13 +2,13 @@
 $helpers->form->setData($data);
 $helpers->form->setErrors($errors);
 ?>
-<?= $helpers->form->open()->attribute('enctype', 'multipart/form-data') ?>
+<?= $helpers->form->open()->setAttribute('enctype', 'multipart/form-data') ?>
 <div class="row">
     <div class="column grid_10_7">
         <div style="padding-right:15px">
         <?= 
         $helpers->form->get_text_field('Title', 'title')->addCssClass('title') . 
-        $helpers->form->get_text_area('Description', 'description')->id('description') 
+        $helpers->form->get_text_area('Description', 'description')->setId('description') 
         ?>
         <?php if($comment) echo $helpers->form->get_text_area('Comment', 'comment') ?>
             <div class="attachment-box">

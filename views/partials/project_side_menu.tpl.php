@@ -1,4 +1,4 @@
-<?= $widgets->menu(
+<?= $helpers->menu(
     array(
         array(
             'label' => 'Project Details',
@@ -35,4 +35,4 @@
             'url' => u("admin/projects")
         )
     )
-)->alias('side');        
+)->setAlias('side');        

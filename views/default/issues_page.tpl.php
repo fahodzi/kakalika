@@ -56,7 +56,7 @@
 </table>
 
 <?php if($number_of_pages > 1){
-        echo $widgets->pagination(
+        echo $helpers->pagination(
         array(
             'page_number' => $page_number, 
             'number_of_pages' => $number_of_pages, 

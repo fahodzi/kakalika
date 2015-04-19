@@ -17,7 +17,7 @@ class SubmoduleComponent extends \ntentan\controllers\components\Component
     {        
         $project = \kakalika\modules\projects\Projects::getJustFirstWithId($id);
         $model = Model::load($this->modules[$module]['model']);
-        $this->view->setTamplate("projects_submodule.tpl.php");
+        $this->view->setTemplate("projects_submodule.tpl.php");
         
         $this->set('module', $module);
         $this->set('id', $id);

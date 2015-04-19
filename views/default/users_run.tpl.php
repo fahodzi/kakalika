@@ -9,11 +9,13 @@
         </div>
         
         <div class="p15">
-        <?php
-        $helpers->lists->headers = array('Firstname', 'Lastname', 'Username', 'Email', '');
-        $helpers->lists->data = $users;
-        $this->helpers->list->cellTemplates['id'] = 'users_run_operations.tpl.php';
-        echo $helpers->lists;
+        <?=
+        $helpers->listing(array(
+            'headers' => array('Firstname', 'Lastname', 'Username', 'Email', ''),
+            'data' => $users,
+            'cell_templates' => array('id' => 'users_run_operations.tpl.php')
+            )
+        );
         ?>
         </div>
     </div>

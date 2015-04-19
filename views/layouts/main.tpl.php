@@ -3,15 +3,15 @@
     <head>
         <title><?= ($title == '' ? '' : "$title | ") ?>Kakalika Issue Tracker</title>
         <?= $helpers->stylesheets
-            ->add(load_asset('css/list.css', 'vendor/ntentan/honam/src/helpers/lists/css/default.css'))
-            ->add(load_asset('css/main.css'))
-            ->add(load_asset('css/forms.css'))
-            ->add(load_asset('css/grid.css'));
+            ->add($helpers->listing->stylesheet())
+            ->add('assets/css/main.css')
+            ->add('assets/css/forms.css')
+            ->add('assets/css/grid.css');
         ?>
         <?= $helpers->javascripts
-            ->add(load_asset('js/mustache.js'))
-            ->add(load_asset('js/jquery.js'))
-            ->add(load_asset('js/kakalika.js'))
+            ->add('assets/js/mustache.js')
+            ->add('assets/js/jquery.js')
+            ->add('assets/js/kakalika.js')
         ?>
     </head>
     <body>
@@ -41,7 +41,7 @@
                     );
                     ?>
                     
-                    <?= $widgets->menu($menu)->alias('top') ?>
+                    <?= $helpers->menu($menu)->setAlias('top') ?>
                 </div>
             </div>
             <?php if($sub_section != ''): ?>
@@ -52,8 +52,8 @@
                     </div>
                     <div class="column grid_10_3" align="right">
                         <?php 
-                        if(count($sub_section_menu_sub_menu) > 0) echo $widgets->menu($sub_section_menu_sub_menu)->alias('sub-sub')->addCssClass('.hideable');
-                        if(count($sub_section_menu) > 0) echo $widgets->menu($sub_section_menu)->alias('sub');
+                        if(count($sub_section_menu_sub_menu) > 0) echo $helpers->menu($sub_section_menu_sub_menu)->setAlias('sub-sub')->addCssClass('.hideable');
+                        if(count($sub_section_menu) > 0) echo $helpers->menu($sub_section_menu)->setAlias('sub');
                         ?>
                     </div>
                 </div>

@@ -2,10 +2,10 @@
 <html lang="en">
     <head>
         <title>Kakalika Issue Tracker<?= ($title == '' ? '' : " - $title") ?></title>
-        <?= $helpers->stylesheet
-            ->add(load_asset('css/main.css'))
-            ->add(load_asset('css/forms.css'))
-            ->add(load_asset('css/grid.css'))
+        <?= $helpers->stylesheets
+            ->add('assets/css/main.css')
+            ->add('assets/css/forms.css')
+            ->add('assets/css/grid.css')
             ->context('login'); 
         ?>
     </head>

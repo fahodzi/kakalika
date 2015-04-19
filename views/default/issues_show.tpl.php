@@ -3,7 +3,7 @@
     <div class='row'>
         <div class='column grid_10_7 issue_view_content'>
             <div style='padding:15px'><?= t('issue_slug.tpl.php', array('issue' => $issue)) ?></div>
-            <p id='description'><?= $this->nl2br($issue['description']) ?></p>  
+            <p id='description'><?= nl2br($issue['description']) ?></p>  
             
             <?php if(count($issue['issue_attachments']->unescape()) > 0): ?>
             <ul class="attachment-display-box">
@@ -79,7 +79,7 @@
             
             <?php $stripe = !$stripe; endforeach; ?>
             
-            <?= $helpers->form->open()->attribute('enctype', 'multipart/form-data') . $helpers->form->get_text_area('Comment', 'comment') ?>  
+            <?= $helpers->form->open()->setAttribute('enctype', 'multipart/form-data') . $helpers->form->get_text_area('Comment', 'comment') ?>  
             <div class="attachment-box">
                 <div id="issue-attachments"></div>
                 <span id="attachment-link" class="link" onclick="kakalika.addUploadField()">Add Attachment</span>
@@ -115,7 +115,7 @@
         </div>
         <div class='column grid_10_3 issue_view_side'>
             <div>
-                <?= $widgets->menu(
+                <?= $helpers->menu(
                     array(
                         array(
                             'label' => 'Edit this issue',
@@ -123,7 +123,7 @@
                             'id' => 'menu-item-issues-edit'
                         )
                     )
-                )->alias('side')
+                )->setAlias('side')
                 ?>
                 
                 <h5>Details</h5>

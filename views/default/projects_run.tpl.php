@@ -8,12 +8,14 @@
             </a>
         </div>
         <div class="p15">
-        <?php
-        $helpers->lists->headers = array('Name', '');
-        $helpers->lists->data = $projects;
-        $helpers->lists->cellTemplates['id'] = 'projects_run_operations.tpl.php';
-
-        echo $helpers->lists;
+        <?=
+        $helpers->listing(
+            array(
+                'headers' => array('Name', ''),
+                'data' => $projects,
+                'cell_templates' => array('id' => 'projects_run_operations.tpl.php')
+            )
+        );
         ?>
         </div>
     </div>    

@@ -1,5 +1,8 @@
+Kakalika Changelog
+===================
+
 v0.2.0 - 7th April, 2015
-========================
+------------------------
 - Added support for PostgreSQL database.
 - Switched database schema management to the yentu migration tool.
 - Organized packages with composer and dropped all git submodules.
@@ -13,7 +16,7 @@ v0.2.0 - 7th April, 2015
 - A couple of bug fixes.
 
 v0.1.5 - 24th February, 2014
-============================
+---------------------------
 - Added support for attachments on issues and comments.
 - Added support for milestones.
 - Issues can now be categorized into Components.
@@ -26,5 +29,5 @@ v0.1.5 - 24th February, 2014
 
 
 v0.1.0 - 18th October, 2013 
-===========================
+---------------------------
 First Public Release

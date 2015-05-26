@@ -12,4 +12,5 @@ $config = array(
     'dbname' => $db[$app['context']]['name'],
     'user' => $db[$app['context']]['user'],
     'password' => $db[$app['context']]['password'],
+    'file' => $db[$app['context']]['file']
 );

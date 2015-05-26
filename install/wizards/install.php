@@ -73,15 +73,27 @@ $wizard = [
             "What database are we connecting to", "driver", 
             [
                 'required' => true, 
-                'options' => ['postgresql', 'mysql']
+                'options' => ['postgresql', 'mysql', 'sqlite']
             ]
         ),
-        input("What's the host of the database connection", 'host', ['required' => true]),
-        input("What username should we connect with", 'username', ['required' => true]),
-        input("What's your password", 'password'),
-        input("What database schema should we use (must already exist)", 'schema', ['required' => true]),
+        input(
+            "What's the host of the database connection", 'host'
+        ),
+        input(
+            "What username should we connect with", 'username'
+        ),
+        input(
+            "What's your password", 'password'
+        ),
+        input(
+            "What database schema should we use (must already exist)", 'schema'
+        ),
+        input(
+            "What file do you want to store your database in (sqlite only)", "filename"
+        ),
         onroute(function($wizard){
             $data = $wizard->getData();
+            chdir(__DIR__ . "/../..");
             try{
                 $driver = \ntentan\atiaa\Driver::getConnection(
                     array(
@@ -89,7 +101,8 @@ $wizard = [
                         'user' => $data['username'],
                         'password' => $data['password'],
                         'host' => $data['host'],
-                        'dbname' => $data['schema']
+                        'dbname' => $data['schema'],
+                        'file' => $data['filename']
                     )
                 );
             
@@ -99,16 +112,17 @@ $wizard = [
                     "caching = file\n" .
                     "error_handler = error\n";
 
-                file_put_contents(__DIR__ . "/../../config/app.ini", $appFile);        
+                file_put_contents("config/app.ini", $appFile);        
         
                 $dbFile = "[deployed]\n" .
                     "datastore = {$data['driver']}\n".
                     "host = {$data['host']}\n".
                     "user = {$data['username']}\n".
                     "password = {$data['password']}\n".
-                    "name = {$data['schema']}\n";
+                    "name = {$data['schema']}\n".
+                    "file = {$data['filename']}";
 
-                file_put_contents(__DIR__ . "/../../config/db.ini", $dbFile);            
+                file_put_contents("config/db.ini", $dbFile);            
                 $driver->disconnect();
 
             }
@@ -124,13 +138,21 @@ $wizard = [
     ),
     page(
         "Setting up Database",
-        call(function()
+        call(function($wizard)
         {
-            chdir("..");
-            $command = new \yentu\commands\Migrate();
-            $command->run();
-            chdir("install");
-            print "Done setting up database";
+            chdir(__DIR__ . "/../..");
+            try{
+                $command = new \yentu\commands\Migrate();
+                $command->run();
+                print "Done setting up database";
+            }
+            catch(\Exception $e)
+            {
+                $wizard->showMessage(
+                    "Error creating database: {$e->getMessage()}", 'error'
+                );
+                $wizard->repeatPage();
+            }
         })
     ),
     page(
@@ -143,11 +165,11 @@ $wizard = [
         input("Lastname", 'lastname'),
         input('Email', 'email'),
         input('Username', 'admin_username'),
-        input('Password', 'admin_password'),
+        input('Password', 'admin_password', ['masked' => true]),
             
         onroute(function($wizard){
             $data = $wizard->getData();
-            chdir("..");
+            chdir(__DIR__ . "/../..");
             $ntentan = parse_ini_file('config/ntentan.ini', true);
             \ntentan\Ntentan::setup($ntentan);
 
@@ -165,9 +187,9 @@ $wizard = [
     page(
         'Thanks!',
         text(
-            "Thanks for trying out kakalika. For security reasons please delete the
+            "Thanks for installing kakalika. For security reasons please delete the
             install directory once you are done installing the application. 
-            Hope'n you enjoy this. Happy issue tracking!"
+            Hope you enjoy this. Happy issue tracking!"
         )
     )
 ];

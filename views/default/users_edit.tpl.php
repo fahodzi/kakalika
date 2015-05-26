@@ -14,7 +14,7 @@ $helpers->form->setErrors($errors);
 <div class="row" style="width:100%">
     <div class="column grid_10_5">
         <?=
-            $helpers->form->open_field_set("Personal Information") .
+            $helpers->form->open_fieldset("Personal Information") .
             $helpers->form->get_text_field('Firstname', 'firstname')->setDescription('Your real firstname for easy identification') .
             $helpers->form->get_text_field('Lastname', 'lastname')->setDescription('Optional lastname') .
             $helpers->form->get_text_field('Username', 'username')->setDescription('Note that the username you select must be unique') .
@@ -53,7 +53,7 @@ $helpers->form->setErrors($errors);
     <div class="column grid_10_3">
     <?php
     if($admin){
-        echo $widgets->menu(
+        echo $helpers->menu(
             array(
                 array(
                     'label' => 'Block this user',
@@ -65,7 +65,7 @@ $helpers->form->setErrors($errors);
                     'url' => u("admin/users")
                 )
             )
-        )->alias('side');        
+        )->setAlias('side');        
     }
     ?>
     </div>

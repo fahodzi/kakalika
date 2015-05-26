@@ -297,6 +297,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
                 )
             )
         );
+        
         $assignees = array();
         
         foreach($users as $user)

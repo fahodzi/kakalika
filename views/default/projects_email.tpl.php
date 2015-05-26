@@ -14,7 +14,7 @@
         <div class="row" style="width: 100%">
             <div class="column grid_10_5">
                 <?= 
-                $helpers->form->open_field_set('Incoming email settings') . 
+                $helpers->form->open_fieldset('Incoming email settings') . 
                 $helpers->form->get_text_field('Incoming server host', 'incoming_server_host') . 
                 $helpers->form->get_selection_list('Incoming server type', 'incoming_server_type')
                     ->addOption('IMAP', 'imap')
@@ -23,7 +23,7 @@
                 $helpers->form->get_checkbox('Use encryption SSL', 'incoming_server_ssl').
                 $helpers->form->get_text_field('Username', 'incoming_server_username').                
                 $helpers->form->get_password_field('Password', 'incoming_server_password').
-                $helpers->form->close_field_set(); 
+                $helpers->form->close_fieldset(); 
                 ?>
             </div>
             <div class="column grid_10_5">

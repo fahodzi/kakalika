@@ -51,7 +51,7 @@
                 
                 <?php if($update['comment'] != ''): ?>
                 <p>                 
-                    <?= $this->nl2br($update['comment']) ?>
+                    <?= nl2br($update['comment']) ?>
                 </p>
                 <?php endif; ?>
                 
@@ -76,9 +76,7 @@
                 
                 
             </div>
-            
             <?php $stripe = !$stripe; endforeach; ?>
-            
             <?= $helpers->form->open()->setAttribute('enctype', 'multipart/form-data') . $helpers->form->get_text_area('Comment', 'comment') ?>  
             <div class="attachment-box">
                 <div id="issue-attachments"></div>

@@ -789,11 +789,18 @@ ul.spreadout-list > li{
 }
 
 /******************* PAGINATION *******************/
-.item-pages-list{
-    padding:15px;
+
+.pagination{
+    list-style: none;
+    
 }
 
-.item-pages-list > a{
+.pagination > li{
+    padding:5px;
+    display:inline-block;
+}
+
+.pagination > li > a{
     display:inline-block;
     padding:3px;
     border:1px solid #ececec;
@@ -802,7 +809,7 @@ ul.spreadout-list > li{
     font-weight: bold;
 }
 
-.item-pages-list > a.selected{
+.pagination > li > a.selected{
     background-color:#808080;
     color:#fff;
     font-weight: bold;

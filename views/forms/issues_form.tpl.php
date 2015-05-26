@@ -20,7 +20,7 @@ $helpers->form->setErrors($errors);
     <div class="column grid_10_3">
         <div style="padding-right:1px">
         <?=
-        $helpers->form->get_selection_list('Assignee', 'assignee')->options($assignees) .
+        $helpers->form->get_selection_list('Assignee', 'assignee')->setOptions($assignees) .
         $helpers->form->get_selection_list('Kind', 'kind')
             ->option('Bug', 'BUG')
             ->option('Enhancement', 'ENHANCEMENT')
@@ -34,8 +34,8 @@ $helpers->form->setErrors($errors);
             ->option('High', 'HIGH')
             ->option('Critical', 'CRITICAL')
             ->option('Blocker', 'BLOCKER').
-        $helpers->form->get_selection_list('Component', 'component_id')->options($components).
-        $helpers->form->get_selection_list('Milestone', 'milestone_id')->options($milestones)
+        $helpers->form->get_selection_list('Component', 'component_id')->setOptions($components).
+        $helpers->form->get_selection_list('Milestone', 'milestone_id')->setOptions($milestones)
         ?>
         </div>
     </div>

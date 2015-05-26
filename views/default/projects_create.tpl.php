@@ -6,14 +6,14 @@
     <div class="column grid_10_3">
         <?php
         if($admin){
-            echo $widgets->menu(
+            echo $helpers->menu(
                 array(
                     array(
                         'label' => 'Return to Projects list',
                         'url' => u("admin/projects"),
                     )
                 )                    
-            )->alias('side');
+            )->setAlias('side');
         }
         ?>
     </div>

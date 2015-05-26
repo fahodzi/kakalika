@@ -34,6 +34,9 @@ $ntentan = parse_ini_file('config/ntentan.ini', true);
 require "vendor/autoload.php";
 use ntentan\Ntentan;
 
+xdebug_start_trace("logs/trace.out");
+ini_set('xdebug.collect_params', 4);
+
 // @todo Allow the timezone to be set during installation
 date_default_timezone_set('Africa/Accra');
 

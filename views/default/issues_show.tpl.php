@@ -11,7 +11,7 @@
                 <?php if($attachment['update_id'] != '')  continue; ?>
                 <li>
                     <a href='<?= u("issues/attachment/{$attachment['id']}/{$attachment['name']}") ?>'><?= $attachment['name'] ?></a>
-                    <br/><span class="small-date"><?= $helpers->file_size($attachment['size']->unescape()) ?></span>
+                    <br/><span class="small-date"><?= $helpers->filesize($attachment['size']->unescape()) ?></span>
                 </li>
             <?php endforeach; ?>
             </ul>
@@ -68,7 +68,7 @@
                 <?php foreach($update['issue_attachments'] as $attachment): ?>
                     <li>
                         <a href='<?= u("issues/attachment/{$attachment['id']}/{$attachment['name']}") ?>'><?= $attachment['name'] ?></a>
-                        <br/><span class="small-date"><?= $helpers->file_size($attachment['size']->unescape()) ?></span>
+                        <br/><span class="small-date"><?= $helpers->filesize($attachment['size']->unescape()) ?></span>
                     </li>
                 <?php endforeach; ?>
                 </ul>
@@ -119,10 +119,22 @@
                             'label' => 'Edit this issue',
                             'url' => u("{$project_code}/issues/edit/{$issue['number']}"),
                             'id' => 'menu-item-issues-edit'
+                        ),
+                        array(
+                            'label' => $watching ? 'Stop watching this issue': 'Watch this issue',
+                            'url' => u("{$project_code}/issues/watch/{$issue['id']}?redirect=" . urlencode(u("{$project_code}/issues/{$issue['number']}"))),
+                            'id' => 'menu-item-issues-watch'
                         )
                     )
                 )->setAlias('side')
                 ?>
+                
+                <?php if(count($issue['watchers']) > 0): ?>
+                <h5>Watchers</h5>
+                <?php foreach($issue['watchers'] as $watcher): if($watcher['user']['email'] == '') continue;?>
+                <img src="<?= $helpers->social->gravatar($watcher['user']['email']) ?>" title="<?= $watcher['user']['firstname'] ?> <?= $watcher['user']['lastname'] ?>" />
+                <?php endforeach; ?>
+                <?php endif; ?>
                 
                 <h5>Details</h5>
                 <dl>

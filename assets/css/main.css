@@ -305,6 +305,7 @@ ul#side-menu{
 #menu-item-admin-projects-email > a { background-image:url(../images/email.png) }
 
 #menu-item-issues-edit > a, #menu-item-admin-projects-edit > a { background-image:url(../images/edit_big.png) }
+#menu-item-issues-watch > a { background-image:url(../images/watch.png) }
 
 table.project-info-list{
     width:100%;
@@ -483,10 +484,6 @@ dd.status_CLOSED{background-image: url('../images/status_CLOSED.png')}
     font-size:0.9em;
     background-position: 3px 50%;
     background-repeat: no-repeat;
-}
-
-#menu-item-edit-issue > a{
-    background-image:url(../images/edit_issue.png);
 }
 
 .issue_view .update

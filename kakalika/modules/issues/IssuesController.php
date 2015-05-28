@@ -65,6 +65,31 @@ class IssuesController extends \kakalika\lib\KakalikaController
         return $valid;
     }
     
+    public function watch($issueId)
+    {
+        $this->view->setTemplate(false);
+        $watching = \kakalika\modules\watchers\Watchers::getJustFirst(
+            array(
+                'conditions' => array(
+                    'user_id' => $_SESSION['user']['id'],
+                    'issue_id' => $issueId
+                )
+            )
+        );
+        if($watching->count() == 0)
+        {
+            $watching = \kakalika\modules\watchers\Watchers::getNew();
+            $watching->issue_id = $issueId;
+            $watching->user_id = $_SESSION['user']['id'];
+            $watching->save();
+        }
+        else
+        {
+            $watching->delete();
+        }
+        \ntentan\Ntentan::redirect();
+    }
+    
     public function show($issueId)
     {
         $issue = $this->model->getFirst(
@@ -97,7 +122,16 @@ class IssuesController extends \kakalika\lib\KakalikaController
             \ntentan\Ntentan::redirect(\ntentan\Ntentan::$requestedRoute);
         }
         else
-        {       
+        {
+            $watching = \kakalika\modules\watchers\Watchers::getJustFirst(
+                    array(
+                        'conditions' => array(
+                            'user_id' => $_SESSION['user']['id'],
+                            'issue_id' => $issue->id
+                        )
+                    )
+                )->count();
+            $this->set('watching', $watching);
             $this->set('issue', $issue->toArray());
         }
     }
@@ -235,11 +269,10 @@ class IssuesController extends \kakalika\lib\KakalikaController
         $attachment = \kakalika\modules\issue_attachments\IssueAttachments::getJustFirstWithId($id);
         $file = "uploads/{$attachment->attachment_file}";
         
-        $this->view->setContentType($attachment->type);
+        header("Content-Type: {$attachment->type}");
         
         if(file_exists($file))
         {
-            header("Content-Length: {$attachment->size}");
             echo file_get_contents($file);
         }
         else

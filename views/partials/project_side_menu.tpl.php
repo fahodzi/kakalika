@@ -32,7 +32,8 @@
         ),
         array(
             'label' => 'Return to Projects',
-            'url' => u("admin/projects")
+            'url' => u("admin/projects"),
+            'id' => 'menu-item-admin-projects'
         )
     )
 )->setAlias('side');        

@@ -11,6 +11,7 @@
                     array(
                         'label' => 'Return to Projects list',
                         'url' => u("admin/projects"),
+                        'id' => 'menu-item-admin-projects'
                     )
                 )                    
             )->setAlias('side');

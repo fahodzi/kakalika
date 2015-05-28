@@ -14,7 +14,7 @@ class Issues extends Model
         'component'
     );
     
-    public $hasMany = array('updates', 'issue_attachments');
+    public $hasMany = array('updates', 'issue_attachments', 'watchers');
     
     public $behaviours = array(
         'timestampable'

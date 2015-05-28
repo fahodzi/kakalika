@@ -31,13 +31,19 @@
                     {
                         $menu[] = array(
                             'label' => 'Administration',
-                            'url' => u('admin')
+                            'url' => u('admin'),
+                            'id' => 'menu-item-admin'
                         );
                     }                    
-                    $menu[]= 'Logout';
+                    $menu[]= array(
+                        'label' => 'Logout',
+                        'url' => u('logout'),
+                        'id' => 'menu-item-logout'
+                    );
                     $menu[]= array(
                         'label' => "Account ⚫ {$_SESSION['user']['username']}",
-                        'url' => u('account')
+                        'url' => u('account'),
+                        'id' => 'menu-item-account'
                     );
                     ?>
                     
@@ -96,6 +102,7 @@ load_asset('images/members_small.png');
 load_asset('images/block_small.png');
 
 load_asset('images/edit_big.png');
+load_asset('images/watch.png');
 load_asset('images/blue_tag.png');
 load_asset('images/grey_tag.png');
 load_asset('images/users.png');

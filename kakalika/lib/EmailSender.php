@@ -1,7 +1,7 @@
 <?php
 namespace kakalika\lib;
 
-use ntentan\views\template_engines\TemplateEngine;
+use ntentan\honam\TemplateEngine;
 
 class EmailSender
 {
@@ -23,6 +23,13 @@ class EmailSender
         $mail->Username = $server['outgoing_server_username'];
         $mail->Password = $server['outgoing_server_password'];
         $mail->SMTPSecure = $server['outgoing_server_encryption'];
+        $mail->SMTPOptions = array (
+            'ssl' => array(
+                'verify_peer'  => true,
+                'verify_depth' => 3,
+                'allow_self_signed' => true,
+            )
+        );
         
         $mail->From = $server['email_address'];
         $mail->FromName = $this->sourceName;

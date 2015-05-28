@@ -12,7 +12,8 @@
         "ntentan/ntentan" : "dev-master",
         "ekowabaka/yentu" : "dev-master",
         "ekowabaka/anyen" : "dev-master",
-        "ntentan/social-extension": "dev-master"
+        "ntentan/social-extension": "dev-master",
+        "phpmailer/phpmailer": "5.2.*"
     },
     "require-dev": {
         "phing/phing": "2.*",

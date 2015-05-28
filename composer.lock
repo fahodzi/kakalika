@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "697b4c2b8994472299b7ef55886fdda3",
+    "hash": "adb276c4d3214b9f273b54d579d32ec8",
     "packages": [
         {
             "name": "ekowabaka/anyen",
@@ -86,12 +86,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekowabaka/yentu.git",
-                "reference": "184839ffbec14a16ae70ae9407f5ba9f427accdf"
+                "reference": "3c78ac14b5aad09f15e502c6db5400c750373d0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekowabaka/yentu/zipball/184839ffbec14a16ae70ae9407f5ba9f427accdf",
-                "reference": "184839ffbec14a16ae70ae9407f5ba9f427accdf",
+                "url": "https://api.github.com/repos/ekowabaka/yentu/zipball/3c78ac14b5aad09f15e502c6db5400c750373d0d",
+                "reference": "3c78ac14b5aad09f15e502c6db5400c750373d0d",
                 "shasum": ""
             },
             "require": {
@@ -125,7 +125,7 @@
                 }
             ],
             "description": "A database migration tool with intimate integration with git",
-            "time": "2015-05-23 13:07:30"
+            "time": "2015-05-27 20:38:15"
         },
         {
             "name": "matthiasmullie/minify",
@@ -350,16 +350,16 @@
         },
         {
             "name": "ntentan/honam",
-            "version": "v0.2.1",
+            "version": "v0.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/honam.git",
-                "reference": "1edceb85e69b6d1450c1e6aff090ac370a3b7b47"
+                "reference": "357617623900fa42ac07ba6b3d9337bbfb969b61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/honam/zipball/1edceb85e69b6d1450c1e6aff090ac370a3b7b47",
-                "reference": "1edceb85e69b6d1450c1e6aff090ac370a3b7b47",
+                "url": "https://api.github.com/repos/ntentan/honam/zipball/357617623900fa42ac07ba6b3d9337bbfb969b61",
+                "reference": "357617623900fa42ac07ba6b3d9337bbfb969b61",
                 "shasum": ""
             },
             "require": {
@@ -396,7 +396,7 @@
                 }
             ],
             "description": "The views component of the ntentan framework.",
-            "time": "2015-05-12 08:50:01"
+            "time": "2015-05-26 20:50:39"
         },
         {
             "name": "ntentan/logger",
@@ -444,12 +444,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/ntentan.git",
-                "reference": "49ff27df6ad8c25e109e89067bab0520b90a53c3"
+                "reference": "71bcbe54fb06de4e8a66ef85d91228833d15a7da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/49ff27df6ad8c25e109e89067bab0520b90a53c3",
-                "reference": "49ff27df6ad8c25e109e89067bab0520b90a53c3",
+                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/71bcbe54fb06de4e8a66ef85d91228833d15a7da",
+                "reference": "71bcbe54fb06de4e8a66ef85d91228833d15a7da",
                 "shasum": ""
             },
             "require": {
@@ -478,7 +478,7 @@
                 }
             ],
             "description": "Another PHP application framework.",
-            "time": "2015-05-25 14:07:17"
+            "time": "2015-05-28 10:19:53"
         },
         {
             "name": "ntentan/social-extension",
@@ -486,12 +486,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/social-extension.git",
-                "reference": "df0ef23ca01541231a1618dbb4a4a28d7557dd54"
+                "reference": "7b47fe52a241fc1273b31fdd5120dcdb5bfb511e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/social-extension/zipball/df0ef23ca01541231a1618dbb4a4a28d7557dd54",
-                "reference": "df0ef23ca01541231a1618dbb4a4a28d7557dd54",
+                "url": "https://api.github.com/repos/ntentan/social-extension/zipball/7b47fe52a241fc1273b31fdd5120dcdb5bfb511e",
+                "reference": "7b47fe52a241fc1273b31fdd5120dcdb5bfb511e",
                 "shasum": ""
             },
             "suggest": {
@@ -516,7 +516,7 @@
                 }
             ],
             "description": "An ntentan framework plugin for integrating your application with social network APIs",
-            "time": "2015-04-19 21:26:24"
+            "time": "2015-05-28 10:12:38"
         },
         {
             "name": "ntentan/utils",
@@ -553,6 +553,61 @@
             ],
             "description": "Common utility functions shared accross the ntentan framework.",
             "time": "2015-04-20 08:22:24"
+        },
+        {
+            "name": "phpmailer/phpmailer",
+            "version": "v5.2.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPMailer/PHPMailer.git",
+                "reference": "07005ecbb80d11ec8c0f067bb37e8909cc7fcbb7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/07005ecbb80d11ec8c0f067bb37e8909cc7fcbb7",
+                "reference": "07005ecbb80d11ec8c0f067bb37e8909cc7fcbb7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.0.0"
+            },
+            "require-dev": {
+                "phpdocumentor/phpdocumentor": "*",
+                "phpunit/phpunit": "4.3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "class.phpmailer.php",
+                    "class.smtp.php",
+                    "class.pop3.php",
+                    "extras/EasyPeasyICS.php",
+                    "extras/ntlm_sasl_client.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "Jim Jagielski",
+                    "email": "jimjag@gmail.com"
+                },
+                {
+                    "name": "Marcus Bointon",
+                    "email": "phpmailer@synchromedia.co.uk"
+                },
+                {
+                    "name": "Andy Prevost",
+                    "email": "codeworxtech@users.sourceforge.net"
+                },
+                {
+                    "name": "Brent R. Matzelle"
+                }
+            ],
+            "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
+            "time": "2015-05-04 12:37:21"
         },
         {
             "name": "psr/log",

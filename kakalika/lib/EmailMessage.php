@@ -233,5 +233,19 @@ class EmailMessage
     {
         return $this->attachments;
     }
+    
+    public function getCCs()
+    {
+        $ccs = [];
+        foreach($this->headers->cc as $cc)
+        {
+            $email = "{$cc->mailbox}@{$cc->host}";
+            $ccs[] = [
+                'name' => $cc->personal == '' ? $email : $cc->personal,
+                'email' => $email
+            ];
+        }
+        return $ccs;
+    }
 }
 

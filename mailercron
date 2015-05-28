@@ -1,7 +1,9 @@
 #!/usr/bin/env php
 <?php
+
+require __DIR__ . "/vendor/autoload.php";
+
 use ntentan\Ntentan;
-require __DIR__ . '/vendor/PHPMailer/PHPMailerAutoload.php';
 
 // @todo Allow the timezone to be set during installation
 date_default_timezone_set('Africa/Accra');
@@ -9,30 +11,21 @@ date_default_timezone_set('Africa/Accra');
 // Tell PHP to stop barking
 error_reporting(E_ALL ^ E_NOTICE);
 
-// Ensure that only a single instance of the cron runs at any time
-$lockFile = sys_get_temp_dir() . "/kakalika-cron.lock";
-if(file_exists($lockFile)){
-    fputs(STDERR, "Lock file $lockFile found. Exiting ...\n");
-    die();
-}
-touch($lockFile);
-
 // Load configurations
 $ntentan = parse_ini_file(__DIR__ . '/config/ntentan.ini', true);
 $ntentan['home'] = __DIR__ . "/ntentan";
 $app = parse_ini_file(__DIR__ . "/config/app.ini", true);
 $app['home'] = __DIR__;
 
-require "{$ntentan['home']}/lib/Ntentan.php";
-
 Ntentan::$configPath = __DIR__ . "/config/";
 Ntentan::setup($ntentan, $app);
-\ntentan\views\template_engines\TemplateEngine::prependPath(__DIR__ . '/views/emails');
+\ntentan\honam\TemplateEngine::prependPath(__DIR__ . '/views/emails');
 $emailSettings = \kakalika\modules\projects\email_settings\EmailSettings::getAll();
 
 foreach($emailSettings->toArray() as $settings)
 {
-    if($settings['project']['email_integration'] != '1'){
+    if($settings['project']['email_integration'] != '1')
+    {
         echo "Skipping emails for {$settings['project']['name']}\n";
         continue;
     }
@@ -55,19 +48,7 @@ foreach($emailSettings->toArray() as $settings)
     {
         $emailMessage = $emailConnection->getNextMessage();
         echo "Processing [{$emailMessage->getSubject()}] from ({$emailMessage->getFromAddress()})\n";
-        $user = \kakalika\modules\users\Users::getJustFirstWithEmail($emailMessage->getFromAddress());   
-
-        if($user->count() == 0)
-        {
-            $user = \kakalika\modules\users\Users::getNew();
-            $user->firstname = $emailMessage->getSenderName();
-            $user->email = $emailMessage->getFromAddress();
-            $user->username = $emailMessage->getFromAddress();
-            $user->password = uniqid();
-            $id = $user->save();
-            $user->id = $id;
-
-        }
+        $user = get_user($emailMessage->getFromAddress(), $emailMessage->getSenderName());
 
         $_SESSION['user'] = $user->toArray();
         $to = $emailMessage->getToAddress();
@@ -94,7 +75,14 @@ foreach($emailSettings->toArray() as $settings)
             {
                 $issue->addAttachment($attachment);
             }
-            $issue->save();
+            $issueId = $issue->save();
+            foreach($emailMessage->getCCs() as $cc)
+            {
+                $watcher = \kakalika\modules\watchers\Watchers::getNew();
+                $watcher->issue_id = $issueId;
+                $watcher->user_id = get_user($cc['email'], $cc['name'])->id;
+                $watcher->save();
+            }
         }
     }    
     
@@ -108,7 +96,23 @@ foreach($emailSettings->toArray() as $settings)
     }    
 }
 
-unlink($lockFile);
+function get_user($email, $name)
+{
+    $user = \kakalika\modules\users\Users::getJustFirstWithEmail($email);   
+
+    if($user->count() == 0)
+    {
+        $user = \kakalika\modules\users\Users::getNew();
+        $user->firstname = $name;
+        $user->email = $email;
+        $user->username = $email;
+        $user->password = uniqid();
+        $id = $user->save();
+        $user->id = $id;
+    } 
+    
+    return $user;
+}
 
 function comment_on_issue($issueNumber, $user, $emailMessage)
 {

@@ -1,6 +1,13 @@
 Kakalika Changelog
 ===================
 
+v0.2.1 - 28th May, 2015
+-----------------------
+- Users can now watch or unwatch specific issues
+- Email addresses cc'd in mails sent to kakalika are automatically made watchers
+- Added support for SQLite database
+- Issues with missing menus in UI fixed
+
 v0.2.0 - 7th April, 2015
 ------------------------
 - Added support for PostgreSQL database.

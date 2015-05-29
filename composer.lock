@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekowabaka/anyen.git",
-                "reference": "007ce82e8d5dac94538fe3ebecfc10e79bd6bb77"
+                "reference": "82ae7ad727730feba69282a8f7621d82f6175969"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekowabaka/anyen/zipball/007ce82e8d5dac94538fe3ebecfc10e79bd6bb77",
-                "reference": "007ce82e8d5dac94538fe3ebecfc10e79bd6bb77",
+                "url": "https://api.github.com/repos/ekowabaka/anyen/zipball/82ae7ad727730feba69282a8f7621d82f6175969",
+                "reference": "82ae7ad727730feba69282a8f7621d82f6175969",
                 "shasum": ""
             },
             "type": "library",
@@ -37,7 +37,7 @@
                 }
             ],
             "description": "A simple wizard creation tool. Anyen helps you to create wizards that work both on the CLI and the web interface.",
-            "time": "2015-05-24 18:27:22"
+            "time": "2015-05-29 20:48:11"
         },
         {
             "name": "ekowabaka/clearice",

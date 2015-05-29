@@ -7,6 +7,7 @@ v0.2.1 - 29th May, 2015
 - Email addresses cc'd in mails sent to kakalika are automatically made watchers
 - Added support for SQLite database
 - Issues with missing menus in UI fixed
+- A few improvements to Kakalika installer
 
 v0.2.0 - 7th April, 2015
 ------------------------

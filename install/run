@@ -4,4 +4,4 @@ error_reporting(E_ALL ^ E_NOTICE);
 
 require __DIR__ . "/../vendor/autoload.php";
 
-anyen\Runner::run(__DIR__ . "/wizards/install.php", array('banner' => 'Kakalika Issue Tracker'));
+anyen\Runner::run(__DIR__ . "/wizard.php", array('banner' => 'Kakalika Issue Tracker'));

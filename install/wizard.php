@@ -56,8 +56,7 @@ $wizard = [
         "Web access prefix",
         text(
             "The prefix is usually the name of the directory in which kakalika
-            resides on your document root. What web prefix would you like to access 
-            your application through?"
+            resides within your document root."
         ),
         input('Prefix', 'prefix'),
         onrender(function($wizard)
@@ -86,7 +85,7 @@ $wizard = [
             "What's your password", 'password'
         ),
         input(
-            "What database schema should we use (must already exist)", 'schema'
+            "What database should we use (must already exist)", 'schema'
         ),
         input(
             "What file do you want to store your database in (sqlite only)", "filename"

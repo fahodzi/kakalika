@@ -1,7 +1,7 @@
 Kakalika Changelog
 ===================
 
-v0.2.1 - 28th May, 2015
+v0.2.1 - 29th May, 2015
 -----------------------
 - Users can now watch or unwatch specific issues
 - Email addresses cc'd in mails sent to kakalika are automatically made watchers

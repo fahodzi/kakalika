@@ -26,8 +26,8 @@ out the code is recommended for tinkerers and hackers.
 ### Requirements
 
 - Apache web server
-- PHP 5.3+
-- MySQL server 5+ or PostgreSQL
+- PHP 5.4+
+- MySQL, PostgreSQL or SQLite database
 - `mod_rewrite` and `.htaccess` enabled
 
 ### Installing from the Release Archive
@@ -36,7 +36,8 @@ out the code is recommended for tinkerers and hackers.
    web server.
    
 2. Create a blank database on your preferred database server (mysql or postgresql) 
-   to hold the data.
+   to hold the data. If you intend to use sqlite however get a location accessible
+   by the web server to hold the database file.
 
 3. Point browser to `/install` and follow the steps on the browser. 
 

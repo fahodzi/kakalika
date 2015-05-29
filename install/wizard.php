@@ -82,7 +82,7 @@ $wizard = [
             "What username should we connect with", 'username'
         ),
         input(
-            "What's your password", 'password'
+            "What's your password", 'password', ['masked' => true]
         ),
         input(
             "What database should we use (must already exist)", 'schema'

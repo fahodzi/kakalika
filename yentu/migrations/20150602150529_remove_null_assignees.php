@@ -4,3 +4,4 @@
  */
 
 $this->table('issues')->column('assignee')->nulls(true);
+$this->table('issues')->column('assigned')->nulls(true);

@@ -25,8 +25,7 @@ class EmailSender
         $mail->SMTPSecure = $server['outgoing_server_encryption'];
         $mail->SMTPOptions = array (
             'ssl' => array(
-                'verify_peer'  => true,
-                'verify_depth' => 3,
+                'verify_peer'  => false,
                 'allow_self_signed' => true,
             )
         );

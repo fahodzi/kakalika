@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="UTF-8" />
         <title><?= ($title == '' ? '' : "$title | ") ?>Kakalika Issue Tracker</title>
         <?= $helpers->stylesheets
             ->add($helpers->listing->stylesheet())

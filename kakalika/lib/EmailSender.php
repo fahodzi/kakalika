@@ -66,10 +66,12 @@ class EmailSender
         if(!$mail->send())
         {
             echo "Failed to send message. Error: {$mail->ErrorInfo}\n";
+            return false;
         }
         else
         {
             echo "Sent [{$mail->Subject}] to [$this->email]\n";
+            return true;
         }
     }
     

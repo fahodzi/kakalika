@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "adb276c4d3214b9f273b54d579d32ec8",
+    "hash": "15263e55120c00f2c614d203060e3759",
     "packages": [
         {
             "name": "ekowabaka/anyen",
@@ -86,12 +86,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekowabaka/yentu.git",
-                "reference": "c33b7d461e2f361c904d487f6b9d6750ed285250"
+                "reference": "d3481a2100e6e0881f0e340221564dafd158ffe1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekowabaka/yentu/zipball/c33b7d461e2f361c904d487f6b9d6750ed285250",
-                "reference": "c33b7d461e2f361c904d487f6b9d6750ed285250",
+                "url": "https://api.github.com/repos/ekowabaka/yentu/zipball/d3481a2100e6e0881f0e340221564dafd158ffe1",
+                "reference": "d3481a2100e6e0881f0e340221564dafd158ffe1",
                 "shasum": ""
             },
             "require": {
@@ -125,7 +125,7 @@
                 }
             ],
             "description": "A database migration tool with intimate integration with git",
-            "time": "2015-06-02 15:54:30"
+            "time": "2015-06-05 04:26:32"
         },
         {
             "name": "matthiasmullie/minify",

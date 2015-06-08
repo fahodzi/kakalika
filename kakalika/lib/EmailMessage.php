@@ -237,6 +237,11 @@ class EmailMessage
     public function getCCs()
     {
         $ccs = [];
+        if(!is_array($this->headers->cc)) 
+        {
+            return [];
+        }
+        
         foreach($this->headers->cc as $cc)
         {
             $email = "{$cc->mailbox}@{$cc->host}";

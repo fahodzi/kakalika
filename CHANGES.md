@@ -1,6 +1,12 @@
 Kakalika Changelog
 ===================
 
+v0.2.2 - 9th June, 2015
+-----------------------
+- Improved email support
+- Relaxed database validation rules for issues to make it easy to add new issues
+- Removed debug calls from application
+
 v0.2.1 - 29th May, 2015
 -----------------------
 - Users can now watch or unwatch specific issues

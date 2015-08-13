@@ -1,7 +1,7 @@
 <?php
 namespace kakalika\modules\issues;
 
-use ntentan\models\Model;
+use ntentan\Model;
 
 class Issues extends Model
 {

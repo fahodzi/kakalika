@@ -29,20 +29,16 @@
  * @license MIT
  */
 
-error_reporting(E_ALL  ^ E_NOTICE);
-$ntentan = parse_ini_file('config/ntentan.ini', true);
 require "vendor/autoload.php";
-use ntentan\Ntentan;
 
-// @todo Allow the timezone to be set during installation
-date_default_timezone_set('Africa/Accra');
+ini_set('xdebug.collect_params', 4);
 
 try{
-    Ntentan::setup($ntentan);
-    include('routes.php');
-    Ntentan::route();
+    ntentan\Router::setDefaultRoute('projects');
+    ntentan\Router::setRoutes(require 'routes.php');
+    ntentan\Ntentan::start('kakalika');
 }
-catch(\ntentan\exceptions\ApiIniFileNotFoundException $e)
+catch(ntentan\exceptions\ApiIniFileNotFoundException $e)
 {
     header("Location: {$_SERVER['REQUEST_URI']}install");
 }

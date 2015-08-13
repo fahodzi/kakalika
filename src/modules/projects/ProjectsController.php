@@ -3,6 +3,8 @@ namespace kakalika\modules\projects;
 
 use ntentan\Ntentan;
 use kakalika\modules\issues\Issues;
+use ntentan\Router;
+use ntentan\Session;
 
 class ProjectsController extends \kakalika\lib\KakalikaController
 {    
@@ -18,7 +20,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         $this->userProjects = $this->getUserProjects();
            
         
-        if($GLOBALS['ROUTE_MODE'] == 'admin' && $_SESSION['user']['is_admin'] == true)
+        if(Router::getVar('MODE') == 'admin' && Session::get('user')['is_admin'] == true)
         {
             $this->set('admin', true);
             $this->set('sub_section_path', 'admin/projects');    
@@ -48,7 +50,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                         
                         'get_form_vars' => function() 
                         {
-                            $users = \kakalika\modules\users\Users::getAll();
+                            $users = \kakalika\modules\users\Users::fetch();
                             $newUsers = array();
                             foreach($users as $i => $user)
                             {
@@ -75,11 +77,11 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                 )
             );
         }
-        else if(Ntentan::$route == 'projects')
+        else if(Router::getRoute() == 'projects')
         {
             $this->set('sub_section_path', 'projects');
         }
-        else if(Ntentan::$route == 'projects/create' && $_SESSION['user']['is_admin'])
+        else if(Router::getRoute() == 'projects/create' && Session::get('user')['is_admin'])
         {
             // Just allow the admins to go through
         }
@@ -93,7 +95,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
     
     public function run()
     {
-        if($GLOBALS['ROUTE_MODE'] == 'admin')
+        if(Router::getVar('MODE') == 'admin')
         {
             $projects = $this->model->getAll(
                 array(

@@ -31,11 +31,7 @@
  */
 
 
-// Make projects the default route
-ntentan\Ntentan::$defaultRoute = 'projects';
-
-// Define the route renaming scheme
-ntentan\Ntentan::$routes = array(
+return array(
     // Route the login pages
     array(
         'pattern' => '/login/',

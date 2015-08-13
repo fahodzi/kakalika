@@ -1,7 +1,7 @@
 <?php
 namespace kakalika\modules\users;
 
-use ntentan\models\Model;
+use ntentan\Model;
 
 class Users extends Model
 {

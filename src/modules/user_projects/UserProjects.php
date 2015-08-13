@@ -1,19 +1,19 @@
 <?php
 namespace kakalika\modules\user_projects;
 
-use ntentan\models\Model;
+use ntentan\Model;
 
 class UserProjects extends Model
 {
-    public $belongsTo = array(
-        'project',
-        'user'
-    );
-    
+    public $belongsTo = [
+        'projects',
+        'users'
+    ];
+
     public function validate()
     {
         $validation= parent::validate();
-        
+
         $user = $this->getJustFirst(
             array(
                 'conditions' => array(
@@ -22,21 +22,21 @@ class UserProjects extends Model
                 )
             )
         );
-        
+
         if($user->count() == 1)
         {
             $this->invalidFields['user_id'][] = 'This user is already part of this project';
             return false;
         }
-        
+
         return $validation;
     }
-    
-    public function __toString() 
+
+    public function __toString()
     {
         return "{$this->user->firstname} {$this->user->lastname}, {$this->project->name}";
     }
-    
+
     public function getVars()
     {
         $users = \kakalika\modules\users\Users::getAll();

@@ -2,15 +2,14 @@
 namespace kakalika\lib;
 
 use ntentan\honam\TemplateEngine;
-use ntentan\controllers\Controller;
+use ntentan\Controller;
 use ntentan\Ntentan;
+use ntentan\Router;
 
 class KakalikaController extends Controller
 {
     public function init()
-    {
-        parent::init();
-        
+    {        
         if(is_readable("install"))
         {
             $this->set("install_active", true);
@@ -20,21 +19,23 @@ class KakalikaController extends Controller
         TemplateEngine::appendPath('views/partials');
         TemplateEngine::appendPath('views/forms');
         
-        $this->addComponent('auth', array(
+        $this->addComponent('auth');
+        
+        /*$this->addComponent('auth', array(
             'login_route' => 'login',
             'logout_route' => 'logout'
-        ));
+        ));*/
         
         if(!$this->authComponent->loggedIn())
         {
-            $this->view->setLayout('login_layout.tpl.php');
+            $this->getView()->setLayout('login_layout.tpl.php');
         }
     }
     
     protected function getUserProjects()
     {
         //@todo Find a way to store this in some kind of cache
-        return \kakalika\modules\user_projects\UserProjects::getAllWithUserId(
+        return \kakalika\modules\user_projects\UserProjects::fetchWithUserId(
             $this->authComponent->userId()
         ); 
     }
@@ -45,7 +46,7 @@ class KakalikaController extends Controller
             array(
                 array(
                     'label' => 'Create a new issue',
-                    'url' => $GLOBALS['ROUTE_MODE'] == 'project' ? Ntentan::getUrl("{$GLOBALS['ROUTE_PROJECT_CODE']}/issues/create") : Ntentan::getUrl('issues/create'),
+                    'url' => Router::getVar('MODE') == 'project' ? Ntentan::getUrl(Router::getVar('PROJECT_CODE') . "/issues/create") : Ntentan::getUrl('issues/create'),
                     'id' => 'menu-item-issues-create'
                 )
             )

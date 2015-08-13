@@ -1,4 +1,5 @@
 <?php
+
 namespace kakalika\modules\dashboard;
 
 use kakalika\lib\KakalikaController;
@@ -9,15 +10,15 @@ use kakalika\lib\KakalikaController;
  */
 class DashboardController extends KakalikaController
 {
+
     public function init()
     {
         parent::init();
         $this->set('sub_section', 'Dashboard');
     }
-    
+
     public function run()
     {
         
     }
 }
-

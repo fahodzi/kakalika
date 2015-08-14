@@ -20,7 +20,7 @@
             <div id="head" class="row">
                 <div id="title_side" class="column grid_10_5">
                     <h1><a href="<?= u('') ?>">Kakalika</a></h1>
-                    <?php if($project_name != ''): ?>
+                    <?php if(isset($project_name)): ?>
                     <h2><a href="<?= u($project_code) ?>"><?= $project_name ?></a></h2>
                     <?php endif; ?>
                 </div>
@@ -73,7 +73,7 @@
             <?php endif; ?>            
             <div id="body">
                 
-                <?php if($split): ?>
+                <?php if(isset($split)): ?>
                 <div class="row">
                     <div class="column grid_10_7"><?= $contents->unescape() ?></div>
                     <div class="column grid_10_3"></div>

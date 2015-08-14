@@ -7,7 +7,7 @@ use ntentan\Router;
 use ntentan\Session;
 
 class ProjectsController extends \kakalika\lib\KakalikaController
-{    
+{
     private $userProjects;
     
     public function init()
@@ -97,55 +97,39 @@ class ProjectsController extends \kakalika\lib\KakalikaController
     {
         if(Router::getVar('MODE') == 'admin')
         {
-            $projects = $this->model->getAll(
-                array(
-                    'fields' => array('name', 'id'),
-                    'sort' => 'id desc'
-                )
-            );            
-            $projects = $projects->toArray();
+            $projects = $this->model->fields('name', 'id')->fetch()->toArray();
         }
         else
         {
-            $projects = $this->userProjects->toArray();     
+            $projects = $this->userProjects;     
+            $statuses  = [];
             foreach($projects as $i => $project)
             {
-                $myOpen = Issues::getJustCount(
-                    array(
-                        'conditions' => array(
-                            'project_id' => $project['project']['id'],
-                            'status' => array('OPEN', 'REOPENED', 'RESOLVED'),
-                            'assignee' => $_SESSION['user']['id']
-                        )
-                    )
-                );
+                $myOpen = Issues::filter(
+                    'project_id = ? and status in(?, ?, ?) and assignee = ?', 
+                    $project->project->id, 'OPEN', 'REOPENED', 'RESOLVED', 
+                    Session::get('user')['id']
+                )->count();   
+
+                $open = Issues::filter(
+                    'project_id = ? and status in (?, ?, ?)',
+                    $project->project->id, 'OPEN', 'REOPENED', 'RESOLVED'
+                )->count();
+
+                $resolved = Issues::filter(
+                    'project_id = ? and status = ?',
+                    $project->project->id, 'RESOLVED'
+                )->count();
                 
-                $projects[$i]['my_open']  = $myOpen;
-
-                $open = Issues::getJustCount(
-                    array(
-                        'conditions' => array(
-                            'project_id' => $project['project']['id'],
-                            'status' => array('OPEN', 'REOPENED', 'RESOLVED')
-                        )
-                    )
-                );
-                $projects[$i]['open'] = $open;
-
-                $resolved = Issues::getJustCount(
-                    array(
-                        'conditions' => array(
-                            'project_id' => $project['project']['id'],
-                            'status' => array('RESOLVED')
-                        )
-                    )
-                );
-                $projects[$i]['resolved'] = $resolved;
+                $statuses[] = [
+                    'mine' => $myOpen,
+                    'open' => $open,
+                    'resolved' => $resolved
+                ];
             }
         }
         
-        
-        $this->set('projects', $projects);
+        $this->set('projects', $projects->toArray());
     }
     
     public function email($id)

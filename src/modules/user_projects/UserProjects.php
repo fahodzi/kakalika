@@ -6,8 +6,8 @@ use ntentan\Model;
 class UserProjects extends Model
 {
     public $belongsTo = [
-        'projects',
-        'users'
+        'project',
+        'user'
     ];
 
     public function validate()

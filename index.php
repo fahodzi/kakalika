@@ -31,7 +31,7 @@
 
 require "vendor/autoload.php";
 
-ini_set('xdebug.collect_params', 4);
+xdebug_start_trace('logs/trace.out');
 
 try{
     ntentan\Router::setDefaultRoute('projects');

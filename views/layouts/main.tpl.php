@@ -55,7 +55,7 @@
             <div id="sub_head">
                 <div class="row">
                     <div class="column grid_10_7">
-                        <h3><a href="<?= u($sub_section_path) ?>"><?= $sub_section ?></a></h3>
+                        <h3><a href="<?= u(isset($sub_section_path) ? $sub_section_path : null) ?>"><?= $sub_section ?></a></h3>
                     </div>
                     <div class="column grid_10_3" align="right">
                         <?php 

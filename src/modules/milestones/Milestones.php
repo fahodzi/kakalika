@@ -1,7 +1,7 @@
 <?php
 namespace kakalika\modules\milestones;
 
-use ntentan\models\Model;
+use ntentan\Model;
 
 class Milestones extends Model
 {

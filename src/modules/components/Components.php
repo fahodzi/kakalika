@@ -1,7 +1,7 @@
 <?php
 namespace kakalika\modules\components;
 
-class Components extends \ntentan\models\Model
+class Components extends \ntentan\Model
 {
     public $belongsTo = array(
         'project'

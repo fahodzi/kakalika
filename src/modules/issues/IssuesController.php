@@ -1,6 +1,9 @@
 <?php
 namespace kakalika\modules\issues;
 
+use ntentan\Router;
+use ntentan\utils\Input;
+
 class IssuesController extends \kakalika\lib\KakalikaController
 {
     private $project;
@@ -8,13 +11,15 @@ class IssuesController extends \kakalika\lib\KakalikaController
     public function init()
     {
         parent::init();
-        $this->defaultMethodName = 'page';
+        $this->setDefaultMethod('page');
         $this->set('sub_section', 'Issues');
         
-        if($GLOBALS["ROUTE_MODE"] == 'project')
+        if(Router::getVar("MODE") === 'project')
         {
-            $this->project = \kakalika\modules\projects\Projects::getJustFirstWithCode($GLOBALS['ROUTE_PROJECT_CODE']);
-            if($this->project->count() == 0) throw new \ntentan\exceptions\RouteNotAvailableException();
+            $this->project = \kakalika\modules\projects\Projects::fetchFirstWithCode(Router::getVar('PROJECT_CODE'));
+            if($this->project->count() == 0) { 
+                throw new \ntentan\exceptions\RouteNotAvailableException();
+            }
             $this->set('project_name', $this->project->name);
             $this->set('project_code', $this->project->code);
             $this->set('sub_section_menu', 
@@ -26,12 +31,6 @@ class IssuesController extends \kakalika\lib\KakalikaController
                     )
                 )
             );
-            
-            if($this->project->count() == 0)
-            {
-                throw new \ntentan\exceptions\RouteNotAvailableException();
-            }
-            
             $this->setupCreateIssueButton();
         }   
     }
@@ -138,7 +137,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
     
     public function page()
     {
-        switch ($_GET['filter'])
+        switch (Input::get('filter'))
         {
             case 'open':
                 $filters = array(
@@ -177,7 +176,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
                 break;            
         }
         
-        switch($_GET['sorter'])
+        switch(Input::get('sorter'))
         {
             case 'created':
                 $sort = 'created desc';
@@ -193,47 +192,43 @@ class IssuesController extends \kakalika\lib\KakalikaController
                 $sort = 'updated desc';
                 break;
         }
-        if($_GET['page'] == '') $_GET['page'] = 1;
+        $page = Input::exists(Input::GET, 'page') ? Input::get('page') : 1;
         
         $params = array(
             'sort' => $sort,
             'conditions' => $filters
         );
         
-        $numIssues = Issues::getCountWithProjectId($this->project->id, $params);
+        $numIssues = Issues::filterByProjectId($this->project->id)->count();
         $numPages = ceil($numIssues / 15);
         $this->set('number_of_pages', $numPages);
         $this->set('base_route', "{$this->project->code}"); 
        
-        $params['limit'] = 15;
-        $params['offset'] = ($_GET['page'] - 1) * 15;
+        /*$params['limit'] = 15;
+        $params['offset'] = ($page - 1) * 15;*/
 
-        $issues = Issues::getWithProjectId($this->project->id, $params);
-        
-        $this->set('issues', $issues);
-        $this->set('title', "{$this->project->name} issues");
+        $issues = Issues::filterByProjectId($this->project->id)->limit(15)->fetch();
         
         $this->set(
-            'filters', 
-            array(
-                'all' => 'All issues',
-                'mine' => 'Issues assigned to me',
-                'reported' => 'Issues opened by me',
-                'open' => 'All open issues',
-                'closed' => 'All closed issues',
-                'resolved' => 'All resolved issues',
-                'unassigned' => 'Unasigned issues'
-            )
-        );
-        
-        $this->set(
-            'sorters', 
-            array(
-                'created' => 'Creation Date',
-                'updated' => 'Last updated',
-                'kind' => 'Issue kind',
-                'priority' => 'Issue priority'
-            )
+            [
+                'filters' => [
+                    'all' => 'All issues',
+                    'mine' => 'Issues assigned to me',
+                    'reported' => 'Issues opened by me',
+                    'open' => 'All open issues',
+                    'closed' => 'All closed issues',
+                    'resolved' => 'All resolved issues',
+                    'unassigned' => 'Unasigned issues'
+                ],
+                'issues' => $issues->toArray(),
+                'title' => "{$this->project->name} issues",
+                'sorters' => [
+                    'created' => 'Creation Date',
+                    'updated' => 'Last updated',
+                    'kind' => 'Issue kind',
+                    'priority' => 'Issue priority'
+                ]                        
+            ]
         );
     }
     

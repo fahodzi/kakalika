@@ -1,6 +1,6 @@
 <?php
 namespace kakalika\modules\watchers;
-use ntentan\models\Model;
+use ntentan\Model;
 
 class Watchers extends Model
 {

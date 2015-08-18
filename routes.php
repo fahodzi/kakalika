@@ -94,7 +94,7 @@ return array(
     
     // Route to project pages
     array(
-        "pattern" => "/(?<project>[a-zA-Z0-9_.\-]*)(\/)?(?<path>[a-zA-Z0-9\/_]*)?/i",
+        "pattern" => "/(?<project>[a-zA-Z0-9_.\-]+)(\/)?(?<path>[a-zA-Z0-9\/_]*)?/i",
         "route" => "::path",
         "default" => "issues",
         "globals" => array(

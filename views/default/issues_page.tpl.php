@@ -2,18 +2,18 @@
     <div class="row">
         <div class="column grid_10_5"><h4><?= $title ?></h4></div>
         <div class="column grid_10_5" style="text-align:right">
-            <img src="<?= u(load_asset('images/sort.png')) ?>" />
+            <img src="<?= load_asset('images/sort.png') ?>" />
             <select onchange="document.location='?sorter=' + this.value + ('<?= $filter ?>' != '' ? '&filter=<?= $filter ?>' : '')">
                 <option></option>
-                <?php foreach($sorters as $sorter => $label): ?>
-                <option value="<?= $sorter ?>" <?= $sorter === $sorter ? "selected='selected'" : "" ?> ><?= $label ?></option>
+                <?php foreach($sorters as $sort => $label): ?>
+                <option value="<?= $sort ?>" <?= $sort === $sorter ? "selected='selected'" : "" ?> ><?= $label ?></option>
                 <?php endforeach; ?>
             </select>            
-            <img src="<?= u(load_asset('images/filter.png')) ?>" />
+            <img src="<?= load_asset('images/filter.png') ?>" />
             <select onchange="document.location='?filter=' + this.value + ('<?= $sorter ?>' != '' ? '&sorter=<?= $sorter ?>' : '')">
                 <option></option>
-                <?php foreach($filters as $filter => $label): ?>
-                <option value="<?= $filter ?>" <?= $filter === $filter ? "selected='selected'" : "" ?> ><?= $label ?></option>
+                <?php foreach($filters as $item => $label): ?>
+                <option value="<?= $item ?>" <?= $filter === $item ? "selected='selected'" : "" ?> ><?= $label ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
@@ -36,17 +36,17 @@
             <div style="padding-left:10px; border-left:2px solid #f0f0f0; margin:10px">
             <?php if($issue['number_of_updates'] > 0): ?>
             <div class="issues-tag">
-                <img src="<?= u(load_asset("images/comment.png")) ?>" /> <?= $issue['number_of_updates'] ?>
+                <img src="<?= load_asset("images/comment.png") ?>" /> <?= $issue['number_of_updates'] ?>
             </div>
             <?php endif; ?>   
             <?php if($issue['priority'] != ''): ?>
             <div class="issues-tag">
-                <img src="<?= u(load_asset("images/priority_{$issue['priority']}.png")) ?>" /> <?= ucfirst(strtolower($issue['priority'])) ?>
+                <img src="<?= load_asset("images/priority_{$issue['priority']}.png") ?>" /> <?= ucfirst(strtolower($issue['priority'])) ?>
             </div>
             <?php endif; ?>
             <?php if($issue['kind'] != ''): ?>
             <div class="issues-tag">
-                <img src="<?= u(load_asset("images/kind_{$issue['kind']}.png")) ?>" /> <?= ucfirst(strtolower($issue['kind'])) ?>
+                <img src="<?= load_asset("images/kind_{$issue['kind']}.png") ?>" /> <?= ucfirst(strtolower($issue['kind'])) ?>
             </div>
             <?php endif; ?>
             </div>

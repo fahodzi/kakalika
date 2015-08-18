@@ -3,6 +3,9 @@ namespace kakalika\modules\issues;
 
 use ntentan\Router;
 use ntentan\utils\Input;
+use ntentan\Session;
+use kakalika\modules\watchers\Watchers;
+use ntentan\Ntentan;
 
 class IssuesController extends \kakalika\lib\KakalikaController
 {
@@ -23,13 +26,13 @@ class IssuesController extends \kakalika\lib\KakalikaController
             $this->set('project_name', $this->project->name);
             $this->set('project_code', $this->project->code);
             $this->set('sub_section_menu', 
-                array(
-                    array(
+                [
+                    [
                         'label' => 'Create A New Issue',
-                        'url' => \ntentan\Ntentan::getUrl("{$this->project->code}/issues/create"),
+                        'url' => Ntentan::getUrl("{$this->project->code}/issues/create"),
                         'id' => 'menu-item-issues-create'
-                    )
-                )
+                    ]
+                ]
             );
             $this->setupCreateIssueButton();
         }   
@@ -67,7 +70,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
     public function watch($issueId)
     {
         $this->view->setTemplate(false);
-        $watching = \kakalika\modules\watchers\Watchers::getJustFirst(
+        $watching = Watchers::getJustFirst(
             array(
                 'conditions' => array(
                     'user_id' => $_SESSION['user']['id'],
@@ -77,7 +80,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
         );
         if($watching->count() == 0)
         {
-            $watching = \kakalika\modules\watchers\Watchers::getNew();
+            $watching = Watchers::getNew();
             $watching->issue_id = $issueId;
             $watching->user_id = $_SESSION['user']['id'];
             $watching->save();
@@ -91,45 +94,39 @@ class IssuesController extends \kakalika\lib\KakalikaController
     
     public function show($issueId)
     {
-        $issue = $this->model->getFirst(
-            array(
-                'conditions' => array(
-                    'number' => $issueId,
-                    'project_id' => $this->project->id
-                )
-            )
-        ); 
+        $issue = Issues::filterByNumber($issueId)->filterByProjectId($this->project->id)->fetchFirst();
         
         $status = $issue->status;
         $this->set('title', "[#{$issue['number']}] {$issue['title']}");        
         $this->set('sub_section_path', "{$this->project->code}/issues");
             
-        if(isset($_POST['comment']))
+        if(Input::exists(Input::POST, 'comment'))
         {
-            if($_POST['action'] == 'Resolve') $status = 'RESOLVED';
-            elseif($_POST['action'] == 'Close') $status = 'CLOSED';
-            elseif($_POST['action'] == 'Reopen') $status = 'REOPENED';
+            if(Input::post('action') == 'Resolve') {
+                $status = 'RESOLVED';
+            }
+            elseif(Input::post('action') == 'Close') {
+                $status = 'CLOSED';
+            }
+            elseif(Input::post('action') == 'Reopen') {
+                $status = 'REOPENED';
+            }
                         
-            $updatedIssue = $this->model->getNew();
+            $updatedIssue = Issues::createNew();
             $updatedIssue->id = $issue->id;
             $updatedIssue->status = $status;
-            $updatedIssue->comment = $_POST['comment'];
+            $updatedIssue->comment = Input::post('comment');
             $updatedIssue->number_of_updates = $issue->number_of_updates;
             $this->harvestAttachments($updatedIssue);
-            $updatedIssue->update();
+            $updatedIssue->save();
             
-            \ntentan\Ntentan::redirect(\ntentan\Ntentan::$requestedRoute);
+            \ntentan\Ntentan::redirect(Router::getRequestedRoute());
         }
         else
         {
-            $watching = \kakalika\modules\watchers\Watchers::getJustFirst(
-                    array(
-                        'conditions' => array(
-                            'user_id' => $_SESSION['user']['id'],
-                            'issue_id' => $issue->id
-                        )
-                    )
-                )->count();
+            $watching = Watchers::filterByUserId(Session::get('user')['id'])
+                ->filterByIssueId($issue->id)
+                ->count();
             $this->set('watching', $watching);
             $this->set('issue', $issue->toArray());
         }
@@ -137,99 +134,84 @@ class IssuesController extends \kakalika\lib\KakalikaController
     
     public function page()
     {
+        $issues = Issues::filterByProjectId($this->project->id);
         switch (Input::get('filter'))
         {
             case 'open':
-                $filters = array(
-                    'status' => array('OPEN', 'REOPENED', 'RESOVED')
-                );
+                $issues->filterByStatus('OPEN', 'REOPENED', 'RESOVED');
                 break;
             
             case 'closed':
-                $filters = array(
-                    'status' => 'CLOSED'
-                );
+                $issues->filterByStatus('CLOSED');
                 break;      
             
             case 'resolved':
-                $filters = array(
-                    'status' => 'RESOLVED'
-                );
+                $issues->filterByStatus('RESOLVED');
                 break;              
             
             case 'mine':
-                $filters = array(
-                    'assignee' => $_SESSION['user']['id']
-                );                
+                $issues->filterByAssignee(Session::get('user')['id']);
                 break;
             
             case 'reported':
-                $filters = array(
-                    'opener' => $_SESSION['user']['id']
-                );
+                $issues->filterByOpener(Session::get('user')['id']);
                 break;
             
             case 'unassigned':
-                $filters = array(
-                    'assignee' => null
-                );
+                $issues->filterByAssignee(null);
                 break;            
         }
         
         switch(Input::get('sorter'))
         {
             case 'created':
-                $sort = 'created desc';
+                $issues->sortDescByCreated();
                 break;
             case 'kind':
-                $sort = 'kind desc';
+                $issues->sortDescByKind();
                 break;
             case 'priority':
-                $sort = 'priority desc';
+                $issues->sortDescByPriority();
                 break;
             case 'updated':
             default:
-                $sort = 'updated desc';
+                $issues->sortDescByUpdated();
                 break;
         }
         $page = Input::exists(Input::GET, 'page') ? Input::get('page') : 1;
-        
-        $params = array(
-            'sort' => $sort,
-            'conditions' => $filters
-        );
         
         $numIssues = Issues::filterByProjectId($this->project->id)->count();
         $numPages = ceil($numIssues / 15);
         $this->set('number_of_pages', $numPages);
         $this->set('base_route', "{$this->project->code}"); 
-       
-        /*$params['limit'] = 15;
-        $params['offset'] = ($page - 1) * 15;*/
 
-        $issues = Issues::filterByProjectId($this->project->id)->limit(15)->fetch();
         
-        $this->set(
-            [
-                'filters' => [
-                    'all' => 'All issues',
-                    'mine' => 'Issues assigned to me',
-                    'reported' => 'Issues opened by me',
-                    'open' => 'All open issues',
-                    'closed' => 'All closed issues',
-                    'resolved' => 'All resolved issues',
-                    'unassigned' => 'Unasigned issues'
-                ],
-                'issues' => $issues->toArray(),
-                'title' => "{$this->project->name} issues",
-                'sorters' => [
-                    'created' => 'Creation Date',
-                    'updated' => 'Last updated',
-                    'kind' => 'Issue kind',
-                    'priority' => 'Issue priority'
-                ]                        
-            ]
-        );
+        $issues->limit(15)
+            ->offset(($page - 1) * 15)
+            ->fetch();
+        
+        $this->set([
+            'sorter' => Input::get('sorter'),
+            'filter' => Input::get('filter'),
+            'page_number' => $page,
+            'filters' => [
+                'all' => 'All issues',
+                'mine' => 'Issues assigned to me',
+                'reported' => 'Issues opened by me',
+                'open' => 'All open issues',
+                'closed' => 'All closed issues',
+                'resolved' => 'All resolved issues',
+                'unassigned' => 'Unasigned issues'
+            ],
+            'issues' => $issues->toArray(),
+            'title' => "{$this->project->name} issues",
+            'sorters' => [
+                'created' => 'Creation Date',
+                'updated' => 'Last updated',
+                'kind' => 'Issue kind',
+                'priority' => 'Issue priority'
+            ]                        
+        ]);
     }
     
     public function edit($issueId)

@@ -4,10 +4,9 @@
         <div class='column grid_10_7 issue_view_content'>
             <div style='padding:15px'><?= t('issue_slug.tpl.php', array('issue' => $issue)) ?></div>
             <p id='description'><?= nl2br($issue['description']) ?></p>  
-            
-            <?php if(count($issue['issue_attachments']->unescape()) > 0): ?>
+            <?php if($issue->issue_attachments->count() > 0): ?>
             <ul class="attachment-display-box">
-            <?php foreach($issue['issue_attachments'] as $attachment): ?>
+            <?php foreach($issue->issue_attachments as $attachment): ?>
                 <?php if($attachment['update_id'] != '')  continue; ?>
                 <li>
                     <a href='<?= u("issues/attachment/{$attachment['id']}/{$attachment['name']}") ?>'><?= $attachment['name'] ?></a>
@@ -17,11 +16,11 @@
             </ul>
             <?php endif; ?>
             
-            <?php if(count($issue['updates']->unescape()) > 0): ?>
-            <h5>Comments (<?= count($issue['updates']->unescape()) ?>)</h5>
+            <?php if($issue->updates->count() > 0): ?>
+            <h5>Comments (<?= $issue->updates->count() ?>)</h5>
             <?php endif; ?>
             
-            <?php $stripe = true; foreach($issue['updates'] as $update): ?>
+            <?php $stripe = true; foreach($issue->updates as $update): ?>
             <div class="update <?= $stripe ? 'striped' : '' ?>">
                 <div class="issue_number">#<?= $update['number'] ?></div>
                 <img src="<?= $helpers->social->gravatar($update['user']['email'])->size(54) ?>" />
@@ -63,7 +62,7 @@
                 </ul>
                 <?php endif; ?> 
                 
-                <?php if(count($update['issue_attachments']->unescape()) > 0): ?>
+                <?php if($update->issue_attachments->count() > 0): ?>
                 <ul class="attachment-display-box sub-attachment-box">
                 <?php foreach($update['issue_attachments'] as $attachment): ?>
                     <li>

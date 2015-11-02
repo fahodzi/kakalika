@@ -1,7 +1,7 @@
 <?php
 namespace kakalika\modules\updates;
 
-class Updates extends \ntentan\models\Model
+class Updates extends \ntentan\Model
 {
     public $belongsTo = array(
         'user',

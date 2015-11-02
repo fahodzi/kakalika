@@ -21,10 +21,10 @@ class KakalikaController extends Controller
         
         $this->addComponent('auth');
         
-        /*$this->addComponent('auth', array(
+        $this->addComponent('auth', array(
             'login_route' => 'login',
             'logout_route' => 'logout'
-        ));*/
+        ));
         
         if(!$this->authComponent->loggedIn())
         {

@@ -1,7 +1,7 @@
 <?php
 namespace kakalika\modules\issue_attachments;
 
-use ntentan\models\Model;
+use ntentan\Model;
 
 class IssueAttachments extends Model
 {

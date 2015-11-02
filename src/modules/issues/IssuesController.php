@@ -128,13 +128,14 @@ class IssuesController extends \kakalika\lib\KakalikaController
                 ->filterByIssueId($issue->id)
                 ->count();
             $this->set('watching', $watching);
-            $this->set('issue', $issue->toArray());
+            $this->set('issue', $issue);
         }
     }
     
     public function page()
     {
         $issues = Issues::filterByProjectId($this->project->id);
+
         switch (Input::get('filter'))
         {
             case 'open':
@@ -203,7 +204,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
                 'resolved' => 'All resolved issues',
                 'unassigned' => 'Unasigned issues'
             ],
-            'issues' => $issues->toArray(),
+            'issues' => $issues,
             'title' => "{$this->project->name} issues",
             'sorters' => [
                 'created' => 'Creation Date',

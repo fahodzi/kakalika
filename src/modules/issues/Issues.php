@@ -6,15 +6,17 @@ use ntentan\Model;
 class Issues extends Model
 {
     public $belongsTo = array(
-        array('user', 'as' => 'opener'),
-        array('user', 'as' => 'assignee'),
-        array('user', 'as' => 'updater'),
+        array('user', 'local_key' => 'opener', 'as' => 'opened_by'),
+        array('user', 'local_key' => 'assignee', 'as' => 'assigned_to'),
+        array('user', 'local_key' => 'updater', 'as' => 'updated_by'),
         'project',
         'milestone',
         'component'
     );
     
-    public $hasMany = array('updates', 'issue_attachments', 'watchers');
+    public $hasMany = array(
+        'updates', 'issue_attachments', 'watchers'
+    );
     
     public $behaviours = array(
         'timestampable'
@@ -27,6 +29,11 @@ class Issues extends Model
     public function addAttachment($attachment)
     {
         $this->attachments[] = $attachment;
+    }
+    
+    public function comment($comment)
+    {
+        
     }
     
     public function preUpdateCallback() 

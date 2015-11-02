@@ -86,12 +86,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekowabaka/yentu.git",
-                "reference": "c322f7e213f8d1617b6ee1b0ead31bf36b263c27"
+                "reference": "3805609fa271f155a291b033b60f950f6c7246fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekowabaka/yentu/zipball/c322f7e213f8d1617b6ee1b0ead31bf36b263c27",
-                "reference": "c322f7e213f8d1617b6ee1b0ead31bf36b263c27",
+                "url": "https://api.github.com/repos/ekowabaka/yentu/zipball/3805609fa271f155a291b033b60f950f6c7246fe",
+                "reference": "3805609fa271f155a291b033b60f950f6c7246fe",
                 "shasum": ""
             },
             "require": {
@@ -125,20 +125,20 @@
                 }
             ],
             "description": "A database migration tool with intimate integration with git",
-            "time": "2015-06-06 12:55:10"
+            "time": "2015-09-11 02:17:59"
         },
         {
             "name": "matthiasmullie/minify",
-            "version": "1.3.27",
+            "version": "1.3.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/matthiasmullie/minify.git",
-                "reference": "5497bea3d1e25d14091a9dcb45a3aa326e4090f7"
+                "reference": "2cee2544198d97bca4ba094bc2df27d6458da1af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/matthiasmullie/minify/zipball/5497bea3d1e25d14091a9dcb45a3aa326e4090f7",
-                "reference": "5497bea3d1e25d14091a9dcb45a3aa326e4090f7",
+                "url": "https://api.github.com/repos/matthiasmullie/minify/zipball/2cee2544198d97bca4ba094bc2df27d6458da1af",
+                "reference": "2cee2544198d97bca4ba094bc2df27d6458da1af",
                 "shasum": ""
             },
             "require": {
@@ -182,7 +182,7 @@
                 "minifier",
                 "minify"
             ],
-            "time": "2015-06-29 15:51:16"
+            "time": "2015-08-20 14:49:37"
         },
         {
             "name": "matthiasmullie/path-converter",
@@ -236,16 +236,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "dev-master",
+            "version": "1.17.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "5779c3740ec7902c898dc7353b28d70ab0e690e5"
+                "reference": "bee7f0dc9c3e0b69a6039697533dca1e845c8c24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/5779c3740ec7902c898dc7353b28d70ab0e690e5",
-                "reference": "5779c3740ec7902c898dc7353b28d70ab0e690e5",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/bee7f0dc9c3e0b69a6039697533dca1e845c8c24",
+                "reference": "bee7f0dc9c3e0b69a6039697533dca1e845c8c24",
                 "shasum": ""
             },
             "require": {
@@ -259,10 +259,11 @@
                 "aws/aws-sdk-php": "^2.4.9",
                 "doctrine/couchdb": "~1.0@dev",
                 "graylog2/gelf-php": "~1.0",
+                "jakub-onderka/php-parallel-lint": "0.9",
                 "php-console/php-console": "^3.1.3",
                 "phpunit/phpunit": "~4.5",
                 "phpunit/phpunit-mock-objects": "2.3.0",
-                "raven/raven": "~0.8",
+                "raven/raven": "^0.13",
                 "ruflin/elastica": ">=0.90 <3.0",
                 "swiftmailer/swiftmailer": "~5.3",
                 "videlalvaro/php-amqplib": "~2.4"
@@ -308,7 +309,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-08-11 10:25:54"
+            "time": "2015-10-14 12:51:02"
         },
         {
             "name": "ntentan/atiaa",
@@ -353,16 +354,16 @@
         },
         {
             "name": "ntentan/honam",
-            "version": "v0.2.2",
+            "version": "v0.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/honam.git",
-                "reference": "357617623900fa42ac07ba6b3d9337bbfb969b61"
+                "reference": "b8c713ffa6b6101c3898787f2065330b3c96c8b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/honam/zipball/357617623900fa42ac07ba6b3d9337bbfb969b61",
-                "reference": "357617623900fa42ac07ba6b3d9337bbfb969b61",
+                "url": "https://api.github.com/repos/ntentan/honam/zipball/b8c713ffa6b6101c3898787f2065330b3c96c8b8",
+                "reference": "b8c713ffa6b6101c3898787f2065330b3c96c8b8",
                 "shasum": ""
             },
             "require": {
@@ -399,7 +400,40 @@
                 }
             ],
             "description": "The views component of the ntentan framework.",
-            "time": "2015-05-26 20:50:39"
+            "time": "2015-08-20 17:17:42"
+        },
+        {
+            "name": "ntentan/kaikai",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ntentan/kaikai.git",
+                "reference": "ceac98d255298d359b6ef61fe332f5468c83a7a7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ntentan/kaikai/zipball/ceac98d255298d359b6ef61fe332f5468c83a7a7",
+                "reference": "ceac98d255298d359b6ef61fe332f5468c83a7a7",
+                "shasum": ""
+            },
+            "require": {
+                "ntentan/utils": "0.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ntentan\\kaikai\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "ekow",
+                    "email": "your@email.here"
+                }
+            ],
+            "description": "Caching for Ntentan Framework",
+            "time": "2015-09-11 02:15:41"
         },
         {
             "name": "ntentan/logger",
@@ -447,16 +481,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/nibii.git",
-                "reference": "95e94296dc02de17d9de1f5a0cf350dc8ca34a73"
+                "reference": "4c8d19f82020e9ca7058467a603fc6c1db219d3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/nibii/zipball/95e94296dc02de17d9de1f5a0cf350dc8ca34a73",
-                "reference": "95e94296dc02de17d9de1f5a0cf350dc8ca34a73",
+                "url": "https://api.github.com/repos/ntentan/nibii/zipball/4c8d19f82020e9ca7058467a603fc6c1db219d3d",
+                "reference": "4c8d19f82020e9ca7058467a603fc6c1db219d3d",
                 "shasum": ""
             },
             "require": {
                 "ntentan/atiaa": "0.*",
+                "ntentan/kaikai": "dev-master",
                 "ntentan/utils": "0.*"
             },
             "require-dev": {
@@ -481,7 +516,7 @@
                 }
             ],
             "description": "ORM for ntentan",
-            "time": "2015-08-13 13:03:17"
+            "time": "2015-09-21 02:21:41"
         },
         {
             "name": "ntentan/ntentan",
@@ -489,12 +524,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/ntentan.git",
-                "reference": "9462c98425f38f7b6dd18d76a79ca082db1ef8f9"
+                "reference": "2308ad6f5780d90d112c9ec76e93c0ba774c0cdc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/9462c98425f38f7b6dd18d76a79ca082db1ef8f9",
-                "reference": "9462c98425f38f7b6dd18d76a79ca082db1ef8f9",
+                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/2308ad6f5780d90d112c9ec76e93c0ba774c0cdc",
+                "reference": "2308ad6f5780d90d112c9ec76e93c0ba774c0cdc",
                 "shasum": ""
             },
             "require": {
@@ -524,7 +559,7 @@
                 }
             ],
             "description": "Another PHP application framework.",
-            "time": "2015-08-07 22:39:09"
+            "time": "2015-11-02 17:04:39"
         },
         {
             "name": "ntentan/social-extension",
@@ -532,12 +567,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/social-extension.git",
-                "reference": "7b47fe52a241fc1273b31fdd5120dcdb5bfb511e"
+                "reference": "58cc7522bfd55ea0bedbf7e5fc69daf5f6f9ee1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/social-extension/zipball/7b47fe52a241fc1273b31fdd5120dcdb5bfb511e",
-                "reference": "7b47fe52a241fc1273b31fdd5120dcdb5bfb511e",
+                "url": "https://api.github.com/repos/ntentan/social-extension/zipball/58cc7522bfd55ea0bedbf7e5fc69daf5f6f9ee1d",
+                "reference": "58cc7522bfd55ea0bedbf7e5fc69daf5f6f9ee1d",
                 "shasum": ""
             },
             "suggest": {
@@ -562,7 +597,7 @@
                 }
             ],
             "description": "An ntentan framework plugin for integrating your application with social network APIs",
-            "time": "2015-05-28 10:12:38"
+            "time": "2015-10-24 08:33:40"
         },
         {
             "name": "ntentan/utils",
@@ -602,16 +637,16 @@
         },
         {
             "name": "phpmailer/phpmailer",
-            "version": "v5.2.10",
+            "version": "v5.2.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "07005ecbb80d11ec8c0f067bb37e8909cc7fcbb7"
+                "reference": "e774bc9152de85547336e22b8926189e582ece95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/07005ecbb80d11ec8c0f067bb37e8909cc7fcbb7",
-                "reference": "07005ecbb80d11ec8c0f067bb37e8909cc7fcbb7",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/e774bc9152de85547336e22b8926189e582ece95",
+                "reference": "e774bc9152de85547336e22b8926189e582ece95",
                 "shasum": ""
             },
             "require": {
@@ -619,12 +654,18 @@
             },
             "require-dev": {
                 "phpdocumentor/phpdocumentor": "*",
-                "phpunit/phpunit": "4.3.*"
+                "phpunit/phpunit": "4.7.*"
+            },
+            "suggest": {
+                "league/oauth2-client": "Needed for XOAUTH2 authentication",
+                "league/oauth2-google": "Needed for Gmail XOAUTH2"
             },
             "type": "library",
             "autoload": {
                 "classmap": [
                     "class.phpmailer.php",
+                    "class.phpmaileroauth.php",
+                    "class.phpmaileroauthgoogle.php",
                     "class.smtp.php",
                     "class.pop3.php",
                     "extras/EasyPeasyICS.php",
@@ -653,7 +694,7 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "time": "2015-05-04 12:37:21"
+            "time": "2015-11-01 10:15:28"
         },
         {
             "name": "psr/log",
@@ -807,12 +848,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phingofficial/phing.git",
-                "reference": "a8afecedda9f5d59a8581489962dd5dccaeafbf1"
+                "reference": "94b5c2f31d4eb890ae81438967d1afc6150e210d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phingofficial/phing/zipball/a8afecedda9f5d59a8581489962dd5dccaeafbf1",
-                "reference": "a8afecedda9f5d59a8581489962dd5dccaeafbf1",
+                "url": "https://api.github.com/repos/phingofficial/phing/zipball/94b5c2f31d4eb890ae81438967d1afc6150e210d",
+                "reference": "94b5c2f31d4eb890ae81438967d1afc6150e210d",
                 "shasum": ""
             },
             "require": {
@@ -837,7 +878,8 @@
                 "phpunit/phpunit": ">=3.7",
                 "sebastian/git": "~1.0",
                 "sebastian/phpcpd": "2.x",
-                "squizlabs/php_codesniffer": "~2.2"
+                "squizlabs/php_codesniffer": "~2.2",
+                "symfony/yaml": "~2.7"
             },
             "suggest": {
                 "pdepend/pdepend": "PHP version of JDepend",
@@ -858,7 +900,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.11.x-dev"
+                    "dev-master": "2.13.x-dev"
                 }
             },
             "autoload": {
@@ -891,7 +933,7 @@
                 "task",
                 "tool"
             ],
-            "time": "2015-08-13 09:07:24"
+            "time": "2015-09-21 09:37:01"
         }
     ],
     "aliases": [],

@@ -31,8 +31,6 @@
 
 require "vendor/autoload.php";
 
-xdebug_start_trace('logs/trace.out');
-
 try{
     ntentan\Router::setDefaultRoute('projects');
     ntentan\Router::setRoutes(require 'routes.php');

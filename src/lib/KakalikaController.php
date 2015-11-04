@@ -36,7 +36,7 @@ class KakalikaController extends Controller
     {
         //@todo Find a way to store this in some kind of cache
         return \kakalika\modules\user_projects\UserProjects::fetchWithUserId(
-            $this->authComponent->userId()
+            $this->authComponent->getUserId()
         ); 
     }
     

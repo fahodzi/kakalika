@@ -408,12 +408,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/kaikai.git",
-                "reference": "ceac98d255298d359b6ef61fe332f5468c83a7a7"
+                "reference": "1d1bea43db45c691b472c7fee5709c9b3ea1698f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/kaikai/zipball/ceac98d255298d359b6ef61fe332f5468c83a7a7",
-                "reference": "ceac98d255298d359b6ef61fe332f5468c83a7a7",
+                "url": "https://api.github.com/repos/ntentan/kaikai/zipball/1d1bea43db45c691b472c7fee5709c9b3ea1698f",
+                "reference": "1d1bea43db45c691b472c7fee5709c9b3ea1698f",
                 "shasum": ""
             },
             "require": {
@@ -433,7 +433,7 @@
                 }
             ],
             "description": "Caching for Ntentan Framework",
-            "time": "2015-09-11 02:15:41"
+            "time": "2015-11-03 18:18:12"
         },
         {
             "name": "ntentan/logger",
@@ -481,12 +481,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/nibii.git",
-                "reference": "4c8d19f82020e9ca7058467a603fc6c1db219d3d"
+                "reference": "1d1eb58b7fff1d2f07abcd3df184c01699e5235e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/nibii/zipball/4c8d19f82020e9ca7058467a603fc6c1db219d3d",
-                "reference": "4c8d19f82020e9ca7058467a603fc6c1db219d3d",
+                "url": "https://api.github.com/repos/ntentan/nibii/zipball/1d1eb58b7fff1d2f07abcd3df184c01699e5235e",
+                "reference": "1d1eb58b7fff1d2f07abcd3df184c01699e5235e",
                 "shasum": ""
             },
             "require": {
@@ -516,7 +516,7 @@
                 }
             ],
             "description": "ORM for ntentan",
-            "time": "2015-09-21 02:21:41"
+            "time": "2015-11-04 19:49:02"
         },
         {
             "name": "ntentan/ntentan",
@@ -524,12 +524,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/ntentan.git",
-                "reference": "2308ad6f5780d90d112c9ec76e93c0ba774c0cdc"
+                "reference": "f4a49605d29488602e3cbdd3016cf98400147a68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/2308ad6f5780d90d112c9ec76e93c0ba774c0cdc",
-                "reference": "2308ad6f5780d90d112c9ec76e93c0ba774c0cdc",
+                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/f4a49605d29488602e3cbdd3016cf98400147a68",
+                "reference": "f4a49605d29488602e3cbdd3016cf98400147a68",
                 "shasum": ""
             },
             "require": {
@@ -559,7 +559,7 @@
                 }
             ],
             "description": "Another PHP application framework.",
-            "time": "2015-11-02 17:04:39"
+            "time": "2015-11-04 15:00:14"
         },
         {
             "name": "ntentan/social-extension",
@@ -601,16 +601,16 @@
         },
         {
             "name": "ntentan/utils",
-            "version": "v0.2.1",
+            "version": "v0.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/utils.git",
-                "reference": "5957a0a3caa8ce42f92f51bbdacfd62782391679"
+                "reference": "6165014d7e77cf71b857441fd058733c4caaf256"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/utils/zipball/5957a0a3caa8ce42f92f51bbdacfd62782391679",
-                "reference": "5957a0a3caa8ce42f92f51bbdacfd62782391679",
+                "url": "https://api.github.com/repos/ntentan/utils/zipball/6165014d7e77cf71b857441fd058733c4caaf256",
+                "reference": "6165014d7e77cf71b857441fd058733c4caaf256",
                 "shasum": ""
             },
             "require-dev": {
@@ -633,7 +633,7 @@
                 }
             ],
             "description": "Common utility functions shared accross the ntentan framework.",
-            "time": "2015-08-12 06:32:09"
+            "time": "2015-11-03 18:07:50"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -848,12 +848,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phingofficial/phing.git",
-                "reference": "94b5c2f31d4eb890ae81438967d1afc6150e210d"
+                "reference": "4c8bd76a5724048784567297e80c3d5d67f66a44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phingofficial/phing/zipball/94b5c2f31d4eb890ae81438967d1afc6150e210d",
-                "reference": "94b5c2f31d4eb890ae81438967d1afc6150e210d",
+                "url": "https://api.github.com/repos/phingofficial/phing/zipball/4c8bd76a5724048784567297e80c3d5d67f66a44",
+                "reference": "4c8bd76a5724048784567297e80c3d5d67f66a44",
                 "shasum": ""
             },
             "require": {
@@ -933,7 +933,7 @@
                 "task",
                 "tool"
             ],
-            "time": "2015-09-21 09:37:01"
+            "time": "2015-11-03 15:02:14"
         }
     ],
     "aliases": [],

@@ -5,6 +5,7 @@ use ntentan\Ntentan;
 use kakalika\modules\issues\Issues;
 use ntentan\Router;
 use ntentan\Session;
+use ntentan\utils\Input;
 
 class ProjectsController extends \kakalika\lib\KakalikaController
 {
@@ -97,7 +98,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
     {
         if(Router::getVar('MODE') == 'admin')
         {
-            $projects = $this->model->fields('name', 'id')->fetch()->toArray();
+            $projects = Projects::fields('name', 'id')->fetch()->toArray();
         }
         else
         {
@@ -134,11 +135,11 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         $this->set('id', $id);
         $this->set('project', $project->toArray());
         
-        if(isset($_POST['incoming_server_host']))
+        if(Input::exists(Input::POST, 'incoming_server_host'))
         {
             $emailSettings = email_settings\EmailSettings::getFirstWithProjectId($id);
             
-            if(isset($_POST['email_integration']) && $project->emal_integration == 0)
+            if(Input::exists('email_integration') && $project->emal_integration == 0)
             {
                 $project->email_integration = 1;
                 $project->update();
@@ -149,12 +150,13 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                 $project->update();
             }
             
-            unset($_POST['email_integration']);
+            $data = Input::post();
+            unset($data['email_integration']);
             
             if($emailSettings->count() == 0)
             {
                 $emailSettings = email_settings\EmailSettings::getNew();
-                $emailSettings->setData($_POST);
+                $emailSettings->setData($data);
                 $emailSettings->project_id = $id;
                 $emailSettings->save();
             }
@@ -162,7 +164,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
             {
                 $emailSettings->incoming_server_ssl = 0;
                 $emailSettings->outgoing_server_authentication = 0;
-                $emailSettings->setData($_POST);
+                $emailSettings->setData($data);
                 $emailSettings->update();
             }
             Ntentan::redirect(Ntentan::$requestedRoute);
@@ -177,45 +179,49 @@ class ProjectsController extends \kakalika\lib\KakalikaController
     
     public function edit($code)
     {
+        $errors = [];
         if(is_numeric($code))
         {
-            $project = $this->model->getJustFirstWithId($code);            
+            $project = Projects::fetchFirstWithId($code);            
         }
         else
         {
-            $project = $this->model->getJustFirstWithCode($code);
+            $project = Projects::fetchFirstWithCode($code);
         }
         
         $this->set('title', "Edit project {$project}");
         
-        if(isset($_POST['name']))
+        if(Input::exists(Input::POST, 'name'))
         {
-            $this->set('project', $_POST);
-            $project->setData($_POST);
-            if($project->update())
+            $this->set('project', Input::post());
+            
+            $id = $project->id;
+            $project->setData(Input::post());
+            $project->id = $id;
+            
+            if($project->save())
             {
-                if($GLOBALS['ROUTE_MODE'] == 'admin')
+                if(Router::getVar('MODE') == 'admin')
                     Ntentan::redirect(Ntentan::getUrl("admin/projects"));
                 else
                     Ntentan::redirect(Ntentan::getUrl("projects"));
             }
             else
             {
-                $this->set('errors', $project->invalidFields);
+                $errors = $project->getInvalidFields();
             }
         }
-        else 
-        {
-            $this->set('project', $project->toArray());
-        }
+        
+        $this->set('project', $project->toArray());
+        $this->set('errors', $errors);
     }
     
     public function delete($id)
     {
-        $project = $this->model->getJustFirstWithId($id);
+        $project = Projects::fetchFirstWithId($id);
         $this->set('title', "Delete {$project} project");
         
-        if($_GET['confirm'] == 'yes')
+        if(Input::get('confirm') == 'yes')
         {
             $project->delete();
             Ntentan::redirect(Ntentan::getUrl("admin/projects"));
@@ -234,22 +240,18 @@ class ProjectsController extends \kakalika\lib\KakalikaController
     public function create()
     {
         $this->set('title', 'Create a new project');
-        if(isset($_POST['name']))
+        $project = [];
+        $errors = [];
+        if(Input::exists(Input::POST, 'name'))
         {
-            $newProject = Projects::getNew();
-            $newProject->name = $_POST['name'];
-            $newProject->code = $_POST['code'];
-            $newProject->description = $_POST['description'];
-            $newProjectId = $newProject->save();
-            if($newProjectId)
+            $newProject = Projects::createNew();
+            $newProject->name = Input::post('name');
+            $newProject->code = Input::post('code');
+            $newProject->description = Input::post('description');
+            $newProject->user_id = $this->authComponent->getUserId();
+            
+            if($newProject->save())
             {
-                $newUserProject = \kakalika\modules\user_projects\UserProjects::getNew();
-                $newUserProject->user_id = $this->authComponent->userId();
-                $newUserProject->project_id = $newProjectId;
-                $newUserProject->creator = true;
-                $newUserProject->admin = true;
-                $newUserProject->save();
-                
                 if($GLOBALS['ROUTE_MODE'] == 'admin')
                 {
                     Ntentan::redirect(Ntentan::getUrl('projects'));
@@ -259,12 +261,12 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                     Ntentan::redirect(Ntentan::getUrl('admin/projects'));
                 }
             }
-            else
-            {
-                $this->set('project', $_POST);
-                $this->set('errors', $newProject->invalidFields);
-            }
+            
+            $project = Input::post();
+            $errors = $newProject->getInvalidFields();
         }
+        $this->set('project', $project);
+        $this->set('errors', $errors);        
     }
 }
 

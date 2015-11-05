@@ -524,12 +524,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/ntentan.git",
-                "reference": "f4a49605d29488602e3cbdd3016cf98400147a68"
+                "reference": "0272ee6be96f47631c63fc4466de605a46572b16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/f4a49605d29488602e3cbdd3016cf98400147a68",
-                "reference": "f4a49605d29488602e3cbdd3016cf98400147a68",
+                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/0272ee6be96f47631c63fc4466de605a46572b16",
+                "reference": "0272ee6be96f47631c63fc4466de605a46572b16",
                 "shasum": ""
             },
             "require": {
@@ -559,7 +559,7 @@
                 }
             ],
             "description": "Another PHP application framework.",
-            "time": "2015-11-04 15:00:14"
+            "time": "2015-11-05 13:06:24"
         },
         {
             "name": "ntentan/social-extension",

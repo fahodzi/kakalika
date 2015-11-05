@@ -1,8 +1,10 @@
 <?php
 namespace kakalika\components\submodule;
 
-use ntentan\models\Model;
+use ntentan\Model;
 use ntentan\Ntentan;
+use kakalika\modules\projects\Projects;
+use ntentan\utils\Input;
 
 class SubmoduleComponent extends \ntentan\controllers\components\Component
 {
@@ -15,52 +17,45 @@ class SubmoduleComponent extends \ntentan\controllers\components\Component
     
     public function submodule($module, $id, $command = null, $subId = null)
     {        
-        $project = \kakalika\modules\projects\Projects::getJustFirstWithId($id);
+        $project = Projects::fetchFirstWithId($id);
         $model = Model::load($this->modules[$module]['model']);
-        $this->view->setTemplate("projects_submodule.tpl.php");
+        $this->getView()->setTemplate("projects_submodule.tpl.php");
         
         $this->set('module', $module);
         $this->set('id', $id);
         $this->set('sub_section', $this->modules[$module]['title']);
         $this->set('sub_section_path', "admin/projects/$module/$id");
-        /*$this->set('sub_section_menu', 
-            array(
-                array(
-                    'label' => "Add a new {$this->modules[$module]['item']}",
-                    'url' => Ntentan::getUrl("admin/projects/$module/$id/add"),
-                    'id' => "menu-item-projects-$module-add"
-                )
-            )
-        );*/ 
                     
         switch($command)
         {
         case 'edit':
-            $subItem = $model->getFirstWithId($subId);
-            
-            if(count($_POST) > 0)
+            $subItem = $model->fetchFirstWithId($subId);
+            $post = Input::post();
+            $errors = [];
+            if(count($post) > 0)
             {
-                $subItem->setData($_POST);
+                $subItem->mergeData($post);
                 $subItem->project_id = $id;
-                if($subItem->update())
+                if($subItem->save())
                 {
                     Ntentan::redirect(Ntentan::getUrl("admin/projects/$module/$id"));
                 }
                 else
                 {
-                    $this->set('errors', $subItem->invalidFields);
+                    $errors =  $subItem->getInvalidFields();
                 }
             }
             
             $this->set('title', "Edit the {$subItem} {$this->modules[$module]['item']}");
             $this->set('data', $subItem->toArray());
-            $this->view->setTemplate("projects_submodule_edit.tpl.php");
+            $this->set('errors', $errors);
+            $this->getView()->setTemplate("projects_submodule_edit.tpl.php");
             break;
         case 'delete':
-            $item = $model->getFirstWithId($subId);
-            $this->view->setTemplate('delete.tpl.php');
+            $item = $model->fetchFirstWithId($subId);
+            $this->getView()->setTemplate('delete.tpl.php');
 
-            if($_GET['confirm'] == 'yes')
+            if(Input::get('confirm') == 'yes')
             {
                 $item->delete();
                 Ntentan::redirect(Ntentan::getUrl("admin/projects/$module/$id"));
@@ -73,14 +68,16 @@ class SubmoduleComponent extends \ntentan\controllers\components\Component
                 )
             );    
             $this->set('title', "Delete a {$this->modules[$module]['item']} from the $project project");
+            $this->set('show_side', false);
             break;
         
         case 'add':
-            $formVars = array();
-            if(count($_POST) > 0)
+            $post = Input::post();
+            $formVars = ['errors' => [], 'data' => []];
+            if(count($post) > 0)
             {
-                $newItem = $model->getNew();
-                $newItem->setData($_POST);
+                $newItem = $model->createNew();
+                $newItem->setData($post);
                 $newItem->project_id = $id;
                 if($newItem->save())
                 {
@@ -88,33 +85,26 @@ class SubmoduleComponent extends \ntentan\controllers\components\Component
                 }
                 else
                 {
-                    $formVars['errors'] = $newItem->invalidFields;
-                    $formVars['data'] = $_POST;
+                    $formVars['errors'] = $newItem->getInvalidFields();
+                    $formVars['data'] = $post;
                 }
             }
             
-            $this->view->setTemplate("projects_submodule_add.tpl.php");
+            $this->getView()->setTemplate("projects_submodule_add.tpl.php");
             
             if(is_object($this->modules[$module]['get_form_vars']))
             {
-                 $formVars = array_merge($formVars, $this->modules[$module]['get_form_vars']());
+                $formVars = array_merge($formVars, $this->modules[$module]['get_form_vars']());            
             }
             
             $this->set('form_vars', $formVars);
-                
             $this->set('title', "Add a new {$this->modules[$module]['item']} to the $project project");
             
             break;
         
         default:
 
-            $items = $model->getAllWithProjectId(
-                $id,
-                array(
-                    'fields' => $this->modules[$module]['fields'],
-                    'sort' => 'id desc'
-                )
-            );
+            $items = $model->fields($this->modules[$module]['fields'])->sortDescById()->fetchWithProjectId($id);
             
             if(is_object($this->modules[$module]['filter']))
             {
@@ -124,7 +114,7 @@ class SubmoduleComponent extends \ntentan\controllers\components\Component
             $this->set('disable_edit', $this->modules[$module]['disable_edit']);
             $this->set('project', $project->name);            
             $this->set('title', ucfirst($this->modules[$module]['items']) . " of the $project project");
-            $this->set('items', $items);    
+            $this->set('items', $items->toArray());    
             $this->set('item_type', $this->modules[$module]['item']);
             $this->set('id', $id);
             $this->set('add_path', "admin/projects/$module/$id/add");

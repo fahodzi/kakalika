@@ -3,12 +3,12 @@ namespace kakalika\modules\user_projects;
 
 use ntentan\Model;
 
-class UserProjects extends Model
+class ProjectsUsers extends Model
 {
-    public $belongsTo = [
+    /*public $belongsTo = [
         'project',
         'user'
-    ];
+    ];*/
 
     public function validate()
     {

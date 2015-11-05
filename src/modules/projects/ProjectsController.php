@@ -32,14 +32,20 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                         'item' => 'milestone',
                         'items' => 'milestones',
                         'model' => 'milestones',
-                        'fields' => array('name', 'id')
+                        'fields' => array('name', 'id'),
+                        'filter' => null,
+                        'disable_edit' => null,
+                        'get_form_vars' => null
                     ),
                     'components' => array(
                         'title' => 'Project Components',
                         'item' => 'component',
                         'items' => 'components',
                         'model' => 'components',
-                        'fields' => array('name', 'id')
+                        'fields' => array('name', 'id'),
+                        'filter' => null,
+                        'disable_edit' => null,
+                        'get_form_vars' => null
                     ),  
                     'members' => array(
                         'title' => 'Project Members',

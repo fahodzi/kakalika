@@ -16,7 +16,7 @@
                     'variables' => array(
                         'id' => $id,
                         'module' => $module,
-                        'disable_edit' => $disable_edit
+                        'disable_edit' => isset($disable_edit) ? $disable_edit : false
                     )
                 )
             );

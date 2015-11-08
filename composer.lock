@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "hash": "125b03d554f7d608790ac1c9842367e2",
+    "content-hash": "a583be488b57dfac50330e9b36777d86",
     "packages": [
         {
             "name": "ekowabaka/anyen",
@@ -86,12 +87,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekowabaka/yentu.git",
-                "reference": "3805609fa271f155a291b033b60f950f6c7246fe"
+                "reference": "b2be070782efd902e710bc5b6e2c84d6b7bb81d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekowabaka/yentu/zipball/3805609fa271f155a291b033b60f950f6c7246fe",
-                "reference": "3805609fa271f155a291b033b60f950f6c7246fe",
+                "url": "https://api.github.com/repos/ekowabaka/yentu/zipball/b2be070782efd902e710bc5b6e2c84d6b7bb81d6",
+                "reference": "b2be070782efd902e710bc5b6e2c84d6b7bb81d6",
                 "shasum": ""
             },
             "require": {
@@ -125,7 +126,7 @@
                 }
             ],
             "description": "A database migration tool with intimate integration with git",
-            "time": "2015-09-11 02:17:59"
+            "time": "2015-11-07 21:04:28"
         },
         {
             "name": "matthiasmullie/minify",
@@ -313,16 +314,16 @@
         },
         {
             "name": "ntentan/atiaa",
-            "version": "v0.1.6",
+            "version": "v0.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/atiaa.git",
-                "reference": "0be0b1dac174a7d1ab7ed1fcb175bd31baaced20"
+                "reference": "5dd4ba0e3ce764cd09f811a49e1977dd9c6a4914"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/atiaa/zipball/0be0b1dac174a7d1ab7ed1fcb175bd31baaced20",
-                "reference": "0be0b1dac174a7d1ab7ed1fcb175bd31baaced20",
+                "url": "https://api.github.com/repos/ntentan/atiaa/zipball/5dd4ba0e3ce764cd09f811a49e1977dd9c6a4914",
+                "reference": "5dd4ba0e3ce764cd09f811a49e1977dd9c6a4914",
                 "shasum": ""
             },
             "require": {
@@ -350,7 +351,7 @@
                 }
             ],
             "description": "A slim wrapper around PDO to provide some extra utilities",
-            "time": "2015-08-09 09:28:39"
+            "time": "2015-11-07 09:32:21"
         },
         {
             "name": "ntentan/honam",
@@ -481,12 +482,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/nibii.git",
-                "reference": "1d1eb58b7fff1d2f07abcd3df184c01699e5235e"
+                "reference": "9cb1fc53bf48b41babc853caa7cad88c05770873"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/nibii/zipball/1d1eb58b7fff1d2f07abcd3df184c01699e5235e",
-                "reference": "1d1eb58b7fff1d2f07abcd3df184c01699e5235e",
+                "url": "https://api.github.com/repos/ntentan/nibii/zipball/9cb1fc53bf48b41babc853caa7cad88c05770873",
+                "reference": "9cb1fc53bf48b41babc853caa7cad88c05770873",
                 "shasum": ""
             },
             "require": {
@@ -516,7 +517,7 @@
                 }
             ],
             "description": "ORM for ntentan",
-            "time": "2015-11-04 19:49:02"
+            "time": "2015-11-05 20:11:55"
         },
         {
             "name": "ntentan/ntentan",
@@ -524,12 +525,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/ntentan.git",
-                "reference": "0272ee6be96f47631c63fc4466de605a46572b16"
+                "reference": "13da07281ec9756e8705afed81e4b18e4759fca2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/0272ee6be96f47631c63fc4466de605a46572b16",
-                "reference": "0272ee6be96f47631c63fc4466de605a46572b16",
+                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/13da07281ec9756e8705afed81e4b18e4759fca2",
+                "reference": "13da07281ec9756e8705afed81e4b18e4759fca2",
                 "shasum": ""
             },
             "require": {
@@ -559,7 +560,7 @@
                 }
             ],
             "description": "Another PHP application framework.",
-            "time": "2015-11-05 13:06:24"
+            "time": "2015-11-05 20:46:19"
         },
         {
             "name": "ntentan/social-extension",

@@ -35,9 +35,8 @@ class KakalikaController extends Controller
     protected function getUserProjects()
     {
         //@todo Find a way to store this in some kind of cache
-        return \kakalika\modules\user_projects\UserProjects::fetchWithUserId(
-            $this->authComponent->getUserId()
-        ); 
+        $user = \kakalika\modules\users\Users::fetchFirstWithId($this->authComponent->getUserId());
+        return $user->projects;
     }
     
     protected function setupCreateIssueButton()
@@ -56,8 +55,8 @@ class KakalikaController extends Controller
         foreach($this->getUserProjects() as $userProject)
         {
             $projectsMenu[] = array(
-                'label' => $userProject->project->name,
-                'url' => Ntentan::getUrl($userProject->project->code . "/issues/create")
+                'label' => $userProject->name,
+                'url' => Ntentan::getUrl($userProject->code . "/issues/create")
             );
         }
 

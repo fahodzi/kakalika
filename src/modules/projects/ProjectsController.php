@@ -108,25 +108,25 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         }
         else
         {
-            $projects = $this->userProjects->toArray(1);     
+            $projects = $this->userProjects->toArray();     
             foreach($projects as $i => $project)
             {
                 $myOpen = Issues::filter(
                     'project_id = ? and status in(?, ?, ?) and assignee = ?', 
-                    $project['project']['id'], 'OPEN', 'REOPENED', 'RESOLVED', 
+                    $project['id'], 'OPEN', 'REOPENED', 'RESOLVED', 
                     Session::get('user')['id']
                 )->count(); 
                 $projects[$i]['my_open']  = $myOpen;                
 
                 $open = Issues::filter(
                     'project_id = ? and status in (?, ?, ?)',
-                    $project['project']['id'], 'OPEN', 'REOPENED', 'RESOLVED'
+                    $project['id'], 'OPEN', 'REOPENED', 'RESOLVED'
                 )->count();
                 $projects[$i]['open'] = $open;                
 
                 $resolved = Issues::filter(
                     'project_id = ? and status = ?',
-                    $project['project']['id'], 'RESOLVED'
+                    $project['id'], 'RESOLVED'
                 )->count();
                 $projects[$i]['resolved'] = $resolved;                
             }

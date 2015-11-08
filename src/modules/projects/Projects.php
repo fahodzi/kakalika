@@ -8,7 +8,7 @@ use kakalika\modules\user_projects\UserProjects;
 class Projects extends Model
 {
     private $storedUserId;
-    public $mayHaveMany = ['users'];
+    public $manyHaveMany = ['users'];
     
     public function __toString()
     {

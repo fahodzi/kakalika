@@ -27,24 +27,24 @@
     <?php foreach($projects as $project): ?>
     <tr class="project-info-wrapper">
         <td>
-            <a href="<?= u($project['project']['code']) ?>" class="project-name"><?= $project['project']['name'] ?></a>
-            <span class="project-desc"><?= $this->truncate($project['project']['description'], 30) ?></span>            
+            <a href="<?= u($project['code']) ?>" class="project-name"><?= $project['name'] ?></a>
+            <span class="project-desc"><?= $this->truncate($project['description'], 30) ?></span>            
         </td>
         <td style="text-align: center">
-            <a class="edit-operation tinylink " href="<?= u("{$project['project']['code']}/edit") ?>">Edit</a>
+            <a class="edit-operation tinylink " href="<?= u("{$project['code']}/edit") ?>">Edit</a>
         </td>
         <td style="text-align:right">
             <div class="issue-counter">
                 <span class="open label"><?= $project['open'] ?></span>&nbsp;
-                <a href='<?= u($project['project']['code']) ?>?filter=open'>Open</a>
+                <a href='<?= u($project['code']) ?>?filter=open'>Open</a>
             </div>
             <div class="issue-counter">
                 <span class="resolved label"><?= $project['resolved'] ?></span>&nbsp;
-                <a href='<?= u($project['project']['code']) ?>?filter=resolved'>Resolved</a>
+                <a href='<?= u($project['code']) ?>?filter=resolved'>Resolved</a>
             </div>            
             <div class="issue-counter">
                 <span class="mine label"><?= $project['my_open'] ?></span>&nbsp;
-                <a href='<?= u($project['project']['code']) ?>?filter=mine'>Mine</a>
+                <a href='<?= u($project['code']) ?>?filter=mine'>Mine</a>
             </div>
         </td>
     </tr>

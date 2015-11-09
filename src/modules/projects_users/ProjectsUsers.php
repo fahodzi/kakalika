@@ -5,10 +5,10 @@ use ntentan\Model;
 
 class ProjectsUsers extends Model
 {
-    /*public $belongsTo = [
+    public $belongsTo = [
         'project',
         'user'
-    ];*/
+    ];
 
     public function validate()
     {

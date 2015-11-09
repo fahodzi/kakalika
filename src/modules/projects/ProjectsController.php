@@ -51,8 +51,8 @@ class ProjectsController extends \kakalika\lib\KakalikaController
                         'title' => 'Project Members',
                         'item' => 'member',
                         'items' => 'members',
-                        'model' => 'user_projects',
-                        'fields' => array('user.firstname', 'user.lastname', 'id'),
+                        'model' => 'projects_users',
+                        'fields' => array('id', 'user_id'),
                         'disable_edit' => true,
                         
                         'get_form_vars' => function() 
@@ -137,13 +137,13 @@ class ProjectsController extends \kakalika\lib\KakalikaController
     
     public function email($id)
     {
-        $project = $this->model->getJustFirstWithId($id);
+        $project = Projects::fetchFirstWithId($id);
         $this->set('id', $id);
         $this->set('project', $project->toArray());
         
         if(Input::exists(Input::POST, 'incoming_server_host'))
         {
-            $emailSettings = email_settings\EmailSettings::getFirstWithProjectId($id);
+            $emailSettings = email_settings\EmailSettings::fetchFirstWithProjectId($id);
             
             if(Input::exists('email_integration') && $project->emal_integration == 0)
             {
@@ -177,7 +177,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         }
         else
         {
-            $emailSettings = email_settings\EmailSettings::getFirstWithProjectId($id);
+            $emailSettings = email_settings\EmailSettings::fetchFirstWithProjectId($id);
             $emailSettings->email_integration = $project->email_integration;
             $this->set('settings', $emailSettings->toArray());
         }

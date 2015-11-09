@@ -3,7 +3,7 @@
 namespace kakalika\modules\projects;
 
 use ntentan\Model;
-use kakalika\modules\user_projects\UserProjects;
+use kakalika\modules\projects_users\ProjectsUsers;
 
 class Projects extends Model
 {
@@ -23,7 +23,7 @@ class Projects extends Model
     
     public function postSaveCallback($id)
     {
-        $newUserProject = UserProjects::createNew();
+        $newUserProject = ProjectsUsers::createNew();
         $newUserProject->user_id = $this->storedUserId;
         $newUserProject->project_id = $id;
         $newUserProject->creator = true;

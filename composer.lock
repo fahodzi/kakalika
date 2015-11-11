@@ -5,7 +5,6 @@
         "This file is @generated automatically"
     ],
     "hash": "125b03d554f7d608790ac1c9842367e2",
-    "content-hash": "a583be488b57dfac50330e9b36777d86",
     "packages": [
         {
             "name": "ekowabaka/anyen",
@@ -482,12 +481,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/nibii.git",
-                "reference": "91de2d5de5e0cc6611c74bd9db5855bcbcd5fc8d"
+                "reference": "4c8b9425aec9fd1e8f48da0086ec40b71fa9daee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/nibii/zipball/91de2d5de5e0cc6611c74bd9db5855bcbcd5fc8d",
-                "reference": "91de2d5de5e0cc6611c74bd9db5855bcbcd5fc8d",
+                "url": "https://api.github.com/repos/ntentan/nibii/zipball/4c8b9425aec9fd1e8f48da0086ec40b71fa9daee",
+                "reference": "4c8b9425aec9fd1e8f48da0086ec40b71fa9daee",
                 "shasum": ""
             },
             "require": {
@@ -517,7 +516,7 @@
                 }
             ],
             "description": "ORM for ntentan",
-            "time": "2015-11-08 09:11:12"
+            "time": "2015-11-11 13:18:46"
         },
         {
             "name": "ntentan/ntentan",
@@ -525,12 +524,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/ntentan.git",
-                "reference": "10fa2f1b2e4bf1ae7dc8226607d1f1c49f0ff9de"
+                "reference": "655c99b5997aa5f4bf7a4fe197e936ea64e3412c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/10fa2f1b2e4bf1ae7dc8226607d1f1c49f0ff9de",
-                "reference": "10fa2f1b2e4bf1ae7dc8226607d1f1c49f0ff9de",
+                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/655c99b5997aa5f4bf7a4fe197e936ea64e3412c",
+                "reference": "655c99b5997aa5f4bf7a4fe197e936ea64e3412c",
                 "shasum": ""
             },
             "require": {
@@ -560,7 +559,7 @@
                 }
             ],
             "description": "Another PHP application framework.",
-            "time": "2015-11-08 09:10:31"
+            "time": "2015-11-09 00:15:35"
         },
         {
             "name": "ntentan/social-extension",
@@ -638,24 +637,24 @@
         },
         {
             "name": "phpmailer/phpmailer",
-            "version": "v5.2.14",
+            "version": "5.4.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "e774bc9152de85547336e22b8926189e582ece95"
+                "reference": "758eb3fe8e80df96762340f4e31791b65545060b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/e774bc9152de85547336e22b8926189e582ece95",
-                "reference": "e774bc9152de85547336e22b8926189e582ece95",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/758eb3fe8e80df96762340f4e31791b65545060b",
+                "reference": "758eb3fe8e80df96762340f4e31791b65545060b",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.0.0"
+                "php": ">=5.4.0"
             },
             "require-dev": {
-                "phpdocumentor/phpdocumentor": "*",
-                "phpunit/phpunit": "4.7.*"
+                "phpdocumentor/phpdocumentor": "2.*",
+                "phpunit/phpunit": "4.*"
             },
             "suggest": {
                 "league/oauth2-client": "Needed for XOAUTH2 authentication",
@@ -663,15 +662,9 @@
             },
             "type": "library",
             "autoload": {
-                "classmap": [
-                    "class.phpmailer.php",
-                    "class.phpmaileroauth.php",
-                    "class.phpmaileroauthgoogle.php",
-                    "class.smtp.php",
-                    "class.pop3.php",
-                    "extras/EasyPeasyICS.php",
-                    "extras/ntlm_sasl_client.php"
-                ]
+                "psr-4": {
+                    "PHPMailer\\PHPMailer\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -695,7 +688,7 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "time": "2015-11-01 10:15:28"
+            "time": "2015-11-10 18:38:14"
         },
         {
             "name": "psr/log",
@@ -745,6 +738,97 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "pear/console_getopt",
+            "version": "v1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pear/Console_Getopt.git",
+                "reference": "82f05cd1aa3edf34e19aa7c8ca312ce13a6a577f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pear/Console_Getopt/zipball/82f05cd1aa3edf34e19aa7c8ca312ce13a6a577f",
+                "reference": "82f05cd1aa3edf34e19aa7c8ca312ce13a6a577f",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Console": "./"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "include-path": [
+                "./"
+            ],
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Greg Beaver",
+                    "email": "cellog@php.net",
+                    "role": "Helper"
+                },
+                {
+                    "name": "Andrei Zmievski",
+                    "email": "andrei@php.net",
+                    "role": "Lead"
+                },
+                {
+                    "name": "Stig Bakken",
+                    "email": "stig@php.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "More info available on: http://pear.php.net/package/Console_Getopt",
+            "time": "2015-07-20 20:28:12"
+        },
+        {
+            "name": "pear/pear-core-minimal",
+            "version": "v1.10.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pear/pear-core-minimal.git",
+                "reference": "cae0f1ce0cb5bddb611b0a652d322905a65a5896"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pear/pear-core-minimal/zipball/cae0f1ce0cb5bddb611b0a652d322905a65a5896",
+                "reference": "cae0f1ce0cb5bddb611b0a652d322905a65a5896",
+                "shasum": ""
+            },
+            "require": {
+                "pear/console_getopt": "~1.3",
+                "pear/pear_exception": "~1.0"
+            },
+            "replace": {
+                "rsky/pear-core-min": "self.version"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "include-path": [
+                "src/"
+            ],
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Weiske",
+                    "email": "cweiske@php.net",
+                    "role": "Lead"
+                }
+            ],
+            "description": "Minimal set of PEAR core files to be used as composer dependency",
+            "time": "2015-10-17 11:41:19"
+        },
         {
             "name": "pear/pear_exception",
             "version": "dev-master",
@@ -806,15 +890,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pear/VersionControl_Git.git",
-                "reference": "7e8387c0cfee8640d86a40591ec9741c5cc25c68"
+                "reference": "d2fd5c37a27541a4cea554d67cd39c73d7cb71fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pear/VersionControl_Git/zipball/7e8387c0cfee8640d86a40591ec9741c5cc25c68",
-                "reference": "7e8387c0cfee8640d86a40591ec9741c5cc25c68",
+                "url": "https://api.github.com/repos/pear/VersionControl_Git/zipball/d2fd5c37a27541a4cea554d67cd39c73d7cb71fe",
+                "reference": "d2fd5c37a27541a4cea554d67cd39c73d7cb71fe",
                 "shasum": ""
             },
             "require": {
+                "pear/pear-core-minimal": "^1.9",
                 "pear/pear_exception": "*"
             },
             "require-dev": {
@@ -841,7 +926,7 @@
                 }
             ],
             "description": "VersionControl_Git is a library that provides OO interface to handle Git repository.",
-            "time": "2014-02-21 08:06:18"
+            "time": "2015-11-04 13:03:54"
         },
         {
             "name": "phing/phing",
@@ -849,12 +934,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phingofficial/phing.git",
-                "reference": "4c8bd76a5724048784567297e80c3d5d67f66a44"
+                "reference": "3823b9227ef7929ef71c21cbaef5aa67939e3eda"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phingofficial/phing/zipball/4c8bd76a5724048784567297e80c3d5d67f66a44",
-                "reference": "4c8bd76a5724048784567297e80c3d5d67f66a44",
+                "url": "https://api.github.com/repos/phingofficial/phing/zipball/3823b9227ef7929ef71c21cbaef5aa67939e3eda",
+                "reference": "3823b9227ef7929ef71c21cbaef5aa67939e3eda",
                 "shasum": ""
             },
             "require": {
@@ -934,7 +1019,7 @@
                 "task",
                 "tool"
             ],
-            "time": "2015-11-03 15:02:14"
+            "time": "2015-11-09 09:01:45"
         }
     ],
     "aliases": [],

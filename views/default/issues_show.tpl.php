@@ -10,7 +10,7 @@
                 <?php if($attachment['update_id'] != '')  continue; ?>
                 <li>
                     <a href='<?= u("issues/attachment/{$attachment['id']}/{$attachment['name']}") ?>'><?= $attachment['name'] ?></a>
-                    <br/><span class="small-date"><?= $helpers->filesize($attachment['size']->unescape()) ?></span>
+                    <br/><span class="small-date"><?= $helpers->filesize($attachment['size']) ?></span>
                 </li>
             <?php endforeach; ?>
             </ul>
@@ -28,8 +28,8 @@
                 <div class="small-date"><?= $helpers->date($update['created'])->sentence(array('elaborate_with' => 'ago')) ?> ⚫ <?= $helpers->date($update['created'])->format('jS F, Y @ g:i a') ?></div>
                 <?php
                 $changes = array();
-                if($update['assignee']['id'] != '') 
-                    $changes[] = "Assigned <span class='name'>{$update['assignee']['firstname']} {$update['assignee']['lastname']}</span> to this issue";
+                if(isset($update['assigned_to']['id'])) 
+                    $changes[] = "Assigned <span class='name'>{$update['assigned_to']}</span> to this issue";
                     
                 if($update['priority'] != '')
                     $changes[] = "Set priority to <b>{$update['priority']}</b>";
@@ -67,7 +67,7 @@
                 <?php foreach($update['issue_attachments'] as $attachment): ?>
                     <li>
                         <a href='<?= u("issues/attachment/{$attachment['id']}/{$attachment['name']}") ?>'><?= $attachment['name'] ?></a>
-                        <br/><span class="small-date"><?= $helpers->filesize($attachment['size']->unescape()) ?></span>
+                        <br/><span class="small-date"><?= $helpers->filesize(unescape($attachment['size'])) ?></span>
                     </li>
                 <?php endforeach; ?>
                 </ul>
@@ -127,10 +127,9 @@
                     )
                 )->setAlias('side')
                 ?>
-                
-                <?php if(count($issue['watchers']) > 0): ?>
+                <?php if($issue->watchers->count() > 0): ?>
                 <h5>Watchers</h5>
-                <?php foreach($issue['watchers'] as $watcher): if($watcher['user']['email'] == '') continue;?>
+                <?php foreach($issue->watchers as $watcher): if(!isset($watcher['user']['email'])) continue;?>
                 <img src="<?= $helpers->social->gravatar($watcher['user']['email']) ?>" title="<?= $watcher['user']['firstname'] ?> <?= $watcher['user']['lastname'] ?>" />
                 <?php endforeach; ?>
                 <?php endif; ?>
@@ -167,31 +166,31 @@
                 echo t('people_info.tpl.php', 
                     array(
                         'action' => 'Opened by',
-                        'email' => $issue['opener']['email'],
-                        'firstname' => $issue['opener']['firstname'],
-                        'lastname' => $issue['opener']['lastname'],
+                        'email' => $issue->opened_by['email'],
+                        'firstname' => $issue->opened_by['firstname'],
+                        'lastname' => $issue->opened_by['lastname'],
                         'time' => $issue['created']
                     )
                 );
                 
-                if($issue['assignee']['id'] != '')
+                if($issue->assigned_to['id'] != '')
                     echo t('people_info.tpl.php', 
                         array(
                             'action' => 'Assigned to',
-                            'email' => $issue['assignee']['email'],
-                            'firstname' => $issue['assignee']['firstname'],
-                            'lastname' => $issue['assignee']['lastname'],
+                            'email' => $issue->assigned_to['email'],
+                            'firstname' => $issue->assigned_to['firstname'],
+                            'lastname' => $issue->assigned_to['lastname'],
                             'time' => $issue['assigned']
                         )
                     );
                       
-                if($issue['updater']['id'] != '')
+                if($issue->updated_by['id'] != '')
                     echo t('people_info.tpl.php', 
                         array(
                             'action' => 'Updated by',
-                            'email' => $issue['updater']['email'],
-                            'firstname' => $issue['updater']['firstname'],
-                            'lastname' => $issue['updater']['lastname'],
+                            'email' => $issue->updated_by['email'],
+                            'firstname' => $issue->updated_by['firstname'],
+                            'lastname' => $issue->updated_by['lastname'],
                             'time' => $issue['updated']
                         )
                     )                         

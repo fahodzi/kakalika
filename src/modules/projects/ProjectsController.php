@@ -145,15 +145,15 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         {
             $emailSettings = email_settings\EmailSettings::fetchFirstWithProjectId($id);
             
-            if(Input::exists('email_integration') && $project->emal_integration == 0)
+            if(Input::exists(Input::POST, 'email_integration') && $project->email_integration == 0)
             {
                 $project->email_integration = 1;
-                $project->update();
+                $project->save();
             }
             else if($project->email_integration == 1)
             {
                 $project->email_integration = 0;
-                $project->update();
+                $project->save();
             }
             
             $data = Input::post();
@@ -170,10 +170,10 @@ class ProjectsController extends \kakalika\lib\KakalikaController
             {
                 $emailSettings->incoming_server_ssl = 0;
                 $emailSettings->outgoing_server_authentication = 0;
-                $emailSettings->setData($data);
-                $emailSettings->update();
+                $emailSettings->mergeData($data);
+                $emailSettings->save();
             }
-            Ntentan::redirect(Ntentan::$requestedRoute);
+            Ntentan::redirect(Router::getRequestedRoute());
         }
         else
         {

@@ -1,7 +1,7 @@
 <?php
 namespace kakalika\modules\outgoing_mails;
 
-use ntentan\models\Model;
+use ntentan\Model;
 
 class OutgoingMails extends Model
 {

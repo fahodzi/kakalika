@@ -40,21 +40,22 @@ class IssuesController extends \kakalika\lib\KakalikaController
     
     private function harvestAttachments($issue)
     {
+        $files = Input::files('attachment');
         $valid = true;
-        if(count($_FILES['attachment']) > 0)
+        if(count($files) > 0)
         {
-            foreach($_FILES['attachment']['error'] as $index => $error)
+            foreach($files as $file)
             {
-                if($error == UPLOAD_ERR_OK)
+                if($file->getError() === UPLOAD_ERR_OK)
                 {
-                    $destination = uniqid() . "_{$_FILES['attachment']['name'][$index]}";
-                    move_uploaded_file($_FILES['attachment']['tmp_name'][$index], "uploads/$destination");
+                    $destination = uniqid() . "_{$file->getClientName()}";
+                    $file->moveTo("uploads/$destination");
                     $issue->addAttachment(
                         array(
                             'file' => $destination,
-                            'name' => $_FILES['attachment']['name'][$index],
-                            'size' => $_FILES['attachment']['size'][$index],
-                            'type' => $_FILES['attachment']['type'][$index]
+                            'name' => $file->getClientName(),
+                            'size' => $file->getSize(),
+                            'type' => $file->getType()
                         )
                     );
                 }
@@ -112,8 +113,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
                 $status = 'REOPENED';
             }
                         
-            $updatedIssue = Issues::createNew();
-            $updatedIssue->id = $issue->id;
+            $updatedIssue = Issues::fetchFirstWithId($issue->id);
             $updatedIssue->status = $status;
             $updatedIssue->comment = Input::post('comment');
             $updatedIssue->number_of_updates = $issue->number_of_updates;

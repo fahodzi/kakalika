@@ -2,13 +2,17 @@
 namespace kakalika\modules\issues;
 
 use ntentan\Model;
+use kakalika\modules\watchers\Watchers;
+use ntentan\Session;
+use kakalika\modules\updates\Updates;
+use kakalika\modules\issue_attachments\IssueAttachments;
 
 class Issues extends Model
 {
     public $belongsTo = array(
-        array('user', 'local_key' => 'opener', 'as' => 'opened_by'),
-        array('user', 'local_key' => 'assignee', 'as' => 'assigned_to'),
-        array('user', 'local_key' => 'updater', 'as' => 'updated_by'),
+        ['user', 'local_key' => 'opener', 'as' => 'opened_by'],
+        ['user', 'local_key' => 'assignee', 'as' => 'assigned_to'],
+        ['user', 'local_key' => 'updater', 'as' => 'updated_by'],
         'project',
         'milestone',
         'component'
@@ -38,14 +42,12 @@ class Issues extends Model
     
     public function preUpdateCallback() 
     {
-        if($this->updater == '') $this->updater = $_SESSION['user']['id'];
-        if($this->updated == '') $this->updated = date('Y-m-d H:i:s');
+        if($this->updater == '') Session::get('user')['id'];
+        $this->originalIssue = self::createNew()->fetchFirstWithId($this->id);//->toArray();
         
-        $this->originalIssue = $this->getJustFirstWithId($this->id)->toArray();
-        
-        if($this->data['comment'] != '') 
+        if($this->comment != '') 
         {
-            $this->updateData['comment'] = $this->data['comment'];
+            $this->updateData['comment'] = $this->comment;
         }
         
         if($this->originalIssue['assignee'] != $this->assignee) 
@@ -58,45 +60,49 @@ class Issues extends Model
         if($this->originalIssue['priority'] != $this->priority) $this->updateData['priority'] = $this->priority;
         if($this->originalIssue['status'] != $this->status) $this->updateData['status'] = $this->status;
         if($this->originalIssue['milestone_id'] != $this->milestone_id) $this->updateData['milestone_id'] = $this->milestone_id;
-        if($this->originalIssue['component_id'] != $this->component_id) $this->updateData['component_id'] = $this->component_id;
+        if($this->originalIssue['component_id'] != $this->component_id) $this->updateData['component_id'] = $this->component_id; 
         
-        unset($this->data['comment']);    
+        unset($this['comment']);    
         
         if(count($this->updateData) > 0)
         {
             $this->updateData['number'] = ++$this->number_of_updates;
             $this->updateData['user_id'] = $this->updater;
         }
+        
     }
     
     public function postUpdateCallback() 
-    {        
+    {
         if(count($this->updateData) > 0)
         {
-            $this->updateData['issue_id'] = $this->id;        
-            $update = \kakalika\modules\updates\Updates::getNew();
+            $this->updateData['issue_id'] = $this->id;      
+            $update = Updates::createNew();
             $update->setData($this->updateData);
             $update->updateIssue = false;
-            $updateId = $update->save();
+            $update->save(); 
             
             $this->addWatcher($this->updater);
             $this->addWatcher($this->assignee);
                         
             foreach($this->attachments as $attachment)
             {
-                $issueAttachment = \kakalika\modules\issue_attachments\IssueAttachments::getNew();
+                $issueAttachment = IssueAttachments::createNew();
                 $issueAttachment->issue_id = $this->id;
                 $issueAttachment->attachment_file = $attachment['file'];
                 $issueAttachment->name = $attachment['name'];
                 $issueAttachment->type = $attachment['type'];
                 $issueAttachment->user_id = $_SESSION['user']['id'];
                 $issueAttachment->size = $attachment['size'];
-                $issueAttachment->update_id = $updateId;
+                $issueAttachment->update_id = $update->id;
                 $issueAttachment->save();
             }
         }
                 
-        $this->notify($this->updateData['comment'], $this->updateData);        
+        $this->notify(
+            isset($this->updateData['comment']) ? $this->updateData['comment'] : null, 
+            $this->updateData
+        );
     }
     
     public function preSaveCallback()
@@ -117,15 +123,7 @@ class Issues extends Model
     
     public function addWatcher($userId)
     {
-        $watcher = \kakalika\modules\watchers\Watchers::getJustFirst(
-            array(
-                'conditions' => array(
-                    'issue_id' => $this->id,
-                    'user_id' => $userId
-                )
-            )
-        );
-
+        $watcher = Watchers::fetch(['issue_id' => $this->id, 'user_id' => $userId]);
         if($watcher->count() == 0)
         {
             $watcher->user_id = $userId;
@@ -160,29 +158,26 @@ class Issues extends Model
     
     public function notify($message, $changes = array())    
     {
-        $watchers = \kakalika\modules\watchers\Watchers::getAll(
-            array(
-                'conditions' => array(
-                    'issue_id' => $this->id,
-                    'user_id<>' => $_SESSION['user']['id']
-                )
-            )
-        );
+        $watchers = Watchers::filter('issue_id = ? AND user_id <> ?', [$this->id, Session::get('user')['id']])->fetch();
         
         foreach($watchers as $watcher)
         {
-            $watcher = $watcher->toArray();
+            $watcher = $watcher->toArray(1);
             
             $emailSender = new \kakalika\lib\EmailSender();
             $emailSender->setDestination($watcher['user']['email'], "{$watcher['user']['firstname']} {$watcher['user']['lastname']}");
             $emailSender->setMessage($message);
             $emailSender->setChanges($changes);
-            $emailSender->setSource("{$_SESSION['user']['firstname']} {$_SESSION['user']['lastname']} {$_SESSION['othernames']}");            
-            $outgoingMail = \kakalika\modules\outgoing_mails\OutgoingMails::getNew();
+            $source = Session::get('user');
+            $emailSender->setSource(sprintf(
+                    '%s %s', $source['firstname'], $source['lastname']
+                )
+            );            
+            $outgoingMail = \kakalika\modules\outgoing_mails\OutgoingMails::createNew();
             
             if($this->project_id == '' || $this->number == '' || $this->tite == '')
             {
-                $issue = Issues::getJustFirstWithId($this->id, array('fields'=>array('project_id', 'number', 'title')));
+                $issue = Issues::createNew()->fields('project_id', 'number', 'title')->fetchFirstWithId($this->id);
                 $outgoingMail->project_id = $issue->project_id;
                 $emailSender->setIssueNumber($issue->number);
                 $emailSender->setSubject($issue->title);

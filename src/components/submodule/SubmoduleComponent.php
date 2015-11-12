@@ -7,7 +7,7 @@ use ntentan\Ntentan;
 use kakalika\modules\projects\Projects;
 use ntentan\utils\Input;
 
-class SubmoduleComponent extends \ntentan\controllers\components\Component
+class SubmoduleComponent extends \ntentan\controllers\Component
 {
 
     private $modules = array();

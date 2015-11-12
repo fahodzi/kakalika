@@ -86,12 +86,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekowabaka/yentu.git",
-                "reference": "33604ad08c5a66799c05d830074061840f5d5618"
+                "reference": "2045bff41e6f7fbd855446bb7926e68af88d77aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekowabaka/yentu/zipball/33604ad08c5a66799c05d830074061840f5d5618",
-                "reference": "33604ad08c5a66799c05d830074061840f5d5618",
+                "url": "https://api.github.com/repos/ekowabaka/yentu/zipball/2045bff41e6f7fbd855446bb7926e68af88d77aa",
+                "reference": "2045bff41e6f7fbd855446bb7926e68af88d77aa",
                 "shasum": ""
             },
             "require": {
@@ -100,8 +100,8 @@
                 "php": ">=5.4.0"
             },
             "require-dev": {
-                "mikey179/vfsstream": "1.*",
-                "mockery/mockery": "0.9.*",
+                "mikey179/vfsstream": "@stable",
+                "mockery/mockery": "@stable",
                 "phpunit/phpunit": "4.*"
             },
             "bin": [
@@ -125,7 +125,7 @@
                 }
             ],
             "description": "A database migration tool with intimate integration with git",
-            "time": "2015-11-08 13:52:11"
+            "time": "2015-11-12 18:24:23"
         },
         {
             "name": "matthiasmullie/minify",
@@ -481,12 +481,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/nibii.git",
-                "reference": "4c8b9425aec9fd1e8f48da0086ec40b71fa9daee"
+                "reference": "4b73844ec5f9114022b5e11747fb3cbf6a0e3ae5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/nibii/zipball/4c8b9425aec9fd1e8f48da0086ec40b71fa9daee",
-                "reference": "4c8b9425aec9fd1e8f48da0086ec40b71fa9daee",
+                "url": "https://api.github.com/repos/ntentan/nibii/zipball/4b73844ec5f9114022b5e11747fb3cbf6a0e3ae5",
+                "reference": "4b73844ec5f9114022b5e11747fb3cbf6a0e3ae5",
                 "shasum": ""
             },
             "require": {
@@ -516,7 +516,7 @@
                 }
             ],
             "description": "ORM for ntentan",
-            "time": "2015-11-11 13:18:46"
+            "time": "2015-11-12 15:56:43"
         },
         {
             "name": "ntentan/ntentan",
@@ -524,12 +524,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/ntentan.git",
-                "reference": "655c99b5997aa5f4bf7a4fe197e936ea64e3412c"
+                "reference": "1dab4e5e2d76692992f502b382463d43c2cf5944"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/655c99b5997aa5f4bf7a4fe197e936ea64e3412c",
-                "reference": "655c99b5997aa5f4bf7a4fe197e936ea64e3412c",
+                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/1dab4e5e2d76692992f502b382463d43c2cf5944",
+                "reference": "1dab4e5e2d76692992f502b382463d43c2cf5944",
                 "shasum": ""
             },
             "require": {
@@ -559,7 +559,7 @@
                 }
             ],
             "description": "Another PHP application framework.",
-            "time": "2015-11-09 00:15:35"
+            "time": "2015-11-12 15:55:29"
         },
         {
             "name": "ntentan/social-extension",
@@ -641,12 +641,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "758eb3fe8e80df96762340f4e31791b65545060b"
+                "reference": "428949a697f0aa28746be6540cefc644d9cc882e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/758eb3fe8e80df96762340f4e31791b65545060b",
-                "reference": "758eb3fe8e80df96762340f4e31791b65545060b",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/428949a697f0aa28746be6540cefc644d9cc882e",
+                "reference": "428949a697f0aa28746be6540cefc644d9cc882e",
                 "shasum": ""
             },
             "require": {
@@ -657,7 +657,6 @@
                 "phpunit/phpunit": "4.*"
             },
             "suggest": {
-                "league/oauth2-client": "Needed for XOAUTH2 authentication",
                 "league/oauth2-google": "Needed for Gmail XOAUTH2"
             },
             "type": "library",
@@ -688,7 +687,7 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "time": "2015-11-10 18:38:14"
+            "time": "2015-11-12 11:51:29"
         },
         {
             "name": "psr/log",

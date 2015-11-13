@@ -6,6 +6,10 @@ use ntentan\utils\Input;
 use ntentan\Session;
 use kakalika\modules\watchers\Watchers;
 use ntentan\Ntentan;
+use kakalika\modules\projects\Projects;
+use kakalika\modules\components\Components;
+use kakalika\modules\issue_attachments\IssueAttachments;
+use kakalika\modules\milestones\Milestones;
 
 class IssuesController extends \kakalika\lib\KakalikaController
 {
@@ -19,7 +23,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
         
         if(Router::getVar("MODE") === 'project')
         {
-            $this->project = \kakalika\modules\projects\Projects::fetchFirstWithCode(Router::getVar('PROJECT_CODE'));
+            $this->project = Projects::fetchFirstWithCode(Router::getVar('PROJECT_CODE'));
             if($this->project->count() == 0) { 
                 throw new \ntentan\exceptions\RouteNotAvailableException();
             }
@@ -90,7 +94,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
         {
             $watching->delete();
         }
-        \ntentan\Ntentan::redirect();
+        Ntentan::redirect();
     }
     
     public function show($issueId)
@@ -217,34 +221,32 @@ class IssuesController extends \kakalika\lib\KakalikaController
     
     public function edit($issueId)
     {
-        $issue = Issues::getJustFirst(
-            array(
-                'conditions' => array(
-                    'project_id' => $this->project->id,
-                    'number' => $issueId
-                )
-            )
-        );
+        $issue = Issues::fetchFirst(['project_id' => $this->project->id, 'number' => $issueId]);
+        $errors = [];
         $this->set('title', "Edit Issue #{$issue['number']} {$issue['title']}");
-        if(isset($_POST['title']))
+        if(Input::exists(Input::POST, 'title'))
         {
-            $issue->setData($_POST);
+            $issue->mergeData(Input::post());
             $this->harvestAttachments($issue);
-            $issue->update();
-            \ntentan\Ntentan::redirect("{$this->project->code}/issues/$issueId");
+            if($issue->save()) {
+                Ntentan::redirect("{$this->project->code}/issues/$issueId");
+            } else {
+                $errors = $issue->getInvalidFields();
+            }
         }
         else
         {
             $this->set('form_data', $issue->toArray());
             $this->setupOptions();
         }
+        $this->set('form_errors', $errors);
     }
     
     public function attachment($id)
     {
         $this->view->setTemplate(false);
         $this->view->setLayout(false);
-        $attachment = \kakalika\modules\issue_attachments\IssueAttachments::getJustFirstWithId($id);
+        $attachment = IssueAttachments::getJustFirstWithId($id);
         $file = "uploads/{$attachment->attachment_file}";
         
         header("Content-Type: {$attachment->type}");
@@ -297,28 +299,18 @@ class IssuesController extends \kakalika\lib\KakalikaController
     
     private function setupOptions()
     {
-        $users = \kakalika\modules\user_projects\UserProjects::getAllWithProjectId(
-            $this->project->id,
-            array(
-                'fields' => array(
-                    'id',
-                    'user.id',
-                    'user.firstname',
-                    'user.lastname'
-                )
-            )
-        );
+        $users = $this->project->users;
         
         $assignees = array();
         
         foreach($users as $user)
         {
-            $assignees[$user['user']['id']] = "{$user['user']['firstname']} {$user['user']['lastname']}";
+            $assignees[$user->id] = (string)$user;
         }
         
         $this->set('assignees', $assignees);   
         
-        $components = \kakalika\modules\components\Components::getJustAllWithProjectId($this->project->id);
+        $components = Components::fetchWithProjectId($this->project->id);
         $componentsOptions = array();
         foreach($components as $component)
         {
@@ -326,7 +318,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
         }
         $this->set('components', $componentsOptions);
         
-        $milestones = \kakalika\modules\milestones\Milestones::getJustAllWithProjectId($this->project->id);
+        $milestones = Milestones::fetchWithProjectId($this->project->id);
         $milestonesOptions = array();
         foreach($milestones as $milestone)
         {

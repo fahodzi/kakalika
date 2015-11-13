@@ -7,22 +7,12 @@ use ntentan\Ntentan;
 
 // @todo Allow the timezone to be set during installation
 date_default_timezone_set('Africa/Accra');
+Ntentan::init('kakalika');
 
-// Tell PHP to stop barking
-error_reporting(E_ALL ^ E_NOTICE);
-
-// Load configurations
-$ntentan = parse_ini_file(__DIR__ . '/config/ntentan.ini', true);
-$ntentan['home'] = __DIR__ . "/ntentan";
-$app = parse_ini_file(__DIR__ . "/config/app.ini", true);
-$app['home'] = __DIR__;
-
-Ntentan::$configPath = __DIR__ . "/config/";
-Ntentan::setup($ntentan, $app);
 \ntentan\honam\TemplateEngine::prependPath(__DIR__ . '/views/emails');
-$emailSettings = \kakalika\modules\projects\email_settings\EmailSettings::getAll();
+$emailSettings = \kakalika\modules\projects\email_settings\EmailSettings::fetch();
 
-foreach($emailSettings->toArray() as $settings)
+foreach($emailSettings->toArray(1) as $settings)
 {
     if($settings['project']['email_integration'] != '1')
     {
@@ -65,7 +55,7 @@ foreach($emailSettings->toArray() as $settings)
 
         if(!$commented)
         {
-            $issue = kakalika\modules\issues\Issues::getNew();
+            $issue = kakalika\modules\issues\Issues::createNew();
             $issue->title = $emailMessage->getSubject();
             $issue->opener = $user->id;
             $issue->created = $emailMessage->getTimestamp();
@@ -75,19 +65,16 @@ foreach($emailSettings->toArray() as $settings)
             {
                 $issue->addAttachment($attachment);
             }
-            $issueId = $issue->save();
+            $issue->save();
             foreach($emailMessage->getCCs() as $cc)
             {
-                $watcher = \kakalika\modules\watchers\Watchers::getNew();
-                $watcher->issue_id = $issueId;
-                $watcher->user_id = get_user($cc['email'], $cc['name'])->id;
-                $watcher->save();
+                $issue->addWatcher(get_user($cc['email'], $cc['name'])->id);
             }
         }
     }    
     
     // Send outgoing mails
-    $outgoingMails = \kakalika\modules\outgoing_mails\OutgoingMails::getJustAllWithProjectId($settings['project']['id']);
+    $outgoingMails = \kakalika\modules\outgoing_mails\OutgoingMails::fetchWithProjectId($settings['project']['id']);
     foreach($outgoingMails as $outgoingMail)
     {
         $sender = unserialize($outgoingMail->object);
@@ -100,11 +87,11 @@ foreach($emailSettings->toArray() as $settings)
 
 function get_user($email, $name)
 {
-    $user = \kakalika\modules\users\Users::getJustFirstWithEmail($email);   
+    $user = \kakalika\modules\users\Users::fetchFirstWithEmail($email);   
 
     if($user->count() == 0)
     {
-        $user = \kakalika\modules\users\Users::getNew();
+        $user = \kakalika\modules\users\Users::createNew();
         $user->firstname = $name;
         $user->email = $email;
         $user->username = $email;

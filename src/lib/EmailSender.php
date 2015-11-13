@@ -2,6 +2,7 @@
 namespace kakalika\lib;
 
 use ntentan\honam\TemplateEngine;
+use PHPMailer\PHPMailer\PHPMailer;
 
 class EmailSender
 {
@@ -16,7 +17,7 @@ class EmailSender
     
     public function send($server)
     {
-        $mail = new \PHPMailer();
+        $mail = new PHPMailer();
         $mail->isSMTP();
         $mail->Host = $server['outgoing_server_host'];
         $mail->SMTPAuth = $server['outgoing_server_authentication'];
@@ -37,15 +38,15 @@ class EmailSender
         $mail->addReplyTo("{$email[0]}+{$this->issueNumber}@{$email[1]}", $server["email_display_name"]);
         $mail->Subject = "Re: {$this->subject} [#{$this->issueNumber}]";
         
-        if($this->changes['assignee'] != '')
+        if(isset($this->changes['assignee']))
         {
             $this->changes['assignee'] = \kakalika\modules\users\Users::getJustFirstWithId($this->changes['assignee'])->toArray();
         }
-        if($this->changes['milestone_id'] != '')       
+        if(isset($this->changes['milestone_id']))
         {
             $this->changes['milestone'] = \kakalika\modules\milestones\Milestones::getJustFirstWithId($this->changes['milestone_id'])->toArray();
         }
-        if($this->changes['component_id'] != '')       
+        if(isset($this->changes['component_id']))
         {
             $this->changes['component'] = \kakalika\modules\components\Components::getJustFirstWithId($this->changes['component_id'])->toArray();
         }

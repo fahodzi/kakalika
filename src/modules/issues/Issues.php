@@ -6,6 +6,7 @@ use kakalika\modules\watchers\Watchers;
 use ntentan\Session;
 use kakalika\modules\updates\Updates;
 use kakalika\modules\issue_attachments\IssueAttachments;
+use kakalika\modules\projects\Projects;
 
 class Issues extends Model
 {
@@ -92,7 +93,7 @@ class Issues extends Model
                 $issueAttachment->attachment_file = $attachment['file'];
                 $issueAttachment->name = $attachment['name'];
                 $issueAttachment->type = $attachment['type'];
-                $issueAttachment->user_id = $_SESSION['user']['id'];
+                $issueAttachment->user_id = Session::get('user')['id'];
                 $issueAttachment->size = $attachment['size'];
                 $issueAttachment->update_id = $update->id;
                 $issueAttachment->save();
@@ -108,28 +109,31 @@ class Issues extends Model
     public function preSaveCallback()
     {
         $this->status = 'OPEN';
-        if(isset($_SESSION['user']['id'])) $this->opener = $_SESSION['user']['id'];
-        $project = \kakalika\modules\projects\Projects::getJustFirstWithId(
-            $this->project_id
-        );
+        if(isset(Session::get('user')['id'])) 
+        {
+            $this->opener = Session::get('user')['id'];
+        }
+        $project = Projects::fetchFirstWithId($this->project_id);
         if($this->assignee != '')
         {
             $this->assigned = date('Y-m-d H:i:s');
         }
         $this->number = ++$project->number_of_issues;
         if($this->updated == '') $this->updated = date('Y-m-d H:i:s');
-        $project->update();
+        $project->save();
     }
     
-    public function addWatcher($userId)
+    public function addWatcher($userId, $toggle = false)
     {
-        $watcher = Watchers::fetch(['issue_id' => $this->id, 'user_id' => $userId]);
+        $watcher = Watchers::fetchFirst(['issue_id' => $this->id, 'user_id' => $userId]);
         if($watcher->count() == 0)
         {
             $watcher->user_id = $userId;
             $watcher->issue_id = $this->id;
             $watcher->save();
-        }        
+        } elseif ($toggle) {
+            $watcher->delete();
+        }
     }
     
     public function postSaveCallback($id) 
@@ -143,7 +147,7 @@ class Issues extends Model
         
         foreach($this->attachments as $attachment)
         {
-            $issueAttachment = \kakalika\modules\issue_attachments\IssueAttachments::getNew();
+            $issueAttachment = IssueAttachments::createNew();
             $issueAttachment->issue_id = $id;
             $issueAttachment->attachment_file = $attachment['file'];
             $issueAttachment->name = $attachment['name'];

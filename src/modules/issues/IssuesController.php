@@ -72,34 +72,18 @@ class IssuesController extends \kakalika\lib\KakalikaController
         return $valid;
     }
     
-    public function watch($issueId)
+    public function watch($issueNumber)
     {
-        $this->view->setTemplate(false);
-        $watching = Watchers::getJustFirst(
-            array(
-                'conditions' => array(
-                    'user_id' => $_SESSION['user']['id'],
-                    'issue_id' => $issueId
-                )
-            )
-        );
-        if($watching->count() == 0)
-        {
-            $watching = Watchers::getNew();
-            $watching->issue_id = $issueId;
-            $watching->user_id = $_SESSION['user']['id'];
-            $watching->save();
-        }
-        else
-        {
-            $watching->delete();
-        }
+        $this->getView()->setTemplate(false);
+        $this->getView()->setLayout(false);
+        $issue = Issues::fetchFirst(['project_id' => $this->project->id, 'number' => $issueNumber]);
+        $issue->addWatcher(Session::get('user')['id'], true);
         Ntentan::redirect();
     }
     
-    public function show($issueId)
+    public function show($issueNumber)
     {
-        $issue = Issues::filterByNumber($issueId)->filterByProjectId($this->project->id)->fetchFirst();
+        $issue = Issues::filterByNumber($issueNumber)->filterByProjectId($this->project->id)->fetchFirst();
         
         $status = $issue->status;
         $this->set('title', "[#{$issue['number']}] {$issue['title']}");        
@@ -129,8 +113,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
         else
         {
             $watching = Watchers::filterByUserId(Session::get('user')['id'])
-                ->filterByIssueId($issue->id)
-                ->count();
+                ->filterByIssueId($issue->id)->count();
             $this->set('watching', $watching);
             $this->set('issue', $issue);
         }
@@ -263,27 +246,22 @@ class IssuesController extends \kakalika\lib\KakalikaController
     
     public function create()
     {
-        if(isset($_POST['title']))
+        $errors = [];
+        if(Input::exists(Input::POST, 'title'))
         {
-            $newIssue = Issues::getNew();
-            $newIssue->setData($_POST);
+            $newIssue = Issues::createNew();
+            $newIssue->setData(Input::post());
             $newIssue->project_id = $this->project->id;
             $this->harvestAttachments($newIssue);            
             
-            if($newIssue->save())
-            {
-                \ntentan\Ntentan::redirect("{$this->project->code}/issues");
+            if($newIssue->save()) {
+                Ntentan::redirect("{$this->project->code}/issues");
+            } else {
+                $errors = $newIssue->getInvalidFields();
             }
-            else 
-            {
-                $this->set(
-                    array(
-                        'data' => $_POST,
-                        'errors' => $newIssue->invalidFields
-                    )
-                );
-            }           
         }
+        
+        $this->set(['data' => Input::post(), 'errors' => $errors]);        
         
         if($this->project->id)
         {

@@ -121,7 +121,7 @@
                         ),
                         array(
                             'label' => $watching ? 'Stop watching this issue': 'Watch this issue',
-                            'url' => u("{$project_code}/issues/watch/{$issue['id']}?redirect=" . urlencode(u("{$project_code}/issues/{$issue['number']}"))),
+                            'url' => u("{$project_code}/issues/watch/{$issue['number']}?redirect=" . urlencode(u("{$project_code}/issues/{$issue['number']}"))),
                             'id' => 'menu-item-issues-watch'
                         )
                     )

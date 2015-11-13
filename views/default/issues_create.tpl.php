@@ -7,7 +7,8 @@ t(
         'errors' => $errors,
         'assignees' => $assignees,
         'components' => $components,
-        'milestones' => $milestones
+        'milestones' => $milestones,
+        'comment' => false
     )
 ) 
 ?>

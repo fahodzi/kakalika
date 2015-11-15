@@ -41,7 +41,7 @@ class UsersController extends KakalikaController
         $this->set('sub_section', 'Users');    
         $this->set('title', 'Users');
         
-        if($GLOBALS['ROUTE_MODE'] == 'admin' && $_SESSION['user']['is_admin'] == true)
+        if(\ntentan\Router::getVar('MODE') == 'admin' && \ntentan\Session::get('user')['is_admin'] == true)
         {      
             $this->set('sub_section_path', 'admin/users');            
             $this->setupCreateIssueButton();
@@ -54,7 +54,7 @@ class UsersController extends KakalikaController
     
     public function block($id)
     {
-        $user = $this->model->getJustFirstWithId($id);
+        $user = Users::fetchFirstWithId($id);
         $this->set('title', "Block user $user");
         
         if($_GET['confirm'] == 'yes')
@@ -73,11 +73,7 @@ class UsersController extends KakalikaController
     
     public function run()
     {
-        $users = $this->model->getAll(
-            array(
-                'fields' => array('firstname', 'lastname', 'username', 'email', 'id')
-            )
-        );
+        $users = Users::fields('firstname', 'lastname', 'username', 'email', 'id')->fetch();
         $this->set('users', $users->toArray());
     }
     

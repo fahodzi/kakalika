@@ -2,7 +2,6 @@
 namespace kakalika\lib;
 
 use ntentan\honam\TemplateEngine;
-use PHPMailer\PHPMailer\PHPMailer;
 
 class EmailSender
 {
@@ -17,7 +16,7 @@ class EmailSender
     
     public function send($server)
     {
-        $mail = new PHPMailer();
+        $mail = new \PHPMailer();
         $mail->isSMTP();
         $mail->Host = $server['outgoing_server_host'];
         $mail->SMTPAuth = $server['outgoing_server_authentication'];

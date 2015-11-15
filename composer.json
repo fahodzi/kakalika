@@ -13,7 +13,7 @@
         "ekowabaka/yentu" : "dev-master",
         "ekowabaka/anyen" : "dev-master",
         "ntentan/social-extension": "dev-master",
-        "phpmailer/phpmailer": "5.*"
+        "phpmailer/phpmailer": "@stable"
     },
     "require-dev": {
         "phing/phing": "2.*",

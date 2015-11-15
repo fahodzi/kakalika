@@ -16,11 +16,11 @@
             </ul>
             <?php endif; ?>
             
-            <?php if($issue->updates->count() > 0): ?>
-            <h5>Comments (<?= $issue->updates->count() ?>)</h5>
+            <?php if($updates->count() > 0): ?>
+            <h5>Comments (<?= $updates->count() ?>)</h5>
             <?php endif; ?>
             
-            <?php $stripe = true; foreach($issue->updates as $update): ?>
+            <?php $stripe = true; foreach($updates as $update): ?>
             <div class="update <?= $stripe ? 'striped' : '' ?>">
                 <div class="issue_number">#<?= $update['number'] ?></div>
                 <img src="<?= $helpers->social->gravatar($update['user']['email'])->size(54) ?>" />

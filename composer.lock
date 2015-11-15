@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2fcdac6a43ddfde7a5cb35823823c877",
-    "content-hash": "c95427d1fb95b6de006a6786e0ae0ff3",
+    "hash": "86fab0b006c05fe40ced00ff71507f61",
+    "content-hash": "e5e1a5cc9015beb6587ee751d0a5a487",
     "packages": [
         {
             "name": "ekowabaka/anyen",
@@ -478,16 +478,16 @@
         },
         {
             "name": "ntentan/nibii",
-            "version": "v0.1.0",
+            "version": "v0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/nibii.git",
-                "reference": "95d5067c507fa73b1586125b62eed94ead40a8da"
+                "reference": "7bfaebd4eeac30c50f8f25aee05db844f39cf6a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/nibii/zipball/95d5067c507fa73b1586125b62eed94ead40a8da",
-                "reference": "95d5067c507fa73b1586125b62eed94ead40a8da",
+                "url": "https://api.github.com/repos/ntentan/nibii/zipball/7bfaebd4eeac30c50f8f25aee05db844f39cf6a6",
+                "reference": "7bfaebd4eeac30c50f8f25aee05db844f39cf6a6",
                 "shasum": ""
             },
             "require": {
@@ -517,7 +517,7 @@
                 }
             ],
             "description": "ORM for ntentan",
-            "time": "2015-11-15 02:38:12"
+            "time": "2015-11-15 16:49:14"
         },
         {
             "name": "ntentan/ntentan",
@@ -525,12 +525,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/ntentan.git",
-                "reference": "a629f696fe994f7d0b9ff9b1eec7eeb5ba25bac1"
+                "reference": "353be5211ec8a9aafed2e7640e207d261a08d3ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/a629f696fe994f7d0b9ff9b1eec7eeb5ba25bac1",
-                "reference": "a629f696fe994f7d0b9ff9b1eec7eeb5ba25bac1",
+                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/353be5211ec8a9aafed2e7640e207d261a08d3ce",
+                "reference": "353be5211ec8a9aafed2e7640e207d261a08d3ce",
                 "shasum": ""
             },
             "require": {
@@ -560,7 +560,7 @@
                 }
             ],
             "description": "Another PHP application framework.",
-            "time": "2015-11-15 03:01:00"
+            "time": "2015-11-15 11:08:17"
         },
         {
             "name": "ntentan/social-extension",
@@ -2020,6 +2020,7 @@
         "ekowabaka/yentu": 20,
         "ekowabaka/anyen": 20,
         "ntentan/social-extension": 20,
+        "phpmailer/phpmailer": 0,
         "pear/versioncontrol_git": 20,
         "facebook/webdriver": 0
     },

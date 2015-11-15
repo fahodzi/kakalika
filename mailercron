@@ -6,6 +6,7 @@ require __DIR__ . "/vendor/autoload.php";
 use ntentan\Ntentan;
 
 // @todo Allow the timezone to be set during installation
+error_reporting(E_ALL ^ E_NOTICE);
 date_default_timezone_set('Africa/Accra');
 Ntentan::init('kakalika');
 
@@ -105,7 +106,7 @@ function get_user($email, $name)
 
 function comment_on_issue($issueNumber, $user, $emailMessage)
 {
-    $issue = kakalika\modules\issues\Issues::getJustFirstWithNumber($issueNumber);
+    $issue = kakalika\modules\issues\Issues::fetchFirstWithNumber($issueNumber);
     
     if($issue->count() > 0)
     {
@@ -115,7 +116,7 @@ function comment_on_issue($issueNumber, $user, $emailMessage)
         {
             $issue->addAttachment($attachment);
         }
-        $issue->update();
+        $issue->save();
         return true;
     }
     else

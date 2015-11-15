@@ -104,7 +104,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
             $updatedIssue = Issues::fetchFirstWithId($issue->id);
             $updatedIssue->status = $status;
             $updatedIssue->comment = Input::post('comment');
-            $updatedIssue->number_of_updates = $issue->number_of_updates;
+            $updatedIssue->updater = $this->authComponent->getUserId();
             $this->harvestAttachments($updatedIssue);
             $updatedIssue->save();
             
@@ -115,6 +115,8 @@ class IssuesController extends \kakalika\lib\KakalikaController
             $watching = Watchers::filterByUserId(Session::get('user')['id'])
                 ->filterByIssueId($issue->id)->count();
             $this->set('watching', $watching);
+            $updates = \kakalika\modules\updates\Updates::sortAscByNumber()->fetchWithIssueId($issue->id);
+            $this->set('updates', $updates);
             $this->set('issue', $issue);
         }
     }

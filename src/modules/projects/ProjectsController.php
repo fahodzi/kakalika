@@ -18,8 +18,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         $this->set('sub_section', 'Projects');
         $this->set('title', 'Projects');
         
-        $this->userProjects = $this->getUserProjects();
-           
+        $this->userProjects = $this->getUserProjects();  
         
         if(Router::getVar('MODE') == 'admin' && Session::get('user')['is_admin'] == true)
         {

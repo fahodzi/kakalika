@@ -13,16 +13,17 @@
         "ekowabaka/yentu" : "dev-master",
         "ekowabaka/anyen" : "dev-master",
         "ntentan/social-extension": "dev-master",
-        "phpmailer/phpmailer": "5.*"
+        "phpmailer/phpmailer": "@stable"
     },
     "require-dev": {
         "phing/phing": "2.*",
-        "pear/versioncontrol_git": "dev-master"
+        "pear/versioncontrol_git": "dev-master",
+        "phpunit/phpunit": "4.*",
+        "facebook/webdriver": "@stable"
     },
-    "minimum-stability" : "dev",
     "autoload": {
         "psr-4": {
-            "kakalika\\": "src/"
+            "kakalika\\tests\\": "tests/"
         }
     }
 }

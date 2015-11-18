@@ -19,7 +19,7 @@
         <div id="wrapper">
             <div id="head" class="row">
                 <div id="title_side" class="column grid_10_5">
-                    <h1><a href="<?= u('') ?>">Kakalika</a></h1>
+                    <h1><a href="<?= u('/') ?>">Kakalika</a></h1>
                     <?php if(isset($project_name)): ?>
                     <h2><a href="<?= u($project_code) ?>"><?= $project_name ?></a></h2>
                     <?php endif; ?>

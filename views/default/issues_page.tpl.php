@@ -6,14 +6,14 @@
             <select onchange="document.location='?sorter=' + this.value + ('<?= $filter ?>' != '' ? '&filter=<?= $filter ?>' : '')">
                 <option></option>
                 <?php foreach($sorters as $sort => $label): ?>
-                <option value="<?= $sort ?>" <?= $sort === $sorter->unescape() ? "selected='selected'" : "" ?> ><?= $label ?></option>
+                <option value="<?= $sort ?>" <?= $sort === unescape($sorter) ? "selected='selected'" : "" ?> ><?= $label ?></option>
                 <?php endforeach; ?>
             </select>            
             <img src="<?= load_asset('images/filter.png') ?>" />
             <select onchange="document.location='?filter=' + this.value + ('<?= $sorter ?>' != '' ? '&sorter=<?= $sorter ?>' : '')">
                 <option></option>
                 <?php foreach($filters as $item => $label): ?>
-                <option value="<?= $item ?>" <?= $filter->unescape() === $item ? "selected='selected'" : "" ?> ><?= $label ?></option>
+                <option value="<?= $item ?>" <?= unescape($filter) === $item ? "selected='selected'" : "" ?> ><?= $label ?></option>
                 <?php endforeach; ?>
             </select>
         </div>

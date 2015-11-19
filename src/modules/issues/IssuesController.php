@@ -170,7 +170,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
         }
         $page = Input::exists(Input::GET, 'page') ? Input::get('page') : 1;
         
-        $numIssues = Issues::filterByProjectId($this->project->id)->count();
+        $numIssues = $issues->count();
         $numPages = ceil($numIssues / 15);
         $this->set('number_of_pages', $numPages);
         $this->set('base_route', "{$this->project->code}"); 

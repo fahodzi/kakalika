@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "86fab0b006c05fe40ced00ff71507f61",
-    "content-hash": "e5e1a5cc9015beb6587ee751d0a5a487",
+    "hash": "bef2ceaeca3fbf67aaaeb1fb7ba7b31b",
+    "content-hash": "699de7ede8ed839bd19415eba8e67332",
     "packages": [
         {
             "name": "ekowabaka/anyen",
@@ -87,12 +87,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekowabaka/yentu.git",
-                "reference": "2045bff41e6f7fbd855446bb7926e68af88d77aa"
+                "reference": "d2f4ba422ed25838826347b9faf6811996430bf4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekowabaka/yentu/zipball/2045bff41e6f7fbd855446bb7926e68af88d77aa",
-                "reference": "2045bff41e6f7fbd855446bb7926e68af88d77aa",
+                "url": "https://api.github.com/repos/ekowabaka/yentu/zipball/d2f4ba422ed25838826347b9faf6811996430bf4",
+                "reference": "d2f4ba422ed25838826347b9faf6811996430bf4",
                 "shasum": ""
             },
             "require": {
@@ -126,7 +126,7 @@
                 }
             ],
             "description": "A database migration tool with intimate integration with git",
-            "time": "2015-11-12 18:24:23"
+            "time": "2015-11-18 12:37:32"
         },
         {
             "name": "matthiasmullie/minify",
@@ -355,16 +355,16 @@
         },
         {
             "name": "ntentan/honam",
-            "version": "v0.2.3",
+            "version": "v0.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/honam.git",
-                "reference": "b8c713ffa6b6101c3898787f2065330b3c96c8b8"
+                "reference": "57815fd015da4405c190797cd22631eb8b1edab0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/honam/zipball/b8c713ffa6b6101c3898787f2065330b3c96c8b8",
-                "reference": "b8c713ffa6b6101c3898787f2065330b3c96c8b8",
+                "url": "https://api.github.com/repos/ntentan/honam/zipball/57815fd015da4405c190797cd22631eb8b1edab0",
+                "reference": "57815fd015da4405c190797cd22631eb8b1edab0",
                 "shasum": ""
             },
             "require": {
@@ -401,7 +401,7 @@
                 }
             ],
             "description": "The views component of the ntentan framework.",
-            "time": "2015-08-20 17:17:42"
+            "time": "2015-11-09 00:14:15"
         },
         {
             "name": "ntentan/kaikai",
@@ -835,6 +835,42 @@
                 "webdriver"
             ],
             "time": "2015-11-03 22:17:22"
+        },
+        {
+            "name": "ntentan/dev",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ntentan/dev.git",
+                "reference": "954c8eb2c8cc87154bbf12ee61c7b22fedc52c77"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ntentan/dev/zipball/954c8eb2c8cc87154bbf12ee61c7b22fedc52c77",
+                "reference": "954c8eb2c8cc87154bbf12ee61c7b22fedc52c77",
+                "shasum": ""
+            },
+            "require": {
+                "ekowabaka/clearice": "0.*",
+                "facebook/webdriver": "^1.0",
+                "phpunit/phpunit": "^4.0"
+            },
+            "bin": [
+                "bin/ntentan"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ekow Abaka Ainooson",
+                    "email": "jainooson@gmail.com"
+                }
+            ],
+            "description": "A dev tool for use with ntentan",
+            "time": "2015-11-20 18:23:45"
         },
         {
             "name": "pear/console_getopt",
@@ -2022,7 +2058,7 @@
         "ntentan/social-extension": 20,
         "phpmailer/phpmailer": 0,
         "pear/versioncontrol_git": 20,
-        "facebook/webdriver": 0
+        "ntentan/dev": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -38,5 +38,6 @@ try{
 }
 catch(ntentan\exceptions\ApiIniFileNotFoundException $e)
 {
-    header("Location: {$_SERVER['REQUEST_URI']}install");
+    $url = ntentan\utils\Input::server('REQUEST_URI');
+    header("Location: {$url}install");
 }

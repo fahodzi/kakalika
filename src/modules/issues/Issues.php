@@ -113,14 +113,10 @@ class Issues extends Model
         {
             $this->opener = Session::get('user')['id'];
         }
-        $project = Projects::fetchFirstWithId($this->project_id);
         if($this->assignee != '')
         {
             $this->assigned = date('Y-m-d H:i:s');
         }
-        $this->number = ++$project->number_of_issues;
-        if($this->updated == '') $this->updated = date('Y-m-d H:i:s');
-        $project->save();
     }
     
     public function addWatcher($userId, $toggle = false)
@@ -138,6 +134,10 @@ class Issues extends Model
     
     public function postSaveCallback($id) 
     {
+        $project = Projects::fetchFirstWithId($this->project_id);
+        $this->number = ++$project->number_of_issues;
+        $project->save();
+        
         $this->addWatcher($this->opener);
         
         if($this->assignee != '' && $this->assignee != $this->opener)

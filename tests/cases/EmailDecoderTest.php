@@ -1,6 +1,6 @@
 <?php
 
-use kakalika\lib\EmailDecoder;
+/*use kakalika\lib\EmailDecoder;
 
 class EmailDecoderTest extends \PHPUnit_Framework_TestCase
 {
@@ -14,5 +14,5 @@ class EmailDecoderTest extends \PHPUnit_Framework_TestCase
             "Okay\n",
             EmailDecoder::stripQuotedMessages(file_get_contents("tests/fixtures/email2.txt"))
         );*/
-    }
-}
+    /*}
+}*/

@@ -5,7 +5,7 @@
 $db = require 'config/db.conf.php';
 
 $config = array(
-    'driver' => $db['datastore'],
+    'driver' => $db['driver'],
     'host' => $db['host'],
     'port' => $db['port'],
     'dbname' => $db['dbname'],

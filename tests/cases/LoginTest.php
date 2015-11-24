@@ -1,5 +1,5 @@
 <?php
-namespace kakalika\tests\cases;
+/*namespace kakalika\tests\cases;
 
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
@@ -27,4 +27,4 @@ class LoginTest extends \PHPUnit_Framework_TestCase
     {
         $this->driver->close();
     }
-}
+}*/

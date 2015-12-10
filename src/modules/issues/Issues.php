@@ -30,6 +30,7 @@ class Issues extends Model
     private $originalIssue;
     private $updateData = array();
     private $attachments = array();
+    private $project;
     
     public function addAttachment($attachment)
     {
@@ -117,6 +118,8 @@ class Issues extends Model
         {
             $this->assigned = date('Y-m-d H:i:s');
         }
+        $this->project = Projects::fetchFirstWithId($this->project_id);
+        $this->number = ++$this->project->number_of_issues;
     }
     
     public function addWatcher($userId, $toggle = false)
@@ -133,11 +136,8 @@ class Issues extends Model
     }
     
     public function postSaveCallback($id) 
-    {
-        $project = Projects::fetchFirstWithId($this->project_id);
-        $this->number = ++$project->number_of_issues;
-        $project->save();
-        
+    {        
+        $this->project->save();        
         $this->addWatcher($this->opener);
         
         if($this->assignee != '' && $this->assignee != $this->opener)

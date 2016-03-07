@@ -14,6 +14,15 @@ class IssuesTest extends DatabaseTestCase
         $success = $issue->save();
         
         $this->assertEquals(true, $success);
+        $this->assertTableRowCount('issues', 1); 
+        $this->assertTablesEqual(
+            $this->createArrayDataSet([
+                'issues' => [
+                    ['title' => 'Test Issue', 'number' => 1]
+                ]
+            ])->getTable('issues'),
+            $this->getConnection()->createQueryTable('issues', "SELECT title, number FROM issues")
+        );
     }
     
     protected function getDataSet()

@@ -1,18 +1,18 @@
 <?php
-namespace anyen\wizard;
+use anyen\Wizard;
 
-$wizard = [
-    page(
+return [
+    wizard::page(
         "Welcome to Kakalika's Installer",
-        text(
+        wizard::text(
             "Welcome to the kakalika bug tracker's installer. This wizard would help you ". 
             "setup the kakalika bug tracker on your server. Kakalika is a simple ".
             "lightweight issue tracker. We hope you enjoy using it."
         )
     ),
-    page(
+    wizard::page(
         "Checking directories",
-        checklist(
+        wizard::checklist(
             function($wizard)
             {
                 $directories = array(
@@ -27,8 +27,8 @@ $wizard = [
                 $response = array();
                 foreach($directories as $directory)
                 {
-                    $response["$directory directory exists"] = file_exists(__DIR__ . "/../../$directory");
-                    $response["$directory directory is writeable"] = is_writable(__DIR__ . "/../../$directory");
+                    $response["$directory directory exists"] = file_exists(__DIR__ . "/../$directory");
+                    $response["$directory directory is writeable"] = is_writable(__DIR__ . "/../$directory");
                 }
 
                 $success = 1;
@@ -41,7 +41,7 @@ $wizard = [
                 return $response;                   
             }
         ),
-        onroute(function($wizard){
+        wizard::onroute(function($wizard){
             if(!$wizard->getData('success'))
             {
                 $wizard->showMessage(
@@ -52,47 +52,47 @@ $wizard = [
             }            
         })
     ),
-    page(
+    wizard::page(
         "Web access prefix",
-        text(
+        wizard::text(
             "The prefix is usually the name of the directory in which kakalika
             resides within your document root."
         ),
-        input('Prefix', 'prefix'),
-        onrender(function($wizard)
+        wizard::input('Prefix', 'prefix'),
+        wizard::onrender(function($wizard)
         {
             preg_match("/(?<prefix>.*)(\/install)/i", filter_input(INPUT_SERVER, 'REQUEST_URI'), $matches);
             $wizard->setData('prefix', str_replace('/', '', $matches['prefix']));            
         })
     ),
-    page(
+    wizard::page(
         "Database Configuration",
-        text("Please provide the details for the database configuration."),
-        input(
+        wizard::text("Please provide the details for the database configuration."),
+        wizard::input(
             "What database are we connecting to", "driver", 
             [
                 'required' => true, 
                 'options' => ['postgresql', 'mysql', 'sqlite']
             ]
         ),
-        input(
+        wizard::input(
             "What's the host of the database connection", 'host'
         ),
-        input(
+        wizard::input(
             "What username should we connect with", 'username'
         ),
-        input(
+        wizard::input(
             "What's your password", 'password', ['masked' => true]
         ),
-        input(
+        wizard::input(
             "What database should we use (must already exist)", 'schema'
         ),
-        input(
+        wizard::input(
             "What file do you want to store your database in (sqlite only)", "filename"
         ),
-        onroute(function($wizard){
+        wizard::onroute(function($wizard){
             $data = $wizard->getData();
-            chdir(__DIR__ . "/../..");
+            chdir(__DIR__ . "/..");
             try{
                 $driver = \ntentan\atiaa\Driver::getConnection(
                     array(
@@ -135,11 +135,11 @@ $wizard = [
             }
         })
     ),
-    page(
+    wizard::page(
         "Setting up Database",
-        call(function($wizard)
+        wizard::call(function($wizard)
         {
-            chdir(__DIR__ . "/../..");
+            chdir(__DIR__ . "/..");
             try{
                 $command = new \yentu\commands\Migrate();
                 $command->run();
@@ -154,19 +154,19 @@ $wizard = [
             }
         })
     ),
-    page(
+    wizard::page(
         "Create Administrative User",
-        text(
+        wizard::text(
             "Create the first administrative user of the system. You can use this
             user account to login after the installer has finished running."
         ),
-        input("Firstname", 'firstname', ['required' => true]),
-        input("Lastname", 'lastname'),
-        input('Email', 'email'),
-        input('Username', 'admin_username'),
-        input('Password', 'admin_password', ['masked' => true]),
+        wizard::input("Firstname", 'firstname', ['required' => true]),
+        wizard::input("Lastname", 'lastname'),
+        wizard::input('Email', 'email'),
+        wizard::input('Username', 'admin_username'),
+        wizard::input('Password', 'admin_password', ['masked' => true]),
             
-        onroute(function($wizard){
+        wizard::onroute(function($wizard){
             $data = $wizard->getData();
             chdir(__DIR__ . "/../..");
             $ntentan = parse_ini_file('config/ntentan.ini', true);
@@ -183,9 +183,9 @@ $wizard = [
             $user->save();            
         })
     ),
-    page(
+    wizard::page(
         'Thanks!',
-        text(
+        wizard::text(
             "Thanks for installing kakalika. For security reasons please delete the
             install directory once you are done installing the application. 
             Hope you enjoy this. Happy issue tracking!"

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bef2ceaeca3fbf67aaaeb1fb7ba7b31b",
-    "content-hash": "699de7ede8ed839bd19415eba8e67332",
+    "hash": "79246f97411467bcf07729e5d5f1c4f0",
+    "content-hash": "a67ef03bd89d32949903563a6572f598",
     "packages": [
         {
             "name": "ekowabaka/anyen",
@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekowabaka/anyen.git",
-                "reference": "82ae7ad727730feba69282a8f7621d82f6175969"
+                "reference": "480b05fea5bb19320f4a0f38845f343da9bed6cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekowabaka/anyen/zipball/82ae7ad727730feba69282a8f7621d82f6175969",
-                "reference": "82ae7ad727730feba69282a8f7621d82f6175969",
+                "url": "https://api.github.com/repos/ekowabaka/anyen/zipball/480b05fea5bb19320f4a0f38845f343da9bed6cf",
+                "reference": "480b05fea5bb19320f4a0f38845f343da9bed6cf",
                 "shasum": ""
             },
             "type": "library",
@@ -38,108 +38,20 @@
                 }
             ],
             "description": "A simple wizard creation tool. Anyen helps you to create wizards that work both on the CLI and the web interface.",
-            "time": "2015-05-29 20:48:11"
-        },
-        {
-            "name": "ekowabaka/clearice",
-            "version": "v0.4.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ekowabaka/clearice.git",
-                "reference": "5ebd7f84572e9f7627f6762ae29769725e2f1a98"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ekowabaka/clearice/zipball/5ebd7f84572e9f7627f6762ae29769725e2f1a98",
-                "reference": "5ebd7f84572e9f7627f6762ae29769725e2f1a98",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "mikey179/vfsstream": "1.*",
-                "phpunit/phpunit": "4.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "clearice\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "James Ekow Abaka Ainooson",
-                    "email": "jainooson@gmail.com",
-                    "homepage": "http://ekowabaka.me"
-                }
-            ],
-            "description": "A tool to help in the building of CLI apps. Provides command line parsing and simple console I/O interfaces.",
-            "time": "2015-05-09 11:02:05"
-        },
-        {
-            "name": "ekowabaka/yentu",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ekowabaka/yentu.git",
-                "reference": "d2f4ba422ed25838826347b9faf6811996430bf4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ekowabaka/yentu/zipball/d2f4ba422ed25838826347b9faf6811996430bf4",
-                "reference": "d2f4ba422ed25838826347b9faf6811996430bf4",
-                "shasum": ""
-            },
-            "require": {
-                "ekowabaka/clearice": "0.4.*",
-                "ntentan/atiaa": "0.*",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "mikey179/vfsstream": "@stable",
-                "mockery/mockery": "@stable",
-                "phpunit/phpunit": "4.*"
-            },
-            "bin": [
-                "bin/yentu"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "yentu\\tests\\": "tests/lib/",
-                    "yentu\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ekow Abaka Ainooson",
-                    "email": "jainooson@gmail.com"
-                }
-            ],
-            "description": "A database migration tool with intimate integration with git",
-            "time": "2015-11-18 12:37:32"
+            "time": "2016-03-07 07:54:05"
         },
         {
             "name": "matthiasmullie/minify",
-            "version": "1.3.28",
+            "version": "1.3.34",
             "source": {
                 "type": "git",
                 "url": "https://github.com/matthiasmullie/minify.git",
-                "reference": "2cee2544198d97bca4ba094bc2df27d6458da1af"
+                "reference": "272e46113404f66ced256659552a0cc074a7810f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/matthiasmullie/minify/zipball/2cee2544198d97bca4ba094bc2df27d6458da1af",
-                "reference": "2cee2544198d97bca4ba094bc2df27d6458da1af",
+                "url": "https://api.github.com/repos/matthiasmullie/minify/zipball/272e46113404f66ced256659552a0cc074a7810f",
+                "reference": "272e46113404f66ced256659552a0cc074a7810f",
                 "shasum": ""
             },
             "require": {
@@ -148,9 +60,8 @@
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.3.*",
-                "satooshi/php-coveralls": "dev-master",
-                "scrapbook/psr-cache": "~0.2"
+                "matthiasmullie/scrapbook": "~1.0",
+                "phpunit/phpunit": "~4.8"
             },
             "bin": [
                 "bin/minifycss",
@@ -183,20 +94,20 @@
                 "minifier",
                 "minify"
             ],
-            "time": "2015-08-20 14:49:37"
+            "time": "2016-03-01 08:00:27"
         },
         {
             "name": "matthiasmullie/path-converter",
-            "version": "1.0.5",
+            "version": "1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/matthiasmullie/path-converter.git",
-                "reference": "b1e31c51e8c207ad6114f5b4ac4e652bc936c380"
+                "reference": "83609c1bb251b2540eba912615571a501a0a06a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/matthiasmullie/path-converter/zipball/b1e31c51e8c207ad6114f5b4ac4e652bc936c380",
-                "reference": "b1e31c51e8c207ad6114f5b4ac4e652bc936c380",
+                "url": "https://api.github.com/repos/matthiasmullie/path-converter/zipball/83609c1bb251b2540eba912615571a501a0a06a6",
+                "reference": "83609c1bb251b2540eba912615571a501a0a06a6",
                 "shasum": ""
             },
             "require": {
@@ -204,8 +115,8 @@
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.3.*",
-                "satooshi/php-coveralls": "dev-master"
+                "phpunit/phpunit": "~4.8",
+                "satooshi/php-coveralls": "~1.0"
             },
             "type": "library",
             "autoload": {
@@ -233,20 +144,20 @@
                 "paths",
                 "relative"
             ],
-            "time": "2015-06-01 15:20:30"
+            "time": "2016-01-07 00:41:13"
         },
         {
             "name": "monolog/monolog",
-            "version": "1.17.2",
+            "version": "1.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "bee7f0dc9c3e0b69a6039697533dca1e845c8c24"
+                "reference": "e19b764b5c855580e8ffa7e615f72c10fd2f99cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/bee7f0dc9c3e0b69a6039697533dca1e845c8c24",
-                "reference": "bee7f0dc9c3e0b69a6039697533dca1e845c8c24",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/e19b764b5c855580e8ffa7e615f72c10fd2f99cc",
+                "reference": "e19b764b5c855580e8ffa7e615f72c10fd2f99cc",
                 "shasum": ""
             },
             "require": {
@@ -275,6 +186,7 @@
                 "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
                 "ext-mongo": "Allow sending log messages to a MongoDB server",
                 "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
+                "mongodb/mongodb": "Allow sending log messages to a MongoDB server via PHP Driver",
                 "php-console/php-console": "Allow sending log messages to Google Chrome",
                 "raven/raven": "Allow sending log messages to a Sentry server",
                 "rollbar/rollbar": "Allow sending log messages to Rollbar",
@@ -284,7 +196,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.16.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "autoload": {
@@ -310,20 +222,20 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-10-14 12:51:02"
+            "time": "2016-03-01 18:00:40"
         },
         {
             "name": "ntentan/atiaa",
-            "version": "v0.1.7",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/atiaa.git",
-                "reference": "5dd4ba0e3ce764cd09f811a49e1977dd9c6a4914"
+                "reference": "979f96a4d58738b72e0fe4ce23eff3a0cc9e1c7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/atiaa/zipball/5dd4ba0e3ce764cd09f811a49e1977dd9c6a4914",
-                "reference": "5dd4ba0e3ce764cd09f811a49e1977dd9c6a4914",
+                "url": "https://api.github.com/repos/ntentan/atiaa/zipball/979f96a4d58738b72e0fe4ce23eff3a0cc9e1c7d",
+                "reference": "979f96a4d58738b72e0fe4ce23eff3a0cc9e1c7d",
                 "shasum": ""
             },
             "require": {
@@ -331,7 +243,8 @@
             },
             "require-dev": {
                 "phpunit/dbunit": "1.*",
-                "phpunit/phpunit": "4.*"
+                "phpunit/phpunit": "4.*",
+                "symfony/yaml": "^2.0"
             },
             "type": "library",
             "autoload": {
@@ -351,7 +264,45 @@
                 }
             ],
             "description": "A slim wrapper around PDO to provide some extra utilities",
-            "time": "2015-11-07 09:32:21"
+            "time": "2016-01-19 08:39:39"
+        },
+        {
+            "name": "ntentan/config",
+            "version": "v0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ntentan/config.git",
+                "reference": "c2f0e47d46884c774db46f2531512df6488f31e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ntentan/config/zipball/c2f0e47d46884c774db46f2531512df6488f31e4",
+                "reference": "c2f0e47d46884c774db46f2531512df6488f31e4",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0",
+                "symfony/yaml": "~2.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ntentan\\config\\": "src/",
+                    "ntentan\\config\\tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ekow Abaka Ainooson",
+                    "email": "jainooson@gmail.com"
+                }
+            ],
+            "description": "Configurations manager for ntentan",
+            "time": "2016-02-02 22:44:48"
         },
         {
             "name": "ntentan/honam",
@@ -478,16 +429,16 @@
         },
         {
             "name": "ntentan/nibii",
-            "version": "v0.1.1",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/nibii.git",
-                "reference": "7bfaebd4eeac30c50f8f25aee05db844f39cf6a6"
+                "reference": "6bb3cd48a3a86f31ce49fe34758fb69ca26eb5bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/nibii/zipball/7bfaebd4eeac30c50f8f25aee05db844f39cf6a6",
-                "reference": "7bfaebd4eeac30c50f8f25aee05db844f39cf6a6",
+                "url": "https://api.github.com/repos/ntentan/nibii/zipball/6bb3cd48a3a86f31ce49fe34758fb69ca26eb5bd",
+                "reference": "6bb3cd48a3a86f31ce49fe34758fb69ca26eb5bd",
                 "shasum": ""
             },
             "require": {
@@ -497,7 +448,8 @@
             },
             "require-dev": {
                 "phpunit/dbunit": "1.*",
-                "phpunit/phpunit": "4.*"
+                "phpunit/phpunit": "4.*",
+                "symfony/yaml": "^2.0"
             },
             "type": "library",
             "autoload": {
@@ -517,7 +469,7 @@
                 }
             ],
             "description": "ORM for ntentan",
-            "time": "2015-11-15 16:49:14"
+            "time": "2015-12-16 15:35:10"
         },
         {
             "name": "ntentan/ntentan",
@@ -525,15 +477,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/ntentan.git",
-                "reference": "353be5211ec8a9aafed2e7640e207d261a08d3ce"
+                "reference": "cfcdabf7a9895ec005286b22659e1a6a96d36193"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/353be5211ec8a9aafed2e7640e207d261a08d3ce",
-                "reference": "353be5211ec8a9aafed2e7640e207d261a08d3ce",
+                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/cfcdabf7a9895ec005286b22659e1a6a96d36193",
+                "reference": "cfcdabf7a9895ec005286b22659e1a6a96d36193",
                 "shasum": ""
             },
             "require": {
+                "ntentan/config": "0.*",
                 "ntentan/honam": "0.*",
                 "ntentan/logger": "0.*",
                 "ntentan/nibii": "0.*",
@@ -560,7 +513,7 @@
                 }
             ],
             "description": "Another PHP application framework.",
-            "time": "2015-11-15 11:08:17"
+            "time": "2016-02-20 18:42:30"
         },
         {
             "name": "ntentan/social-extension",
@@ -794,17 +747,109 @@
             "time": "2015-06-14 21:17:01"
         },
         {
-            "name": "facebook/webdriver",
-            "version": "1.0.4",
+            "name": "ekowabaka/clearice",
+            "version": "v0.5.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/facebook/php-webdriver.git",
-                "reference": "a6e209a309bf7cd71acf15476f40b11a25d5a79d"
+                "url": "https://github.com/ekowabaka/clearice.git",
+                "reference": "718c39690fae7ba6a6b417ebef7f17caa097647c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/php-webdriver/zipball/a6e209a309bf7cd71acf15476f40b11a25d5a79d",
-                "reference": "a6e209a309bf7cd71acf15476f40b11a25d5a79d",
+                "url": "https://api.github.com/repos/ekowabaka/clearice/zipball/718c39690fae7ba6a6b417ebef7f17caa097647c",
+                "reference": "718c39690fae7ba6a6b417ebef7f17caa097647c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "1.*",
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "clearice\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "James Ekow Abaka Ainooson",
+                    "email": "jainooson@gmail.com",
+                    "homepage": "http://ekowabaka.me"
+                }
+            ],
+            "description": "A tool to help in the building of CLI apps. Provides command line parsing and simple console I/O interfaces.",
+            "time": "2015-12-06 07:14:58"
+        },
+        {
+            "name": "ekowabaka/yentu",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ekowabaka/yentu.git",
+                "reference": "295ae871f731419c2cd00c4d0c33a80baea3626b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ekowabaka/yentu/zipball/295ae871f731419c2cd00c4d0c33a80baea3626b",
+                "reference": "295ae871f731419c2cd00c4d0c33a80baea3626b",
+                "shasum": ""
+            },
+            "require": {
+                "ekowabaka/clearice": "0.*",
+                "ntentan/atiaa": "0.*",
+                "ntentan/config": "0.*",
+                "php": ">=5.4.0",
+                "sebastian/version": "1.*"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "@stable",
+                "mockery/mockery": "@stable",
+                "phing/phing": "@stable",
+                "phpunit/phpunit": "4.*",
+                "symfony/yaml": "~2.1"
+            },
+            "bin": [
+                "bin/yentu"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "yentu\\tests\\": "tests/lib/",
+                    "yentu\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ekow Abaka Ainooson",
+                    "email": "jainooson@gmail.com"
+                }
+            ],
+            "description": "A database migration tool with intimate integration with git",
+            "time": "2016-02-26 05:33:20"
+        },
+        {
+            "name": "facebook/webdriver",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facebook/php-webdriver.git",
+                "reference": "1c98108ba3eb435b681655764de11502a0653705"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facebook/php-webdriver/zipball/1c98108ba3eb435b681655764de11502a0653705",
+                "reference": "1c98108ba3eb435b681655764de11502a0653705",
                 "shasum": ""
             },
             "require": {
@@ -834,7 +879,7 @@
                 "selenium",
                 "webdriver"
             ],
-            "time": "2015-11-03 22:17:22"
+            "time": "2015-12-31 15:58:49"
         },
         {
             "name": "ntentan/dev",
@@ -842,12 +887,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/dev.git",
-                "reference": "65a55bc001377b9d89debad13b3913ee01c07283"
+                "reference": "fc485813041e122efa7d7f359a141a17c36b6d23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/dev/zipball/65a55bc001377b9d89debad13b3913ee01c07283",
-                "reference": "65a55bc001377b9d89debad13b3913ee01c07283",
+                "url": "https://api.github.com/repos/ntentan/dev/zipball/fc485813041e122efa7d7f359a141a17c36b6d23",
+                "reference": "fc485813041e122efa7d7f359a141a17c36b6d23",
                 "shasum": ""
             },
             "require": {
@@ -876,7 +921,7 @@
                 }
             ],
             "description": "A dev tool for use with ntentan",
-            "time": "2015-11-21 22:10:56"
+            "time": "2015-11-23 09:14:55"
         },
         {
             "name": "pear/console_getopt",
@@ -1070,16 +1115,16 @@
         },
         {
             "name": "phing/phing",
-            "version": "2.12.0",
+            "version": "2.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phingofficial/phing.git",
-                "reference": "63a495a1f619b60404687a0a059039c5046677df"
+                "reference": "a5b10a50160c8a4744545aacb33ef158349e655c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phingofficial/phing/zipball/63a495a1f619b60404687a0a059039c5046677df",
-                "reference": "63a495a1f619b60404687a0a059039c5046677df",
+                "url": "https://api.github.com/repos/phingofficial/phing/zipball/a5b10a50160c8a4744545aacb33ef158349e655c",
+                "reference": "a5b10a50160c8a4744545aacb33ef158349e655c",
                 "shasum": ""
             },
             "require": {
@@ -1089,13 +1134,10 @@
                 "ext-pdo_sqlite": "*",
                 "lastcraft/simpletest": "@dev",
                 "pdepend/pdepend": "2.x",
-                "pear-pear.php.net/console_getopt": "~1.3.0",
-                "pear-pear.php.net/http_request2": "2.2.x",
-                "pear-pear.php.net/net_growl": "2.7.x",
-                "pear-pear.php.net/pear_packagefilemanager": "1.7.x",
-                "pear-pear.php.net/pear_packagefilemanager2": "1.0.x",
-                "pear-pear.php.net/xml_serializer": "0.20.x",
-                "pear/pear_exception": "~1.0",
+                "pear/archive_tar": "1.4.x",
+                "pear/http_request2": "dev-trunk",
+                "pear/net_growl": "dev-trunk",
+                "pear/pear-core-minimal": "1.10.1",
                 "pear/versioncontrol_git": "@dev",
                 "pear/versioncontrol_svn": "~0.5",
                 "phpdocumentor/phpdocumentor": "2.x",
@@ -1104,7 +1146,8 @@
                 "phpunit/phpunit": ">=3.7",
                 "sebastian/git": "~1.0",
                 "sebastian/phpcpd": "2.x",
-                "squizlabs/php_codesniffer": "~2.2"
+                "squizlabs/php_codesniffer": "~2.2",
+                "symfony/yaml": "~2.7"
             },
             "suggest": {
                 "pdepend/pdepend": "PHP version of JDepend",
@@ -1125,7 +1168,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.11.x-dev"
+                    "dev-master": "2.13.x-dev"
                 }
             },
             "autoload": {
@@ -1158,7 +1201,7 @@
                 "task",
                 "tool"
             ],
-            "time": "2015-08-24 21:02:12"
+            "time": "2015-12-04 09:45:44"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -1211,22 +1254,24 @@
         },
         {
             "name": "phpspec/prophecy",
-            "version": "v1.5.0",
+            "version": "v1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "4745ded9307786b730d7a60df5cb5a6c43cf95f7"
+                "reference": "3c91bdf81797d725b14cb62906f9a4ce44235972"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/4745ded9307786b730d7a60df5cb5a6c43cf95f7",
-                "reference": "4745ded9307786b730d7a60df5cb5a6c43cf95f7",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/3c91bdf81797d725b14cb62906f9a4ce44235972",
+                "reference": "3c91bdf81797d725b14cb62906f9a4ce44235972",
                 "shasum": ""
             },
             "require": {
                 "doctrine/instantiator": "^1.0.2",
+                "php": "^5.3|^7.0",
                 "phpdocumentor/reflection-docblock": "~2.0",
-                "sebastian/comparator": "~1.1"
+                "sebastian/comparator": "~1.1",
+                "sebastian/recursion-context": "~1.0"
             },
             "require-dev": {
                 "phpspec/phpspec": "~2.0"
@@ -1234,7 +1279,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4.x-dev"
+                    "dev-master": "1.5.x-dev"
                 }
             },
             "autoload": {
@@ -1267,7 +1312,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2015-08-13 10:07:40"
+            "time": "2016-02-15 07:46:21"
         },
         {
             "name": "phpunit/dbunit",
@@ -1566,16 +1611,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.18",
+            "version": "4.8.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "fa33d4ad96481b91df343d83e8c8aabed6b1dfd3"
+                "reference": "6e351261f9cd33daf205a131a1ba61c6d33bd483"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/fa33d4ad96481b91df343d83e8c8aabed6b1dfd3",
-                "reference": "fa33d4ad96481b91df343d83e8c8aabed6b1dfd3",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6e351261f9cd33daf205a131a1ba61c6d33bd483",
+                "reference": "6e351261f9cd33daf205a131a1ba61c6d33bd483",
                 "shasum": ""
             },
             "require": {
@@ -1634,7 +1679,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-11-11 11:32:49"
+            "time": "2016-02-11 14:56:33"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -1758,28 +1803,28 @@
         },
         {
             "name": "sebastian/diff",
-            "version": "1.3.0",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/diff.git",
-                "reference": "863df9687835c62aa423a22412d26fa2ebde3fd3"
+                "reference": "13edfd8706462032c2f52b4b862974dd46b71c9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/863df9687835c62aa423a22412d26fa2ebde3fd3",
-                "reference": "863df9687835c62aa423a22412d26fa2ebde3fd3",
+                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/13edfd8706462032c2f52b4b862974dd46b71c9e",
+                "reference": "13edfd8706462032c2f52b4b862974dd46b71c9e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.2"
+                "phpunit/phpunit": "~4.8"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3-dev"
+                    "dev-master": "1.4-dev"
                 }
             },
             "autoload": {
@@ -1802,24 +1847,24 @@
                 }
             ],
             "description": "Diff implementation",
-            "homepage": "http://www.github.com/sebastianbergmann/diff",
+            "homepage": "https://github.com/sebastianbergmann/diff",
             "keywords": [
                 "diff"
             ],
-            "time": "2015-02-22 15:13:53"
+            "time": "2015-12-08 07:14:41"
         },
         {
             "name": "sebastian/environment",
-            "version": "1.3.2",
+            "version": "1.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "6324c907ce7a52478eeeaede764f48733ef5ae44"
+                "reference": "dc7a29032cf72b54f36dac15a1ca5b3a1b6029bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/6324c907ce7a52478eeeaede764f48733ef5ae44",
-                "reference": "6324c907ce7a52478eeeaede764f48733ef5ae44",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/dc7a29032cf72b54f36dac15a1ca5b3a1b6029bf",
+                "reference": "dc7a29032cf72b54f36dac15a1ca5b3a1b6029bf",
                 "shasum": ""
             },
             "require": {
@@ -1856,7 +1901,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2015-08-03 06:14:51"
+            "time": "2016-02-26 18:40:46"
         },
         {
             "name": "sebastian/exporter",
@@ -1977,16 +2022,16 @@
         },
         {
             "name": "sebastian/recursion-context",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/recursion-context.git",
-                "reference": "994d4a811bafe801fb06dccbee797863ba2792ba"
+                "reference": "913401df809e99e4f47b27cdd781f4a258d58791"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/recursion-context/zipball/994d4a811bafe801fb06dccbee797863ba2792ba",
-                "reference": "994d4a811bafe801fb06dccbee797863ba2792ba",
+                "url": "https://api.github.com/repos/sebastianbergmann/recursion-context/zipball/913401df809e99e4f47b27cdd781f4a258d58791",
+                "reference": "913401df809e99e4f47b27cdd781f4a258d58791",
                 "shasum": ""
             },
             "require": {
@@ -2026,7 +2071,7 @@
             ],
             "description": "Provides functionality to recursively process PHP variables",
             "homepage": "http://www.github.com/sebastianbergmann/recursion-context",
-            "time": "2015-06-21 08:04:50"
+            "time": "2015-11-11 19:50:13"
         },
         {
             "name": "sebastian/version",
@@ -2065,31 +2110,34 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.7.6",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "eca9019c88fbe250164affd107bc8057771f3f4d"
+                "reference": "b5ba64cd67ecd6887f63868fa781ca094bd1377c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/eca9019c88fbe250164affd107bc8057771f3f4d",
-                "reference": "eca9019c88fbe250164affd107bc8057771f3f4d",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/b5ba64cd67ecd6887f63868fa781ca094bd1377c",
+                "reference": "b5ba64cd67ecd6887f63868fa781ca094bd1377c",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.9"
+                "php": ">=5.5.9"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.7-dev"
+                    "dev-master": "3.0-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\Yaml\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2107,18 +2155,18 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2015-10-11 09:39:48"
+            "time": "2016-02-23 15:16:06"
         }
     ],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "ntentan/ntentan": 20,
-        "ekowabaka/yentu": 20,
         "ekowabaka/anyen": 20,
         "ntentan/social-extension": 20,
         "phpmailer/phpmailer": 0,
         "pear/versioncontrol_git": 20,
+        "ekowabaka/yentu": 20,
         "ntentan/dev": 20
     },
     "prefer-stable": false,

@@ -31,10 +31,38 @@
 
 require "vendor/autoload.php";
 
-try{
-    ntentan\Router::setDefaultRoute('projects');
-    ntentan\Router::setRoutes(require 'routes.php');
-    ntentan\Ntentan::start('kakalika');
+use ntentan\Router;
+use ntentan\Ntentan;
+use kakalika\modules\projects\Projects;
+
+
+Router::mapRoute(
+    'default', '{controller}/{action}/{*params}', 
+    ['default' => ['controller' => 'Projects', 'action' => 'index']]
+);
+
+Router::mapRoute(
+    'login', 'login', 
+    ['default' => ['controller' => 'Dashboard', 'action' => 'login']]
+);
+
+Router::mapRoute(
+    'logout', 'logout', 
+    ['default' => ['controller' => 'Dashboard', 'action' => 'logout']]
+);
+
+Router::mapRoute(
+    'admin', 'admin/{*route}', ['default' => ['mode' => 'admin', 'route' => '']]
+);
+
+Router::mapRoute(
+    'project', '{project}/{action}/{*params}',
+    ['default' => ['controller' => 'Issues', 'action' => 'page', 'mode' => 'project']]
+);
+
+
+try{    
+    Ntentan::start('kakalika');
 }
 catch(ntentan\exceptions\ApiIniFileNotFoundException $e)
 {

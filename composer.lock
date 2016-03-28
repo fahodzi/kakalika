@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekowabaka/anyen.git",
-                "reference": "480b05fea5bb19320f4a0f38845f343da9bed6cf"
+                "reference": "2ec7a73b226c43d7d180b8f686b9218e07b7f89a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekowabaka/anyen/zipball/480b05fea5bb19320f4a0f38845f343da9bed6cf",
-                "reference": "480b05fea5bb19320f4a0f38845f343da9bed6cf",
+                "url": "https://api.github.com/repos/ekowabaka/anyen/zipball/2ec7a73b226c43d7d180b8f686b9218e07b7f89a",
+                "reference": "2ec7a73b226c43d7d180b8f686b9218e07b7f89a",
                 "shasum": ""
             },
             "type": "library",
@@ -38,7 +38,7 @@
                 }
             ],
             "description": "A simple wizard creation tool. Anyen helps you to create wizards that work both on the CLI and the web interface.",
-            "time": "2016-03-07 07:54:05"
+            "time": "2016-03-27 07:21:11"
         },
         {
             "name": "matthiasmullie/minify",
@@ -148,16 +148,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.18.0",
+            "version": "1.18.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "e19b764b5c855580e8ffa7e615f72c10fd2f99cc"
+                "reference": "a5f2734e8c16f3aa21b3da09715d10e15b4d2d45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/e19b764b5c855580e8ffa7e615f72c10fd2f99cc",
-                "reference": "e19b764b5c855580e8ffa7e615f72c10fd2f99cc",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/a5f2734e8c16f3aa21b3da09715d10e15b4d2d45",
+                "reference": "a5f2734e8c16f3aa21b3da09715d10e15b4d2d45",
                 "shasum": ""
             },
             "require": {
@@ -222,7 +222,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2016-03-01 18:00:40"
+            "time": "2016-03-13 16:08:35"
         },
         {
             "name": "ntentan/atiaa",
@@ -477,12 +477,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/ntentan.git",
-                "reference": "cfcdabf7a9895ec005286b22659e1a6a96d36193"
+                "reference": "74650ebba8eaccb9c3dd1498589e8fcff5bf5716"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/cfcdabf7a9895ec005286b22659e1a6a96d36193",
-                "reference": "cfcdabf7a9895ec005286b22659e1a6a96d36193",
+                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/74650ebba8eaccb9c3dd1498589e8fcff5bf5716",
+                "reference": "74650ebba8eaccb9c3dd1498589e8fcff5bf5716",
                 "shasum": ""
             },
             "require": {
@@ -513,7 +513,7 @@
                 }
             ],
             "description": "Another PHP application framework.",
-            "time": "2016-02-20 18:42:30"
+            "time": "2016-03-27 18:17:20"
         },
         {
             "name": "ntentan/social-extension",
@@ -748,16 +748,16 @@
         },
         {
             "name": "ekowabaka/clearice",
-            "version": "v0.5.0",
+            "version": "v0.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekowabaka/clearice.git",
-                "reference": "718c39690fae7ba6a6b417ebef7f17caa097647c"
+                "reference": "3a6ef94e29db98b49cc912a90706f1fb1b1c5438"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekowabaka/clearice/zipball/718c39690fae7ba6a6b417ebef7f17caa097647c",
-                "reference": "718c39690fae7ba6a6b417ebef7f17caa097647c",
+                "url": "https://api.github.com/repos/ekowabaka/clearice/zipball/3a6ef94e29db98b49cc912a90706f1fb1b1c5438",
+                "reference": "3a6ef94e29db98b49cc912a90706f1fb1b1c5438",
                 "shasum": ""
             },
             "require": {
@@ -785,7 +785,7 @@
                 }
             ],
             "description": "A tool to help in the building of CLI apps. Provides command line parsing and simple console I/O interfaces.",
-            "time": "2015-12-06 07:14:58"
+            "time": "2016-03-25 15:54:49"
         },
         {
             "name": "ekowabaka/yentu",
@@ -887,15 +887,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/dev.git",
-                "reference": "fc485813041e122efa7d7f359a141a17c36b6d23"
+                "reference": "acb5a14a7f76f9279afef1c48c3aa63e785e7fad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/dev/zipball/fc485813041e122efa7d7f359a141a17c36b6d23",
-                "reference": "fc485813041e122efa7d7f359a141a17c36b6d23",
+                "url": "https://api.github.com/repos/ntentan/dev/zipball/acb5a14a7f76f9279afef1c48c3aa63e785e7fad",
+                "reference": "acb5a14a7f76f9279afef1c48c3aa63e785e7fad",
                 "shasum": ""
             },
             "require": {
+                "ekowabaka/anyen": "dev-master",
                 "ekowabaka/clearice": "0.*",
                 "facebook/webdriver": "^1.0",
                 "phpunit/dbunit": "^2.0",
@@ -921,7 +922,7 @@
                 }
             ],
             "description": "A dev tool for use with ntentan",
-            "time": "2015-11-23 09:14:55"
+            "time": "2016-03-27 07:21:49"
         },
         {
             "name": "pear/console_getopt",
@@ -1115,16 +1116,16 @@
         },
         {
             "name": "phing/phing",
-            "version": "2.13.0",
+            "version": "2.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phingofficial/phing.git",
-                "reference": "a5b10a50160c8a4744545aacb33ef158349e655c"
+                "reference": "7dd73c83c377623def54b58121f46b4dcb35dd61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phingofficial/phing/zipball/a5b10a50160c8a4744545aacb33ef158349e655c",
-                "reference": "a5b10a50160c8a4744545aacb33ef158349e655c",
+                "url": "https://api.github.com/repos/phingofficial/phing/zipball/7dd73c83c377623def54b58121f46b4dcb35dd61",
+                "reference": "7dd73c83c377623def54b58121f46b4dcb35dd61",
                 "shasum": ""
             },
             "require": {
@@ -1133,6 +1134,7 @@
             "require-dev": {
                 "ext-pdo_sqlite": "*",
                 "lastcraft/simpletest": "@dev",
+                "mikey179/vfsstream": "^1.6",
                 "pdepend/pdepend": "2.x",
                 "pear/archive_tar": "1.4.x",
                 "pear/http_request2": "dev-trunk",
@@ -1168,7 +1170,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.13.x-dev"
+                    "dev-master": "2.14.x-dev"
                 }
             },
             "autoload": {
@@ -1201,7 +1203,7 @@
                 "task",
                 "tool"
             ],
-            "time": "2015-12-04 09:45:44"
+            "time": "2016-03-10 21:39:23"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -1611,16 +1613,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.23",
+            "version": "4.8.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "6e351261f9cd33daf205a131a1ba61c6d33bd483"
+                "reference": "a1066c562c52900a142a0e2bbf0582994671385e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6e351261f9cd33daf205a131a1ba61c6d33bd483",
-                "reference": "6e351261f9cd33daf205a131a1ba61c6d33bd483",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a1066c562c52900a142a0e2bbf0582994671385e",
+                "reference": "a1066c562c52900a142a0e2bbf0582994671385e",
                 "shasum": ""
             },
             "require": {
@@ -1679,7 +1681,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-02-11 14:56:33"
+            "time": "2016-03-14 06:16:08"
         },
         {
             "name": "phpunit/phpunit-mock-objects",

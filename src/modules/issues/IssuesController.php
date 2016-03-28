@@ -15,15 +15,14 @@ class IssuesController extends \kakalika\lib\KakalikaController
 {
     private $project;
     
-    public function init()
+    public function __construct()
     {
-        parent::init();
-        $this->setDefaultMethod('page');
+        parent::__construct();
         $this->set('sub_section', 'Issues');
         
-        if(Router::getVar("MODE") === 'project')
+        if(Router::getVar("mode") === 'project')
         {
-            $this->project = Projects::fetchFirstWithCode(Router::getVar('PROJECT_CODE'));
+            $this->project = Projects::fetchFirstWithCode(Router::getVar('project'));
             if($this->project->count() == 0) { 
                 throw new \ntentan\exceptions\RouteNotAvailableException();
             }
@@ -121,11 +120,11 @@ class IssuesController extends \kakalika\lib\KakalikaController
         }
     }
     
-    public function page()
+    public function page($project, $filter, $sorter, $page)
     {
         $issues = Issues::filterByProjectId($this->project->id);
 
-        switch (Input::get('filter'))
+        switch ($filter)
         {
             case 'open':
                 $issues->filterByStatus('OPEN', 'REOPENED', 'RESOVED');
@@ -152,7 +151,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
                 break;            
         }
         
-        switch(Input::get('sorter'))
+        switch($sorter)
         {
             case 'created':
                 $issues->sortDescByCreated();
@@ -168,7 +167,7 @@ class IssuesController extends \kakalika\lib\KakalikaController
                 $issues->sortDescByUpdated();
                 break;
         }
-        $page = Input::exists(Input::GET, 'page') ? Input::get('page') : 1;
+        $page = $page ? $page : 1;
         
         $numIssues = $issues->count();
         $numPages = ceil($numIssues / 15);

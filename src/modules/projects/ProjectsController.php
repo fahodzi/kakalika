@@ -11,9 +11,9 @@ class ProjectsController extends \kakalika\lib\KakalikaController
 {
     private $userProjects;
     
-    public function init()
+    public function __construct()
     {
-        parent::init();
+        parent::__construct();
         
         $this->set('sub_section', 'Projects');
         $this->set('title', 'Projects');
@@ -94,16 +94,17 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         else
         {
             // Throw an exception for others
-            throw new \ntentan\exceptions\RouteNotAvailableException();            
+            //throw new \ntentan\exceptions\RouteNotAvailableException();            
         }
         $this->setupCreateIssueButton();
     }
     
-    public function run()
+    public function index()
     {
-        if(Router::getVar('MODE') == 'admin')
+        if(Router::getVar('mode') == 'admin')
         {
             $projects = Projects::fields('name', 'id')->fetch()->toArray();
+            $this->set('admin', true);
         }
         else
         {

@@ -24,11 +24,10 @@ class Projects extends Model
     public function postSaveCallback($id)
     {
         $newUserProject = ProjectsUsers::createNew();
-        $newUserProject->user_id = $this->storedUserId;
-        $newUserProject->project_id = $id;
+        $newUserProject->userId = $this->storedUserId;
+        $newUserProject->projectId = $id;
         $newUserProject->creator = true;
         $newUserProject->admin = true;
-        $newUserProject->save();
     }
 
 }

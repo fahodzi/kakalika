@@ -37,7 +37,7 @@ use kakalika\modules\projects\Projects;
 
 
 Router::mapRoute(
-    'default', '{controller}/{action}/{*params}', 
+    'default', '{controller}/{action}/{*id}', 
     ['default' => ['controller' => 'Projects', 'action' => 'index']]
 );
 

@@ -3,6 +3,7 @@ $helpers->form->setData($project);
 $helpers->form->setErrors($errors);
 echo $helpers->form->open();
 ?>
+<?php var_dump($project->getInvalidFields()) ?>
 <div class="row">
     <div class="column grid_10_5">
         <div class="p15-right">
@@ -20,4 +21,6 @@ echo $helpers->form->open();
         </div>
     </div>
 </div>
+<?= $helpers->form->get_hidden_field('userId', $project->userId) ?>
+<?= $helpers->form->get_hidden_field('id', $project->id) ?>
 <?= $helpers->form->close('Save') ?>

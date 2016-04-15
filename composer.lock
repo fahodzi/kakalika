@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ekowabaka/anyen.git",
-                "reference": "2ec7a73b226c43d7d180b8f686b9218e07b7f89a"
+                "reference": "56088059aa30de6b8ade749eafcb61ef2f6752d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ekowabaka/anyen/zipball/2ec7a73b226c43d7d180b8f686b9218e07b7f89a",
-                "reference": "2ec7a73b226c43d7d180b8f686b9218e07b7f89a",
+                "url": "https://api.github.com/repos/ekowabaka/anyen/zipball/56088059aa30de6b8ade749eafcb61ef2f6752d8",
+                "reference": "56088059aa30de6b8ade749eafcb61ef2f6752d8",
                 "shasum": ""
             },
             "type": "library",
@@ -38,7 +38,7 @@
                 }
             ],
             "description": "A simple wizard creation tool. Anyen helps you to create wizards that work both on the CLI and the web interface.",
-            "time": "2016-03-27 07:21:11"
+            "time": "2016-04-10 09:51:41"
         },
         {
             "name": "matthiasmullie/minify",
@@ -148,16 +148,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.18.1",
+            "version": "1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "a5f2734e8c16f3aa21b3da09715d10e15b4d2d45"
+                "reference": "5f56ed5212dc509c8dc8caeba2715732abb32dbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/a5f2734e8c16f3aa21b3da09715d10e15b4d2d45",
-                "reference": "a5f2734e8c16f3aa21b3da09715d10e15b4d2d45",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/5f56ed5212dc509c8dc8caeba2715732abb32dbf",
+                "reference": "5f56ed5212dc509c8dc8caeba2715732abb32dbf",
                 "shasum": ""
             },
             "require": {
@@ -172,13 +172,13 @@
                 "doctrine/couchdb": "~1.0@dev",
                 "graylog2/gelf-php": "~1.0",
                 "jakub-onderka/php-parallel-lint": "0.9",
+                "php-amqplib/php-amqplib": "~2.4",
                 "php-console/php-console": "^3.1.3",
                 "phpunit/phpunit": "~4.5",
                 "phpunit/phpunit-mock-objects": "2.3.0",
                 "raven/raven": "^0.13",
                 "ruflin/elastica": ">=0.90 <3.0",
-                "swiftmailer/swiftmailer": "~5.3",
-                "videlalvaro/php-amqplib": "~2.4"
+                "swiftmailer/swiftmailer": "~5.3"
             },
             "suggest": {
                 "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
@@ -187,11 +187,11 @@
                 "ext-mongo": "Allow sending log messages to a MongoDB server",
                 "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
                 "mongodb/mongodb": "Allow sending log messages to a MongoDB server via PHP Driver",
+                "php-amqplib/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib",
                 "php-console/php-console": "Allow sending log messages to Google Chrome",
                 "raven/raven": "Allow sending log messages to a Sentry server",
                 "rollbar/rollbar": "Allow sending log messages to Rollbar",
-                "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
-                "videlalvaro/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib"
+                "ruflin/elastica": "Allow sending log messages to an Elastic Search server"
             },
             "type": "library",
             "extra": {
@@ -222,7 +222,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2016-03-13 16:08:35"
+            "time": "2016-04-12 18:29:35"
         },
         {
             "name": "ntentan/atiaa",
@@ -477,12 +477,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/ntentan.git",
-                "reference": "74650ebba8eaccb9c3dd1498589e8fcff5bf5716"
+                "reference": "fa49c325472af8e3e82d103306439a5f8fc52968"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/74650ebba8eaccb9c3dd1498589e8fcff5bf5716",
-                "reference": "74650ebba8eaccb9c3dd1498589e8fcff5bf5716",
+                "url": "https://api.github.com/repos/ntentan/ntentan/zipball/fa49c325472af8e3e82d103306439a5f8fc52968",
+                "reference": "fa49c325472af8e3e82d103306439a5f8fc52968",
                 "shasum": ""
             },
             "require": {
@@ -513,7 +513,7 @@
                 }
             ],
             "description": "Another PHP application framework.",
-            "time": "2016-03-27 18:17:20"
+            "time": "2016-04-15 04:47:02"
         },
         {
             "name": "ntentan/social-extension",
@@ -882,23 +882,70 @@
             "time": "2015-12-31 15:58:49"
         },
         {
+            "name": "mustache/mustache",
+            "version": "v2.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bobthecow/mustache.php.git",
+                "reference": "0bb2f76e2f34a8864a32be34c4ec66274d76c05e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bobthecow/mustache.php/zipball/0bb2f76e2f34a8864a32be34c4ec66274d76c05e",
+                "reference": "0bb2f76e2f34a8864a32be34c4ec66274d76c05e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.4"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "~1.6",
+                "phpunit/phpunit": "~3.7|~4.0|~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Mustache": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Justin Hileman",
+                    "email": "justin@justinhileman.info",
+                    "homepage": "http://justinhileman.com"
+                }
+            ],
+            "description": "A Mustache implementation in PHP.",
+            "homepage": "https://github.com/bobthecow/mustache.php",
+            "keywords": [
+                "mustache",
+                "templating"
+            ],
+            "time": "2016-02-27 19:22:46"
+        },
+        {
             "name": "ntentan/dev",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ntentan/dev.git",
-                "reference": "acb5a14a7f76f9279afef1c48c3aa63e785e7fad"
+                "reference": "72b4ede0588cf4935350b07cb3502bbe704b365b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ntentan/dev/zipball/acb5a14a7f76f9279afef1c48c3aa63e785e7fad",
-                "reference": "acb5a14a7f76f9279afef1c48c3aa63e785e7fad",
+                "url": "https://api.github.com/repos/ntentan/dev/zipball/72b4ede0588cf4935350b07cb3502bbe704b365b",
+                "reference": "72b4ede0588cf4935350b07cb3502bbe704b365b",
                 "shasum": ""
             },
             "require": {
                 "ekowabaka/anyen": "dev-master",
                 "ekowabaka/clearice": "0.*",
                 "facebook/webdriver": "^1.0",
+                "mustache/mustache": "@stable",
                 "phpunit/dbunit": "^2.0",
                 "phpunit/phpunit": "^4.0"
             },
@@ -922,7 +969,7 @@
                 }
             ],
             "description": "A dev tool for use with ntentan",
-            "time": "2016-03-27 07:21:49"
+            "time": "2016-03-28 14:11:54"
         },
         {
             "name": "pear/console_getopt",
@@ -2112,16 +2159,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.0.3",
+            "version": "v3.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "b5ba64cd67ecd6887f63868fa781ca094bd1377c"
+                "reference": "0047c8366744a16de7516622c5b7355336afae96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/b5ba64cd67ecd6887f63868fa781ca094bd1377c",
-                "reference": "b5ba64cd67ecd6887f63868fa781ca094bd1377c",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/0047c8366744a16de7516622c5b7355336afae96",
+                "reference": "0047c8366744a16de7516622c5b7355336afae96",
                 "shasum": ""
             },
             "require": {
@@ -2157,7 +2204,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-02-23 15:16:06"
+            "time": "2016-03-04 07:55:57"
         }
     ],
     "aliases": [],

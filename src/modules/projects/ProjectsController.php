@@ -87,15 +87,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         {
             $this->set('sub_section_path', 'projects');
         }
-        else if(Router::getRoute() == 'projects/create' && Session::get('user')['is_admin'])
-        {
-            // Just allow the admins to go through
-        }
-        else
-        {
-            // Throw an exception for others
-            //throw new \ntentan\exceptions\RouteNotAvailableException();            
-        }
+
         $this->setupCreateIssueButton();
     }
     
@@ -183,54 +175,49 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         }
     }
     
-    public function edit($code)
+    public function edit($id)
     {
         $errors = [];
-        if(is_numeric($code))
+        if(is_numeric($id))
         {
-            $project = Projects::fetchFirstWithId($code);            
+            $project = Projects::fetchFirstWithId($id);            
         }
         else
         {
-            $project = Projects::fetchFirstWithCode($code);
+            $project = Projects::fetchFirstWithCode($id);
         }
         
         $this->set('title', "Edit project {$project}");
-        
-        if(Input::exists(Input::POST, 'name'))
-        {
-            $this->set('project', Input::post());
-            
-            $id = $project->id;
-            $project->setData(Input::post());
-            $project->id = $id;
-            
-            if($project->save())
-            {
-                if(Router::getVar('MODE') == 'admin')
-                    Ntentan::redirect(Ntentan::getUrl("admin/projects"));
-                else
-                    Ntentan::redirect(Ntentan::getUrl("projects"));
-            }
-            else
-            {
-                $errors = $project->getInvalidFields();
-            }
-        }
-        
-        $this->set('project', $project->toArray());
-        $this->set('errors', $errors);
+        $this->set('project', $project);
     }
     
-    public function delete($id)
+    /**
+     * @ntentan.action edit
+     * @ntentan.verb POST
+     * @param \kakalika\modules\projects\Projects $project
+     */
+    public function update(Projects $project)
+    {
+        if($project->save())
+        {
+            $this->redirect('projects');
+        }
+        else
+        {
+            $this->set('errors', $project->getInvalidFields());
+            $this->set('project', Input::post());
+        }
+    }
+    
+    public function delete($id, $confirm)
     {
         $project = Projects::fetchFirstWithId($id);
         $this->set('title', "Delete {$project} project");
         
-        if(Input::get('confirm') == 'yes')
+        if($confirm == 'yes')
         {
             $project->delete();
-            Ntentan::redirect(Ntentan::getUrl("admin/projects"));
+            $this->redirect('projects');
         }
         
         $this->set(
@@ -242,37 +229,41 @@ class ProjectsController extends \kakalika\lib\KakalikaController
             )
         );        
     }
-        
+    
     public function create()
     {
+        $project = Projects::createNew();
+        $project->userId = Session::get('user')['id'];
         $this->set('title', 'Create a new project');
-        $project = [];
-        $errors = [];
-        if(Input::exists(Input::POST, 'name'))
-        {
-            $newProject = Projects::createNew();
-            $newProject->name = Input::post('name');
-            $newProject->code = Input::post('code');
-            $newProject->description = Input::post('description');
-            $newProject->user_id = $this->authComponent->getUserId();
-            
-            if($newProject->save())
-            {
-                if($GLOBALS['ROUTE_MODE'] == 'admin')
-                {
-                    Ntentan::redirect(Ntentan::getUrl('projects'));
-                }
-                else
-                {
-                    Ntentan::redirect(Ntentan::getUrl('admin/projects'));
-                }
-            }
-            
-            $project = Input::post();
-            $errors = $newProject->getInvalidFields();
+        $this->set('project', $project);
+    }
+    
+    /**
+     * @ntentan.action create
+     * @ntentan.verb POST
+     * 
+     * @param \kakalika\modules\projects\Projects $project
+     * @param int $userId
+     * @return void
+     */
+    public function store(Projects $project = null, $userId)
+    {
+        $project->userId = $userId;
+        $this->set('title', 'Create a new project');
+        if($project->save()) {
+            return $this->redirect('projects');
         }
         $this->set('project', $project);
-        $this->set('errors', $errors);        
+        $this->set('errors', $project->getInvalidFields());
+    }
+    
+    private function redirect($url)
+    {
+        if(Router::getVar('mode') == 'admin') {
+            Ntentan::redirect("admin/$url");
+        } else {
+            Ntentan::redirect($url);
+        }
     }
 }
 

@@ -24,5 +24,6 @@
         "psr-4": {
             "kakalika\\tests\\": "tests/"
         }
-    }
+    },
+    "minimum-stability" : "dev"
 }

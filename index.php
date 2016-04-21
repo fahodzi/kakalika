@@ -35,6 +35,8 @@ use ntentan\Router;
 use ntentan\Ntentan;
 use kakalika\modules\projects\Projects;
 
+xdebug_start_trace('/tmp/trace.out.xt');
+
 
 Router::mapRoute(
     'default', '{controller}/{action}/{*id}', 

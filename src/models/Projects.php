@@ -1,6 +1,6 @@
 <?php
 
-namespace kakalika\modules\projects;
+namespace kakalika\models;
 
 use ntentan\Model;
 use kakalika\modules\projects_users\ProjectsUsers;

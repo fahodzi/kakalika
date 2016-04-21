@@ -1,5 +1,5 @@
 <?php
-namespace kakalika\modules\projects_users;
+namespace kakalika\models;
 
 use ntentan\Model;
 

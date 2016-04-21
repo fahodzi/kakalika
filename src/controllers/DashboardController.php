@@ -1,6 +1,6 @@
 <?php
 
-namespace kakalika\modules\dashboard;
+namespace kakalika\controllers;
 
 use kakalika\lib\KakalikaController;
 

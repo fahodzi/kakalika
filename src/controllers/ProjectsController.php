@@ -1,11 +1,13 @@
 <?php
-namespace kakalika\modules\projects;
+namespace kakalika\controllers;
 
 use ntentan\Ntentan;
-use kakalika\modules\issues\Issues;
+use kakalika\models\Issues;
 use ntentan\Router;
 use ntentan\Session;
 use ntentan\utils\Input;
+use kakalika\models\Projects;
+use ntentan\View;
 
 class ProjectsController extends \kakalika\lib\KakalikaController
 {
@@ -15,15 +17,15 @@ class ProjectsController extends \kakalika\lib\KakalikaController
     {
         parent::__construct();
         
-        $this->set('sub_section', 'Projects');
-        $this->set('title', 'Projects');
+        View::set('sub_section', 'Projects');
+        View::set('title', 'Projects');
         
         $this->userProjects = $this->getUserProjects();  
         
         if(Router::getVar('MODE') == 'admin' && Session::get('user')['is_admin'] == true)
         {
-            $this->set('admin', true);
-            $this->set('sub_section_path', 'admin/projects');    
+            View::set('admin', true);
+            View::set('sub_section_path', 'admin/projects');    
             $this->addComponent('submodule', 
                 array(
                     'milestones' => array(
@@ -85,7 +87,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         }
         else if(Router::getRoute() == 'projects')
         {
-            $this->set('sub_section_path', 'projects');
+            View::set('sub_section_path', 'projects');
         }
 
         $this->setupCreateIssueButton();
@@ -96,7 +98,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         if(Router::getVar('mode') == 'admin')
         {
             $projects = Projects::fields('name', 'id')->fetch()->toArray();
-            $this->set('admin', true);
+            View::set('admin', true);
         }
         else
         {
@@ -124,14 +126,14 @@ class ProjectsController extends \kakalika\lib\KakalikaController
             }
         }
         
-        $this->set('projects', $projects);
+        View::set('projects', $projects);
     }
     
     public function email($id)
     {
         $project = Projects::fetchFirstWithId($id);
-        $this->set('id', $id);
-        $this->set('project', $project->toArray());
+        View::set('id', $id);
+        View::set('project', $project->toArray());
         
         if(Input::exists(Input::POST, 'incoming_server_host'))
         {
@@ -171,7 +173,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         {
             $emailSettings = email_settings\EmailSettings::fetchFirstWithProjectId($id);
             $emailSettings->email_integration = $project->email_integration;
-            $this->set('settings', $emailSettings->toArray());
+            View::set('settings', $emailSettings->toArray());
         }
     }
     
@@ -187,8 +189,8 @@ class ProjectsController extends \kakalika\lib\KakalikaController
             $project = Projects::fetchFirstWithCode($id);
         }
         
-        $this->set('title', "Edit project {$project}");
-        $this->set('project', $project);
+        View::set('title', "Edit project {$project}");
+        View::set('project', $project);
     }
     
     /**
@@ -204,15 +206,15 @@ class ProjectsController extends \kakalika\lib\KakalikaController
         }
         else
         {
-            $this->set('errors', $project->getInvalidFields());
-            $this->set('project', Input::post());
+            View::set('errors', $project->getInvalidFields());
+            View::set('project', Input::post());
         }
     }
     
     public function delete($id, $confirm)
     {
         $project = Projects::fetchFirstWithId($id);
-        $this->set('title', "Delete {$project} project");
+        View::set('title', "Delete {$project} project");
         
         if($confirm == 'yes')
         {
@@ -220,7 +222,7 @@ class ProjectsController extends \kakalika\lib\KakalikaController
             $this->redirect('projects');
         }
         
-        $this->set(
+        View::set(
             array(
                 'item_type' => 'project',
                 'item_name' => $project,
@@ -234,8 +236,8 @@ class ProjectsController extends \kakalika\lib\KakalikaController
     {
         $project = Projects::createNew();
         $project->userId = Session::get('user')['id'];
-        $this->set('title', 'Create a new project');
-        $this->set('project', $project);
+        View::set('title', 'Create a new project');
+        View::set('project', $project);
     }
     
     /**
@@ -249,12 +251,12 @@ class ProjectsController extends \kakalika\lib\KakalikaController
     public function store(Projects $project = null, $userId)
     {
         $project->userId = $userId;
-        $this->set('title', 'Create a new project');
+        View::set('title', 'Create a new project');
         if($project->save()) {
             return $this->redirect('projects');
         }
-        $this->set('project', $project);
-        $this->set('errors', $project->getInvalidFields());
+        View::set('project', $project);
+        View::set('errors', $project->getInvalidFields());
     }
     
     private function redirect($url)

@@ -1,5 +1,5 @@
 <?php
-namespace kakalika\modules\issues;
+namespace kakalika\controllers;
 
 use ntentan\Router;
 use ntentan\utils\Input;
@@ -10,6 +10,7 @@ use kakalika\modules\projects\Projects;
 use kakalika\modules\components\Components;
 use kakalika\modules\issue_attachments\IssueAttachments;
 use kakalika\modules\milestones\Milestones;
+use kakalika\models\Issues;
 
 class IssuesController extends \kakalika\lib\KakalikaController
 {

@@ -10,9 +10,8 @@
         ?>
     </head>
     <body>
-            <div id="body">
-                <?= $contents->unescape() ?>
-            </div>
+        <div id="body">
+            <?= $contents->unescape() ?>
         </div>
     </body>
 </html>

@@ -5,6 +5,7 @@ use ntentan\honam\TemplateEngine;
 use ntentan\Controller;
 use ntentan\Ntentan;
 use ntentan\Router;
+use ntentan\View;
 
 class KakalikaController extends Controller
 {
@@ -12,7 +13,7 @@ class KakalikaController extends Controller
     {        
         if(is_readable("install"))
         {
-            $this->set("install_active", true);
+            View::set("install_active", true);
         }
         
         TemplateEngine::appendPath('views/layouts');
@@ -35,13 +36,13 @@ class KakalikaController extends Controller
     protected function getUserProjects()
     {
         //@todo Find a way to store this in some kind of cache
-        $user = \kakalika\modules\users\Users::fetchFirstWithId($this->authComponent->getUserId());
+        $user = \kakalika\models\Users::fetchFirstWithId($this->authComponent->getUserId());
         return $user->projects;
     }
     
     protected function setupCreateIssueButton()
     {
-        $this->set('sub_section_menu', 
+        View::set('sub_section_menu', 
             array(
                 array(
                     'label' => 'Create a new issue',
@@ -60,6 +61,6 @@ class KakalikaController extends Controller
             );
         }
 
-        $this->set('sub_section_menu_sub_menu', $projectsMenu);
+        View::set('sub_section_menu_sub_menu', $projectsMenu);
     }
 }

@@ -1,12 +1,12 @@
 <?php
-namespace kakalika\modules\issues;
+namespace kakalika\models;
 
 use ntentan\Model;
 use kakalika\modules\watchers\Watchers;
 use ntentan\Session;
 use kakalika\modules\updates\Updates;
 use kakalika\modules\issue_attachments\IssueAttachments;
-use kakalika\modules\projects\Projects;
+use kakalika\models\Projects;
 
 class Issues extends Model
 {
